@@ -1,0 +1,1428 @@
+INFO - 2024-04-28 01:22:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:22:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:22:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:22:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:22:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:23:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:23:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:23:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:23:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:23:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:23:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:23:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:23:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:23:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:23:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:24:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:24:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:24:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:25:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:31:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:31:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:35:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:35:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:35:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 01:35:13 --> Undefined array key "id_alasan"
+in APPPATH\Views\admin\memperoleh_informasi\index.php on line 176.
+ 1 APPPATH\Views\admin\memperoleh_informasi\index.php(176): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_alasan"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\memperoleh_informasi\\index.php', 176)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\memperoleh_informasi\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/memperoleh_informasi/index', [], true)
+ 5 APPPATH\Controllers\Admin\MemperolehInformasiController.php(45): view('admin/memperoleh_informasi/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\MemperolehInformasiController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\MemperolehInformasiController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 01:35:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:35:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:36:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:36:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:37:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:37:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:37:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:37:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:37:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:37:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:37:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:41:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:41:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:42:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:42:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:42:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:42:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:43:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:43:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:43:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:50:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:50:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 01:50:35 --> Invalid file: "admin/mendapat_salinan_informasi/index.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/mendapat_salinan_informasi/index.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/mendapat_salinan_informasi/index', [], true)
+ 3 APPPATH\Controllers\Admin\MendapatSalinanInformasiController.php(45): view('admin/mendapat_salinan_informasi/index', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\MendapatSalinanInformasiController->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\MendapatSalinanInformasiController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 01:50:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:58:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 01:58:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 01:58:41 --> Undefined variable $tb_cara_mendapat_salinan_informasi
+in APPPATH\Views\admin\mendapat_salinan_informasi\index.php on line 169.
+ 1 APPPATH\Views\admin\mendapat_salinan_informasi\index.php(169): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tb_cara_mendapat_salinan_informasi', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\mendapat_salinan_informasi\\index.php', 169)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\mendapat_salinan_informasi\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/mendapat_salinan_informasi/index', [], true)
+ 5 APPPATH\Controllers\Admin\MendapatSalinanInformasiController.php(45): view('admin/mendapat_salinan_informasi/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\MendapatSalinanInformasiController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\MendapatSalinanInformasiController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 01:58:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 01:58:43 --> Undefined variable $tb_cara_mendapat_salinan_informasi
+in APPPATH\Views\admin\mendapat_salinan_informasi\index.php on line 169.
+ 1 APPPATH\Views\admin\mendapat_salinan_informasi\index.php(169): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tb_cara_mendapat_salinan_informasi', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\mendapat_salinan_informasi\\index.php', 169)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\mendapat_salinan_informasi\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/mendapat_salinan_informasi/index', [], true)
+ 5 APPPATH\Controllers\Admin\MendapatSalinanInformasiController.php(45): view('admin/mendapat_salinan_informasi/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\MendapatSalinanInformasiController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\MendapatSalinanInformasiController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 02:00:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:00:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:00:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:00:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:00:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:00:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:05:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:05:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:12:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-04-28 02:12:02 --> mysqli_sql_exception: Unknown column 'id_kategori' in 'order clause' in C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\ppid_pswrn\system\Model.php(237): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ppid_pswrn\system\BaseModel.php(624): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\ppid_pswrn\app\Models\KategoriInformasiModel.php(24): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\ppid_pswrn\app\Controllers\Admin\KategoriInformasiPublikController.php(38): App\Models\KategoriInformasiModel->getAllData()
+#8 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(942): App\Controllers\Admin\KategoriInformasiPublikController->index()
+#9 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriInformasiPublikController))
+#10 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 C:\xampp\htdocs\ppid_pswrn\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#12 C:\xampp\htdocs\ppid_pswrn\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#13 {main}
+CRITICAL - 2024-04-28 02:12:02 --> Unknown column 'id_kategori' in 'order clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `tb_kategori_informasi_publik`
+ORDER BY `id_kategori` DESC', [], false)
+ 2 SYSTEMPATH\Model.php(237): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(624): CodeIgniter\Model->doFindAll(0, 0)
+ 4 APPPATH\Models\KategoriInformasiModel.php(24): CodeIgniter\BaseModel->findAll()
+ 5 APPPATH\Controllers\Admin\KategoriInformasiPublikController.php(38): App\Models\KategoriInformasiModel->getAllData()
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\KategoriInformasiPublikController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriInformasiPublikController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 02:13:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 02:13:26 --> Undefined variable $tb_kategori_informasi
+in APPPATH\Views\admin\kategori_informasi_publik\index.php on line 169.
+ 1 APPPATH\Views\admin\kategori_informasi_publik\index.php(169): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tb_kategori_informasi', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\kategori_informasi_publik\\index.php', 169)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\kategori_informasi_publik\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/kategori_informasi_publik/index', [], true)
+ 5 APPPATH\Controllers\Admin\KategoriInformasiPublikController.php(45): view('admin/kategori_informasi_publik/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\KategoriInformasiPublikController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriInformasiPublikController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 02:14:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:22:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:22:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:22:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:23:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:23:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:23:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:23:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:23:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:23:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:23:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:25:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:34:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:54:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:54:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:54:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:55:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:56:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:59:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:59:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:59:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:59:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:59:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:59:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:59:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:59:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:59:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:59:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 02:59:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:06:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:07:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:07:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:07:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:07:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:07:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:07:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:07:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:07:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:07:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:07:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:07:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:08:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:08:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:08:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:08:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:08:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:08:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:08:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:08:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:08:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:08:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:09:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:10:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:10:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:10:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:10:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:10:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:18:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:18:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:18:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:18:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:18:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:18:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:18:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:18:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:54:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:54:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:54:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:54:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:54:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:54:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:54:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:54:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:54:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:55:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:56:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:56:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 03:56:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:07:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:07:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:07:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:07:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:08:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:10:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:10:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:10:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:12:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:14:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:14:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 04:14:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:53:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:55:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:55:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:55:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:55:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 07:55:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:15:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:33:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:33:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:46:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:47:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:48:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:48:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:49:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:49:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:50:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:51:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:51:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:51:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:51:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:51:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:51:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:51:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:51:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:51:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:55:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:56:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-04-28 08:56:16 --> mysqli_sql_exception: Unknown column 'judul|trim|max_length[255]|min_length[5]' in 'where clause' in C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT 1\nFROM `...', 0)
+#1 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1\nFROM `...')
+#2 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1\nFROM `...')
+#3 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\ppid_pswrn\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('ssss', 'judul|trim|max_...', Array, NULL, 'judul_foto')
+#6 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'ssss', Array, Array)
+#7 C:\xampp\htdocs\ppid_pswrn\system\Controller.php(152): CodeIgniter\Validation\Validation->run()
+#8 C:\xampp\htdocs\ppid_pswrn\app\Controllers\Admin\FotoController.php(89): CodeIgniter\Controller->validate(Array)
+#9 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+#10 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+#11 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ppid_pswrn\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ppid_pswrn\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2024-04-28 08:56:16 --> Unknown column 'judul|trim|max_length[255]|min_length[5]' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `tb_foto`
+WHERE `judul|trim|max_length[255]|min_length[5]` = :judul|trim|max_length[255]|min_length[5]:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('ssss', 'judul|trim|max_length[255]|min_length[5]', [...], null, 'judul_foto')
+ 4 SYSTEMPATH\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'ssss', [...], [...])
+ 5 SYSTEMPATH\Controller.php(152): CodeIgniter\Validation\Validation->run()
+ 6 APPPATH\Controllers\Admin\FotoController.php(89): CodeIgniter\Controller->validate([...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 08:56:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:56:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:57:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-04-28 08:57:14 --> mysqli_sql_exception: Unknown column 'judul_foto|trim|max_length[255]|min_length[5]' in 'where clause' in C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT 1\nFROM `...', 0)
+#1 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1\nFROM `...')
+#2 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1\nFROM `...')
+#3 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\ppid_pswrn\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('ssss', 'judul_foto|trim...', Array, NULL, 'judul_foto')
+#6 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'ssss', Array, Array)
+#7 C:\xampp\htdocs\ppid_pswrn\system\Controller.php(152): CodeIgniter\Validation\Validation->run()
+#8 C:\xampp\htdocs\ppid_pswrn\app\Controllers\Admin\FotoController.php(89): CodeIgniter\Controller->validate(Array)
+#9 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+#10 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+#11 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ppid_pswrn\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ppid_pswrn\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2024-04-28 08:57:14 --> Unknown column 'judul_foto|trim|max_length[255]|min_length[5]' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `tb_foto`
+WHERE `judul_foto|trim|max_length[255]|min_length[5]` = :judul_foto|trim|max_length[255]|min_length[5]:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('ssss', 'judul_foto|trim|max_length[255]|min_length[5]', [...], null, 'judul_foto')
+ 4 SYSTEMPATH\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'ssss', [...], [...])
+ 5 SYSTEMPATH\Controller.php(152): CodeIgniter\Validation\Validation->run()
+ 6 APPPATH\Controllers\Admin\FotoController.php(89): CodeIgniter\Controller->validate([...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 08:58:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:58:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 08:58:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 09:01:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 09:02:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-04-28 09:02:00 --> mysqli_sql_exception: Unknown column 'judul_foto|trim|max_length[255]|min_length[5]' in 'where clause' in C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT 1\nFROM `...', 0)
+#1 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1\nFROM `...')
+#2 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1\nFROM `...')
+#3 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\ppid_pswrn\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('ss', 'judul_foto|trim...', Array, NULL, 'judul_foto')
+#6 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'ss', Array, Array)
+#7 C:\xampp\htdocs\ppid_pswrn\system\Controller.php(152): CodeIgniter\Validation\Validation->run()
+#8 C:\xampp\htdocs\ppid_pswrn\app\Controllers\Admin\FotoController.php(85): CodeIgniter\Controller->validate(Array)
+#9 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+#10 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+#11 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ppid_pswrn\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ppid_pswrn\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2024-04-28 09:02:00 --> Unknown column 'judul_foto|trim|max_length[255]|min_length[5]' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `tb_foto`
+WHERE `judul_foto|trim|max_length[255]|min_length[5]` = :judul_foto|trim|max_length[255]|min_length[5]:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('ss', 'judul_foto|trim|max_length[255]|min_length[5]', [...], null, 'judul_foto')
+ 4 SYSTEMPATH\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'ss', [...], [...])
+ 5 SYSTEMPATH\Controller.php(152): CodeIgniter\Validation\Validation->run()
+ 6 APPPATH\Controllers\Admin\FotoController.php(85): CodeIgniter\Controller->validate([...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:24:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:24:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:24:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:24:32 --> The framework needs the following extension(s) installed and loaded: "GD".
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 74.
+ 1 SYSTEMPATH\Images\Handlers\GDHandler.php(34): CodeIgniter\Exceptions\FrameworkException::forMissingExtension('GD')
+ 2 SYSTEMPATH\Config\Services.php(347): CodeIgniter\Images\Handlers\GDHandler->__construct(Object(Config\Images))
+ 3 SYSTEMPATH\Config\BaseService.php(258): CodeIgniter\Config\Services::image('gd', Object(Config\Images), false)
+ 4 SYSTEMPATH\Config\BaseService.php(199): CodeIgniter\Config\BaseService::__callStatic('image', [...])
+ 5 SYSTEMPATH\Config\Services.php(338): CodeIgniter\Config\BaseService::getSharedInstance('image', null, null)
+ 6 SYSTEMPATH\Config\BaseService.php(258): CodeIgniter\Config\Services::image()
+ 7 APPPATH\Helpers\upload_helper.php(26): CodeIgniter\Config\BaseService::__callStatic('image', [])
+ 8 APPPATH\Controllers\Admin\FotoController.php(107): uploadFile('file_foto', 'dokumen/foto/')
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:27:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:27:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:28:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:28:01 --> The framework needs the following extension(s) installed and loaded: "GD".
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 74.
+ 1 SYSTEMPATH\Images\Handlers\GDHandler.php(34): CodeIgniter\Exceptions\FrameworkException::forMissingExtension('GD')
+ 2 SYSTEMPATH\Config\Services.php(347): CodeIgniter\Images\Handlers\GDHandler->__construct(Object(Config\Images))
+ 3 SYSTEMPATH\Config\BaseService.php(258): CodeIgniter\Config\Services::image('gd', Object(Config\Images), false)
+ 4 SYSTEMPATH\Config\BaseService.php(199): CodeIgniter\Config\BaseService::__callStatic('image', [...])
+ 5 SYSTEMPATH\Config\Services.php(338): CodeIgniter\Config\BaseService::getSharedInstance('image', null, null)
+ 6 SYSTEMPATH\Config\BaseService.php(258): CodeIgniter\Config\Services::image()
+ 7 APPPATH\Helpers\upload_helper.php(26): CodeIgniter\Config\BaseService::__callStatic('image', [])
+ 8 APPPATH\Controllers\Admin\FotoController.php(107): uploadFile('file_foto', 'dokumen/foto/')
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:30:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:30:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:31:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:31:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:31:03 --> Attempt to read property "file_foto" on array
+in APPPATH\Views\admin\foto\index.php on line 132.
+ 1 APPPATH\Views\admin\foto\index.php(132): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "file_foto" on array', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php', 132)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/index', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(44): view('admin/foto/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:34:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:34:53 --> Attempt to read property "judul" on array
+in APPPATH\Views\admin\foto\index.php on line 133.
+ 1 APPPATH\Views\admin\foto\index.php(133): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "judul" on array', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php', 133)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/index', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(44): view('admin/foto/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:36:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:36:20 --> Attempt to read property "id_foto" on array
+in APPPATH\Views\admin\foto\index.php on line 135.
+ 1 APPPATH\Views\admin\foto\index.php(135): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "id_foto" on array', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php', 135)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/index', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(44): view('admin/foto/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:36:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:36:21 --> Attempt to read property "id_foto" on array
+in APPPATH\Views\admin\foto\index.php on line 135.
+ 1 APPPATH\Views\admin\foto\index.php(135): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "id_foto" on array', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php', 135)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/index', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(44): view('admin/foto/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:36:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:36:41 --> Attempt to read property "id_foto" on array
+in APPPATH\Views\admin\foto\index.php on line 135.
+ 1 APPPATH\Views\admin\foto\index.php(135): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "id_foto" on array', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php', 135)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/index', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(44): view('admin/foto/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:36:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:36:42 --> Attempt to read property "id_foto" on array
+in APPPATH\Views\admin\foto\index.php on line 135.
+ 1 APPPATH\Views\admin\foto\index.php(135): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "id_foto" on array', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php', 135)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/index', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(44): view('admin/foto/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:36:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:36:42 --> Attempt to read property "id_foto" on array
+in APPPATH\Views\admin\foto\index.php on line 135.
+ 1 APPPATH\Views\admin\foto\index.php(135): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "id_foto" on array', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php', 135)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/index', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(44): view('admin/foto/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:36:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:36:42 --> Attempt to read property "id_foto" on array
+in APPPATH\Views\admin\foto\index.php on line 135.
+ 1 APPPATH\Views\admin\foto\index.php(135): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "id_foto" on array', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php', 135)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\index.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/index', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(44): view('admin/foto/index', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:37:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:38:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:39:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:40:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:40:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:40:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:41:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:42:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:43:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-04-28 10:43:07 --> mysqli_sql_exception: Unknown column 'judul_foto|trim|max_length[255]|min_length[5]' in 'where clause' in C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT 1\nFROM `...', 0)
+#1 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1\nFROM `...')
+#2 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1\nFROM `...')
+#3 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\ppid_pswrn\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('asas', 'judul_foto|trim...', Array, NULL, 'judul_foto')
+#6 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'asas', Array, Array)
+#7 C:\xampp\htdocs\ppid_pswrn\system\Controller.php(152): CodeIgniter\Validation\Validation->run()
+#8 C:\xampp\htdocs\ppid_pswrn\app\Controllers\Admin\FotoController.php(80): CodeIgniter\Controller->validate(Array)
+#9 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+#10 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+#11 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ppid_pswrn\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ppid_pswrn\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2024-04-28 10:43:07 --> Unknown column 'judul_foto|trim|max_length[255]|min_length[5]' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `tb_foto`
+WHERE `judul_foto|trim|max_length[255]|min_length[5]` = :judul_foto|trim|max_length[255]|min_length[5]:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('asas', 'judul_foto|trim|max_length[255]|min_length[5]', [...], null, 'judul_foto')
+ 4 SYSTEMPATH\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'asas', [...], [...])
+ 5 SYSTEMPATH\Controller.php(152): CodeIgniter\Validation\Validation->run()
+ 6 APPPATH\Controllers\Admin\FotoController.php(80): CodeIgniter\Controller->validate([...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:46:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:46:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:46:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:46:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:46:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:47:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:47:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:47:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:47:49 --> strpos(): Argument #3 ($offset) must be contained in argument #1 ($haystack)
+in SYSTEMPATH\Validation\Validation.php on line 935.
+ 1 SYSTEMPATH\Validation\Validation.php(935): strpos('required|trim|max_length[255]|min_length[5]]', '|', 45)
+ 2 SYSTEMPATH\Validation\Validation.php(574): CodeIgniter\Validation\Validation->splitRules([...])
+ 3 SYSTEMPATH\Controller.php(196): CodeIgniter\Validation\Validation->setRules([...], [])
+ 4 SYSTEMPATH\Controller.php(150): CodeIgniter\Controller->setValidator([...], [])
+ 5 APPPATH\Controllers\Admin\FotoController.php(81): CodeIgniter\Controller->validate([...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:48:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:50:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:50:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:51:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:51:03 --> strpos(): Argument #3 ($offset) must be contained in argument #1 ($haystack)
+in SYSTEMPATH\Validation\Validation.php on line 935.
+ 1 SYSTEMPATH\Validation\Validation.php(935): strpos('required|trim|max_length[255]|min_length[5]]', '|', 45)
+ 2 SYSTEMPATH\Validation\Validation.php(574): CodeIgniter\Validation\Validation->splitRules([...])
+ 3 SYSTEMPATH\Controller.php(196): CodeIgniter\Validation\Validation->setRules([...], [])
+ 4 SYSTEMPATH\Controller.php(150): CodeIgniter\Controller->setValidator([...], [])
+ 5 APPPATH\Controllers\Admin\FotoController.php(80): CodeIgniter\Controller->validate([...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:53:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:53:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:53:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:53:32 --> strpos(): Argument #3 ($offset) must be contained in argument #1 ($haystack)
+in SYSTEMPATH\Validation\Validation.php on line 935.
+ 1 SYSTEMPATH\Validation\Validation.php(935): strpos('required|trim|max_length[255]|min_length[5]]', '|', 45)
+ 2 SYSTEMPATH\Validation\Validation.php(574): CodeIgniter\Validation\Validation->splitRules([...])
+ 3 SYSTEMPATH\Controller.php(196): CodeIgniter\Validation\Validation->setRules([...], [])
+ 4 SYSTEMPATH\Controller.php(150): CodeIgniter\Controller->setValidator([...], [])
+ 5 APPPATH\Controllers\Admin\FotoController.php(80): CodeIgniter\Controller->validate([...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:53:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:53:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:53:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 10:53:58 --> strpos(): Argument #3 ($offset) must be contained in argument #1 ($haystack)
+in SYSTEMPATH\Validation\Validation.php on line 935.
+ 1 SYSTEMPATH\Validation\Validation.php(935): strpos('required|trim|max_length[255]|min_length[5]]', '|', 45)
+ 2 SYSTEMPATH\Validation\Validation.php(574): CodeIgniter\Validation\Validation->splitRules([...])
+ 3 SYSTEMPATH\Controller.php(196): CodeIgniter\Validation\Validation->setRules([...], [])
+ 4 SYSTEMPATH\Controller.php(150): CodeIgniter\Controller->setValidator([...], [])
+ 5 APPPATH\Controllers\Admin\FotoController.php(80): CodeIgniter\Controller->validate([...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:54:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:54:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:54:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:54:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:55:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:55:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:55:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:55:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:55:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:55:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:56:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:56:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-04-28 10:56:12 --> mysqli_sql_exception: Unknown column 'judul_foto|trim|max_length[255]|min_length[5]' in 'where clause' in C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT 1\nFROM `...', 0)
+#1 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1\nFROM `...')
+#2 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1\nFROM `...')
+#3 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\ppid_pswrn\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('sss', 'judul_foto|trim...', Array, NULL, 'judul_foto')
+#6 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'sss', Array, Array)
+#7 C:\xampp\htdocs\ppid_pswrn\system\Controller.php(152): CodeIgniter\Validation\Validation->run()
+#8 C:\xampp\htdocs\ppid_pswrn\app\Controllers\Admin\FotoController.php(80): CodeIgniter\Controller->validate(Array)
+#9 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+#10 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+#11 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ppid_pswrn\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ppid_pswrn\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2024-04-28 10:56:12 --> Unknown column 'judul_foto|trim|max_length[255]|min_length[5]' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `tb_foto`
+WHERE `judul_foto|trim|max_length[255]|min_length[5]` = :judul_foto|trim|max_length[255]|min_length[5]:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('sss', 'judul_foto|trim|max_length[255]|min_length[5]', [...], null, 'judul_foto')
+ 4 SYSTEMPATH\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'sss', [...], [...])
+ 5 SYSTEMPATH\Controller.php(152): CodeIgniter\Validation\Validation->run()
+ 6 APPPATH\Controllers\Admin\FotoController.php(80): CodeIgniter\Controller->validate([...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:56:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:56:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:56:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:56:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-04-28 10:56:52 --> mysqli_sql_exception: Unknown column 'judul_foto|trim|max_length[255]|min_length[5]' in 'where clause' in C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT 1\nFROM `...', 0)
+#1 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT 1\nFROM `...')
+#2 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT 1\nFROM `...')
+#3 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\ppid_pswrn\system\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('ssssssssss', 'judul_foto|trim...', Array, NULL, 'judul_foto')
+#6 C:\xampp\htdocs\ppid_pswrn\system\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'ssssssssss', Array, Array)
+#7 C:\xampp\htdocs\ppid_pswrn\system\Controller.php(152): CodeIgniter\Validation\Validation->run()
+#8 C:\xampp\htdocs\ppid_pswrn\app\Controllers\Admin\FotoController.php(80): CodeIgniter\Controller->validate(Array)
+#9 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+#10 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+#11 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 C:\xampp\htdocs\ppid_pswrn\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#13 C:\xampp\htdocs\ppid_pswrn\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#14 {main}
+CRITICAL - 2024-04-28 10:56:52 --> Unknown column 'judul_foto|trim|max_length[255]|min_length[5]' in 'where clause'
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT 1
+FROM `tb_foto`
+WHERE `judul_foto|trim|max_length[255]|min_length[5]` = :judul_foto|trim|max_length[255]|min_length[5]:
+ LIMIT 1', [...], false)
+ 2 SYSTEMPATH\Validation\StrictRules\Rules.php(212): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\Validation\Validation.php(311): CodeIgniter\Validation\StrictRules\Rules->is_unique('ssssssssss', 'judul_foto|trim|max_length[255]|min_length[5]', [...], null, 'judul_foto')
+ 4 SYSTEMPATH\Validation\Validation.php(197): CodeIgniter\Validation\Validation->processRules('judul_foto', 'judul_foto', 'ssssssssss', [...], [...])
+ 5 SYSTEMPATH\Controller.php(152): CodeIgniter\Validation\Validation->run()
+ 6 APPPATH\Controllers\Admin\FotoController.php(80): CodeIgniter\Controller->validate([...])
+ 7 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->save()
+ 8 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 9 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 10:57:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:57:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:57:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:57:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:58:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:58:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:58:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:59:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 10:59:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:00:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:00:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:00:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:03:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:03:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:03:45 --> Invalid file: "admin/foto/cek_data.php"
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 39.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('admin/foto/cek_data.php')
+ 2 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 3 APPPATH\Controllers\Admin\FotoController.php(249): view('admin/foto/cek_data', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('2')
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:04:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:04:47 --> Undefined variable $dokumen
+in APPPATH\Views\admin\foto\cek_data.php on line 123.
+ 1 APPPATH\Views\admin\foto\cek_data.php(123): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dokumen', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 123)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(249): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('2')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:05:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:05:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:05:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:08:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:08:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:08:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:08:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:08:05 --> Undefined variable $value
+in APPPATH\Views\admin\foto\cek_data.php on line 120.
+ 1 APPPATH\Views\admin\foto\cek_data.php(120): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $value', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 120)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(249): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('2')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:11:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:11:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:11:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:11:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:11:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:13:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:13:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:14:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:14:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:14:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:15:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:15:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:15:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:15:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:15:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:15:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:16:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:17:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:17:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:17:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:17:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:17:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:17:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:17:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:18:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:18:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:18:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:18:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:18:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:18:31 --> Undefined variable $value
+in APPPATH\Views\admin\foto\cek_data.php on line 120.
+ 1 APPPATH\Views\admin\foto\cek_data.php(120): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $value', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 120)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(249): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:20:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:20:32 --> Undefined property: stdClass::$judul
+in APPPATH\Views\admin\foto\cek_data.php on line 127.
+ 1 APPPATH\Views\admin\foto\cek_data.php(127): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$judul', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 127)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:20:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:20:54 --> Undefined property: stdClass::$file_informasi_publik
+in APPPATH\Views\admin\foto\cek_data.php on line 129.
+ 1 APPPATH\Views\admin\foto\cek_data.php(129): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$file_informasi_publik', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 129)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:21:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:22:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:22:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:24:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:24:19 --> Undefined variable $row
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:24:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:24:42 --> Undefined variable $row
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:24:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:24:43 --> Undefined variable $row
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:24:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:24:44 --> Undefined variable $row
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:24:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:24:44 --> Undefined variable $row
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:24:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:24:45 --> Undefined variable $row
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $row', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:24:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:24:56 --> Undefined array key "file_foto"
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "file_foto"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:25:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:25:32 --> Undefined array key "file_foto"
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "file_foto"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:25:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:25:33 --> Undefined array key "file_foto"
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "file_foto"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:25:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:25:34 --> Undefined array key "file_foto"
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "file_foto"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:25:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:25:34 --> Undefined array key "file_foto"
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "file_foto"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:25:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:25:34 --> Undefined array key "file_foto"
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "file_foto"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:25:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:25:35 --> Undefined array key "file_foto"
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "file_foto"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:25:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:25:35 --> Undefined array key "file_foto"
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "file_foto"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:25:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:25:56 --> Attempt to read property "file_foto" on array
+in APPPATH\Views\admin\foto\cek_data.php on line 90.
+ 1 APPPATH\Views\admin\foto\cek_data.php(90): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "file_foto" on array', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 90)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:26:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:26:47 --> Undefined array key "file_foto"
+in APPPATH\Views\admin\foto\cek_data.php on line 89.
+ 1 APPPATH\Views\admin\foto\cek_data.php(89): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "file_foto"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 89)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:27:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:27:17 --> Undefined array key "file_foto"
+in APPPATH\Views\admin\foto\cek_data.php on line 89.
+ 1 APPPATH\Views\admin\foto\cek_data.php(89): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "file_foto"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 89)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:27:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:27:19 --> Undefined array key "file_foto"
+in APPPATH\Views\admin\foto\cek_data.php on line 89.
+ 1 APPPATH\Views\admin\foto\cek_data.php(89): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "file_foto"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 89)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:27:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:27:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:28:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:29:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:29:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:29:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:29:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:31:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:32:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:32:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:32:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:32:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:32:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:33:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:33:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:33:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:38:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:38:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:38:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:39:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:39:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:39:47 --> Undefined variable $dokumen
+in APPPATH\Views\admin\foto\cek_data.php on line 116.
+ 1 APPPATH\Views\admin\foto\cek_data.php(116): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $dokumen', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 116)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(265): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('sasas')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:40:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:40:19 --> Undefined variable $m_foto
+in APPPATH\Controllers\Admin\FotoController.php on line 258.
+ 1 APPPATH\Controllers\Admin\FotoController.php(258): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $m_foto', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Controllers\\Admin\\FotoController.php', 258)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('sasas')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:40:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:40:48 --> Undefined variable $id_foto
+in APPPATH\Controllers\Admin\FotoController.php on line 258.
+ 1 APPPATH\Controllers\Admin\FotoController.php(258): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $id_foto', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Controllers\\Admin\\FotoController.php', 258)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('sasas')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:41:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:41:00 --> Undefined variable $value
+in APPPATH\Views\admin\foto\cek_data.php on line 133.
+ 1 APPPATH\Views\admin\foto\cek_data.php(133): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $value', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 133)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(266): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('sasas')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:46:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:46:52 --> Undefined variable $value
+in APPPATH\Views\admin\foto\cek_data.php on line 133.
+ 1 APPPATH\Views\admin\foto\cek_data.php(133): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $value', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 133)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(266): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('sasas')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:47:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:47:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:47:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:47:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:47:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:47:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:47:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:47:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:47:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:47:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:47:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:47:42 --> Undefined variable $value
+in APPPATH\Views\admin\foto\cek_data.php on line 133.
+ 1 APPPATH\Views\admin\foto\cek_data.php(133): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $value', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 133)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(266): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('sasas')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:47:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:47:51 --> Undefined variable $value
+in APPPATH\Views\admin\foto\cek_data.php on line 133.
+ 1 APPPATH\Views\admin\foto\cek_data.php(133): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $value', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php', 133)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(266): view('admin/foto/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('sasas')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:47:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:47:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:48:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:49:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:49:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:52:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:53:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:53:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:53:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:53:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:53:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 11:54:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 11:54:07 --> Unsupported operand types: array - array
+in APPPATH\Views\admin\foto\cek_data.php on line 99.
+ 1 SYSTEMPATH\View\View.php(228): include()
+ 2 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/cek_data', [], true)
+ 4 APPPATH\Controllers\Admin\FotoController.php(250): view('admin/foto/cek_data', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->cek_data('5')
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 11:54:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:06:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:06:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:07:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:11:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:11:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:11:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:11:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:11:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:12:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:14:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:14:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:14:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:14:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:14:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:15:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:25:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:25:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:25:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 12:25:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:47:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:47:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:47:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:47:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:47:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:48:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:50:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:50:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:50:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:51:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:51:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:51:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:54:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 14:54:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 15:10:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 15:11:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 15:11:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 15:11:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 15:11:17 --> Undefined variable $tb_informasi_publik
+in APPPATH\Views\admin\foto\edit.php on line 80.
+ 1 APPPATH\Views\admin\foto\edit.php(80): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $tb_informasi_publik', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\edit.php', 80)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\foto\\edit.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/foto/edit', [], true)
+ 5 APPPATH\Controllers\Admin\FotoController.php(163): view('admin/foto/edit', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->edit('pepek')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 15:14:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 15:15:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 15:15:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 15:15:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:01:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:01:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:01:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:01:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:01:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:01:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:02:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:02:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:02:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:04:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:04:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:05:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:10:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:10:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:11:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:11:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:15:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:15:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:15:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 17:15:15 --> Trying to access array offset on value of type null
+in APPPATH\Views\admin\informasi_publik\edit.php on line 63.
+ 1 APPPATH\Views\admin\informasi_publik\edit.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\edit.php', 63)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\edit.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/edit', [], true)
+ 5 APPPATH\Controllers\Admin\InformasiPublikController.php(295): view('admin/informasi_publik/edit', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->edit('pepek')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 17:15:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:15:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:16:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:16:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:16:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 17:16:23 --> Trying to access array offset on value of type null
+in APPPATH\Views\admin\informasi_publik\edit.php on line 63.
+ 1 APPPATH\Views\admin\informasi_publik\edit.php(63): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to access array offset on value of type null', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\edit.php', 63)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\edit.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/edit', [], true)
+ 5 APPPATH\Controllers\Admin\InformasiPublikController.php(295): view('admin/informasi_publik/edit', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->edit('pepek')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 17:17:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:17:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:17:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:17:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:18:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:18:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:18:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:19:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:20:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:20:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:20:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:20:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:20:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:21:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:21:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:21:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 17:21:34 --> The framework needs the following extension(s) installed and loaded: "GD".
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 74.
+ 1 SYSTEMPATH\Images\Handlers\GDHandler.php(34): CodeIgniter\Exceptions\FrameworkException::forMissingExtension('GD')
+ 2 SYSTEMPATH\Config\Services.php(347): CodeIgniter\Images\Handlers\GDHandler->__construct(Object(Config\Images))
+ 3 SYSTEMPATH\Config\BaseService.php(258): CodeIgniter\Config\Services::image('gd', Object(Config\Images), false)
+ 4 SYSTEMPATH\Config\BaseService.php(199): CodeIgniter\Config\BaseService::__callStatic('image', [...])
+ 5 SYSTEMPATH\Config\Services.php(338): CodeIgniter\Config\BaseService::getSharedInstance('image', null, null)
+ 6 SYSTEMPATH\Config\BaseService.php(258): CodeIgniter\Config\Services::image()
+ 7 APPPATH\Helpers\upload_helper.php(66): CodeIgniter\Config\BaseService::__callStatic('image', [])
+ 8 APPPATH\Controllers\Admin\FotoController.php(200): updateFile('file_foto', 'dokumen/foto/')
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->update('6')
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 17:23:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:23:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:24:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 17:24:01 --> The framework needs the following extension(s) installed and loaded: "GD".
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 74.
+ 1 SYSTEMPATH\Images\Handlers\GDHandler.php(34): CodeIgniter\Exceptions\FrameworkException::forMissingExtension('GD')
+ 2 SYSTEMPATH\Config\Services.php(347): CodeIgniter\Images\Handlers\GDHandler->__construct(Object(Config\Images))
+ 3 SYSTEMPATH\Config\BaseService.php(258): CodeIgniter\Config\Services::image('gd', Object(Config\Images), false)
+ 4 SYSTEMPATH\Config\BaseService.php(199): CodeIgniter\Config\BaseService::__callStatic('image', [...])
+ 5 SYSTEMPATH\Config\Services.php(338): CodeIgniter\Config\BaseService::getSharedInstance('image', null, null)
+ 6 SYSTEMPATH\Config\BaseService.php(258): CodeIgniter\Config\Services::image()
+ 7 APPPATH\Helpers\upload_helper.php(66): CodeIgniter\Config\BaseService::__callStatic('image', [])
+ 8 APPPATH\Controllers\Admin\FotoController.php(200): updateFile('file_foto', 'dokumen/foto/')
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->update('6')
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 17:26:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 17:26:17 --> url_title(): Argument #1 ($str) must be of type string, null given, called in C:\xampp\htdocs\ppid_pswrn\app\Controllers\Admin\FotoController.php on line 210
+in SYSTEMPATH\Helpers\url_helper.php on line 421.
+ 1 APPPATH\Controllers\Admin\FotoController.php(210): url_title(null, '-', true)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->update('6')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 17:26:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:26:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:26:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-04-28 17:26:41 --> url_title(): Argument #1 ($str) must be of type string, null given, called in C:\xampp\htdocs\ppid_pswrn\app\Controllers\Admin\FotoController.php on line 210
+in SYSTEMPATH\Helpers\url_helper.php on line 421.
+ 1 APPPATH\Controllers\Admin\FotoController.php(210): url_title(null, '-', true)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\FotoController->update('6')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\FotoController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-04-28 17:27:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:27:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:27:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:27:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:27:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:27:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:27:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:27:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:28:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:33:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:33:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:33:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:33:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:33:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:33:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:33:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:33:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:38:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-04-28 17:38:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

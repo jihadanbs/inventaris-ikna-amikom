@@ -1,0 +1,357 @@
+INFO - 2024-05-21 03:22:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:22:39 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:22:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 03:23:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-21 03:23:39 --> Undefined variable $email
+in APPPATH\Views\layouts\footer.php on line 35.
+ 1 APPPATH\Views\layouts\footer.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $email', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php', 35)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('layouts/footer', null, true)
+ 5 APPPATH\Views\layouts\template.php(34): CodeIgniter\View\View->include('layouts/footer')
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\template.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(244): CodeIgniter\View\View->render('layouts/template', [], true)
+ 9 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('user/informasipublik/informasipublik', [], true)
+10 APPPATH\Controllers\InformasiPublikController.php(110): view('user/informasipublik/informasipublik', [...])
+11 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\InformasiPublikController->informasipublik()
+12 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\InformasiPublikController))
+13 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:23:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:23:40 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:23:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:23:41 --> [DEPRECATED] Creation of dynamic property App\Controllers\ProfilController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+CRITICAL - 2024-05-21 03:23:41 --> Undefined variable $email
+in APPPATH\Views\layouts\footer.php on line 35.
+ 1 APPPATH\Views\layouts\footer.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $email', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php', 35)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('layouts/footer', null, true)
+ 5 APPPATH\Views\layouts\template.php(34): CodeIgniter\View\View->include('layouts/footer')
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\template.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(244): CodeIgniter\View\View->render('layouts/template', [], true)
+ 9 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('user/profil', [], true)
+10 APPPATH\Controllers\ProfilController.php(43): view('user/profil', [...])
+11 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\ProfilController->profil()
+12 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\ProfilController))
+13 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:26:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:26:14 --> [DEPRECATED] Creation of dynamic property App\Controllers\ProfilController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:29:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:29:02 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+CRITICAL - 2024-05-21 03:29:02 --> Undefined variable $email
+in APPPATH\Views\layouts\footer.php on line 35.
+ 1 APPPATH\Views\layouts\footer.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $email', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php', 35)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('layouts/footer', null, true)
+ 5 APPPATH\Views\layouts\template.php(34): CodeIgniter\View\View->include('layouts/footer')
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\template.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(244): CodeIgniter\View\View->render('layouts/template', [], true)
+ 9 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('user/standarlayanan/standarlayanan', [], true)
+10 APPPATH\Controllers\StandarLayananController.php(34): view('user/standarlayanan/standarlayanan', [...])
+11 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\StandarLayananController->standarlayanan()
+12 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\StandarLayananController))
+13 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:29:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:29:04 --> [DEPRECATED] Creation of dynamic property App\Controllers\ProfilController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:29:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 03:29:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 03:30:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 03:31:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 03:32:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 03:32:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 03:32:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 03:34:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:32 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:39 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:41 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:42 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:43 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:45 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:46 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:47 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:52 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:54 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:55 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:56 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:58 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:34:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:34:59 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:35:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:35:01 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:35:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:35:02 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:35:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:35:03 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:35:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:35:05 --> [DEPRECATED] Creation of dynamic property App\Controllers\LaporanController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+CRITICAL - 2024-05-21 03:35:05 --> Undefined variable $email
+in APPPATH\Views\layouts\footer.php on line 35.
+ 1 APPPATH\Views\layouts\footer.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $email', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php', 35)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('layouts/footer', null, true)
+ 5 APPPATH\Views\layouts\template.php(34): CodeIgniter\View\View->include('layouts/footer')
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\template.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(244): CodeIgniter\View\View->render('layouts/template', [], true)
+ 9 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('user/laporan', [], true)
+10 APPPATH\Controllers\LaporanController.php(40): view('user/laporan', [...])
+11 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\LaporanController->laporan()
+12 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\LaporanController))
+13 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:35:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:35:27 --> [DEPRECATED] Creation of dynamic property App\Controllers\LaporanController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:35:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:35:30 --> [DEPRECATED] Creation of dynamic property App\Controllers\PdfController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+CRITICAL - 2024-05-21 03:35:30 --> Undefined variable $email
+in APPPATH\Views\layouts\footer.php on line 35.
+ 1 APPPATH\Views\layouts\footer.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $email', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php', 35)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('layouts/footer', null, true)
+ 5 APPPATH\Views\layouts\template.php(34): CodeIgniter\View\View->include('layouts/footer')
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\template.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(244): CodeIgniter\View\View->render('layouts/template', [], true)
+ 9 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('user/tampilanpdf', [], true)
+10 APPPATH\Controllers\PdfController.php(34): view('user/tampilanpdf', [...])
+11 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\PdfController->pdf()
+12 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\PdfController))
+13 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:35:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:35:34 --> [DEPRECATED] Creation of dynamic property App\Controllers\LaporanController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:35:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:35:54 --> [DEPRECATED] Creation of dynamic property App\Controllers\PdfController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:35:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:35:59 --> [DEPRECATED] Creation of dynamic property App\Controllers\LaporanController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:36:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:36:03 --> [DEPRECATED] Creation of dynamic property App\Controllers\GaleriController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+CRITICAL - 2024-05-21 03:36:03 --> Undefined variable $email
+in APPPATH\Views\layouts\footer.php on line 35.
+ 1 APPPATH\Views\layouts\footer.php(35): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $email', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php', 35)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\footer.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('layouts/footer', null, true)
+ 5 APPPATH\Views\layouts\template.php(34): CodeIgniter\View\View->include('layouts/footer')
+ 6 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\layouts\\template.php')
+ 7 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 8 SYSTEMPATH\View\View.php(244): CodeIgniter\View\View->render('layouts/template', [], true)
+ 9 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('galeri/galeri', [], true)
+10 APPPATH\Controllers\GaleriController.php(45): view('galeri/galeri', [...])
+11 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\GaleriController->galeri()
+12 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\GaleriController))
+13 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+15 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:36:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:36:45 --> [DEPRECATED] Creation of dynamic property App\Controllers\GaleriController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:36:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:36:48 --> [DEPRECATED] Creation of dynamic property App\Controllers\GaleriController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:36:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 03:36:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:36:56 --> [DEPRECATED] Creation of dynamic property App\Controllers\StandarLayananController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:36:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:36:58 --> [DEPRECATED] Creation of dynamic property App\Controllers\LaporanController::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-05-21 03:37:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-05-21 03:37:00 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$session is deprecated in APPPATH\Controllers\BaseController.php on line 57.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')

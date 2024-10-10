@@ -1,0 +1,14 @@
+ERROR - 2024-03-15 07:24:50 --> mysqli_sql_exception: Incorrect table definition; there can be only one auto column and it must be defined as a key in C:\migration\PPID_pswrn\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\migration\PPID_pswrn\system\Database\MySQLi\Connection.php(306): mysqli->query('CREATE TABLE `t...', 0)
+#1 C:\migration\PPID_pswrn\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('CREATE TABLE `t...')
+#2 C:\migration\PPID_pswrn\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('CREATE TABLE `t...')
+#3 C:\migration\PPID_pswrn\system\Database\Forge.php(546): CodeIgniter\Database\BaseConnection->query('CREATE TABLE `t...')
+#4 C:\migration\PPID_pswrn\app\Database\Migrations\2024-03-15-065251_TbDapatInformasi.php(26): CodeIgniter\Database\Forge->createTable('tb_cara_mendapa...')
+#5 C:\migration\PPID_pswrn\system\Database\MigrationRunner.php(873): App\Database\Migrations\TbDapatInformasi->up()
+#6 C:\migration\PPID_pswrn\system\Database\MigrationRunner.php(188): CodeIgniter\Database\MigrationRunner->migrate('up', Object(stdClass))
+#7 C:\migration\PPID_pswrn\system\Commands\Database\Migrate.php(84): CodeIgniter\Database\MigrationRunner->latest(NULL)
+#8 C:\migration\PPID_pswrn\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Migrate->run(Array)
+#9 C:\migration\PPID_pswrn\system\CLI\Console.php(46): CodeIgniter\CLI\Commands->run('migrate', Array)
+#10 C:\migration\PPID_pswrn\spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}

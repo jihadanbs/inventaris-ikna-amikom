@@ -1,0 +1,333 @@
+INFO - 2024-10-08 12:15:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:29:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-10-08 12:29:08 --> Class "App\Models\KategoriModel" not found
+in APPPATH\Controllers\BaseController.php on line 149.
+ 1 SYSTEMPATH\CodeIgniter.php(915): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(493): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 12:37:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-10-08 12:37:52 --> User logged in: {"__ci_last_regenerate":1728365871,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"1","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":null,"terakhir_login":"2024-10-07 17:08:33","file_profil":"gambar.jpg","islogin":true}
+INFO - 2024-10-08 12:37:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:37:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-10-08 12:37:58 --> mysqli_sql_exception: Table 'inventaris_ikna.tb_pemohon' doesn't exist in C:\xampp\htdocs\template\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\template\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `tb_pemo...', 0)
+#1 C:\xampp\htdocs\template\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_pemo...')
+#2 C:\xampp\htdocs\template\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_pemo...')
+#3 C:\xampp\htdocs\template\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_pemo...', Array, false)
+#4 C:\xampp\htdocs\template\app\Models\PemohonModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\template\app\Controllers\BaseController.php(189): App\Models\PemohonModel->getAllSorted()
+#6 C:\xampp\htdocs\template\app\Controllers\Admin\KategoriBarangController.php(21): App\Controllers\BaseController->loadCommonData()
+#7 C:\xampp\htdocs\template\system\CodeIgniter.php(942): App\Controllers\Admin\KategoriBarangController->index()
+#8 C:\xampp\htdocs\template\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriBarangController))
+#9 C:\xampp\htdocs\template\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\template\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\template\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-10-08 12:37:58 --> Table 'inventaris_ikna.tb_pemohon' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_pemohon`.*, `tb_lembaga`.`nama_dinas`, `tb_kategori`.`nama_kategori`, `tb_memperoleh_informasi`.`deskripsi`, `tb_mendapat_salinan_informasi`.`deskripsi`, `tb_cara_mendapat_salinan_informasi`.`deskripsi`
+FROM `tb_pemohon`
+JOIN `tb_lembaga` ON `tb_lembaga`.`id_lembaga` = `tb_pemohon`.`id_lembaga`
+JOIN `tb_kategori` ON `tb_kategori`.`id_kategori` = `tb_pemohon`.`id_kategori`
+JOIN `tb_memperoleh_informasi` ON `tb_memperoleh_informasi`.`id_memperoleh_informasi` = `tb_pemohon`.`id_memperoleh_informasi`
+JOIN `tb_mendapat_salinan_informasi` ON `tb_mendapat_salinan_informasi`.`id_mendapat_salinan_informasi` = `tb_pemohon`.`id_mendapat_salinan_informasi`
+JOIN `tb_cara_mendapat_salinan_informasi` ON `tb_cara_mendapat_salinan_informasi`.`id_cara_mendapat_salinan_informasi` = `tb_pemohon`.`id_cara_mendapat_salinan_informasi`
+ORDER BY `tb_pemohon`.`id_pemohon` DESC', [], false)
+ 2 APPPATH\Models\PemohonModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\BaseController.php(189): App\Models\PemohonModel->getAllSorted()
+ 4 APPPATH\Controllers\Admin\KategoriBarangController.php(21): App\Controllers\BaseController->loadCommonData()
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\KategoriBarangController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriBarangController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 12:38:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-10-08 12:38:49 --> mysqli_sql_exception: Table 'inventaris_ikna.tb_pemohon' doesn't exist in C:\xampp\htdocs\template\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\template\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `tb_pemo...', 0)
+#1 C:\xampp\htdocs\template\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_pemo...')
+#2 C:\xampp\htdocs\template\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_pemo...')
+#3 C:\xampp\htdocs\template\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_pemo...', Array, false)
+#4 C:\xampp\htdocs\template\app\Models\PemohonModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\template\app\Controllers\BaseController.php(189): App\Models\PemohonModel->getAllSorted()
+#6 C:\xampp\htdocs\template\app\Controllers\Admin\KategoriBarangController.php(21): App\Controllers\BaseController->loadCommonData()
+#7 C:\xampp\htdocs\template\system\CodeIgniter.php(942): App\Controllers\Admin\KategoriBarangController->index()
+#8 C:\xampp\htdocs\template\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriBarangController))
+#9 C:\xampp\htdocs\template\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\template\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\template\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-10-08 12:38:49 --> Table 'inventaris_ikna.tb_pemohon' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_pemohon`.*, `tb_lembaga`.`nama_dinas`, `tb_kategori`.`nama_kategori`, `tb_memperoleh_informasi`.`deskripsi`, `tb_mendapat_salinan_informasi`.`deskripsi`, `tb_cara_mendapat_salinan_informasi`.`deskripsi`
+FROM `tb_pemohon`
+JOIN `tb_lembaga` ON `tb_lembaga`.`id_lembaga` = `tb_pemohon`.`id_lembaga`
+JOIN `tb_kategori` ON `tb_kategori`.`id_kategori` = `tb_pemohon`.`id_kategori`
+JOIN `tb_memperoleh_informasi` ON `tb_memperoleh_informasi`.`id_memperoleh_informasi` = `tb_pemohon`.`id_memperoleh_informasi`
+JOIN `tb_mendapat_salinan_informasi` ON `tb_mendapat_salinan_informasi`.`id_mendapat_salinan_informasi` = `tb_pemohon`.`id_mendapat_salinan_informasi`
+JOIN `tb_cara_mendapat_salinan_informasi` ON `tb_cara_mendapat_salinan_informasi`.`id_cara_mendapat_salinan_informasi` = `tb_pemohon`.`id_cara_mendapat_salinan_informasi`
+ORDER BY `tb_pemohon`.`id_pemohon` DESC', [], false)
+ 2 APPPATH\Models\PemohonModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\BaseController.php(189): App\Models\PemohonModel->getAllSorted()
+ 4 APPPATH\Controllers\Admin\KategoriBarangController.php(21): App\Controllers\BaseController->loadCommonData()
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\KategoriBarangController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriBarangController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 12:40:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:40:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:51:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:51:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:54:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:55:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:55:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:56:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:58:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:58:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:58:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:58:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:58:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:59:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 12:59:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-10-08 13:02:57 --> Call to undefined method CodeIgniter\Router\RouteCollection::update()
+in APPPATH\Config\Routes.php on line 129.
+ 1 SYSTEMPATH\Router\RouteCollection.php(777): CodeIgniter\Router\RouteCollection::{closure}(Object(CodeIgniter\Router\RouteCollection))
+ 2 APPPATH\Config\Routes.php(127): CodeIgniter\Router\RouteCollection->group('alasan', Object(Closure))
+ 3 SYSTEMPATH\Router\RouteCollection.php(777): CodeIgniter\Router\RouteCollection->{closure}(Object(CodeIgniter\Router\RouteCollection))
+ 4 APPPATH\Config\Routes.php(72): CodeIgniter\Router\RouteCollection->group('admin', [...], Object(Closure))
+ 5 SYSTEMPATH\Router\RouteCollection.php(344): require('C:\\xampp\\htdocs\\template\\app\\Config\\Routes.php')
+ 6 SYSTEMPATH\CodeIgniter.php(810): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 7 SYSTEMPATH\CodeIgniter.php(450): CodeIgniter\CodeIgniter->tryToRouteIt(null)
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 13:03:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:03:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-10-08 13:03:37 --> foreach() argument must be of type array|object, null given
+in APPPATH\Controllers\Admin\KategoriBarangController.php on line 93.
+ 1 APPPATH\Controllers\Admin\KategoriBarangController.php(93): CodeIgniter\Debug\Exceptions->errorHandler(2, 'foreach() argument must be of type array|object, null given', 'C:\\xampp\\htdocs\\template\\app\\Controllers\\Admin\\KategoriBarangController.php', 93)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\KategoriBarangController->simpan_perubahan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriBarangController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 13:06:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:06:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-10-08 13:06:12 --> Undefined array key "id_kategori_barang"
+in APPPATH\Controllers\Admin\KategoriBarangController.php on line 94.
+ 1 APPPATH\Controllers\Admin\KategoriBarangController.php(94): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "id_kategori_barang"', 'C:\\xampp\\htdocs\\template\\app\\Controllers\\Admin\\KategoriBarangController.php', 94)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\KategoriBarangController->simpan_perubahan()
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriBarangController))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 13:07:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:07:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:07:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:07:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:13:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:13:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:14:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:15:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-10-08 13:15:02 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2766.
+ 1 SYSTEMPATH\Model.php(445): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1080): CodeIgniter\Model->doDelete(null, false)
+ 3 APPPATH\Controllers\Admin\KategoriBarangController.php(73): CodeIgniter\BaseModel->delete(null)
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\KategoriBarangController->delete('$1')
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriBarangController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 13:15:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:22:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:22:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:23:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:23:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-10-08 13:23:29 --> Deletes are not allowed unless they contain a "where" or "like" clause.
+in SYSTEMPATH\Database\BaseBuilder.php on line 2766.
+ 1 SYSTEMPATH\Model.php(445): CodeIgniter\Database\BaseBuilder->delete()
+ 2 SYSTEMPATH\BaseModel.php(1080): CodeIgniter\Model->doDelete(null, false)
+ 3 APPPATH\Controllers\Admin\KategoriBarangController.php(73): CodeIgniter\BaseModel->delete(null)
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\KategoriBarangController->delete('$1')
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriBarangController))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 13:24:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:26:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:27:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:29:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:29:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:29:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:31:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-10-08 13:37:21 --> "FrameOptionsFilter" filter must have a matching alias defined.
+in SYSTEMPATH\Filters\Filters.php on line 580.
+ 1 SYSTEMPATH\Filters\Filters.php(580): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('FrameOptionsFilter')
+ 2 SYSTEMPATH\Filters\Filters.php(264): CodeIgniter\Filters\Filters->processAliasesToClass('after')
+ 3 SYSTEMPATH\Filters\Filters.php(174): CodeIgniter\Filters\Filters->initialize('admin/kategori_barang')
+ 4 SYSTEMPATH\CodeIgniter.php(474): CodeIgniter\Filters\Filters->run('admin/kategori_barang', 'before')
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 13:55:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-10-08 13:55:19 --> Class "Config\FrameOptionsFilter" not found
+in SYSTEMPATH\Filters\Filters.php on line 177.
+ 1 SYSTEMPATH\CodeIgniter.php(522): CodeIgniter\Filters\Filters->run('admin/kategori_barang', 'after')
+ 2 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 3 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 4 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 13:55:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-10-08 13:55:21 --> Class "Config\FrameOptionsFilter" not found
+in SYSTEMPATH\Filters\Filters.php on line 177.
+ 1 SYSTEMPATH\CodeIgniter.php(522): CodeIgniter\Filters\Filters->run('admin/dashboard', 'after')
+ 2 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 3 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 4 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+CRITICAL - 2024-10-08 13:55:34 --> "FrameOptionsFilter" filter must have a matching alias defined.
+in SYSTEMPATH\Filters\Filters.php on line 580.
+ 1 SYSTEMPATH\Filters\Filters.php(580): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias('FrameOptionsFilter')
+ 2 SYSTEMPATH\Filters\Filters.php(264): CodeIgniter\Filters\Filters->processAliasesToClass('after')
+ 3 SYSTEMPATH\Filters\Filters.php(174): CodeIgniter\Filters\Filters->initialize('admin/dashboard')
+ 4 SYSTEMPATH\CodeIgniter.php(474): CodeIgniter\Filters\Filters->run('admin/dashboard', 'before')
+ 5 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 13:56:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:56:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:56:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:56:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:56:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 13:56:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 14:02:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 14:06:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 15:31:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 15:31:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 15:32:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 15:34:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 15:34:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 15:37:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 15:39:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 15:41:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 15:41:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 15:45:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 15:46:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-10-08 15:46:19 --> mysqli_sql_exception: Table 'inventaris_ikna.tb_pemohon' doesn't exist in C:\xampp\htdocs\template\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\template\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `tb_pemo...', 0)
+#1 C:\xampp\htdocs\template\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_pemo...')
+#2 C:\xampp\htdocs\template\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_pemo...')
+#3 C:\xampp\htdocs\template\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_pemo...', Array, false)
+#4 C:\xampp\htdocs\template\app\Models\PemohonModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\template\app\Controllers\BaseController.php(189): App\Models\PemohonModel->getAllSorted()
+#6 C:\xampp\htdocs\template\app\Controllers\Admin\ProfileController.php(22): App\Controllers\BaseController->loadCommonData()
+#7 C:\xampp\htdocs\template\system\CodeIgniter.php(942): App\Controllers\Admin\ProfileController->index()
+#8 C:\xampp\htdocs\template\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProfileController))
+#9 C:\xampp\htdocs\template\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\template\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\template\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-10-08 15:46:19 --> Table 'inventaris_ikna.tb_pemohon' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_pemohon`.*, `tb_lembaga`.`nama_dinas`, `tb_kategori`.`nama_kategori`, `tb_memperoleh_informasi`.`deskripsi`, `tb_mendapat_salinan_informasi`.`deskripsi`, `tb_cara_mendapat_salinan_informasi`.`deskripsi`
+FROM `tb_pemohon`
+JOIN `tb_lembaga` ON `tb_lembaga`.`id_lembaga` = `tb_pemohon`.`id_lembaga`
+JOIN `tb_kategori` ON `tb_kategori`.`id_kategori` = `tb_pemohon`.`id_kategori`
+JOIN `tb_memperoleh_informasi` ON `tb_memperoleh_informasi`.`id_memperoleh_informasi` = `tb_pemohon`.`id_memperoleh_informasi`
+JOIN `tb_mendapat_salinan_informasi` ON `tb_mendapat_salinan_informasi`.`id_mendapat_salinan_informasi` = `tb_pemohon`.`id_mendapat_salinan_informasi`
+JOIN `tb_cara_mendapat_salinan_informasi` ON `tb_cara_mendapat_salinan_informasi`.`id_cara_mendapat_salinan_informasi` = `tb_pemohon`.`id_cara_mendapat_salinan_informasi`
+ORDER BY `tb_pemohon`.`id_pemohon` DESC', [], false)
+ 2 APPPATH\Models\PemohonModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\BaseController.php(189): App\Models\PemohonModel->getAllSorted()
+ 4 APPPATH\Controllers\Admin\ProfileController.php(22): App\Controllers\BaseController->loadCommonData()
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\ProfileController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProfileController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 15:46:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 17:34:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 17:35:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-10-08 17:35:03 --> mysqli_sql_exception: Table 'inventaris_ikna.tb_pemohon' doesn't exist in C:\xampp\htdocs\template\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\template\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `tb_pemo...', 0)
+#1 C:\xampp\htdocs\template\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_pemo...')
+#2 C:\xampp\htdocs\template\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_pemo...')
+#3 C:\xampp\htdocs\template\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_pemo...', Array, false)
+#4 C:\xampp\htdocs\template\app\Models\PemohonModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\template\app\Controllers\BaseController.php(189): App\Models\PemohonModel->getAllSorted()
+#6 C:\xampp\htdocs\template\app\Controllers\Admin\KategoriFaqController.php(21): App\Controllers\BaseController->loadCommonData()
+#7 C:\xampp\htdocs\template\system\CodeIgniter.php(942): App\Controllers\Admin\KategoriFaqController->index()
+#8 C:\xampp\htdocs\template\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriFaqController))
+#9 C:\xampp\htdocs\template\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\template\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\template\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-10-08 17:35:03 --> Table 'inventaris_ikna.tb_pemohon' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_pemohon`.*, `tb_lembaga`.`nama_dinas`, `tb_kategori`.`nama_kategori`, `tb_memperoleh_informasi`.`deskripsi`, `tb_mendapat_salinan_informasi`.`deskripsi`, `tb_cara_mendapat_salinan_informasi`.`deskripsi`
+FROM `tb_pemohon`
+JOIN `tb_lembaga` ON `tb_lembaga`.`id_lembaga` = `tb_pemohon`.`id_lembaga`
+JOIN `tb_kategori` ON `tb_kategori`.`id_kategori` = `tb_pemohon`.`id_kategori`
+JOIN `tb_memperoleh_informasi` ON `tb_memperoleh_informasi`.`id_memperoleh_informasi` = `tb_pemohon`.`id_memperoleh_informasi`
+JOIN `tb_mendapat_salinan_informasi` ON `tb_mendapat_salinan_informasi`.`id_mendapat_salinan_informasi` = `tb_pemohon`.`id_mendapat_salinan_informasi`
+JOIN `tb_cara_mendapat_salinan_informasi` ON `tb_cara_mendapat_salinan_informasi`.`id_cara_mendapat_salinan_informasi` = `tb_pemohon`.`id_cara_mendapat_salinan_informasi`
+ORDER BY `tb_pemohon`.`id_pemohon` DESC', [], false)
+ 2 APPPATH\Models\PemohonModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\BaseController.php(189): App\Models\PemohonModel->getAllSorted()
+ 4 APPPATH\Controllers\Admin\KategoriFaqController.php(21): App\Controllers\BaseController->loadCommonData()
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\KategoriFaqController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriFaqController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 17:36:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 17:39:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-10-08 17:39:35 --> mysqli_sql_exception: Table 'inventaris_ikna.tb_pemohon' doesn't exist in C:\xampp\htdocs\template\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\template\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `tb_pemo...', 0)
+#1 C:\xampp\htdocs\template\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_pemo...')
+#2 C:\xampp\htdocs\template\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_pemo...')
+#3 C:\xampp\htdocs\template\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_pemo...', Array, false)
+#4 C:\xampp\htdocs\template\app\Models\PemohonModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\template\app\Controllers\BaseController.php(189): App\Models\PemohonModel->getAllSorted()
+#6 C:\xampp\htdocs\template\app\Controllers\Admin\KategoriFaqController.php(21): App\Controllers\BaseController->loadCommonData()
+#7 C:\xampp\htdocs\template\system\CodeIgniter.php(942): App\Controllers\Admin\KategoriFaqController->index()
+#8 C:\xampp\htdocs\template\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriFaqController))
+#9 C:\xampp\htdocs\template\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\template\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#11 C:\xampp\htdocs\template\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#12 {main}
+CRITICAL - 2024-10-08 17:39:35 --> Table 'inventaris_ikna.tb_pemohon' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_pemohon`.*, `tb_lembaga`.`nama_dinas`, `tb_kategori`.`nama_kategori`, `tb_memperoleh_informasi`.`deskripsi`, `tb_mendapat_salinan_informasi`.`deskripsi`, `tb_cara_mendapat_salinan_informasi`.`deskripsi`
+FROM `tb_pemohon`
+JOIN `tb_lembaga` ON `tb_lembaga`.`id_lembaga` = `tb_pemohon`.`id_lembaga`
+JOIN `tb_kategori` ON `tb_kategori`.`id_kategori` = `tb_pemohon`.`id_kategori`
+JOIN `tb_memperoleh_informasi` ON `tb_memperoleh_informasi`.`id_memperoleh_informasi` = `tb_pemohon`.`id_memperoleh_informasi`
+JOIN `tb_mendapat_salinan_informasi` ON `tb_mendapat_salinan_informasi`.`id_mendapat_salinan_informasi` = `tb_pemohon`.`id_mendapat_salinan_informasi`
+JOIN `tb_cara_mendapat_salinan_informasi` ON `tb_cara_mendapat_salinan_informasi`.`id_cara_mendapat_salinan_informasi` = `tb_pemohon`.`id_cara_mendapat_salinan_informasi`
+ORDER BY `tb_pemohon`.`id_pemohon` DESC', [], false)
+ 2 APPPATH\Models\PemohonModel.php(107): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\BaseController.php(189): App\Models\PemohonModel->getAllSorted()
+ 4 APPPATH\Controllers\Admin\KategoriFaqController.php(21): App\Controllers\BaseController->loadCommonData()
+ 5 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\KategoriFaqController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\KategoriFaqController))
+ 7 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\template\\public\\index.php')
+INFO - 2024-10-08 17:41:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 17:42:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 17:42:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 17:45:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 17:45:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 17:45:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 17:46:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 17:46:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 18:32:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-10-08 18:32:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

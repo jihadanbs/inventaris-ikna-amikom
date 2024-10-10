@@ -1,0 +1,248 @@
+INFO - 2024-09-25 08:20:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-09-25 08:20:12 --> User logged in: {"__ci_last_regenerate":1727227205,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"1","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":"2024-09-24 13:09:02","terakhir_login":"2024-09-24 14:41:02","file_profil":"gambar.jpg","islogin":true}
+INFO - 2024-09-25 08:20:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:21:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:22:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:22:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:23:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:23:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:23:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:23:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:23:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:24:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:25:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:25:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:25:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:25:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:25:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:25:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:25:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:26:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:26:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:26:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:27:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:27:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:27:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:27:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:27:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:27:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:27:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:27:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:27:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-25 08:27:57 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('id_lembaga')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+WARNING - 2024-09-25 08:27:57 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('id_jenis')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+WARNING - 2024-09-25 08:27:57 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('id_kategori_informasi_publik')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+WARNING - 2024-09-25 08:27:57 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('judul')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+WARNING - 2024-09-25 08:27:57 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('deskripsi')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+WARNING - 2024-09-25 08:27:57 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('tanggal_file')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-09-25 08:30:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:30:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:30:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-09-25 08:30:27 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('id_lembaga')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+WARNING - 2024-09-25 08:30:27 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('id_jenis')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+WARNING - 2024-09-25 08:30:27 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('id_kategori_informasi_publik')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+WARNING - 2024-09-25 08:30:27 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('judul')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+WARNING - 2024-09-25 08:30:27 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('deskripsi')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+WARNING - 2024-09-25 08:30:27 --> [DEPRECATED] preg_quote(): Passing null to parameter #1 ($str) of type string is deprecated in SYSTEMPATH\Validation\Validation.php on line 834.
+ 1 SYSTEMPATH\Validation\Validation.php(834): preg_quote(null, '/')
+ 2 [internal function]: CodeIgniter\Validation\Validation::CodeIgniter\Validation\{closure}('tanggal_file')
+ 3 SYSTEMPATH\Validation\Validation.php(833): array_filter([...], Object(Closure), 2)
+ 4 APPPATH\Views\admin\informasi_publik\tambah.php(136): CodeIgniter\Validation\Validation->getError()
+ 5 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\informasi_publik\\tambah.php')
+ 6 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 7 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/informasi_publik/tambah', [], true)
+ 8 APPPATH\Controllers\Admin\InformasiPublikController.php(132): view('admin/informasi_publik/tambah', [...])
+ 9 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\InformasiPublikController->tambah()
+10 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\InformasiPublikController))
+11 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+13 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-09-25 08:38:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-09-25 08:38:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

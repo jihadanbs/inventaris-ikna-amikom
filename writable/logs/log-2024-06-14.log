@@ -1,0 +1,870 @@
+INFO - 2024-06-14 20:27:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:27:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:27:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:27:28 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:27:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:27:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:27:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:27:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:27:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:27:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:27:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:27:44 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:27:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:27:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:28:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:28:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:28:26 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:28:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:28:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:28:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:28:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:28:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:28:54 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:28:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:30:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:30:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:30:29 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:30:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:30:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:30:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:30:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:31:07 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:31:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:31:25 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:31:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:31:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:31:58 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:31:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:32:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:32:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:32:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:32:36 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:32:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:32:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:32:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:32:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:32:49 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:32:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:33:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:33:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:33:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:33:11 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:33:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:33:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:33:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:34:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:34:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:34:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:34:55 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:34:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:35:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:35:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:37:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:37:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:37:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:37:26 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:37:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:37:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:37:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:39:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:39:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:39:08 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 81.
+ 1 APPPATH\Controllers\Authentication.php(81): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:39:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:39:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:39:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:44:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:44:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:44:57 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 83.
+ 1 APPPATH\Controllers\Authentication.php(83): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:44:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:45:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:45:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:45:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:45:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:45:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:45:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:45:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:45:57 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 85.
+ 1 APPPATH\Controllers\Authentication.php(85): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:45:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:46:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:46:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:46:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:46:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:46:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:46:28 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 85.
+ 1 APPPATH\Controllers\Authentication.php(85): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:46:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:49:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:53:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:53:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:53:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:54:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:54:00 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 20:54:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:57:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:57:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 20:57:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 20:57:50 --> [DEPRECATED] DateTime::__construct(): Passing null to parameter #1 ($datetime) of type string is deprecated in APPPATH\Controllers\Authentication.php on line 80.
+ 1 APPPATH\Controllers\Authentication.php(80): DateTime->__construct(null)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+DEBUG - 2024-06-14 20:57:50 --> User logged in: {"__ci_last_regenerate":1718373463,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","islogin":true}
+INFO - 2024-06-14 20:57:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:00:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:00:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:00:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:00:43 --> User logged in: {"__ci_last_regenerate":1718373637,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","islogin":true}
+INFO - 2024-06-14 21:00:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:00:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:00:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:01:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:01:52 --> User logged in: {"__ci_last_regenerate":1718373646,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","islogin":true}
+INFO - 2024-06-14 21:01:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:01:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:02:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:03:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:05:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:05:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:06:20 --> User logged in: {"__ci_last_regenerate":1718373915,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","islogin":true}
+INFO - 2024-06-14 21:06:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:06:49 --> User logged in: {"__ci_last_regenerate":1718373998,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"1","username":"paino","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Paino Naik Umroh","islogin":true}
+INFO - 2024-06-14 21:06:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:06:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:06:59 --> User logged in: {"__ci_last_regenerate":1718374013,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","islogin":true}
+INFO - 2024-06-14 21:06:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:07:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:07:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:07:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:07:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:07:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:07:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:08:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:08:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:08:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:08:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:09:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:09:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:09:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:10:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:10:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:10:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:10:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:10:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:10:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:10:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:13:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:14:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:14:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:14:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:14:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:15:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:15:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:15:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:15:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:16:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:16:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:16:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:16:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:16:24 --> User logged in: {"__ci_last_regenerate":1718374439,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","islogin":true}
+INFO - 2024-06-14 21:16:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:17:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:19:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:21:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:21:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:22:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:22:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:24:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:24:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:24:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:25:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:25:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:25:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:25:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:25:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:25:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:26:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:26:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:26:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:26:33 --> User logged in: {"__ci_last_regenerate":1718375186,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","islogin":true}
+INFO - 2024-06-14 21:26:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:26:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:26:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:26:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:26:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:26:50 --> User logged in: {"__ci_last_regenerate":1718375201,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"1","username":"paino","email":"jihadanbs1@gmail.com","id_jabatan":"1","nama_lengkap":"Paino Naik Umroh","islogin":true}
+INFO - 2024-06-14 21:26:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:26:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:27:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:27:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:28:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:28:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:29:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:29:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:30:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:31:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:31:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-06-14 21:31:06 --> CodeIgniter\HTTP\SiteURI::stringifyRelativePath(): Return value must be of type string, null returned
+in SYSTEMPATH\HTTP\SiteURI.php on line 403.
+ 1 SYSTEMPATH\HTTP\SiteURI.php(377): CodeIgniter\HTTP\SiteURI->stringifyRelativePath(null)
+ 2 SYSTEMPATH\Helpers\url_helper.php(54): CodeIgniter\HTTP\SiteURI->baseUrl(null, null)
+ 3 APPPATH\Views\admin\layouts\navbar.php(265): base_url(null)
+ 4 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\layouts\\navbar.php')
+ 5 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('admin/layouts/navbar', null, true)
+ 7 APPPATH\Views\admin\profile\index.php(186): CodeIgniter\View\View->include('admin/layouts/navbar')
+ 8 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\profile\\index.php')
+ 9 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+10 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/profile/index', [], true)
+11 APPPATH\Controllers\Admin\ProfileController.php(55): view('admin/profile/index', [...])
+12 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\ProfileController->index()
+13 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProfileController))
+14 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+15 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 21:31:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-06-14 21:31:23 --> CodeIgniter\HTTP\SiteURI::stringifyRelativePath(): Return value must be of type string, null returned
+in SYSTEMPATH\HTTP\SiteURI.php on line 403.
+ 1 SYSTEMPATH\HTTP\SiteURI.php(377): CodeIgniter\HTTP\SiteURI->stringifyRelativePath(null)
+ 2 SYSTEMPATH\Helpers\url_helper.php(54): CodeIgniter\HTTP\SiteURI->baseUrl(null, null)
+ 3 APPPATH\Views\admin\layouts\navbar.php(265): base_url(null)
+ 4 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\layouts\\navbar.php')
+ 5 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('admin/layouts/navbar', null, true)
+ 7 APPPATH\Views\admin\profile\index.php(186): CodeIgniter\View\View->include('admin/layouts/navbar')
+ 8 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\profile\\index.php')
+ 9 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+10 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/profile/index', [], true)
+11 APPPATH\Controllers\Admin\ProfileController.php(55): view('admin/profile/index', [...])
+12 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\ProfileController->index()
+13 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProfileController))
+14 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+15 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 21:31:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-06-14 21:31:25 --> CodeIgniter\HTTP\SiteURI::stringifyRelativePath(): Return value must be of type string, null returned
+in SYSTEMPATH\HTTP\SiteURI.php on line 403.
+ 1 SYSTEMPATH\HTTP\SiteURI.php(377): CodeIgniter\HTTP\SiteURI->stringifyRelativePath(null)
+ 2 SYSTEMPATH\Helpers\url_helper.php(54): CodeIgniter\HTTP\SiteURI->baseUrl(null, null)
+ 3 APPPATH\Views\admin\layouts\navbar.php(265): base_url(null)
+ 4 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\layouts\\navbar.php')
+ 5 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('admin/layouts/navbar', null, true)
+ 7 APPPATH\Views\admin\profile\index.php(186): CodeIgniter\View\View->include('admin/layouts/navbar')
+ 8 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\profile\\index.php')
+ 9 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+10 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/profile/index', [], true)
+11 APPPATH\Controllers\Admin\ProfileController.php(55): view('admin/profile/index', [...])
+12 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\ProfileController->index()
+13 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProfileController))
+14 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+15 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 21:31:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-06-14 21:31:26 --> CodeIgniter\HTTP\SiteURI::stringifyRelativePath(): Return value must be of type string, null returned
+in SYSTEMPATH\HTTP\SiteURI.php on line 403.
+ 1 SYSTEMPATH\HTTP\SiteURI.php(377): CodeIgniter\HTTP\SiteURI->stringifyRelativePath(null)
+ 2 SYSTEMPATH\Helpers\url_helper.php(54): CodeIgniter\HTTP\SiteURI->baseUrl(null, null)
+ 3 APPPATH\Views\admin\layouts\navbar.php(265): base_url(null)
+ 4 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\layouts\\navbar.php')
+ 5 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('admin/layouts/navbar', null, true)
+ 7 APPPATH\Views\admin\dashboard\index.php(32): CodeIgniter\View\View->include('admin/layouts/navbar')
+ 8 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\dashboard\\index.php')
+ 9 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+10 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/dashboard/index', [], true)
+11 APPPATH\Controllers\Admin\Dashboard.php(41): view('admin/dashboard/index', [...])
+12 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Dashboard->index()
+13 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+14 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+15 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 21:31:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:31:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:31:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-06-14 21:31:28 --> CodeIgniter\HTTP\SiteURI::stringifyRelativePath(): Return value must be of type string, null returned
+in SYSTEMPATH\HTTP\SiteURI.php on line 403.
+ 1 SYSTEMPATH\HTTP\SiteURI.php(377): CodeIgniter\HTTP\SiteURI->stringifyRelativePath(null)
+ 2 SYSTEMPATH\Helpers\url_helper.php(54): CodeIgniter\HTTP\SiteURI->baseUrl(null, null)
+ 3 APPPATH\Views\admin\layouts\navbar.php(265): base_url(null)
+ 4 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\layouts\\navbar.php')
+ 5 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('admin/layouts/navbar', null, true)
+ 7 APPPATH\Views\admin\dashboard\index.php(32): CodeIgniter\View\View->include('admin/layouts/navbar')
+ 8 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\dashboard\\index.php')
+ 9 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+10 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/dashboard/index', [], true)
+11 APPPATH\Controllers\Admin\Dashboard.php(41): view('admin/dashboard/index', [...])
+12 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Dashboard->index()
+13 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+14 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+15 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 21:31:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-06-14 21:31:30 --> CodeIgniter\HTTP\SiteURI::stringifyRelativePath(): Return value must be of type string, null returned
+in SYSTEMPATH\HTTP\SiteURI.php on line 403.
+ 1 SYSTEMPATH\HTTP\SiteURI.php(377): CodeIgniter\HTTP\SiteURI->stringifyRelativePath(null)
+ 2 SYSTEMPATH\Helpers\url_helper.php(54): CodeIgniter\HTTP\SiteURI->baseUrl(null, null)
+ 3 APPPATH\Views\admin\layouts\navbar.php(265): base_url(null)
+ 4 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\layouts\\navbar.php')
+ 5 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('admin/layouts/navbar', null, true)
+ 7 APPPATH\Views\admin\profile\index.php(186): CodeIgniter\View\View->include('admin/layouts/navbar')
+ 8 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\profile\\index.php')
+ 9 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+10 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/profile/index', [], true)
+11 APPPATH\Controllers\Admin\ProfileController.php(55): view('admin/profile/index', [...])
+12 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\ProfileController->index()
+13 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProfileController))
+14 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+15 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 21:31:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:31:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:31:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-06-14 21:31:50 --> CodeIgniter\HTTP\SiteURI::stringifyRelativePath(): Return value must be of type string, null returned
+in SYSTEMPATH\HTTP\SiteURI.php on line 403.
+ 1 SYSTEMPATH\HTTP\SiteURI.php(377): CodeIgniter\HTTP\SiteURI->stringifyRelativePath(null)
+ 2 SYSTEMPATH\Helpers\url_helper.php(54): CodeIgniter\HTTP\SiteURI->baseUrl(null, null)
+ 3 APPPATH\Views\admin\layouts\navbar.php(265): base_url(null)
+ 4 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\layouts\\navbar.php')
+ 5 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 6 SYSTEMPATH\View\View.php(469): CodeIgniter\View\View->render('admin/layouts/navbar', null, true)
+ 7 APPPATH\Views\admin\dashboard\index.php(32): CodeIgniter\View\View->include('admin/layouts/navbar')
+ 8 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\dashboard\\index.php')
+ 9 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+10 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/dashboard/index', [], true)
+11 APPPATH\Controllers\Admin\Dashboard.php(41): view('admin/dashboard/index', [...])
+12 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Dashboard->index()
+13 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+14 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+15 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+16 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 21:32:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-06-14 21:32:06 --> mysqli_sql_exception: Table 'ppid_pswrn.tb_user' doesn't exist in C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `tb_user...', 0)
+#1 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_user...')
+#2 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_user...')
+#3 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_user...', Array, false)
+#4 C:\xampp\htdocs\ppid_pswrn\app\Models\UserModel.php(20): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ppid_pswrn\app\Controllers\Admin\Dashboard.php(24): App\Models\UserModel->getAll()
+#6 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(942): App\Controllers\Admin\Dashboard->index()
+#7 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+#8 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ppid_pswrn\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ppid_pswrn\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+CRITICAL - 2024-06-14 21:32:06 --> Table 'ppid_pswrn.tb_user' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_user`.*, `tb_jabatan`.`nama_jabatan`
+FROM `tb_user`
+JOIN `tb_jabatan` ON `tb_jabatan`.`id_jabatan` = `tb_user`.`id_jabatan`', [], false)
+ 2 APPPATH\Models\UserModel.php(20): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Admin\Dashboard.php(24): App\Models\UserModel->getAll()
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Dashboard->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 21:32:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:32:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:32:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-06-14 21:32:10 --> mysqli_sql_exception: Table 'ppid_pswrn.tb_user' doesn't exist in C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php(306): mysqli->query('SELECT `tb_user...', 0)
+#1 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `tb_user...')
+#2 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `tb_user...')
+#3 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_user...', Array, false)
+#4 C:\xampp\htdocs\ppid_pswrn\app\Models\UserModel.php(20): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\ppid_pswrn\app\Controllers\Admin\Dashboard.php(24): App\Models\UserModel->getAll()
+#6 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(942): App\Controllers\Admin\Dashboard->index()
+#7 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+#8 C:\xampp\htdocs\ppid_pswrn\system\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\ppid_pswrn\public\index.php(79): CodeIgniter\CodeIgniter->run()
+#10 C:\xampp\htdocs\ppid_pswrn\system\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs...')
+#11 {main}
+CRITICAL - 2024-06-14 21:32:10 --> Table 'ppid_pswrn.tb_user' doesn't exist
+in SYSTEMPATH\Database\BaseConnection.php on line 647.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1615): CodeIgniter\Database\BaseConnection->query('SELECT `tb_user`.*, `tb_jabatan`.`nama_jabatan`
+FROM `tb_user`
+JOIN `tb_jabatan` ON `tb_jabatan`.`id_jabatan` = `tb_user`.`id_jabatan`', [], false)
+ 2 APPPATH\Models\UserModel.php(20): CodeIgniter\Database\BaseBuilder->get()
+ 3 APPPATH\Controllers\Admin\Dashboard.php(24): App\Models\UserModel->getAll()
+ 4 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\Dashboard->index()
+ 5 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+ 6 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 21:32:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:32:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:32:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:32:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:32:43 --> User logged in: {"__ci_last_regenerate":1718375558,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","islogin":true}
+INFO - 2024-06-14 21:32:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:32:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:33:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:33:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:33:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:33:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:33:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:33:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:33:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:33:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:33:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:33:58 --> User logged in: {"__ci_last_regenerate":1718375631,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"1","username":"paino","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Paino Naik Umroh","islogin":true}
+INFO - 2024-06-14 21:33:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:34:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:34:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:34:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:34:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:34:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:34:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:34:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:34:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:34:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:34:39 --> User logged in: {"__ci_last_regenerate":1718375669,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","islogin":true}
+INFO - 2024-06-14 21:34:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:36:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:36:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:36:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:36:42 --> User logged in: {"__ci_last_regenerate":1718375796,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","islogin":true,"no_telepon":"088215178312","password_last_reset":null,"terakhir_login":"2024-06-14 21:34:39"}
+INFO - 2024-06-14 21:36:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:36:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:37:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:37:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:37:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:37:52 --> User logged in: {"__ci_last_regenerate":1718375867,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","islogin":true,"no_telepon":"088215178312","password_last_reset":null,"terakhir_login":"2024-06-14 21:36:42","file_profil":null}
+INFO - 2024-06-14 21:37:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:37:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:38:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:38:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:38:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:38:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:38:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:39:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:39:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:39:58 --> User logged in: {"__ci_last_regenerate":1718375895,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":null,"terakhir_login":"2024-06-14 21:37:52","file_profil":null,"islogin":true}
+INFO - 2024-06-14 21:39:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:40:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:40:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:40:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:40:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:40:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:40:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:40:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:41:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:41:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:41:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:41:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:41:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:41:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:41:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:41:19 --> User logged in: {"__ci_last_regenerate":1718376069,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihada","email":"jihadanbs1@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhad","no_telepon":"08821517831","password_last_reset":null,"terakhir_login":"2024-06-14 21:40:19","file_profil":"file_upload\/dokumen\/profile\/1718376019_b9e8152aed15d3e879b3.jpg","islogin":true}
+INFO - 2024-06-14 21:41:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:41:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:41:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:41:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:44:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:44:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:44:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:44:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:46:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:48:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:48:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:48:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:48:16 --> User logged in: {"__ci_last_regenerate":1718376491,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":null,"terakhir_login":"2024-06-14 21:44:21","file_profil":"file_upload\/dokumen\/profile\/1718376019_b9e8152aed15d3e879b3.jpg","islogin":true}
+INFO - 2024-06-14 21:48:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:48:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:48:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:48:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:48:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:49:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:49:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:49:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:49:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:49:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:49:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:49:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:50:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:50:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:50:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:51:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:52:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:52:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:52:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:52:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:52:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:52:37 --> User logged in: {"__ci_last_regenerate":1718376732,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":null,"terakhir_login":"2024-06-14 21:49:26","file_profil":"file_upload\/dokumen\/profile\/1718376566_03b910625a34450eba4c.jpg","islogin":true}
+INFO - 2024-06-14 21:52:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:52:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:52:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:52:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:52:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:53:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:53:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:53:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:53:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-06-14 21:53:51 --> Undefined array key "nama_jabatan"
+in APPPATH\Controllers\Authentication.php on line 99.
+ 1 APPPATH\Controllers\Authentication.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_jabatan"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Controllers\\Authentication.php', 99)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 21:53:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-06-14 21:53:59 --> Undefined array key "nama_jabatan"
+in APPPATH\Controllers\Authentication.php on line 99.
+ 1 APPPATH\Controllers\Authentication.php(99): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key "nama_jabatan"', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Controllers\\Authentication.php', 99)
+ 2 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Authentication->cekLogin('$1')
+ 3 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Authentication))
+ 4 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 21:54:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:54:08 --> User logged in: {"__ci_last_regenerate":1718376817,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":null,"terakhir_login":"2024-06-14 21:53:59","file_profil":"file_upload\/dokumen\/profile\/1718376566_03b910625a34450eba4c.jpg","islogin":true}
+INFO - 2024-06-14 21:54:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:54:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:55:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:56:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:56:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:56:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:56:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:56:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:56:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:56:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:56:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:56:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:56:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:56:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:58:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:58:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:58:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:58:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:58:25 --> User logged in: {"__ci_last_regenerate":1718377002,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":"2024-06-14 21:58:18","terakhir_login":"2024-06-14 21:58:18","file_profil":"file_upload\/dokumen\/profile\/1718376998_259a2d3a7fd16d410232.jpg","islogin":true}
+INFO - 2024-06-14 21:58:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:58:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:58:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:59:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:59:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:59:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:59:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:59:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:59:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 21:59:42 --> User logged in: {"__ci_last_regenerate":1718377175,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":"2024-06-14 21:58:18","terakhir_login":"2024-06-14 21:58:25","file_profil":"file_upload\/dokumen\/profile\/1718376998_259a2d3a7fd16d410232.jpg","islogin":true}
+INFO - 2024-06-14 21:59:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:59:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 21:59:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:01:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:01:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:01:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:01:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:01:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:01:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 22:01:42 --> User logged in: {"__ci_last_regenerate":1718377294,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":"2024-06-14 22:01:30","terakhir_login":"2024-06-14 22:01:30","file_profil":"file_upload\/dokumen\/profile\/1718376998_259a2d3a7fd16d410232.jpg","islogin":true}
+INFO - 2024-06-14 22:01:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:01:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:01:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:01:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:02:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:02:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:02:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:02:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:03:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:04:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:04:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:04:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:04:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:04:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:05:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:05:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:05:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:05:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:05:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:05:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:08:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:08:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:08:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:08:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:08:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:08:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:09:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:09:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:10:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:10:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:10:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:10:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:10:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:11:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 22:11:00 --> User logged in: {"__ci_last_regenerate":1718377843,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":"2024-06-14 22:10:12","terakhir_login":"2024-06-14 22:10:12","file_profil":"file_upload\/dokumen\/profile\/1718377481_b73c0cf44e2aac94f792.jpg","islogin":true}
+INFO - 2024-06-14 22:11:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:11:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:11:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:11:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:11:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:11:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:11:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:11:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 22:11:54 --> User logged in: {"__ci_last_regenerate":1718377888,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"1","username":"paino","email":"jihadanb@gmail.com","id_jabatan":"1","nama_lengkap":"Paino Naik Umroh","no_telepon":"088215178312","password_last_reset":null,"terakhir_login":"2024-06-14 21:36:07","file_profil":"gambar.jpg","islogin":true}
+INFO - 2024-06-14 22:11:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:12:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:12:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:12:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:12:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:12:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 22:12:52 --> User logged in: {"__ci_last_regenerate":1718377963,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":"2024-06-14 22:10:12","terakhir_login":"2024-06-14 22:11:00","file_profil":"file_upload\/dokumen\/profile\/1718377481_b73c0cf44e2aac94f792.jpg","islogin":true}
+INFO - 2024-06-14 22:12:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:12:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:13:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:13:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:13:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:13:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 22:13:34 --> User logged in: {"__ci_last_regenerate":1718377994,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":"2024-06-14 22:10:12","terakhir_login":"2024-06-14 22:12:52","file_profil":"file_upload\/dokumen\/profile\/1718377481_b73c0cf44e2aac94f792.jpg","islogin":true}
+INFO - 2024-06-14 22:13:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:13:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:16:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:16:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:16:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 22:16:46 --> User logged in: {"__ci_last_regenerate":1718378182,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"2","username":"jihadan","email":"jihadanbs11@gmail.com","id_jabatan":"1","nama_lengkap":"Jihadan Beckhianosyuhada","no_telepon":"088215178312","password_last_reset":"2024-06-14 22:10:12","terakhir_login":"2024-06-14 22:13:34","file_profil":"file_upload\/dokumen\/profile\/1718377481_b73c0cf44e2aac94f792.jpg","islogin":true}
+INFO - 2024-06-14 22:16:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:16:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:19:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:19:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:20:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:21:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:22:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:22:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:22:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:22:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:23:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:23:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:23:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:28:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:29:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:29:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:29:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2024-06-14 22:29:41 --> User logged in: {"__ci_last_regenerate":1718378961,"_ci_previous_url":"http:\/\/localhost:8080\/authentication\/login","id_user":"1","username":"paino","email":"jihadanb@gmail.com","id_jabatan":"1","nama_lengkap":"Paino Naik Umroh","no_telepon":"088215178312","password_last_reset":null,"terakhir_login":"2024-06-14 22:11:54","file_profil":"gambar.jpg","islogin":true}
+INFO - 2024-06-14 22:29:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:29:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:31:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2024-06-14 22:31:09 --> [DEPRECATED] strlen(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Views\admin\permohonan\cek_data.php on line 186.
+ 1 APPPATH\Views\admin\permohonan\cek_data.php(342): truncateText(null, 50)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\permohonan\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/permohonan/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\PermohonanController.php(367): view('admin/permohonan/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\PermohonanController->cek_data('1')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PermohonanController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+WARNING - 2024-06-14 22:31:09 --> [DEPRECATED] strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in APPPATH\Views\admin\permohonan\cek_data.php on line 343.
+ 1 APPPATH\Views\admin\permohonan\cek_data.php(343): strip_tags(null)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\permohonan\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/permohonan/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\PermohonanController.php(367): view('admin/permohonan/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\PermohonanController->cek_data('1')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PermohonanController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 22:31:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:32:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:32:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:32:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-06-14 22:32:13 --> Attempt to read property "id_pemohon" on null
+in APPPATH\Views\admin\permohonan\cek_data.php on line 460.
+ 1 APPPATH\Views\admin\permohonan\cek_data.php(460): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Attempt to read property "id_pemohon" on null', 'C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\permohonan\\cek_data.php', 460)
+ 2 SYSTEMPATH\View\View.php(228): include('C:\\xampp\\htdocs\\ppid_pswrn\\app\\Views\\admin\\permohonan\\cek_data.php')
+ 3 SYSTEMPATH\View\View.php(231): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1190): CodeIgniter\View\View->render('admin/permohonan/cek_data', [], true)
+ 5 APPPATH\Controllers\Admin\PermohonanController.php(367): view('admin/permohonan/cek_data', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(942): App\Controllers\Admin\PermohonanController->cek_data('1')
+ 7 SYSTEMPATH\CodeIgniter.php(502): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\PermohonanController))
+ 8 SYSTEMPATH\CodeIgniter.php(361): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(79): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\xampp\\htdocs\\ppid_pswrn\\public\\index.php')
+INFO - 2024-06-14 22:32:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:32:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-06-14 22:32:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2024-06-14 22:39:46 --> mysqli_sql_exception: Table 'ppid_pswrn.tb_jabatan' doesn't exist in C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php:306
+Stack trace:
+#0 C:\xampp\htdocs\ppid_pswrn\system\Database\MySQLi\Connection.php(306): mysqli->query('INSERT INTO `tb...', 0)
+#1 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(693): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `tb...')
+#2 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseConnection.php(607): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `tb...')
+#3 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseBuilder.php(1800): CodeIgniter\Database\BaseConnection->query('INSERT INTO `tb...', NULL, false)
+#4 C:\xampp\htdocs\ppid_pswrn\system\Database\BaseBuilder.php(2191): CodeIgniter\Database\BaseBuilder->batchExecute('_insertBatch', 100)
+#5 C:\xampp\htdocs\ppid_pswrn\app\Database\Seeds\Jabatan.php(21): CodeIgniter\Database\BaseBuilder->insertBatch(Array)
+#6 C:\xampp\htdocs\ppid_pswrn\system\Database\Seeder.php(146): App\Database\Seeds\Jabatan->run()
+#7 C:\xampp\htdocs\ppid_pswrn\system\Commands\Database\Seed.php(77): CodeIgniter\Database\Seeder->call('App\\Database\\Se...')
+#8 C:\xampp\htdocs\ppid_pswrn\system\CLI\Commands.php(65): CodeIgniter\Commands\Database\Seed->run(Array)
+#9 C:\xampp\htdocs\ppid_pswrn\system\CLI\Console.php(46): CodeIgniter\CLI\Commands->run('db:seed', Array)
+#10 C:\xampp\htdocs\ppid_pswrn\spark(102): CodeIgniter\CLI\Console->run()
+#11 {main}
