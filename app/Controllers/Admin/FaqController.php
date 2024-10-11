@@ -17,7 +17,7 @@ class FaqController extends BaseController
 
         // Menyiapkan data untuk tampilan
         $data = array_merge([
-            'title' => 'Admin | Halaman Informasi Publik',
+            'title' => 'Admin | Halaman FAQ',
             'tb_faq' => $this->m_faq->getAllSorted(),
             'tb_kategori_faq' => $this->m_kategori_faq->getAllData(),
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
