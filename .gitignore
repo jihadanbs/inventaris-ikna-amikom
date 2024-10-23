@@ -1,2 +1,6 @@
 /writable/debugbar/*
 /writable/session/*
+/writable/logs/*
+app/Config/Email.php
+/public/
+.env
