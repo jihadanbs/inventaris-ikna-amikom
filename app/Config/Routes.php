@@ -86,7 +86,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     $routes->group('lembaga', static function ($routes) {
         $routes->post('save', 'LembagaController::save', ['namespace' => 'App\Controllers\Admin']);
         $routes->post('simpan_perubahan', 'LembagaController::simpan_perubahan', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('delete', 'LembagaController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->delete('delete', 'LembagaController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== JENIS INFORMASI ====================================*/
