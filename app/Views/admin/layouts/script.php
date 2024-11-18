@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <link rel="stylesheet" href="<?= base_url('assets/login/css/style.css') ?>">
+
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="<?= base_url('assets/img/ikna.png') ?>">
@@ -27,38 +29,38 @@
     <script src="https://cdn.ckeditor.com/4.22.1/full-all/ckeditor.js"></script>
     <title><?= $title ?></title>
 
-    <!-- SEO untuk Admin PPID Kabupaten Pesawaran -->
+    <!-- SEO untuk Admin IKNAventory -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <title>Admin PPID Kabupaten Pesawaran</title>
-    <meta name="keywords" content="admin, ppid, kabupaten pesawaran">
+    <title>Admin IKNAventory</title>
+    <meta name="keywords" content="Admin IKNA AMIKOM, Admin IKNAventory" />
     <meta http-equiv="Accept-CH" content="Sec-CH-UA-Platform-Version, Sec-CH-UA-Model" />
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="<?= base_url('path/to/icon.ico'); ?>" />
     <link rel="amphtml" href="<?= base_url('amp/' . uri_string()); ?>">
     <link rel="canonical" href="<?= current_url(); ?>" />
-    <meta property="og:site_name" content="Admin PPID Kabupaten Pesawaran" />
-    <meta property="og:title" content="Admin PPID Kabupaten Pesawaran - Pengelolaan Informasi PPID" />
+    <meta property="og:site_name" content="Admin IKNAventory" />
+    <meta property="og:title" content="Admin IKNAventory - Pengelolaan Inventaris IKNA AMIKOM Yogyakarta" />
     <meta property="og:url" content="<?= current_url(); ?>" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Admin PPID Kabupaten Pesawaran adalah halaman untuk mengelola informasi publik dari website PPID." />
+    <meta property="og:description" content="Admin IKNAventory adalah halaman untuk mengelola data inventaris IKNA AMIKOM Yogyakarta" />
     <meta property="og:image" content="<?= base_url('path/to/image.jpg'); ?>" />
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="600" />
-    <meta itemprop="name" content="Admin PPID Kabupaten Pesawaran - Pengelolaan Informasi PPID" />
+    <meta itemprop="name" content="Admin IKNAventory - Pengelolaan Inventaris IKNA AMIKOM Yogyakarta" />
     <meta itemprop="url" content="<?= current_url(); ?>" />
-    <meta itemprop="description" content="Admin PPID Kabupaten Pesawaran menyediakan layanan informasi publik dari website PPID." />
+    <meta itemprop="description" content="Admin IKNAventory adalah halaman untuk mengelola data inventaris IKNA AMIKOM Yogyakarta" />
     <meta itemprop="thumbnailUrl" content="<?= base_url('path/to/image.jpg'); ?>" />
     <link rel="image_src" href="<?= base_url('path/to/image.jpg'); ?>" />
     <meta itemprop="image" content="<?= base_url('path/to/image.jpg'); ?>" />
-    <meta name="twitter:title" content="Admin PPID Kabupaten Pesawaran - Pengelolaan Informasi PPID" />
+    <meta name="twitter:title" content="Admin IKNAventory - Pengelolaan Inventaris IKNA AMIKOM Yogyakarta" />
     <meta name="twitter:image" content="<?= base_url('path/to/image.jpg'); ?>" />
     <meta name="twitter:url" content="<?= current_url(); ?>" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="Admin PPID Kabupaten Pesawaran adalah halaman untuk mengelola informasi publik dari website PPID." />
-    <meta name="description" content="Admin PPID Kabupaten Pesawaran menyediakan layanan informasi publik dari website PPID." />
-    <!-- End SEO untuk Admin PPID Kabupaten Pesawaran -->
+    <meta name="twitter:description" content="Admin IKNAventory adalah halaman untuk mengelola data inventaris IKNA AMIKOM Yogyakarta" />
+    <meta name="description" content="Admin IKNAventory adalah halaman untuk mengelola data inventaris IKNA AMIKOM Yogyakarta" />
+    <!-- End SEO untuk Admin IKNAventory -->
 
     <!-- Tag untuk mencegah indeks oleh mesin pencari -->
     <meta name="robots" content="noindex, nofollow, noarchive">

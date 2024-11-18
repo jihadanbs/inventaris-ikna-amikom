@@ -6,10 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-$routes->get('/home/search', 'Home::search');
-$routes->get('/statistik', 'Home::statistik');
-$routes->get('/visitor', 'VisitorController::index', ['namespace' => 'App\Controllers']);
-$routes->get('/pencarian', 'Home::pencarian');
+$routes->get('/about', 'Home::about');
+$routes->get('/service', 'Home::service');
 
 $routes->get('/error404', 'Home::error');
 $routes->get('/servererror', 'Home::servererror');

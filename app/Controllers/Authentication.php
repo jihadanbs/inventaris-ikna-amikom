@@ -14,7 +14,7 @@ class Authentication extends BaseController
         }
 
         $data = [
-            'title' => 'Login PPID',
+            'title' => 'Login IKNAventory',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'pesan' => session()->getFlashdata('pesan'),
             'gagal' => session()->getFlashdata('gagal')
@@ -36,13 +36,13 @@ class Authentication extends BaseController
                 'username' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Username atau Email harus di isi!',
+                        'required' => 'Username atau Email harus di isi !',
                     ]
                 ],
                 'password' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Password harus di isi!',
+                        'required' => 'Password harus di isi !',
                     ]
                 ]
             ];
@@ -66,7 +66,7 @@ class Authentication extends BaseController
                                 $interval = $passwordLastReset->diff($currentDate);
 
                                 if ($interval->days > 30) {
-                                    return redirect()->to('authentication/lupaPassword')->with('warning', 'Password Anda sudah kadaluarsa. Silakan reset password Anda.');
+                                    return redirect()->to('authentication/lupaPassword')->with('warning', 'Password Anda sudah kadaluarsa. Silakan reset password Anda !');
                                 }
                             }
 
@@ -99,17 +99,17 @@ class Authentication extends BaseController
                             $session->setFlashdata('gagal', 'Akun anda dinonaktifkan');
                         }
                     } else {
-                        $session->setFlashdata('validation', ['password' => 'Password yang Anda masukkan salah!']);
+                        $session->setFlashdata('validation', ['password' => 'Password yang Anda masukkan salah !']);
                     }
                 } else {
-                    $session->setFlashdata('validation', ['username' => 'Username / Email tidak ditemukan!']);
+                    $session->setFlashdata('validation', ['username' => 'Username / Email tidak ditemukan !']);
                 }
             } else {
                 $session->setFlashdata('validation', $this->validator->getErrors());
             }
         }
 
-        return redirect()->to('authentication/login')->withInput()->with('gagal', 'Silahkan Login Ulang!');
+        return redirect()->to('authentication/login')->withInput()->with('gagal', 'Silahkan Login Ulang !');
     }
 
 
@@ -174,7 +174,7 @@ class Authentication extends BaseController
         }
 
         $data = [
-            'title' => 'Lupa Password PPID',
+            'title' => 'Lupa Password IKNAventory',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
         ];
 
@@ -255,7 +255,7 @@ class Authentication extends BaseController
         }
 
         $data = [
-            'title' => 'Reset Password PPID',
+            'title' => 'Reset Password IKNAventory',
             'validation' => session()->getFlashdata('validation') ?? [],
             'old_input' => $this->request->getPost(),
         ];
@@ -267,7 +267,11 @@ class Authentication extends BaseController
     {
         // Menghapus semua data sesi
         $this->session->destroy();
-        // Mengatur pesan flash sebelum mengarahkan kembali
-        return redirect()->to('authentication/login')->with('pesan', 'Anda Berhasil Logout!');
+
+        // Set cookie dengan pesan
+        setcookie('logout_message', 'Anda berhasil logout !', time() + 5, "/");
+
+        // Redirect ke login
+        return redirect()->to('authentication/login');
     }
 }

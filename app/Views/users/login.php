@@ -1,5 +1,4 @@
 <?= $this->include('admin/layouts/script') ?>
-<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 
@@ -14,8 +13,37 @@
         font-family: "Poppins", sans-serif;
     }
 
+    .password-toggle {
+        position: absolute;
+        top: 50%;
+        right: 18px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: black;
+        font-size: 1.1rem;
+    }
+
+    .custom-input-field i {
+        text-align: center;
+        line-height: 55px;
+        color: white;
+        transition: 0.5s;
+        font-size: 1.1rem;
+        order: 2;
+    }
+
+    .custom-form-group {
+        width: 350px;
+    }
+
+    .custom-form-label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
     /* Namespace untuk mengisolasi gaya */
-    .custom-container {
+    /* .custom-container {
         position: relative;
         width: 100%;
         background-color: #fff;
@@ -70,277 +98,19 @@
         color: #28527A;
         margin-bottom: 10px;
         font-weight: 700;
-    }
-
-    .custom-input-field {
-        max-width: 380px;
-        width: 100%;
-        background-color: #28527A;
-        margin: 10px 0;
-        height: 55px;
-        border-radius: 10px;
-        display: grid;
-        grid-template-columns: 85% 15%;
-        position: relative;
-    }
-
-    .password-toggle {
-        position: absolute;
-        top: 50%;
-        right: 18px;
-        transform: translateY(-50%);
-        cursor: pointer;
-        color: black;
-        font-size: 1.1rem;
-    }
-
-    .custom-input-field i {
-        text-align: center;
-        line-height: 55px;
-        color: white;
-        transition: 0.5s;
-        font-size: 1.1rem;
-        order: 2;
-    }
-
-    .custom-input-field input {
-        background: #F1F3F6;
-        border: 1px solid #28527A;
-        border-radius: 10px;
-        line-height: 1;
-        font-weight: 600;
-        font-size: 1.1rem;
-        padding-left: 20px;
-    }
-
-    .custom-input-field input::placeholder {
-        color: #aaa;
-        font-weight: 500;
-    }
-
-    .custom-btn {
-        width: 90%;
-        background-color: #28527A;
-        border: none;
-        outline: none;
-        height: 49px;
-        border-radius: 10px;
-        color: #fff;
-        text-transform: uppercase;
-        font-weight: 600;
-        margin: 10px 0;
-        cursor: pointer;
-        transition: 0.5s;
-    }
-
-    .custom-btn:hover {
-        background-color: #F4D160;
-    }
-
-    .custom-panels-container {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .custom-container:before {
-        content: "";
-        position: absolute;
-        height: 150%;
-        width: 90%;
-        top: -20%;
-        right: 48%;
-        transform: translateY(-5%);
-        background-image: linear-gradient(-45deg, #28527A 0%, #28527A 100%);
-        transition: 1.8s ease-in-out;
-        border-radius: 50%;
-        box-shadow: 7px 7px 10px 0px #8AC4D0;
-        z-index: 6;
-    }
-
-    .custom-image {
-        width: 100%;
-        transition: transform 1.1s ease-in-out;
-        transition-delay: 0.4s;
-    }
-
-    .custom-panel {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: space-around;
-        text-align: center;
-        z-index: 6;
-        padding: 2rem;
-    }
-
-    .custom-left-panel {
-        pointer-events: all;
-        padding: 3rem 17% 2rem 12%;
-        z-index: 6;
-    }
-
-    .custom-panel .content {
-        color: #fff;
-        transition: transform 0.9s ease-in-out;
-        transition-delay: 0.6s;
-    }
-
-    .custom-panel h3 {
-        font-weight: 600;
-        line-height: 1;
-        font-size: 1.5rem;
-    }
-
-    .custom-panel p {
-        font-size: 0.95rem;
-        padding: 0.7rem 0;
-    }
-
-    /* Animations and responsiveness */
-    @media (max-width: 870px) {
-        .custom-container {
-            min-height: 800px;
-            height: 100vh;
-        }
-
-        .custom-signin-signup {
-            width: 100%;
-            top: 95%;
-            transform: translate(-50%, -100%);
-            transition: 1s 0.8s ease-in-out;
-        }
-
-        .custom-signin-signup,
-        .custom-container.sign-up-mode .custom-signin-signup {
-            left: 50%;
-        }
-
-        .custom-panels-container {
-            grid-template-columns: 1fr;
-            grid-template-rows: 1fr 2fr 1fr;
-        }
-
-        .custom-panel {
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-            padding: 2.5rem 8%;
-            grid-column: 1 / 2;
-        }
-
-        .custom-left-panel {
-            grid-row: 1 / 2;
-        }
-
-        .custom-image {
-            width: 200px;
-            transition: transform 0.9s ease-in-out;
-            transition-delay: 0.6s;
-        }
-
-        .custom-panel .content {
-            padding-right: 15%;
-            transition: transform 0.9s ease-in-out;
-            transition-delay: 0.8s;
-        }
-
-        .custom-panel h3 {
-            font-size: 1.2rem;
-        }
-
-        .custom-panel p {
-            font-size: 0.7rem;
-            padding: 0.5rem 0;
-        }
-
-        .custom-btn.transparent {
-            width: 110px;
-            height: 35px;
-            font-size: 0.7rem;
-        }
-
-        .custom-container:before {
-            width: 1500px;
-            height: 1500px;
-            transform: translateX(-50%);
-            left: 30%;
-            bottom: 68%;
-            right: initial;
-            top: initial;
-            transition: 2s ease-in-out;
-        }
-
-        .custom-container.sign-up-mode .custom-signin-signup {
-            top: 5%;
-            transform: translate(-50%, 0);
-        }
-    }
-
-    @media (max-width: 570px) {
-        .custom-signin-signup form {
-            padding: 0 1.5rem;
-        }
-
-        .custom-image {
-            display: none;
-        }
-
-        .custom-panel .content {
-            padding: 0.5rem 1rem;
-        }
-
-        .custom-container {
-            padding: 1.5rem;
-        }
-
-        .custom-container:before {
-            bottom: 72%;
-            left: 50%;
-        }
-    }
-
-    .custom-form-group {
-        width: 350px;
-    }
-
-    .custom-form-label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 600;
-    }
-
-    @media (max-width: 320px) {
-        .custom-form-group {
-            width: 250px;
-        }
-    }
+    } */
 </style>
 
-</head>
-
 <body>
-    <div class="custom-container">
-        <div class="custom-forms-container">
-            <div class="custom-signin-signup">
-                <?= form_open('authentication/cekLogin') ?>
-                <form action="#" method="POST" class="sign-in-form">
-                    <?= csrf_field(); ?>
-                    <div class="content-wrapper" style="display: flex; align-items:center;">
-                        <div class="logo">
-                            <img style="width: 50px; height:80px; padding-top:10px;" src="<?= base_url('assets/img/psw.png') ?>" alt="Logo" />
-                        </div>
-                        <p class="mb-0" style="padding-left: 15px; padding-bottom:20px;">
-                            <span class="custom-title">PPID</span>
-                            <br>
-                            <span class="custom-title2">Kabupaten Pesawaran</span>
-                        </p>
-                    </div>
 
+    <body>
+        <section class="container">
+            <div class="login-container">
+                <div class="circle circle-one"></div>
+                <div class="form-container">
+                    <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+
+                    <h1 class="opacity">LOGIN</h1>
                     <?php if (session()->getFlashdata('pesan')) : ?>
                         <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
                             <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
@@ -372,50 +142,74 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php endif; ?>
-
-                    <div class="custom-form-group">
-                        <label for="nama" class="custom-form-label">Nama Pengguna</label>
-                        <div class="custom-input-field">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="nama" name="username" placeholder="Username/Email" value="<?= old('username') ?>">
+                    <?php if (isset($_COOKIE['logout_message'])) : ?>
+                        <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
+                            <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
+                            <?= $_COOKIE['logout_message']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
-                        <?php if (isset(session()->getFlashdata('validation')['username'])) : ?>
-                            <div class="text-danger">
-                                <?= session()->getFlashdata('validation')['username'] ?>
+                        <?php setcookie('logout_message', '', time() - 3600, "/"); // Hapus cookie setelah ditampilkan 
+                        ?>
+                    <?php endif; ?>
+                    <?= form_open('authentication/cekLogin') ?>
+                    <form action="#" method="POST" class="sign-in-form" autocomplete="off">
+                        <div class="custom-form-group opacity">
+                            <label for="nama" class="custom-form-label">Nama Pengguna</label>
+                            <div class="custom-input-field">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="nama" name="username" placeholder="Username/Email" value="<?= old('username') ?>" autocomplete="off">
                             </div>
-                        <?php endif; ?>
-                    </div>
-
-                    <div class="custom-form-group">
-                        <label for="pw" class="custom-form-label">Kata Sandi</label>
-                        <div class="custom-input-field">
-                            <i class="fas fa-lock password-toggle" onclick="togglePasswordVisibility()"></i>
-                            <input type="password" id="pw" name="password" placeholder="Masukkan kata sandi" value="<?= old('password') ?>">
+                            <?php if (isset(session()->getFlashdata('validation')['username'])) : ?>
+                                <div class="text-danger">
+                                    <?= session()->getFlashdata('validation')['username'] ?>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
-                        <?php if (isset(session()->getFlashdata('validation')['password'])) : ?>
-                            <div class="text-danger">
-                                <?= session()->getFlashdata('validation')['password'] ?>
+                        <div class="custom-form-group opacity">
+                            <label for="pw" class="custom-form-label">Kata Sandi</label>
+                            <div class="custom-input-field">
+                                <i class="fas fa-lock password-toggle" onclick="togglePasswordVisibility()"></i>
+                                <input type="password" id="pw" name="password" placeholder="Masukkan kata sandi" value="<?= old('password') ?>" autocomplete="off">
                             </div>
-                        <?php endif; ?>
-                        <a href="<?php echo site_url("authentication/lupaPassword"); ?>" style="color: black; text-align:right; display: block;">Lupa kata sandi?</a>
+
+                            <?php if (isset(session()->getFlashdata('validation')['password'])) : ?>
+                                <div class="text-danger">
+                                    <?= session()->getFlashdata('validation')['password'] ?>
+                                </div>
+                            <?php endif; ?>
+                        </div><br>
+                        <button class="opacity">SUBMIT</button>
+                    </form>
+                    <?= form_close() ?>
+                    <!-- PASSWORD TOGGLE -->
+                    <script>
+                        function togglePasswordVisibility() {
+                            var passwordInput = document.getElementById("pw");
+                            var passwordToggle = document.querySelector(".password-toggle");
+
+                            if (passwordInput.type === "password") {
+                                passwordInput.type = "text";
+                                passwordToggle.classList.remove("fa-lock");
+                                passwordToggle.classList.add("fa-lock-open");
+                            } else {
+                                passwordInput.type = "password";
+                                passwordToggle.classList.remove("fa-lock-open");
+                                passwordToggle.classList.add("fa-lock");
+                            }
+                        }
+                    </script>
+                    <!-- END PASSWORD TOGGLE -->
+                    <div class="register-forget opacity">
+                        <!-- <a href="<?php echo site_url("authentication/lupaPassworD"); ?>" style="color: black; text-align:right; display: block;">Lupa kata sandi?</a> -->
+                        <a href="#" style="color: black; text-align:right; display: block;">Lupa kata sandi?</a>
                     </div>
-
-                    <input type="submit" value="Masuk" class="custom-btn solid" />
-                </form>
-                <?= form_close() ?>
-            </div>
-        </div>
-
-        <div class="custom-panels-container">
-            <div class="custom-panel custom-left-panel">
-                <div class="content">
-                    <img src="<?= base_url('assets/img/login-illustrator.png') ?>" class="custom-image" alt="" />
                 </div>
+                <div class="circle circle-two"></div>
             </div>
-        </div>
-    </div>
-
+            <div class="theme-btn-container"></div>
+        </section>
+    </body>
     <!-- JAVASCRIPT -->
     <script src="<?= base_url('assets/admin/libs/jquery/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
@@ -423,30 +217,9 @@
     <script src="<?= base_url('assets/admin/libs/simplebar/simplebar.min.js') ?>"></script>
     <script src="<?= base_url('assets/admin/libs/node-waves/waves.min.js') ?>"></script>
     <script src="<?= base_url('assets/admin/libs/feather-icons/feather.min.js') ?>"></script>
-    <!-- pace js -->
-    <script src="<?= base_url('assets/admin/libs/pace-js/pace.min.js') ?>"></script>
-    <!-- Alert init js -->
+    <script src="<?= base_url('assets/login/js/script.js') ?>"></script>
     <script src="<?= base_url('assets/admin/js/pages/alert.init.js') ?>"></script>
     <script src="<?= base_url('assets/admin/js/app.js') ?>"></script>
-
-    <script>
-        function togglePasswordVisibility() {
-            var passwordInput = document.getElementById("pw");
-            var passwordToggle = document.querySelector(".password-toggle");
-
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                passwordToggle.classList.remove("fa-lock");
-                passwordToggle.classList.add("fa-lock-open");
-            } else {
-                passwordInput.type = "password";
-                passwordToggle.classList.remove("fa-lock-open");
-                passwordToggle.classList.add("fa-lock");
-            }
-        }
-    </script>
-
-
 </body>
 
 </html>
