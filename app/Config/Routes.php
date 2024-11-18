@@ -6,10 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-$routes->get('/home/search', 'Home::search');
-$routes->get('/statistik', 'Home::statistik');
-$routes->get('/visitor', 'VisitorController::index', ['namespace' => 'App\Controllers']);
-$routes->get('/pencarian', 'Home::pencarian');
+$routes->get('/about', 'Home::about');
+$routes->get('/service', 'Home::service');
 
 $routes->get('/error404', 'Home::error');
 $routes->get('/servererror', 'Home::servererror');
@@ -86,7 +84,7 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     $routes->group('lembaga', static function ($routes) {
         $routes->post('save', 'LembagaController::save', ['namespace' => 'App\Controllers\Admin']);
         $routes->post('simpan_perubahan', 'LembagaController::simpan_perubahan', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('delete', 'LembagaController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->delete('delete', 'LembagaController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== JENIS INFORMASI ====================================*/
