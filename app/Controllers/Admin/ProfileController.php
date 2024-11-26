@@ -113,7 +113,7 @@ class ProfileController extends BaseController
             'title' => 'Admin | Atur Ulang Kata Sandi',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_jabatan' => $this->m_jabatan->getAll(),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/profile/resetpassword', $data);
     }
