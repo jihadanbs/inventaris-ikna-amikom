@@ -169,7 +169,7 @@
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item bg-light-subtle border-start border-end" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="<?= base_url(session('file_profil') ? session('file_profil') : 'assets/admin/images/user.png'); ?>" alt="<?= session()->has('nama_lengkap') ? session('nama_lengkap') : 'Profile Image'; ?>">
+                    <img class="rounded-circle header-profile-user" src="<?= base_url(session('file_profil') ? session('file_profil') : 'assets/img/404.gif'); ?>" alt="<?= session()->has('nama_lengkap') ? session('nama_lengkap') : 'Profile Image'; ?>">
 
                     <?php if (session()->has('islogin')) : ?>
                         <span class="d-none d-xl-inline-block ms-1 fw-medium"><?= session('username') ?></span>
