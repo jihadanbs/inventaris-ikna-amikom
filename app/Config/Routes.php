@@ -31,13 +31,13 @@ $routes->get('/faq', 'FaqController::faq', ['namespace' => 'App\Controllers']);
 
 //AUTHENTICATION
 $routes->group('authentication', function ($routes) {
-    $routes->get('login', 'Authentication::login');
-    $routes->post('cekLogin', 'Authentication::cekLogin');
-    $routes->get('logout', 'Authentication::logout');
-    $routes->get('lupaPassword', 'Authentication::lupaPassword');
-    $routes->post('lupaPassword', 'Authentication::lupaPassword');
-    $routes->get('resetPassword', 'Authentication::resetPassword');
-    $routes->post('resetPassword', 'Authentication::resetPassword');
+    $routes->get('login', 'Authentication::login', ['namespace' => 'App\Controllers']);
+    $routes->post('cekLogin', 'Authentication::cekLogin', ['namespace' => 'App\Controllers']);
+    $routes->get('logout', 'Authentication::logout', ['namespace' => 'App\Controllers']);
+    $routes->get('lupaPassword', 'Authentication::lupaPassword', ['namespace' => 'App\Controllers']);
+    $routes->post('lupaPassword', 'Authentication::lupaPassword', ['namespace' => 'App\Controllers']);
+    $routes->get('resetPassword', 'Authentication::resetPassword', ['namespace' => 'App\Controllers']);
+    $routes->post('resetPassword', 'Authentication::resetPassword', ['namespace' => 'App\Controllers']);
 });
 
 //ROLE
