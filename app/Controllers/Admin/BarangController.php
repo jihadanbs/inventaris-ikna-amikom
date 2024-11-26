@@ -48,28 +48,28 @@ class BarangController extends BaseController
         }
 
         // Ambil data dari request
-        $judul = $this->request->getVar('judul');
-        $id_kategori_informasi = $this->request->getVar('id_kategori_informasi_publik');
-        $id_lembaga = $this->request->getVar('id_lembaga');
-        $id_jenis = $this->request->getVar('id_jenis');
+        $nama_barang = $this->request->getVar('nama_barang');
+        $jumlah_total = $this->request->getVar('jumlah_total');
+        $id_kategori_barang = $this->request->getVar('id_kategori_barang');
         $deskripsi = $this->request->getVar('deskripsi');
-        $tanggal_file = $this->request->getVar('tanggal_file');
+        $tanggal_masuk = $this->request->getVar('tanggal_masuk');
+        $tanggal_keluar = $this->request->getVar('tanggal_keluar');
 
         //validasi input 
         if (!$this->validate([
             'id_kategori_barang' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Silahkan Pilih Nama Dinas !'
+                    'required' => 'Silahkan Pilih Nama Kategori Barang !'
                 ]
             ],
-            'judul' => [
-                'rules' => "required|is_unique_judul[tb_informasi_publik,id_lembaga,id_kategori_informasi_publik,id_jenis]|trim|min_length[5]|max_length[90]",
+            'nama_barang' => [
+                'rules' => "required|is_unique_nama_barang[tb_barang,id_kategori_barang]|trim|min_length[5]|max_length[100]",
                 'errors' => [
-                    'required' => 'Kolom Judul Tidak Boleh Kosong !',
-                    'is_unique_judul' => 'Judul sudah terdaftar untuk nama dinas, kategori informasi publik, dan jenis informasi yang sama !',
-                    'min_length' => 'Judul tidak boleh kurang dari 5 karakter !',
-                    'max_length' => 'Judul tidak boleh melebihi 90 karakter !',
+                    'required' => 'Kolom Nama Barang Tidak Boleh Kosong !',
+                    'is_unique_nama_barang' => 'Nama Barang sudah terdaftar untuk nama kategori yang sama !',
+                    'min_length' => 'Nama Barang tidak boleh kurang dari 5 karakter !',
+                    'max_length' => 'Nama Barang tidak boleh melebihi 100 karakter !',
                 ]
             ],
             'deskripsi' => [
@@ -80,10 +80,22 @@ class BarangController extends BaseController
                     'max_length' => 'Deskripsi tidak boleh melebihi 255 karakter !',
                 ]
             ],
-            'tanggal_file' => [
+            'tanggal_masuk' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Silahkan Masukkan Tanggal File !'
+                    'required' => 'Silahkan Masukkan Tanggal Masuk Barang !'
+                ]
+            ],
+            'tanggal_keluar' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Tanggal Keluar Barang !'
+                ]
+            ],
+            'jumlah_total' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Jumlah Total dari Barang Tersebut !'
                 ]
             ],
         ])) {
@@ -91,22 +103,22 @@ class BarangController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        $slug = url_title($this->request->getVar('judul'), '-', true);
-        $uploadFilePDF = uploadFilePDF('file_informasi_publik', 'dokumen/informasi_publik/');
-        $this->m_informasi_publik->save([
-            'id_lembaga' => $id_lembaga,
-            'id_jenis' => $id_jenis,
-            'id_kategori_informasi_publik' => $id_kategori_informasi,
-            'judul' => $judul,
+        $slug = url_title($this->request->getVar('nama_barang'), '-', true);
+        $uploadFile = uploadFile('path_file_foto_barang', 'dokumen/barang/');
+        $this->m_barang->save([
+            'id_kategori_barang' => $id_kategori_barang,
+            'nama_barang' => $nama_barang,
+            'jumlah_total' => $jumlah_total,
             'slug' => $slug,
             'deskripsi' => $deskripsi,
-            'tanggal_file' => $tanggal_file,
-            'file_informasi_publik' => $uploadFilePDF
+            'tanggal_masuk' => $tanggal_masuk,
+            'tanggal_keluar' => $tanggal_keluar,
+            'path_file_foto_barang' => $uploadFile
         ]);
 
         session()->setFlashdata('pesan', 'Data Berhasil Di Tambahkan &#128077;');
 
-        return redirect()->to('/admin/informasi_publik');
+        return redirect()->to('/admin/barang');
     }
 
     public function delete()
@@ -116,15 +128,15 @@ class BarangController extends BaseController
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
 
-        $id_informasi_publik = $this->request->getPost('id_informasi_publik');
+        $id_barang = $this->request->getPost('id_barang');
 
         $this->db->transStart(); // Memulai transaksi
 
         try {
-            $dataFiles = $this->m_informasi_publik->getFilesById($id_informasi_publik);
+            $dataFiles = $this->m_barang->getFilesById($id_barang);
 
             if (empty($dataFiles)) {
-                throw new \Exception('Tidak ada file yang ditemukan untuk id_informasi_publik.');
+                throw new \Exception('Tidak ada file yang ditemukan untuk id_barang.');
             }
 
             foreach ($dataFiles[0] as $fileColumn => $filePath) {
@@ -138,7 +150,7 @@ class BarangController extends BaseController
                 }
             }
 
-            $this->m_informasi_publik->deleteById($id_informasi_publik);
+            $this->m_barang->deleteById($id_barang);
 
             $this->db->transComplete(); // Mengakhiri transaksi
 
@@ -162,15 +174,15 @@ class BarangController extends BaseController
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
 
-        $id_informasi_publik = $this->request->getPost('id_informasi_publik');
+        $id_barang = $this->request->getPost('id_barang');
 
         $this->db->transStart(); // Memulai transaksi
 
         try {
-            $dataFiles = $this->m_informasi_publik->getFilesById($id_informasi_publik);
+            $dataFiles = $this->m_barang->getFilesById($id_barang);
 
             if (empty($dataFiles)) {
-                throw new \Exception('Tidak ada file yang ditemukan untuk id_informasi_publik.');
+                throw new \Exception('Tidak ada file yang ditemukan untuk id_barang.');
             }
 
             foreach ($dataFiles[0] as $fileColumn => $filePath) {
@@ -184,7 +196,7 @@ class BarangController extends BaseController
                 }
             }
 
-            $this->m_informasi_publik->deleteById($id_informasi_publik);
+            $this->m_barang->deleteById($id_barang);
 
             $this->db->transComplete(); // Mengakhiri transaksi
 
@@ -220,7 +232,7 @@ class BarangController extends BaseController
 
         return view('admin/informasi_publik/edit', $data);
     }
-    public function update($id_informasi_publik)
+    public function update($id_barang)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {

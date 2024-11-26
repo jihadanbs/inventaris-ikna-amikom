@@ -70,7 +70,7 @@
 
                                         <input type="hidden" id="kategori_id" name="kategori_id">
                                         <div class="invalid-feedback">
-                                            <?= $validation->getError('id_kategori_informasi_publik'); ?>
+                                            <?= $validation->getError('id_kategori_barang'); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -117,8 +117,8 @@
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-                                        <label for="file_informasi_publik" class="col-form-label">Foto Barang :</label>
-                                        <input type="file" accept="application/pdf" class="form-control custom-border" id="file_informasi_publik" name="file_informasi_publik" style="background-color: white;">
+                                        <label for="path_file_foto_barang" class="col-form-label">Foto Barang :</label>
+                                        <input type="file" accept="image/*" class="form-control custom-border" id="path_file_foto_barang" name="path_file_foto_barang" style="background-color: white;">
                                         <small class="form-text text-muted">
                                             <span style="color: blue;">NOTE : Untuk Menginputkan 3 Foto atau Lebih Anda Dapat Menggunakan CTRL Pada Keyboard Lalu<span style="color: red;"> TAHAN CTRL nya </span> Sambil Pilih Gambar yang Dimau Lalu Klik Kiri pada MOUSE ataupun TOUCHPAD (CTRL Masih Tetap Ditahan Ya!). Lakukan Hal Yang Sama Untuk Memilih Foto Lainnya.</span>
                                         </small>
@@ -126,7 +126,7 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <a href="/admin/informasi_publik" class="btn btn-secondary btn-md ml-3">
+                                    <a href="/admin/barang" class="btn btn-secondary btn-md ml-3">
                                         <i class="fas fa-arrow-left"></i> Batal
                                     </a>
                                     <button type="submit" class="btn btn-primary" style="background-color: #28527A; color:white; margin-left: 10px;">Tambah</button>

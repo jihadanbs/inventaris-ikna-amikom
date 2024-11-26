@@ -23,7 +23,7 @@ class BarangModel extends Model
         // return $query->getResult();
         $results = $query->getResult();
 
-        // Ambil data tambahan berdasarkan id informasi publik
+        // Ambil data tambahan berdasarkan id barang
         foreach ($results as $result) {
             $id_barang = $result->id_barang;
             $additional_data = $this->getDokumenById($id_barang);
@@ -31,6 +31,13 @@ class BarangModel extends Model
         }
 
         return $results;
+    }
+
+    public function getDokumenById($id_barang)
+    {
+        $builder = $this->db->table('tb_barang');
+        $result = $builder->where('id_barang', $id_barang)->get()->getResult();
+        return $result;
     }
 
     public function getInformasiPublik($slug = false)
@@ -59,13 +66,6 @@ class BarangModel extends Model
     public function getAllData()
     {
         return $this->orderBy('id_informasi_publik', 'DESC')->findAll();
-    }
-
-    public function getDokumenById($id_informasi_publik)
-    {
-        $builder = $this->db->table('tb_informasi_publik');
-        $result = $builder->where('id_informasi_publik', $id_informasi_publik)->get()->getResult();
-        return $result;
     }
 
     public function ambil_data($id_lembaga)
@@ -107,15 +107,15 @@ class BarangModel extends Model
         return $builder->countAllResults();
     }
 
-    public function getFilesById($id_informasi_publik)
+    public function getFilesById($id_barang)
     {
         // Ambil hanya kolom yang dibutuhkan
-        return $this->select('file_informasi_publik')->where('id_informasi_publik', $id_informasi_publik)->findAll();
+        return $this->select('path_file_foto_barang')->where('id_barang', $id_barang)->findAll();
     }
-    public function deleteById($id_informasi_publik)
+    public function deleteById($id_barang)
     {
-        // Menghapus entri di tabel berdasarkan id_pemohon
-        return $this->where('id_informasi_publik', $id_informasi_publik)->delete();
+        // Menghapus entri di tabel berdasarkan id_barang
+        return $this->where('id_barang', $id_barang)->delete();
     }
 
     public function getCategoryCounts()
