@@ -19,7 +19,7 @@ class WebOptionController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Web Option',
             'tb_web_option' => $this->m_web_option->getAllData(),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/web_option/index', $data);
     }
@@ -36,7 +36,7 @@ class WebOptionController extends BaseController
             'title' => 'Admin | Halaman Tambah Web Option',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_web_option' => $this->m_web_option->getAllData(),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/web_option/tambah', $data);
     }
@@ -124,7 +124,7 @@ class WebOptionController extends BaseController
             'title' => 'Admin | Halaman Edit Web Option',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_web_option' => $this->m_web_option->getWeb($id_web_option),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/web_option/edit', $data);
     }
@@ -173,7 +173,7 @@ class WebOptionController extends BaseController
             'title' => 'Admin | Halaman Cek Data Web Option',
             'tb_web_option' => $this->m_web_option->getAll($id_web_option),
             'dokumen' => $this->m_web_option->getDokumenById($id_web_option),
-        ], $this->loadCommonData());
+        ]);
 
         // print_r($data['tb_web_option']); // Cetak nilai tb_web_option untuk debugging
 

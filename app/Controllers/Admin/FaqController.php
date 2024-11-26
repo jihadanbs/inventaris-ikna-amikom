@@ -21,7 +21,7 @@ class FaqController extends BaseController
             'tb_faq' => $this->m_faq->getAllSorted(),
             'tb_kategori_faq' => $this->m_kategori_faq->getAllData(),
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/faq/index', $data);
     }
@@ -38,7 +38,7 @@ class FaqController extends BaseController
             'title' => 'Admin | Halaman Tambah FAQ',
             'tb_kategori_faq' => $this->m_kategori_faq->getAllData(),
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/faq/tambah', $data);
     }
@@ -111,7 +111,7 @@ class FaqController extends BaseController
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_faq' => $this->m_faq->getFaq($id_faq),
             'tb_kategori_faq' => $this->m_kategori_faq->getAllData(),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/faq/edit', $data);
     }
@@ -155,7 +155,7 @@ class FaqController extends BaseController
             'title' => 'Admin | Halaman Cek Data FAQ',
             'tb_faq' => $this->m_faq->getAll($id_faq),
             'id_faq' => $this->m_faq->getid($id_faq),
-        ], $this->loadCommonData());
+        ]);
 
         // print_r($data['tb_faq']); // Cetak nilai tb_faq untuk debugging
 

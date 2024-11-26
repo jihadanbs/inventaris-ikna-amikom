@@ -20,7 +20,7 @@ class FeedbackController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Feedback Pengunjung',
             'tb_feedback' => $this->m_feedback->getAllData(),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/feedback/index', $data);
     }
@@ -37,7 +37,7 @@ class FeedbackController extends BaseController
             'title' => 'Admin | Halaman Tambah Feedback Pengunjung',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_feedback' => $this->m_feedback->getFeedback(),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/feedback/tambah', $data);
     }
@@ -90,7 +90,7 @@ class FeedbackController extends BaseController
             'title' => 'Admin | Halaman Cek Data Feedback Pengunjung',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_feedback' => $this->m_feedback->getFeedback($id_feedback),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/feedback/cek_data', $data);
     }
@@ -107,7 +107,7 @@ class FeedbackController extends BaseController
             'title' => 'Admin | Halaman Balas Feedback Pengunjung',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_feedback' => $this->m_feedback->getFeedback($id_feedback),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/feedback/balas', $data);
     }

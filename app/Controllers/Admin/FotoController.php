@@ -21,7 +21,7 @@ class FotoController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Foto',
             'tb_foto' => $this->m_foto->getFotoWithFile(),
-        ], $this->loadCommonData()); // Meload data umum admin
+        ]); // Meload data umum admin
 
         // Tampilkan view dengan data yang telah disiapkan
         return view('admin/foto/index', $data);
@@ -39,7 +39,7 @@ class FotoController extends BaseController
             'title' => 'Admin | Halaman Tambah Foto',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_foto' => $this->m_foto->getFotoWithFile(),
-        ], $this->loadCommonData());
+        ]);
 
         // Tampilkan view dengan data yang telah disiapkan
         return view('admin/foto/tambah', $data);
@@ -179,7 +179,7 @@ class FotoController extends BaseController
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_foto' => $this->m_foto->getFotoWithSlug($slug),
             'slug' => $slug,
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/foto/edit', $data);
     }
@@ -245,7 +245,7 @@ class FotoController extends BaseController
             'title' => 'Admin | Halaman Cek Data',
             'tb_foto' => $this->m_foto->getFotoWithFileId($id_foto),
             'dokumen' => $this->m_foto->getDokumenByFotoId($id_foto),
-        ], $this->loadCommonData());
+        ]);
 
         // print_r($data['tb_foto']); // Cetak nilai tb_informasi_publik untuk debugging
 
