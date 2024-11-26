@@ -55,12 +55,16 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->post('updateSandi/(:num)', 'ProfileController::updateSandi/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
-    /*=================================== JENIS INFORMASI ====================================*/
-    $routes->get('jenis_informasi', 'JenisInformasiController::index', ['namespace' => 'App\Controllers\Admin']);
-    $routes->group('jenis_informasi', static function ($routes) {
-        $routes->post('save', 'JenisInformasiController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('simpan_perubahan', 'JenisInformasiController::simpan_perubahan', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('delete', 'JenisInformasiController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
+    /*=================================== BARANG ====================================*/
+    $routes->get('barang', 'BarangController::index', ['namespace' => 'App\Controllers\Admin']);
+    $routes->group('barang', static function ($routes) {
+        $routes->get('tambah', 'BarangController::tambah', ['namespace' => 'App\Controllers\Admin']);
+        $routes->post('save', 'BarangController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->get('edit/(:segment)', 'BarangController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->put('update/(:num)', 'BarangController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->post('cek_judul', 'BarangController::cek_judul', ['namespace' => 'App\Controllers\Admin']);
+        $routes->get('cek_data/(:segment)', 'BarangController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->post('delete', 'BarangController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== KATEGORI BARANG ====================================*/
