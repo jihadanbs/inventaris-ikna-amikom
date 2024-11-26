@@ -5,39 +5,15 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
-$routes->get('/about', 'Home::about');
-$routes->get('/service', 'Home::service');
+$routes->get('/', 'Home::index', ['namespace' => 'App\Controllers']);
+$routes->get('/about', 'Home::about', ['namespace' => 'App\Controllers']);
+$routes->get('/service', 'Home::service', ['namespace' => 'App\Controllers']);
 
-$routes->get('/error404', 'Home::error');
-$routes->get('/servererror', 'Home::servererror');
+$routes->get('/error404', 'Home::error', ['namespace' => 'App\Controllers']);
+$routes->get('/servererror', 'Home::servererror', ['namespace' => 'App\Controllers']);
 
 // USER //
 $routes->get('profil', 'ProfilController::profil', ['namespace' => 'App\Controllers']);
-
-
-/*=================================== STANDAR LAYANAN ====================================*/
-$routes->get('/standarlayanan', 'StandarLayananController::standarlayanan', ['namespace' => 'App\Controllers']);
-$routes->get('/formpermohonan', 'StandarLayananController::formpermohonan', ['namespace' => 'App\Controllers']);
-$routes->get('/formkeberatan', 'StandarLayananController::formkeberatan', ['namespace' => 'App\Controllers']);
-$routes->get('/cekstatus', 'StandarLayananController::cekstatus', ['namespace' => 'App\Controllers']);
-$routes->get('/sopppid', 'StandarLayananController::sopppid', ['namespace' => 'App\Controllers']);
-$routes->get('/sengketa', 'StandarLayananController::sengketa', ['namespace' => 'App\Controllers']);
-$routes->get('/penanganan', 'StandarLayananController::penanganan', ['namespace' => 'App\Controllers']);
-$routes->get('/biaya', 'StandarLayananController::biaya', ['namespace' => 'App\Controllers']);
-$routes->get('/maklumat', 'StandarLayananController::maklumat', ['namespace' => 'App\Controllers']);
-$routes->get('/StandarLayananController/getPemohon', 'StandarLayananController::getPemohon', ['namespace' => 'App\Controllers']);
-$routes->get('/StandarLayananController/getKeberatan', 'StandarLayananController::getKeberatan', ['namespace' => 'App\Controllers']);
-// $routes->post('/cekstatus/getData', 'StandarLayananController::getData', ['namespace' => 'App\Controllers']);
-$routes->get('/getPemohon', 'StandarLayananController::getPemohon', ['namespace' => 'App\Controllers']);
-
-/*=================================== INFORMASI PUBLIK ====================================*/
-$routes->get('/informasipublik', 'InformasiPublikController::informasipublik', ['namespace' => 'App\Controllers']);
-$routes->post('/informasipublik/download', 'InformasiPublikController::informasipublik/download', ['namespace' => 'App\Controllers']);
-$routes->get('/informasiberkala', 'InformasiPublikController::informasiberkala', ['namespace' => 'App\Controllers']);
-$routes->get('/informasisertamerta', 'InformasiPublikController::informasisertamerta', ['namespace' => 'App\Controllers']);
-$routes->get('/informasisetiapsaat', 'InformasiPublikController::informasisetiapsaat', ['namespace' => 'App\Controllers']);
-$routes->get('/informasidikecualikan', 'InformasiPublikController::informasidikecualikan', ['namespace' => 'App\Controllers']);
 
 /*=================================== LAPORAN ====================================*/
 $routes->get('/laporan', 'LaporanController::laporan', ['namespace' => 'App\Controllers']);
