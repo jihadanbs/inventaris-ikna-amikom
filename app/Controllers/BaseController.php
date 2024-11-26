@@ -186,7 +186,6 @@ abstract class BaseController extends Controller
     protected function loadCommonData()
     {
         return [
-            'tb_pemohon' => $this->m_pemohon->getAllSorted(),
             'tb_user' => $this->m_user->getAll(),
             'unreadCount' => $this->m_pemohon->countUnreadEntries(),
             'unread' => $this->m_pemohon->getUnreadEntries(),
