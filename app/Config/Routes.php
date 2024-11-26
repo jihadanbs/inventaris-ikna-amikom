@@ -177,25 +177,6 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->post('delete', 'WebOptionController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
-    /*=================================== FORM KEBERATAN ====================================*/
-    $routes->get('keberatan', 'KeberatanController::index', ['namespace' => 'App\Controllers\Admin']);
-    $routes->group('keberatan', static function ($routes) {
-        $routes->post('kirim', 'KeberatanController::kirim', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('totalByStatus/(:any)', 'KeberatanController::totalByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('totalData', 'KeberatanController::totalData', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('tambah', 'KeberatanController::tambah', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('save', 'KeberatanController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('cek_data/(:segment)', 'KeberatanController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('diproses/(:segment)', 'KeberatanController::diproses/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('proses/(:num)', 'KeberatanController::proses/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('ditolak/(:segment)', 'KeberatanController::ditolak/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('reject/(:num)', 'KeberatanController::reject/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('diberikan/(:segment)', 'KeberatanController::diberikan/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('berikan/(:num)', 'KeberatanController::berikan/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('delete2', 'KeberatanController::delete2', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('delete', 'KeberatanController::delete', ['namespace' => 'App\Controllers\Admin']);
-    });
-
     /*=================================== FEEDBACK ====================================*/
     $routes->get('feedback', 'FeedbackController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->group('feedback', static function ($routes) {
