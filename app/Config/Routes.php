@@ -177,25 +177,6 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->post('delete', 'WebOptionController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
-    /*=================================== FORM PERMOHONAN ====================================*/
-    $routes->get('permohonan', 'PermohonanController::index', ['namespace' => 'App\Controllers\Admin']);
-    $routes->group('permohonan', static function ($routes) {
-        $routes->post('kirim', 'PermohonanController::kirim', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('totalByStatus/(:any)', 'PermohonanController::totalByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('totalData', 'PermohonanController::totalData', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('tambah', 'PermohonanController::tambah', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('save', 'PermohonanController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('cek_data/(:segment)', 'PermohonanController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('diproses/(:segment)', 'PermohonanController::diproses/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('proses/(:num)', 'PermohonanController::proses/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('ditolak/(:segment)', 'PermohonanController::ditolak/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('reject/(:num)', 'PermohonanController::reject/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('diberikan/(:segment)', 'PermohonanController::diberikan/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('berikan/(:num)', 'PermohonanController::berikan/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('delete2', 'PermohonanController::delete2', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('delete', 'PermohonanController::delete', ['namespace' => 'App\Controllers\Admin']);
-    });
-
     /*=================================== FORM KEBERATAN ====================================*/
     $routes->get('keberatan', 'KeberatanController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->group('keberatan', static function ($routes) {
