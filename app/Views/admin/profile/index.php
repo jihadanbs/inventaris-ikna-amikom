@@ -173,27 +173,6 @@
                     <div class="mt-4 card">
                         <div class="card-body">
 
-                            <!-- Password Berfungsi Sampai -->
-                            <?php
-                            // Ambil nilai password_last_reset
-                            $password_last_reset = isset($tb_user[0]->password_last_reset) ? $tb_user[0]->password_last_reset : '';
-
-                            // Cek apakah password_last_reset tidak kosong
-                            if ($password_last_reset !== '') {
-                                // Konversi password_last_reset ke objek DateTime
-                                $date = new DateTime($password_last_reset);
-
-                                // Tambahkan 30 hari
-                                $date->modify('+30 days');
-
-                                // Format tanggal dan waktu sesuai kebutuhan (misal: Y-m-d H:i:s)
-                                $new_date = $date->format('Y-m-d H:i:s');
-                            } else {
-                                echo '';
-                            }
-                            ?>
-                            <!-- End Password Berfungsi Sampai -->
-
                             <div class="informasi-pribadi-section">
                                 <a href="dashboard" class="btn btn-link">
                                     <i class="fas fa-arrow-left" style="font-size: 16px;"></i> Dashboard
@@ -262,36 +241,72 @@
                                     </div>
                                 </div>
 
+                                <!-- Function mengambil Password Terakhir -->
+                                <?php
+                                // Ambil data dari sesi untuk password terakhir reset
+                                $passwordLastReset = session('password_last_reset');
+
+                                // Format tanggal terakhir reset password
+                                $formattedLastReset = '';
+                                if ($passwordLastReset) {
+                                    $date = new DateTime($passwordLastReset);
+                                    $formattedLastReset = $date->format('d') . ' ' . date('F', mktime(0, 0, 0, $date->format('m'), 10)) . ' ' . $date->format('Y,') . ' Jam ' . $date->format('H:i:s') . ' WIB';
+                                }
+
+                                // Menghitung tanggal kadaluarsa (30 hari setelah password terakhir reset)
+                                $expiryDate = 'Belum melakukan update password &#129300;';
+                                if ($passwordLastReset) {
+                                    $expiryDateTime = (new DateTime($passwordLastReset))->modify('+30 days');
+                                    $expiryDate = $expiryDateTime->format('d') . ' ' . date('F', mktime(0, 0, 0, $expiryDateTime->format('m'), 10)) . ' ' . $expiryDateTime->format('Y,') . ' Jam ' . $expiryDateTime->format('H:i:s') . ' WIB';
+                                }
+                                ?>
+
                                 <div class="mb-3">
                                     <label for="password_last_reset" class="col-form-label">Terakhir Update Password :</label>
                                     <div class="col-sm-12">
-                                        <input disabled type="text" placeholder="Belum Di Update &#128548" class="form-control" id="password_last_reset" name="password_last_reset" style="background-color: #C7C8CC;" value="<?= session('password_last_reset'); ?>">
+                                        <input disabled type="text" placeholder="Belum melakukan update password &#129300;" class="form-control" id="password_last_reset" name="password_last_reset" style="background-color: #C7C8CC;" value="<?= $formattedLastReset; ?>">
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password_last_reset" class="col-form-label">Password Berlaku Sampai :</label>
+                                    <label for="password_expiry" class="col-form-label">Password Berlaku Sampai :</label>
                                     <div class="col-sm-12">
-                                        <input disabled type="text" placeholder="Belum Di Update &#128548" class="form-control" id="password_last_reset" name="password_last_reset" style="background-color: #C7C8CC;" value="<?= session('password_last_reset'); ?>">
+                                        <input disabled type="text" class="form-control" id="password_expiry" name="password_expiry" style="background-color: #C7C8CC;" value="<?= $expiryDate; ?>">
                                     </div>
                                 </div>
+                                <!-- End Function -->
+
+                                <!-- Function mengambil waktu Terakhir Login -->
+                                <?php
+                                // Ambil data dari sesi
+                                $terakhirLogin = session('terakhir_login');
+
+                                // Format tanggal jika ada data
+                                $formattedDate = '';
+                                if ($terakhirLogin) {
+                                    $date = new DateTime($terakhirLogin);
+                                    $formattedDate = $date->format('d') . ' ' . date('F', mktime(0, 0, 0, $date->format('m'), 10)) . ' ' . $date->format('Y,') . ' Jam ' . $date->format('H:i:s') . ' WIB';
+                                }
+                                ?>
 
                                 <div class="mb-3">
                                     <label for="terakhir_login" class="col-form-label">Waktu Terakhir Login Sebelumnya :</label>
                                     <div class="col-sm-12">
-                                        <input disabled type="text" class="form-control" id="terakhir_login" name="terakhir_login" style="background-color: #C7C8CC;" value="<?= session('terakhir_login'); ?>">
+                                        <input type="text" class="form-control" id="terakhir_login" name="terakhir_login" style="background-color: #C7C8CC;" value="<?= $formattedDate; ?>" disabled>
                                     </div>
                                 </div>
+                                <!-- End Function -->
 
                                 <div class="mb-3">
-                                    <label for="file_profil" class="form-label">Foto Profile</label>
+                                    <label for="file_profil" class="form-label">Foto Profile :</label>
                                     <div class="mb-2">
                                         <?php if (session()->has('file_profil') && !empty(session('file_profil'))) : ?>
                                             <img src="<?= base_url(session('file_profil')); ?>" alt="Profile Photo" id="profilePhotoPreview" style="max-width: 150px;">
-                                            <p>File exists: <?= basename(session('file_profil')); ?></p>
+                                            <p class="fw-bold">File exists: <?= basename(session('file_profil')); ?></p>
                                             <input type="hidden" name="old_file_profil" value="<?= session('file_profil'); ?>">
                                         <?php else : ?>
                                             <img src="<?= base_url('assets/img/404.gif'); ?>" alt="Profile Photo" id="profilePhotoPreview" style="max-width: 150px;">
+                                            <p class="fw-bold">Belum punya foto profile</p>
                                         <?php endif; ?>
                                     </div>
                                     <input type="file" accept="image/*" class="form-control <?= isset($validation) && $validation->hasError('file_profil') ? 'is-invalid' : ''; ?>" style="background-color: white;" id="file_profil" name="file_profil">
