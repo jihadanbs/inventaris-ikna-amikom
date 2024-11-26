@@ -18,7 +18,7 @@ class Users extends Seeder
                 'status' => 'aktif',
                 'email' => 'alanflorensius390@gmail.com',
                 'no_telepon' => '081236656992',
-                'file_profil' => 'gambar.jpg'
+                'file_profil' => ''
             ],
             [
                 'nama_lengkap' => 'Temennya Alan',
@@ -28,7 +28,7 @@ class Users extends Seeder
                 'password' => password_hash('12345', PASSWORD_DEFAULT),
                 'email' => 'gantisendiri@gmail.com',
                 'no_telepon' => '0812345678891',
-                'file_profil' => 'gambar.jpg'
+                'file_profil' => ''
             ],
         ];
 
