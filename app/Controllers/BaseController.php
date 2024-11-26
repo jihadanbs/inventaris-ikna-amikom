@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 // Models
 use App\Models\UserModel;
+use App\Models\BarangModel;
 use App\Models\KategoriBarangModel;
 use App\Models\FaqModel;
 use App\Models\KategoriFaqModel;
@@ -74,6 +75,7 @@ abstract class BaseController extends Controller
 
     // Protected Inisialisasi Models
     protected $m_user;
+    protected $m_barang;
     protected $m_kategori_barang;
     protected $m_cara;
     protected $m_faq;
@@ -109,6 +111,7 @@ abstract class BaseController extends Controller
 
         // Inisialisasi Models
         $this->m_user = new UserModel();
+        $this->m_barang = new BarangModel();
         $this->m_kategori_barang = new KategoriBarangModel();
         $this->m_faq = new FaqModel();
         $this->m_kategori_faq = new KategoriFaqModel();

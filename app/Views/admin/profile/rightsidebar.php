@@ -1,17 +1,3 @@
-<?php
-// Mendapatkan id_jabatan dari $tb_user
-$id_jabatan = isset($tb_user[0]->id_jabatan) ? $tb_user[0]->id_jabatan : '';
-
-// Mencari jabatan berdasarkan id_jabatan dari $tb_jabatan
-$nama_jabatan = '';
-foreach ($tb_jabatan as $jabatan) {
-    if ($jabatan['id_jabatan'] == $id_jabatan) {
-        $nama_jabatan = $jabatan['nama_jabatan'];
-        break;
-    }
-}
-?>
-
 <div class="col-md-4 p-3">
     <!-- Foto Profile Card -->
     <div class="card card-custom mb-3">
@@ -22,7 +8,7 @@ foreach ($tb_jabatan as $jabatan) {
                 </div>
 
                 <h4 style="margin-top: 20px;"><?= session()->has('nama_lengkap') ? session('nama_lengkap') : ''; ?></h4>
-                <p style="margin-top: 10px;"><?= $nama_jabatan; ?><br>IKNA AMIKOM YOGYAKARTA</p>
+                <p style="margin-top: 10px;">ADMIN<br><br>IKNA AMIKOM YOGYAKARTA</p>
             </div>
         </div>
     </div>

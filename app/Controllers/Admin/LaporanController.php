@@ -19,7 +19,7 @@ class LaporanController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Laporan',
             'tb_laporan' => $this->m_laporan->getAllData(),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/laporan/index', $data);
     }
@@ -35,7 +35,7 @@ class LaporanController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Tambah Laporan',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/laporan/tambah', $data);
     }
@@ -125,7 +125,7 @@ class LaporanController extends BaseController
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_laporan' => $this->m_laporan->getLaporan($slug),
             'slug' => $slug,
-        ], $this->loadCommonData());
+        ]);
 
         return view('admin/laporan/edit', $data);
     }
@@ -176,7 +176,7 @@ class LaporanController extends BaseController
             'title' => 'Admin | Halaman Cek Data Laporan',
             'tb_laporan' => $this->m_laporan->getAll($id_laporan),
             'dokumen' => $this->m_laporan->getDokumenById($id_laporan),
-        ], $this->loadCommonData());
+        ]);
 
         // print_r($data['tb_laporan']); // Cetak nilai tb_laporan untuk debugging
 

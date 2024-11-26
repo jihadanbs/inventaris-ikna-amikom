@@ -49,12 +49,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Data Logo</h4>
+                        <h4 class="mb-sm-0 font-size-18">Data Informasi Publik</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Logo</a></li>
-                                <li class="breadcrumb-item active">Data Logo</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Informasi Publik</a></li>
+                                <li class="breadcrumb-item active">Data Informasi Publik</li>
                             </ol>
                         </div>
 
@@ -71,7 +71,27 @@
 
                         <div class="card-body">
 
+                            <?php
+                            function truncateText($text, $maxLength)
+                            {
+                                // Memeriksa apakah teks lebih panjang dari batas maksimum
+                                if (strlen($text) > $maxLength) {
+                                    // Mengambil substring dari awal hingga batas maksimum
+                                    $text = substr($text, 0, $maxLength);
+                                    // Mencari posisi spasi terakhir untuk memastikan tidak memotong kata di tengah
+                                    $lastSpace = strrpos($text, ' ');
+                                    if ($lastSpace !== false) {
+                                        $text = substr($text, 0, $lastSpace);
+                                    }
+                                    // Menambahkan ellipsis (...) untuk menunjukkan bahwa teks dipotong
+                                    $text .= '...';
+                                }
+                                return $text;
+                            }
+                            ?>
+
                             <table id="example1" class="table table-bordered dt-responsive nowrap w-100">
+
                                 <?php if (session()->getFlashdata('pesan')) : ?>
                                     <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
                                         <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
@@ -89,27 +109,35 @@
                                 <?php endif; ?>
 
                                 <div class="col-md-3 mb-3">
-                                    <a href="/admin/logo/tambah" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
+                                    <a href="/admin/informasi_publik/tambah" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
                                     </a>
                                 </div>
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
-                                        <th>Gambar</th>
+                                        <th>Nama Barang</th>
+                                        <th>Kategori</th>
+                                        <th>Total</th>
+                                        <th>Tanggal Masuk</th>
+                                        <th>Tanggal Keluar</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <?php $i = 1; ?>
-                                    <?php foreach ($tb_logo as $row) : ?>
+                                    <?php foreach ($tb_barang as $row) : ?>
                                         <tr>
-                                            <td data-field="id_logo" style="width: 10px" scope="row"><?= $i++; ?></td>
-                                            <td><img src="<?= base_url($row['gambar_logo']); ?>" alt="" class="gambar_logo" style="width: 100px; height: 100px;"></td>
+                                            <td data-field="id_barang" style="width: 2px" scope="row"><?= $i++; ?></td>
+                                            <td data-field="nama_barang"><?= truncateText($row->nama_barang, 70); ?></td>
+                                            <td data-field="nama_kategori"><?= $row->nama_kategori; ?></td>
+                                            <td data-field="jumlah_total"><?= $row->jumlah_total; ?></td>
+                                            <td data-field="tanggal_masuk"><?= $row->tanggal_masuk; ?></td>
+                                            <td data-field="tanggal_keluar"><?= $row->tanggal_keluar; ?></td>
                                             <td style="width: 155px">
-                                                <a href="/admin/logo/edit/<?= $row['id_logo'] ?>" class="btn btn-primary btn-sm"><i class="fa fa-pencil-alt"></i> Edit</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_logo'] ?>">
+                                                <a href="/admin/barang/cek_data/<?= $row->id_barang ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
+                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row->id_barang ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
                                                 </button>
                                             </td>
@@ -143,31 +171,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     'colvis'
@@ -181,7 +209,7 @@
         $(document).ready(function() {
             $('.sa-warning').click(function(e) {
                 e.preventDefault();
-                var id_logo = $(this).data('id');
+                var id_barang = $(this).data('id');
 
                 Swal.fire({
                     title: "Anda Yakin Ingin Menghapus?",
@@ -195,28 +223,35 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "POST",
-                            url: "/admin/logo/delete", // Ubah sesuai dengan URL Anda
+                            url: "<?= site_url('/admin/barang/delete') ?>",
                             data: {
-                                id_logo: id_logo // Gunakan nama variabel yang benar
+                                id_barang: id_barang,
+                                _method: 'DELETE'
                             },
                             dataType: 'json',
                             success: function(response) {
-                                if (response.success) {
+                                if (response.status === 'success') {
                                     Swal.fire({
                                         title: "Dihapus!",
-                                        text: response.success,
+                                        text: response.message,
                                         icon: "success"
                                     }).then(() => {
-                                        // Refresh halaman setelah sukses menghapus
-                                        location.reload();
+                                        location.reload(); // Refresh halaman setelah sukses menghapus
                                     });
-                                } else if (response.error) {
+                                } else if (response.status === 'error') {
                                     Swal.fire({
                                         title: "Gagal!",
-                                        text: response.error,
+                                        text: response.message,
                                         icon: "error"
                                     });
                                 }
+                            },
+                            error: function(xhr, status, error) {
+                                Swal.fire({
+                                    title: "Error",
+                                    text: "Terjadi kesalahan. Silakan coba lagi.",
+                                    icon: "error"
+                                });
                             }
                         });
                     }
@@ -224,7 +259,6 @@
             });
         });
     </script>
-
     <!-- HAPUS -->
 
 
