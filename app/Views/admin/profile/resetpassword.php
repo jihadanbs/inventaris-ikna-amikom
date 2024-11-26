@@ -221,11 +221,11 @@
                         <div class="card-body profile-card">
                             <div class="text-center mb-4">
                                 <div class="edit-icon">
-                                    <img src="<?= base_url(session('file_profil') ? session('file_profil') : 'assets/admin/images/user.png'); ?>" alt="Profile Image" class="rounded-circle" width="100" height="100">
+                                    <img src="<?= base_url(session('file_profil') ? session('file_profil') : 'assets/img/404.gif'); ?>" alt="Profile Image" class="rounded-circle" width="100" height="100">
                                 </div>
 
                                 <h4 style="margin-top: 20px;"><?= session()->has('nama_lengkap') ? session('nama_lengkap') : ''; ?></h4>
-                                <p style="margin-top: 10px;"><?= $nama_jabatan; ?><br>PPID Kab. Pesawaran</p>
+                                <p style="margin-top: 10px;"><?= $nama_jabatan; ?><br>IKNA AMIKOM YOGYAKARTA</p>
                             </div>
                         </div>
                     </div>

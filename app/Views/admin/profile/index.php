@@ -291,7 +291,7 @@
                                             <p>File exists: <?= basename(session('file_profil')); ?></p>
                                             <input type="hidden" name="old_file_profil" value="<?= session('file_profil'); ?>">
                                         <?php else : ?>
-                                            <img src="<?= base_url('assets/admin/images/user.png'); ?>" alt="Profile Photo" id="profilePhotoPreview" style="max-width: 150px;">
+                                            <img src="<?= base_url('assets/img/404.gif'); ?>" alt="Profile Photo" id="profilePhotoPreview" style="max-width: 150px;">
                                         <?php endif; ?>
                                     </div>
                                     <input type="file" accept="image/*" class="form-control <?= isset($validation) && $validation->hasError('file_profil') ? 'is-invalid' : ''; ?>" style="background-color: white;" id="file_profil" name="file_profil">
