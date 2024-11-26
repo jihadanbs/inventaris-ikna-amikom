@@ -54,14 +54,14 @@ $routes->get('/faq', 'FaqController::faq', ['namespace' => 'App\Controllers']);
 
 
 //AUTHENTICATION
-$routes->group('authentication', function ($routes) { //catatan : pastikan post / get 
-    $routes->get('login', 'Authentication::login/$1');
-    $routes->post('cekLogin', 'Authentication::cekLogin/$1');
-    $routes->get('logout', 'Authentication::logout/$1');
-    $routes->get('lupaPassword', 'Authentication::lupaPassword/$1');
-    $routes->post('lupaPassword', 'Authentication::lupaPassword/$1');
-    $routes->get('resetPassword', 'Authentication::resetPassword/$1');
-    $routes->post('resetPassword', 'Authentication::resetPassword/$1');
+$routes->group('authentication', function ($routes) {
+    $routes->get('login', 'Authentication::login');
+    $routes->post('cekLogin', 'Authentication::cekLogin');
+    $routes->get('logout', 'Authentication::logout');
+    $routes->get('lupaPassword', 'Authentication::lupaPassword');
+    $routes->post('lupaPassword', 'Authentication::lupaPassword');
+    $routes->get('resetPassword', 'Authentication::resetPassword');
+    $routes->post('resetPassword', 'Authentication::resetPassword');
 });
 
 //ROLE
@@ -79,37 +79,12 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->post('updateSandi/(:num)', 'ProfileController::updateSandi/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
-    /*=================================== LEMBAGA ====================================*/
-    $routes->get('lembaga', 'LembagaController::index', ['namespace' => 'App\Controllers\Admin']);
-    $routes->group('lembaga', static function ($routes) {
-        $routes->post('save', 'LembagaController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('simpan_perubahan', 'LembagaController::simpan_perubahan', ['namespace' => 'App\Controllers\Admin']);
-        $routes->delete('delete', 'LembagaController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
-    });
-
     /*=================================== JENIS INFORMASI ====================================*/
     $routes->get('jenis_informasi', 'JenisInformasiController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->group('jenis_informasi', static function ($routes) {
         $routes->post('save', 'JenisInformasiController::save', ['namespace' => 'App\Controllers\Admin']);
         $routes->post('simpan_perubahan', 'JenisInformasiController::simpan_perubahan', ['namespace' => 'App\Controllers\Admin']);
         $routes->post('delete', 'JenisInformasiController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
-    });
-
-    /*=================================== INFORMASI PUBLIK ====================================*/
-    $routes->get('informasi_publik', 'InformasiPublikController::index', ['namespace' => 'App\Controllers\Admin']);
-    $routes->group('informasi_publik', static function ($routes) {
-        $routes->get('totalData', 'InformasiPublikController::totalData', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('download/(:segment)', 'InformasiPublikController::download/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('tambah', 'InformasiPublikController::tambah', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('save', 'InformasiPublikController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('kirim/(:segment)', 'InformasiPublikController::kirim/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('edit/(:segment)', 'InformasiPublikController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->put('update/(:num)', 'InformasiPublikController::update/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('cek_judul', 'InformasiPublikController::cek_judul', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('cek_data/(:segment)', 'InformasiPublikController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('delete2', 'InformasiPublikController::delete2', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('delete', 'InformasiPublikController::delete', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('downloadFile/(:num)', 'InformasiPublikController::downloadFile/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== KATEGORI BARANG ====================================*/
@@ -189,29 +164,6 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->post('kirim/(:num)', 'FeedbackController::kirim/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->post('delete2', 'FeedbackController::delete2', ['namespace' => 'App\Controllers\Admin']);
         $routes->post('delete', 'FeedbackController::delete', ['namespace' => 'App\Controllers\Admin']);
-    });
-
-    /*=================================== SOP ====================================*/
-    $routes->get('sop', 'SopController::index', ['namespace' => 'App\Controllers\Admin']);
-    $routes->group('sop', static function ($routes) {
-        $routes->get('tambah', 'SopController::tambah', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('save', 'SopController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('edit/(:segment)', 'SopController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->put('update/(:num)', 'SopController::update/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('cek_judul', 'SopController::cek_judul', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('cek_data/(:segment)', 'SopController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('delete', 'SopController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
-    });
-
-    /*=================================== WEBSITE WILAYAH ====================================*/
-    $routes->get('website', 'WebsiteController::index', ['namespace' => 'App\Controllers\Admin']);
-    $routes->group('website', static function ($routes) {
-        $routes->get('tambah', 'WebsiteController::tambah', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('save', 'WebsiteController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('edit/(:segment)', 'WebsiteController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->put('update/(:num)', 'WebsiteController::update/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->get('cek_data/(:segment)', 'WebsiteController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->post('delete', 'WebsiteController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== SLIDER ====================================*/
