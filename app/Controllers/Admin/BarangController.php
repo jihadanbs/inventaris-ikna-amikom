@@ -32,14 +32,12 @@ class BarangController extends BaseController
 
         // Menyiapkan data untuk tampilan
         $data = array_merge([
-            'title' => 'Admin | Halaman Tambah Informasi Publik',
+            'title' => 'Admin | Halaman Tambah Barang',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-            'tb_lembaga' => $this->m_lembaga->getAllData(),
-            'tb_jenis' => $this->m_jenis->getAllData(),
-            'tb_kategori_informasi_publik' => $this->m_kategori_informasi->getAllData(),
+            'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
         ]);
 
-        return view('admin/informasi_publik/tambah', $data);
+        return view('admin/barang/tambah', $data);
     }
 
     public function save()
@@ -59,22 +57,10 @@ class BarangController extends BaseController
 
         //validasi input 
         if (!$this->validate([
-            'id_lembaga' => [
+            'id_kategori_barang' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Silahkan Pilih Nama Dinas !'
-                ]
-            ],
-            'id_jenis' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Silahkan Pilih Nama Jenis Informasi !'
-                ]
-            ],
-            'id_kategori_informasi_publik' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Silahkan Pilih Kategori Informasi !'
                 ]
             ],
             'judul' => [

@@ -109,7 +109,7 @@
                                 <?php endif; ?>
 
                                 <div class="col-md-3 mb-3">
-                                    <a href="/admin/informasi_publik/tambah" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
+                                    <a href="/admin/barang/tambah" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
                                     </a>
                                 </div>
