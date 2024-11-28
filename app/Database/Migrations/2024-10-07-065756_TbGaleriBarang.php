@@ -15,7 +15,7 @@ class TbGaleriBarang extends Migration
                 'constraint' => 11,
                 'unsigned' => true,
             ],
-            'id_file_foto_barang_barang' => [
+            'id_file_foto_barang' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => true,
