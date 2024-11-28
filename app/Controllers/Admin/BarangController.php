@@ -119,7 +119,6 @@ class BarangController extends BaseController
             'deskripsi' => $deskripsi,
             'tanggal_masuk' => $tanggal_masuk,
             'tanggal_keluar' => $tanggal_keluar,
-            // 'path_file_foto_barang' => $uploadFile
         ]);
 
         // Dapatkan ID dari foto yang baru saja disimpan
@@ -298,6 +297,7 @@ class BarangController extends BaseController
             'title' => 'Admin | Halaman Edit Barang',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_barang' => $this->m_barang->getBarangBySlug($slug),
+            'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
         ]);
 
         return view('admin/barang/edit', $data);
@@ -311,57 +311,136 @@ class BarangController extends BaseController
 
         // Validasi input
         if (!$this->validate([
-            'judul' => [
-                'rules' => "required|trim|max_length[90]|min_length[5]",
+            'id_kategori_barang' => [
+                'rules' => 'required',
                 'errors' => [
-                    'required' => 'Kolom Judul Tidak Boleh Kosong !',
-                    'max_length' => 'Judul tidak boleh melebihi 90 karakter !',
-                    'min_length' => 'Judul tidak boleh kurang dari 5 karakter !'
+                    'required' => 'Silahkan Pilih Nama Kategori Barang !'
+                ]
+            ],
+            'nama_barang' => [
+                'rules' => "required|is_unique_nama_barang_lainnya[tb_barang,id_kategori_barang,id_barang]|trim|min_length[5]|max_length[100]",
+                'errors' => [
+                    'required' => 'Kolom Nama Barang Tidak Boleh Kosong !',
+                    'is_unique_nama_barang_lainnya' => 'Nama Barang sudah terdaftar untuk nama kategori yang sama !',
+                    'min_length' => 'Nama Barang tidak boleh kurang dari 5 karakter !',
+                    'max_length' => 'Nama Barang tidak boleh melebihi 100 karakter !',
                 ]
             ],
             'deskripsi' => [
-                'rules' => 'required|trim|max_length[255]',
+                'rules' => 'required|trim|min_length[5]|max_length[255]',
                 'errors' => [
                     'required' => 'Kolom Deskripsi Tidak Boleh Kosong !',
-                    'max_length' => 'Deskripsi tidak boleh melebihi 255 karakter !'
+                    'min_length' => 'Deskripsi tidak boleh kurang dari 5 karakter !',
+                    'max_length' => 'Deskripsi tidak boleh melebihi 255 karakter !',
                 ]
             ],
-            'tanggal_file' => [
+            'tanggal_masuk' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Silahkan Masukkan Tanggal File !'
+                    'required' => 'Silahkan Masukkan Tanggal Masuk Barang !'
                 ]
             ],
-
+            'tanggal_keluar' => [
+                'rules' => 'required|notEqualTo[tanggal_masuk]',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Tanggal Keluar Barang !',
+                    'notEqualTo' => 'Tanggal Keluar tidak boleh sama dengan Tanggal Masuk !'
+                ]
+            ],
+            'jumlah_total' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Jumlah Total dari Barang Tersebut !'
+                ]
+            ],
         ])) {
             // Jika terjadi kesalahan validasi, kembalikan dengan pesan validasi
             session()->setFlashdata('validation', \Config\Services::validation());
             return redirect()->back()->withInput();
         }
 
-        // Panggil helper updateFilePDF
-        $oldFileName = $this->request->getVar('old_file_informasi_publik'); // Nama file lama harus diambil dari input hidden
-        $newFileName = $this->request->getFile('file_informasi_publik')->isValid() ?
-            updateFilePDF('file_informasi_publik', 'dokumen/informasi_publik/', $oldFileName) :
-            $oldFileName;
+        // Ambil data barang yang ada saat ini dari database
+        $existingBarang = $this->m_barang->find($id_barang);
+
+        // Persiapkan data untuk update
+        $dataToUpdate = [
+            'id_barang' => $id_barang,
+            'nama_barang' => $this->request->getVar('nama_barang'),
+            'id_kategori_barang' => $this->request->getVar('id_kategori_barang'),
+            'jumlah_total' => $this->request->getVar('jumlah_total'),
+            'deskripsi' => $this->request->getVar('deskripsi'),
+            'tanggal_masuk' => $this->request->getVar('tanggal_masuk'),
+            'tanggal_keluar' => $this->request->getVar('tanggal_keluar'),
+            'slug' => url_title($this->request->getVar('nama_barang'), '-', true)
+        ];
+
+        // Panggil helper uploadMultiple untuk multiple files
+        $uploadedFiles = uploadMultiple('path_file_foto_barang', 'dokumen/barang/');
+
+        // Cek apakah ada perubahan pada file foto
+        $oldFileNames = explode(', ', $this->request->getVar('old_path_file_foto_barang'));
+        $isFileChanged = !empty($uploadedFiles);
+
+        // Cek apakah ada perubahan data
+        $isDataChanged = false;
+        foreach ($dataToUpdate as $key => $value) {
+            if ($key !== 'id_barang' && $key !== 'slug') {
+                if ($existingBarang[$key] != $value) {
+                    $isDataChanged = true;
+                    break;
+                }
+            }
+        }
+
+        // Jika tidak ada perubahan pada data dan file
+        if (!$isDataChanged && !$isFileChanged) {
+            // Set flash message untuk data tidak ada yang diubah
+            session()->setFlashdata('warning', 'Data Barang Tidak Ada Yang Diubah !');
+            return redirect()->to('/admin/barang');
+        }
+
+        // Proses file upload (sama seperti kode sebelumnya)
+        if (!empty($uploadedFiles)) {
+            // Hapus file lama jika ada file baru yang diunggah
+            foreach ($oldFileNames as $oldFileName) {
+                if (file_exists(ROOTPATH . 'public/' . $oldFileName)) {
+                    unlink(ROOTPATH . 'public/' . $oldFileName);
+                }
+            }
+
+            // Hapus relasi lama dari tb_galeri_barang dan tb_file_foto_barang
+            $this->db->table('tb_galeri_barang')->where('id_barang', $id_barang)->delete();
+            $this->db->table('tb_file_foto_barang')->whereIn('path_file_foto_barang', $oldFileNames)->delete();
+
+            // Simpan file baru
+            foreach ($uploadedFiles as $fileName) {
+                $this->db->table('tb_file_foto_barang')->insert([
+                    'path_file_foto_barang' => $fileName,
+                ]);
+
+                // Dapatkan ID file foto yang baru saja disimpan
+                $idFileFoto = $this->db->insertID();
+
+                // Relasikan file foto dengan foto yang sudah disimpan sebelumnya
+                $this->db->table('tb_galeri_barang')->insert([
+                    'id_barang' => $id_barang,
+                    'id_file_foto_barang' => $idFileFoto,
+                ]);
+            }
+
+            // Update path file foto di data barang
+            $dataToUpdate['path_file_foto_barang'] = implode(', ', $uploadedFiles);
+        } else {
+            // Jika tidak ada file baru yang diunggah, gunakan file lama
+            $dataToUpdate['path_file_foto_barang'] = $this->request->getVar('old_path_file_foto_barang');
+        }
 
         // Simpan data ke dalam database
-        $slug = url_title($this->request->getVar('judul'), '-', true);
-        $this->m_informasi_publik->save([
-            'slug' => $id_informasi_publik,
-            'id_lembaga' => $this->request->getVar('id_lembaga'),
-            'id_kategori_informasi_publik' => $this->request->getVar('id_kategori_informasi_publik'),
-            'id_jenis' => $this->request->getVar('id_jenis'),
-            'judul' => $this->request->getVar('judul'),
-            'slug' => $slug,
-            'tanggal_file' => $this->request->getVar('tanggal_file'),
-            'deskripsi' => $this->request->getVar('deskripsi'),
-            'file_informasi_publik' => $newFileName
-        ]);
+        $this->m_barang->save($dataToUpdate);
 
         // Set flash message untuk sukses
-        session()->setFlashdata('pesan', 'Data Berhasil Diubah &#128077;');
+        session()->setFlashdata('pesan', 'Data Barang Berhasil Diubah');
 
-        return redirect()->to('/admin/informasi_publik');
+        return redirect()->to('/admin/barang');
     }
 }

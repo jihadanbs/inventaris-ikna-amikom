@@ -53,7 +53,7 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Barang IKNA</a></li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang') ?>">Barang IKNA</a></li>
                                 <li class="breadcrumb-item active">Data Barang</li>
                             </ol>
                         </div>
@@ -93,7 +93,6 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                 <?php endif; ?>
-
                                 <?php if (session()->getFlashdata('gagal')) : ?>
                                     <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
                                         <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Gagal</strong> -
@@ -101,7 +100,13 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
                                 <?php endif; ?>
-
+                                <?php if (session()->getFlashdata('warning')) : ?>
+                                    <div class="alert alert-warning alert-border-left alert-dismissible fade show" role="alert">
+                                        <i class="mdi mdi-alert-outline align-middle me-3"></i><strong>Peringatan</strong> -
+                                        <?= session()->getFlashdata('warning') ?>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php endif; ?>
                                 <div class="col-md-3 mb-3">
                                     <a href=" <?= site_url('admin/barang/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah

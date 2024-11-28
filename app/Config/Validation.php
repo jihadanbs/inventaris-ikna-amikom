@@ -68,6 +68,41 @@ class Validation extends BaseConfig
         return $builder->countAllResults() === 0;
     }
 
+    public function is_unique_nama_barang_lainnya($str, string $fields, array $data): bool
+    {
+        // Memisahkan parameter table dan field lainnya
+        $params = explode(',', $fields);
+        $table = array_shift($params);
+        $builder = db_connect()->table($table);
+
+        // Mendapatkan id_kategori_barang dan id_barang dari data
+        $id_kategori_barang = isset($data[$params[0]]) ? $data[$params[0]] : null;
+        $id_barang = isset($data['id_barang']) ? $data['id_barang'] : null;
+
+        // Memeriksa keunikan nama barang hanya jika id_kategori_barang telah dipilih
+        if ($id_kategori_barang !== null) {
+            // Memeriksa apakah ada nama barang yang sama di kategori yang sama, kecuali yang sedang diedit
+            $builder->where('nama_barang', $str)
+                ->where('id_kategori_barang', $id_kategori_barang);
+
+            // Jika ada id_barang (edit mode), kecualikan barang dengan id tersebut
+            if ($id_barang !== null) {
+                $builder->where('id_barang !=', $id_barang);
+            }
+        } else {
+            // Jika id_kategori_barang tidak ada, abaikan pengecekan
+            return true;
+        }
+
+        // Menghitung jumlah baris yang sesuai dengan kriteria
+        return $builder->countAllResults() === 0;
+    }
+
+
+
+
+
+
     public function password_match(string $str, ?string $fields = null, array $data = []): bool
     {
         // Pastikan parameter fields tidak null

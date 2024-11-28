@@ -1,11 +1,6 @@
 <?= $this->include('admin/layouts/script') ?>
 
 <style>
-    /* .tabel-kanan {
-        display: flex;
-        margin-left: 20px;
-    } */
-
     /* CSS untuk readmore */
     .jendela {
         display: none;

@@ -39,7 +39,7 @@
                 <div class="col-10">
                     <div class="card border border-secondary rounded p-4">
                         <div class="card-body">
-                            <h2 class="text-center mb-4">Formulir Tambah Data Barang</h2>
+                            <h2 class="text-center mb-4">FORMULIR TAMBAH DATA BARANG</h2>
 
                             <form action="<?= esc(site_url('admin/barang/save'), 'attr') ?>" method="post" enctype="multipart/form-data" novalidate autocomplete="off">
                                 <?= csrf_field(); ?>
@@ -74,7 +74,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3 separator">
-                                        <label for="tanggal_masuk" class="col-form-label">Tanggal Masuk :</label>
+                                        <label for="tanggal_masuk" class="col-form-label">Tanggal Masuk Barang :</label>
                                         <input type="date" class="form-control custom-border <?= ($validation->hasError('tanggal_masuk')) ? 'is-invalid' : ''; ?>" name="tanggal_masuk" placeholder="Tanggal Masuk" id="tanggal_masuk" cols="30" rows="10" style="background-color: white;" value="<?= old('tanggal_masuk'); ?>"></input>
                                         <!-- Menambahkan div untuk menampilkan pesan validasi -->
                                         <div class="invalid-feedback">
@@ -83,7 +83,7 @@
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-                                        <label for="tanggal_keluar" class="col-form-label">Tanggal Keluar :</label>
+                                        <label for="tanggal_keluar" class="col-form-label">Tanggal Keluar Barang :</label>
                                         <input type="date" class="form-control custom-border <?= ($validation->hasError('tanggal_keluar')) ? 'is-invalid' : ''; ?>" name="tanggal_keluar" placeholder="Tanggal Keluar" id="tanggal_keluar" cols="30" rows="10" style="background-color: white;" value="<?= old('tanggal_keluar'); ?>"></input>
                                         <!-- Menambahkan div untuk menampilkan pesan validasi -->
                                         <div class="invalid-feedback">
@@ -93,7 +93,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="deskripsi" class="col-form-label">Deskripsi :</label>
+                                    <label for="deskripsi" class="col-form-label">Deskripsi Barang :</label>
                                     <textarea class="form-control custom-border <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" required name="deskripsi" placeholder="Masukkan Deskripsi" id="deskripsi" cols="30" rows="5" style="background-color: white;"><?php echo old('deskripsi'); ?></textarea>
                                     <!-- Menambahkan div untuk menampilkan pesan validasi -->
                                     <div class="invalid-feedback">
@@ -103,7 +103,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3 separator">
-                                        <label for="jumlah_total" class="col-form-label">Total :</label>
+                                        <label for="jumlah_total" class="col-form-label">Total Barang :</label>
                                         <div class="col-sm-12">
                                             <input type="number" class="form-control <?= ($validation->hasError('jumlah_total')) ? 'is-invalid' : ''; ?>" id="jumlah_total" name="jumlah_total" placeholder="Masukkan Jumlah Total Dari Barang" style="background-color: white;" autofocus value="<?= old('jumlah_total'); ?>">
                                             <div class="invalid-feedback">
