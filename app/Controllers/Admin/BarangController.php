@@ -87,9 +87,10 @@ class BarangController extends BaseController
                 ]
             ],
             'tanggal_keluar' => [
-                'rules' => 'required',
+                'rules' => 'required|notEqualTo[tanggal_masuk]',
                 'errors' => [
-                    'required' => 'Silahkan Masukkan Tanggal Keluar Barang !'
+                    'required' => 'Silahkan Masukkan Tanggal Keluar Barang !',
+                    'notEqualTo' => 'Tanggal Keluar tidak boleh sama dengan Tanggal Masuk !'
                 ]
             ],
             'jumlah_total' => [
@@ -104,7 +105,12 @@ class BarangController extends BaseController
         }
 
         $slug = url_title($this->request->getVar('nama_barang'), '-', true);
-        $uploadFile = uploadFile('path_file_foto_barang', 'dokumen/barang/');
+        $uploadFiles = uploadMultiple('path_file_foto_barang', 'dokumen/barang/');
+        if (empty($uploadFiles)) {
+            // Jika file tidak berhasil diunggah, tampilkan pesan error
+            session()->setFlashdata('error', 'File gagal diunggah. Silakan coba lagi.');
+            return redirect()->back()->withInput();
+        }
         $this->m_barang->save([
             'id_kategori_barang' => $id_kategori_barang,
             'nama_barang' => $nama_barang,
@@ -113,56 +119,85 @@ class BarangController extends BaseController
             'deskripsi' => $deskripsi,
             'tanggal_masuk' => $tanggal_masuk,
             'tanggal_keluar' => $tanggal_keluar,
-            'path_file_foto_barang' => $uploadFile
+            // 'path_file_foto_barang' => $uploadFile
         ]);
 
-        session()->setFlashdata('pesan', 'Data Berhasil Di Tambahkan &#128077;');
+        // Dapatkan ID dari foto yang baru saja disimpan
+        $idBarang = $this->m_barang->insertID();
+
+        // Simpan data file yang diunggah ke tb_file_foto_barang dan relasinya ke tb_galeri
+        foreach ($uploadFiles as $filePath) {
+            $this->db->table('tb_file_foto_barang')->insert([
+                'path_file_foto_barang' => $filePath,
+            ]);
+
+            // Dapatkan ID file foto yang baru saja disimpan
+            $idFileFotoBarang = $this->db->insertID();
+
+            // Relasikan file foto dengan foto yang sudah disimpan sebelumnya
+            $this->db->table('tb_galeri_barang')->insert([
+                'id_barang' => $idBarang,
+                'id_file_foto_barang' => $idFileFotoBarang,
+            ]);
+        }
+
+        session()->setFlashdata('pesan', 'Data Barang Berhasil Di Tambahkan');
 
         return redirect()->to('/admin/barang');
     }
 
     public function delete()
     {
-        // Cek sesi pengguna
-        if ($this->checkSession() !== true) {
-            return $this->checkSession(); // Redirect jika sesi tidak valid
-        }
-
         $id_barang = $this->request->getPost('id_barang');
 
-        $this->db->transStart(); // Memulai transaksi
+        $db = \Config\Database::connect();
+        $db->transStart();
 
         try {
+            // Dapatkan ID file barang yang terkait dengan barang yang akan dihapus
             $dataFiles = $this->m_barang->getFilesById($id_barang);
 
             if (empty($dataFiles)) {
-                throw new \Exception('Tidak ada file yang ditemukan untuk id_barang.');
+                throw new \Exception('Tidak ada data yang ditemukan untuk nama barang.');
             }
 
-            foreach ($dataFiles[0] as $fileColumn => $filePath) {
-                if (!empty($filePath)) {
-                    $fullFilePath = ROOTPATH . 'public/' . $filePath;
-                    if (is_file($fullFilePath)) {
-                        if (!unlink($fullFilePath)) {
-                            throw new \Exception('Gagal menghapus file: ' . $fullFilePath);
-                        }
+            // Loop dan hapus setiap file yang terkait dari direktori
+            foreach ($dataFiles as $fileData) {
+                $filePath = $fileData['path_file_foto_barang'];
+                $fullFilePath = ROOTPATH . 'public/' . $filePath;
+                if (is_file($fullFilePath)) {
+                    if (!unlink($fullFilePath)) {
+                        throw new \Exception('Gagal menghapus file: ' . $fullFilePath);
                     }
                 }
             }
 
-            $this->m_barang->deleteById($id_barang);
+            // Hapus entri dari tb_galeri_barang
+            $this->m_barang->deleteFilesAndEntries($id_barang);
 
-            $this->db->transComplete(); // Mengakhiri transaksi
+            // Hapus entri dari tb_barang
+            $db->table('tb_barang')->where('id_barang', $id_barang)->delete();
 
-            if ($this->db->transStatus() === false) {
-                $this->db->transRollback();
+            // Hapus entri dari tb_file_foto_barang yang tidak terkait dengan relasi lain
+            $db->table('tb_file_foto_barang')
+                ->whereNotIn('id_file_foto_barang', function ($builder) use ($id_barang) {
+                    $builder->select('id_file_foto_barang')
+                        ->from('tb_galeri_barang')
+                        ->where('id_barang !=', $id_barang);
+                })
+                ->delete();
+
+            $db->transComplete();
+
+            if ($db->transStatus() === false) {
+                $db->transRollback();
                 return $this->response->setJSON(['status' => 'error', 'message' => 'Gagal menghapus file dan data']);
             }
 
-            $this->db->transCommit();
-            return $this->response->setJSON(['status' => 'success', 'message' => 'Semua file dan data berhasil dihapus']);
+            $db->transCommit();
+            return $this->response->setJSON(['status' => 'success', 'message' => 'File dan data berhasil dihapus']);
         } catch (\Exception $e) {
-            $this->db->transRollback();
+            $db->transRollback();
             return $this->response->setJSON(['status' => 'error', 'message' => 'Gagal menghapus file dan data', 'error' => $e->getMessage()]);
         }
     }

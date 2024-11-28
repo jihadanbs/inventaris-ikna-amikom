@@ -9,21 +9,40 @@ class BarangModel extends Model
     protected $table = 'tb_barang';
     protected $primaryKey = 'id_barang';
     protected $retunType = 'object';
-    protected $allowedFields = ['id_kategori_barang', 'nama_barang', 'deskripsi', 'jumlah_total', 'tanggal_masuk', 'tanggal_keluar', 'slug', 'path_file_foto_barang'];
+    protected $allowedFields = ['id_kategori_barang', 'nama_barang', 'deskripsi', 'jumlah_total', 'tanggal_masuk', 'tanggal_keluar', 'slug', 'id_file_foto_barang'];
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
+
+    // public function getFotoWithFile()
+    // {
+    //     return $this->db->table('tb_foto')
+    //         ->select('tb_foto.*, GROUP_CONCAT(tb_file_foto.file_foto SEPARATOR ", ") as file_foto')
+    //         ->join('tb_galeri', 'tb_foto.id_foto = tb_galeri.id_foto')
+    //         ->join('tb_file_foto', 'tb_galeri.id_file_foto = tb_file_foto.id_file_foto')
+    //         ->groupBy('tb_foto.id_foto')
+    //         ->orderBy('tb_foto.id_foto', 'DESC')
+    //         ->get()
+    //         ->getResultArray();
+    // }
 
     public function getAllSorted()
     {
         $builder = $this->db->table('tb_barang');
-        $builder->select('tb_barang.*, tb_kategori_barang.nama_kategori');
-        $builder->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang');
+        $builder->select('
+            tb_barang.*, 
+            GROUP_CONCAT(tb_file_foto_barang.path_file_foto_barang SEPARATOR ", ") as path_file_foto_barang,
+            tb_kategori_barang.nama_kategori
+        ');
+        $builder->join('tb_galeri_barang', 'tb_barang.id_barang = tb_galeri_barang.id_barang', 'left');
+        $builder->join('tb_file_foto_barang', 'tb_galeri_barang.id_file_foto_barang = tb_file_foto_barang.id_file_foto_barang', 'left');
+        $builder->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang', 'left');
+        $builder->groupBy('tb_barang.id_barang, tb_kategori_barang.nama_kategori');
         $builder->orderBy('tb_barang.id_barang', 'DESC');
+
         $query = $builder->get();
-        // return $query->getResult();
         $results = $query->getResult();
 
-        // Ambil data tambahan berdasarkan id barang
+        // Ambil data tambahan berdasarkan id_barang
         foreach ($results as $result) {
             $id_barang = $result->id_barang;
             $additional_data = $this->getDokumenById($id_barang);
@@ -33,11 +52,37 @@ class BarangModel extends Model
         return $results;
     }
 
+
     public function getDokumenById($id_barang)
     {
         $builder = $this->db->table('tb_barang');
         $result = $builder->where('id_barang', $id_barang)->get()->getResult();
         return $result;
+    }
+
+    public function getFilesById($id_barang)
+    {
+        return $this->db->table('tb_file_foto_barang')
+            ->select('path_file_foto_barang')
+            ->join('tb_galeri_barang', 'tb_file_foto_barang.id_file_foto_barang = tb_galeri_barang.id_file_foto_barang')
+            ->where('tb_galeri_barang.id_barang', $id_barang)
+            ->get()
+            ->getResultArray();
+    }
+
+    public function deleteFilesAndEntries($id_barang)
+    {
+        // Hapus entri dari tb_galeri_barang
+        $this->db->table('tb_galeri_barang')->where('id_barang', $id_barang)->delete();
+
+        // Hapus entri dari tb_file_foto_barang yang terkait dengan tb_galeri_barang yang dihapus
+        $this->db->table('tb_file_foto_barang')
+            ->whereIn('id_file_foto_barang', function ($builder) use ($id_barang) {
+                $builder->select('id_file_foto_barang')
+                    ->from('tb_galeri_barang')
+                    ->where('id_barang', $id_barang);
+            })
+            ->delete();
     }
 
     public function getInformasiPublik($slug = false)
@@ -105,17 +150,6 @@ class BarangModel extends Model
         $builder->join('tb_jenis', 'tb_jenis.id_jenis = tb_informasi_publik.id_jenis');
         $builder->where('tb_jenis.nama_jenis', $nama_jenis);
         return $builder->countAllResults();
-    }
-
-    public function getFilesById($id_barang)
-    {
-        // Ambil hanya kolom yang dibutuhkan
-        return $this->select('path_file_foto_barang')->where('id_barang', $id_barang)->findAll();
-    }
-    public function deleteById($id_barang)
-    {
-        // Menghapus entri di tabel berdasarkan id_barang
-        return $this->where('id_barang', $id_barang)->delete();
     }
 
     public function getCategoryCounts()

@@ -120,4 +120,10 @@ class Validation extends BaseConfig
 
         return true;
     }
+
+    public static function notEqualTo(string $str, string $fields, array $data): bool
+    {
+        // Pastikan field dibandingkan ada
+        return isset($data[$fields]) && $str !== $data[$fields];
+    }
 }

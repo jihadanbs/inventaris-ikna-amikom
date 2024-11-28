@@ -49,12 +49,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Data Informasi Publik</h4>
+                        <h4 class="mb-sm-0 font-size-18">Data Barang</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Informasi Publik</a></li>
-                                <li class="breadcrumb-item active">Data Informasi Publik</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Barang IKNA</a></li>
+                                <li class="breadcrumb-item active">Data Barang</li>
                             </ol>
                         </div>
 
@@ -63,14 +63,10 @@
             </div>
             <!-- end page title -->
 
-
             <div class="row">
-
                 <div class="col-12">
                     <div class="card">
-
                         <div class="card-body">
-
                             <?php
                             function truncateText($text, $maxLength)
                             {
@@ -89,9 +85,7 @@
                                 return $text;
                             }
                             ?>
-
-                            <table id="example1" class="table table-bordered dt-responsive nowrap w-100">
-
+                            <table id="tableBarang" class="table table-bordered dt-responsive nowrap w-100">
                                 <?php if (session()->getFlashdata('pesan')) : ?>
                                     <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
                                         <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
@@ -109,7 +103,7 @@
                                 <?php endif; ?>
 
                                 <div class="col-md-3 mb-3">
-                                    <a href="/admin/barang/tambah" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
+                                    <a href=" <?= site_url('admin/barang/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
                                     </a>
                                 </div>
@@ -136,7 +130,7 @@
                                             <td data-field="tanggal_masuk"><?= $row->tanggal_masuk; ?></td>
                                             <td data-field="tanggal_keluar"><?= $row->tanggal_keluar; ?></td>
                                             <td style="width: 155px">
-                                                <a href="/admin/barang/cek_data/<?= $row->id_barang ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
+                                                <a href="<?= site_url('admin/barang/cek_data/' . $row->slug) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row->id_barang ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
                                                 </button>
@@ -149,58 +143,55 @@
                         </div>
                     </div>
                 </div> <!-- end col -->
-
             </div> <!-- container-fluid -->
         </div>
         <!-- End Page-content -->
         <?= $this->include('admin/layouts/footer') ?>
         <!-- end main content-->
-
     </div>
     <!-- END layout-wrapper -->
-
     <?= $this->include('admin/layouts/script2') ?>
 
     <script>
         $(document).ready(function() {
-            $("#example1").DataTable({
+            $("#tableBarang").DataTable({
                 "paging": true,
                 "responsive": true,
                 "lengthChange": true,
-                "autoWidth": false,
+                "autoWidth": true,
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     'colvis'
                 ],
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#tableBarang_wrapper .col-md-6:eq(0)');
         });
     </script>
 
@@ -223,7 +214,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "POST",
-                            url: "<?= site_url('/admin/barang/delete') ?>",
+                            url: '<?= site_url('admin/barang/delete') ?>',
                             data: {
                                 id_barang: id_barang,
                                 _method: 'DELETE'
@@ -236,7 +227,7 @@
                                         text: response.message,
                                         icon: "success"
                                     }).then(() => {
-                                        location.reload(); // Refresh halaman setelah sukses menghapus
+                                        location.reload();
                                     });
                                 } else if (response.status === 'error') {
                                     Swal.fire({
@@ -249,7 +240,7 @@
                             error: function(xhr, status, error) {
                                 Swal.fire({
                                     title: "Error",
-                                    text: "Terjadi kesalahan. Silakan coba lagi.",
+                                    text: "Terjadi kesalahan, Silakan coba lagi.",
                                     icon: "error"
                                 });
                             }
