@@ -13,6 +13,8 @@ class BarangModel extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
 
+
+    // index
     public function getAllSorted()
     {
         $builder = $this->db->table('tb_barang');
@@ -33,21 +35,14 @@ class BarangModel extends Model
         // Ambil data tambahan berdasarkan id_barang
         foreach ($results as $result) {
             $id_barang = $result->id_barang;
-            $additional_data = $this->getDokumenById($id_barang);
+            $additional_data = $this->getDokumenByBarangId($id_barang);
             $result->additional_data = $additional_data;
         }
 
         return $results;
     }
 
-
-    public function getDokumenById($id_barang)
-    {
-        $builder = $this->db->table('tb_barang');
-        $result = $builder->where('id_barang', $id_barang)->get()->getResult();
-        return $result;
-    }
-
+    // delete
     public function getFilesById($id_barang)
     {
         return $this->db->table('tb_file_foto_barang')
@@ -72,6 +67,30 @@ class BarangModel extends Model
             })
             ->delete();
     }
+
+    // cek data
+    public function getDokumenByBarangId($id_barang)
+    {
+        return $this->db->table('tb_galeri_barang')
+            ->select('*')
+            ->where('id_barang', $id_barang)
+            ->get()
+            ->getResultArray();
+    }
+
+    public function getBarangBySlug($slug)
+    {
+        return $this->db->table('tb_barang')
+            ->select('tb_barang.*, GROUP_CONCAT(tb_file_foto_barang.path_file_foto_barang SEPARATOR ", ") as path_file_foto_barang, tb_kategori_barang.nama_kategori')
+            ->join('tb_galeri_barang', 'tb_barang.id_barang = tb_galeri_barang.id_barang', 'left')
+            ->join('tb_file_foto_barang', 'tb_galeri_barang.id_file_foto_barang = tb_file_foto_barang.id_file_foto_barang', 'left')
+            ->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang', 'left')
+            ->where('tb_barang.slug', $slug)
+            ->groupBy('tb_barang.slug')
+            ->get()
+            ->getRowArray();
+    }
+
 
     public function getInformasiPublik($slug = false)
     {

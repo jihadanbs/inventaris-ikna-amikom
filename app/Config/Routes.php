@@ -63,6 +63,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->GET('edit/(:segment)', 'BarangController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'BarangController::update/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('cek_data/(:segment)', 'BarangController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete2', 'BarangController::delete2', ['namespace' => 'App\Controllers\Admin']);
         $routes->DELETE('delete', 'BarangController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
 
