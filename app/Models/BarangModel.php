@@ -13,18 +13,6 @@ class BarangModel extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
 
-    // public function getFotoWithFile()
-    // {
-    //     return $this->db->table('tb_foto')
-    //         ->select('tb_foto.*, GROUP_CONCAT(tb_file_foto.file_foto SEPARATOR ", ") as file_foto')
-    //         ->join('tb_galeri', 'tb_foto.id_foto = tb_galeri.id_foto')
-    //         ->join('tb_file_foto', 'tb_galeri.id_file_foto = tb_file_foto.id_file_foto')
-    //         ->groupBy('tb_foto.id_foto')
-    //         ->orderBy('tb_foto.id_foto', 'DESC')
-    //         ->get()
-    //         ->getResultArray();
-    // }
-
     public function getAllSorted()
     {
         $builder = $this->db->table('tb_barang');
