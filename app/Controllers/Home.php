@@ -4,10 +4,7 @@ namespace App\Controllers;
 
 use App\Models\WebOptionModel;
 use App\Models\PemohonModel;
-use App\Models\VisitorModel;
 use App\Models\InformasiPublikModel;
-use App\Models\SearchModel;
-use App\Models\WilayahModel;
 use App\Models\SliderModel;
 
 class Home extends BaseController
@@ -26,13 +23,11 @@ class Home extends BaseController
         $this->m_web_option = new WebOptionModel();
         $this->m_pemohon = new PemohonModel();
         $this->m_informasi_publik = new InformasiPublikModel();
-        $this->m_wilayah = new WilayahModel();
         $this->m_slider = new SliderModel();
     }
 
     public function index()
     {
-
 
         $data = [];
 
