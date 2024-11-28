@@ -44,11 +44,6 @@ class TbBarang extends Migration
                 'type' => 'DATE',
                 'null' => TRUE,
             ],
-            'path_file_foto_barang' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => TRUE,
-            ],
             'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
         ]);
