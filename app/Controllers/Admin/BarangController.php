@@ -108,7 +108,7 @@ class BarangController extends BaseController
         $uploadFiles = uploadMultiple('path_file_foto_barang', 'dokumen/barang/');
         if (empty($uploadFiles)) {
             // Jika file tidak berhasil diunggah, tampilkan pesan error
-            session()->setFlashdata('error', 'File gagal diunggah. Silakan coba lagi.');
+            session()->setFlashdata('error', 'File gagal diunggah. Silakan coba lagi !');
             return redirect()->back()->withInput();
         }
         $this->m_barang->save([
@@ -140,7 +140,7 @@ class BarangController extends BaseController
             ]);
         }
 
-        session()->setFlashdata('pesan', 'Data Barang Berhasil Di Tambahkan');
+        session()->setFlashdata('pesan', 'Data Barang Berhasil Di Tambahkan !');
 
         return redirect()->to('/admin/barang');
     }
@@ -439,7 +439,7 @@ class BarangController extends BaseController
         $this->m_barang->save($dataToUpdate);
 
         // Set flash message untuk sukses
-        session()->setFlashdata('pesan', 'Data Barang Berhasil Diubah');
+        session()->setFlashdata('pesan', 'Data Barang Berhasil Diubah !');
 
         return redirect()->to('/admin/barang');
     }
