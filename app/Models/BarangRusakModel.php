@@ -20,12 +20,13 @@ class BarangRusakModel extends Model
         $builder->select('
             tb_barang_rusak.*, 
             tb_barang.nama_barang, 
+            tb_barang.jumlah_total,
             tb_kategori_barang.nama_kategori
         ');
         $builder->join('tb_barang', 'tb_barang.id_barang = tb_barang_rusak.id_barang', 'left');
         $builder->join('tb_kategori_barang', 'tb_barang.id_kategori_barang = tb_kategori_barang.id_kategori_barang', 'left');
         $builder->orderBy('tb_barang_rusak.id_barang_rusak', 'DESC');
-        $builder->groupBy('tb_barang_rusak.id_barang_rusak, tb_barang.nama_barang, tb_kategori_barang.nama_kategori');
+        $builder->groupBy('tb_barang_rusak.id_barang_rusak, tb_barang.nama_barang, tb_barang.jumlah_total, tb_kategori_barang.nama_kategori');
         $query = $builder->get();
         $results = $query->getResultArray();
 
