@@ -117,7 +117,7 @@
                                         <th>Nomor</th>
                                         <th>Nama Barang</th>
                                         <th>Kategori</th>
-                                        <th>Total</th>
+                                        <th>Total Barang</th>
                                         <th>Tanggal Masuk</th>
                                         <th>Tanggal Keluar</th>
                                         <th>Aksi</th>

@@ -117,7 +117,6 @@
                                         <th>Nomor</th>
                                         <th>Nama Barang</th>
                                         <th>Kategori</th>
-                                        <th>Jumlah Total Barang</th>
                                         <th>Total Barang Rusak</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -130,7 +129,6 @@
                                             <td data-field="id_barang_rusak" style="width: 2px" scope="row"><?= $i++; ?></td>
                                             <td data-field="nama_barang"><?= truncateText($row['nama_barang'], 70); ?></td>
                                             <td data-field="nama_kategori"><?= $row['nama_kategori']; ?></td>
-                                            <td data-field="jumlah_total"><?= $row['jumlah_total']; ?></td>
                                             <td data-field="jumlah_total_rusak"><?= $row['jumlah_total_rusak']; ?></td>
                                             <td style="width: 155px">
                                                 <a href="<?= site_url('admin/barang_rusak/cek_data/' . $row['nama_barang']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
@@ -165,31 +163,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3]
                         }
                     },
                     'colvis'
@@ -224,18 +222,18 @@
                             },
                             dataType: 'json',
                             success: function(response) {
-                                if (response.status === 'success') {
+                                if (response.success) {
                                     Swal.fire({
                                         title: "Dihapus!",
-                                        text: response.message,
+                                        text: response.success,
                                         icon: "success"
                                     }).then(() => {
                                         location.reload();
                                     });
-                                } else if (response.status === 'error') {
+                                } else if (response.error) {
                                     Swal.fire({
                                         title: "Gagal!",
-                                        text: response.message,
+                                        text: response.error,
                                         icon: "error"
                                     });
                                 }
@@ -243,7 +241,7 @@
                             error: function(xhr, status, error) {
                                 Swal.fire({
                                     title: "Error",
-                                    text: "Terjadi kesalahan, Silakan coba lagi.",
+                                    text: "Terjadi kesalahan. Silakan coba lagi.",
                                     icon: "error"
                                 });
                             }
