@@ -18,7 +18,6 @@ class BarangRusakController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Barang Rusak',
             'tb_barang_rusak' => $this->m_barang_rusak->getAllSorted(),
-            'tb_barang' => $this->m_barang->getAllSorted(),
         ]);
 
         return view('admin/barang_rusak/index', $data);
@@ -56,10 +55,10 @@ class BarangRusakController extends BaseController
         //validasi input 
         if (!$this->validate([
             'id_barang' => [
-                'rules' => 'required|is_unique_nama_barang_rusak[tb_barang,id_barang_rusak]',
+                'rules' => 'required|is_unique_id_barang_rusak[tb_barang_rusak,id_barang]',
                 'errors' => [
                     'required' => 'Silahkan Pilih Nama Barang !',
-                    'is_unique_nama_barang_rusak' => 'Nama Barang sudah terdaftar !'
+                    'is_unique_id_barang_rusak' => 'Nama Barang ini sudah terdaftar sebagai barang rusak !'
                 ]
             ],
             'keterangan_rusak' => [
@@ -99,57 +98,12 @@ class BarangRusakController extends BaseController
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
 
-        $id_barang = $this->request->getPost('id_barang');
+        $id_barang_rusak = $this->request->getPost('id_barang_rusak');
 
-        $db = \Config\Database::connect();
-        $db->transStart();
-
-        try {
-            // Dapatkan ID file barang yang terkait dengan barang yang akan dihapus
-            $dataFiles = $this->m_barang->getFilesById($id_barang);
-
-            if (empty($dataFiles)) {
-                throw new \Exception('Tidak ada data yang ditemukan untuk nama barang.');
-            }
-
-            // Loop dan hapus setiap file yang terkait dari direktori
-            foreach ($dataFiles as $fileData) {
-                $filePath = $fileData['path_file_foto_barang'];
-                $fullFilePath = ROOTPATH . 'public/' . $filePath;
-                if (is_file($fullFilePath)) {
-                    if (!unlink($fullFilePath)) {
-                        throw new \Exception('Gagal menghapus file: ' . $fullFilePath);
-                    }
-                }
-            }
-
-            // Hapus entri dari tb_galeri_barang
-            $this->m_barang->deleteFilesAndEntries($id_barang);
-
-            // Hapus entri dari tb_barang
-            $db->table('tb_barang')->where('id_barang', $id_barang)->delete();
-
-            // Hapus entri dari tb_file_foto_barang yang tidak terkait dengan relasi lain
-            $db->table('tb_file_foto_barang')
-                ->whereNotIn('id_file_foto_barang', function ($builder) use ($id_barang) {
-                    $builder->select('id_file_foto_barang')
-                        ->from('tb_galeri_barang')
-                        ->where('id_barang !=', $id_barang);
-                })
-                ->delete();
-
-            $db->transComplete();
-
-            if ($db->transStatus() === false) {
-                $db->transRollback();
-                return $this->response->setJSON(['status' => 'error', 'message' => 'Gagal menghapus file dan data']);
-            }
-
-            $db->transCommit();
-            return $this->response->setJSON(['status' => 'success', 'message' => 'File dan data berhasil dihapus']);
-        } catch (\Exception $e) {
-            $db->transRollback();
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Gagal menghapus file dan data', 'error' => $e->getMessage()]);
+        if ($this->m_barang_rusak->delete($id_barang_rusak)) {
+            return $this->response->setJSON(['success' => 'Data berhasil dihapus.']);
+        } else {
+            return $this->response->setJSON(['error' => 'Gagal menghapus data.']);
         }
     }
 
@@ -160,60 +114,14 @@ class BarangRusakController extends BaseController
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
 
-        $id_barang = $this->request->getPost('id_barang');
+        $id_barang_rusak = $this->request->getPost('id_barang_rusak');
 
-        $db = \Config\Database::connect();
-        $db->transStart();
-
-        try {
-            // Dapatkan ID file barang yang terkait dengan barang yang akan dihapus
-            $dataFiles = $this->m_barang->getFilesById($id_barang);
-
-            if (empty($dataFiles)) {
-                throw new \Exception('Tidak ada data yang ditemukan untuk nama barang.');
-            }
-
-            // Loop dan hapus setiap file yang terkait dari direktori
-            foreach ($dataFiles as $fileData) {
-                $filePath = $fileData['path_file_foto_barang'];
-                $fullFilePath = ROOTPATH . 'public/' . $filePath;
-                if (is_file($fullFilePath)) {
-                    if (!unlink($fullFilePath)) {
-                        throw new \Exception('Gagal menghapus file: ' . $fullFilePath);
-                    }
-                }
-            }
-
-            // Hapus entri dari tb_galeri_barang
-            $this->m_barang->deleteFilesAndEntries($id_barang);
-
-            // Hapus entri dari tb_barang
-            $db->table('tb_barang')->where('id_barang', $id_barang)->delete();
-
-            // Hapus entri dari tb_file_foto_barang yang tidak terkait dengan relasi lain
-            $db->table('tb_file_foto_barang')
-                ->whereNotIn('id_file_foto_barang', function ($builder) use ($id_barang) {
-                    $builder->select('id_file_foto_barang')
-                        ->from('tb_galeri_barang')
-                        ->where('id_barang !=', $id_barang);
-                })
-                ->delete();
-
-            $db->transComplete();
-
-            if ($db->transStatus() === false) {
-                $db->transRollback();
-                return $this->response->setJSON(['status' => 'error', 'message' => 'Gagal menghapus file dan data']);
-            }
-
-            $db->transCommit();
-            return $this->response->setJSON(['status' => 'success', 'message' => 'File dan data berhasil dihapus']);
-        } catch (\Exception $e) {
-            $db->transRollback();
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Gagal menghapus file dan data', 'error' => $e->getMessage()]);
+        if ($this->m_barang_rusak->delete($id_barang_rusak)) {
+            return $this->response->setJSON(['success' => 'Data berhasil dihapus.']);
+        } else {
+            return $this->response->setJSON(['error' => 'Gagal menghapus data.']);
         }
     }
-
 
     public function cek_data($slug)
     {

@@ -104,25 +104,18 @@ class Validation extends BaseConfig
         return isset($data[$fields]) && $str !== $data[$fields];
     }
 
-    public function is_unique_nama_barang_rusak($str, string $fields, array $data): bool
+    public function is_unique_id_barang_rusak(string $id_barang, string $fields, array $data): bool
     {
         $params = explode(',', $fields);
-        $table = array_shift($params);
+        $table = array_shift($params); // Nama tabel target
+        $id_barang_field = array_shift($params); // Nama kolom id_barang
+
         $builder = db_connect()->table($table);
 
-        // Mendapatkan id_barang dari $data jika tersedia
-        $id_barang = isset($data[$params[0]]) ? $data[$params[0]] : null;
+        // Memeriksa apakah id_barang sudah ada di tabel tb_barang_rusak
+        $builder->where($id_barang_field, $id_barang);
 
-        // Memeriksa keunikan nama barang hanya jika id_barang telah dipilih
-        if ($id_barang !== null) {
-            $builder->where('nama_barang', $str)
-                ->where('id_barang', $id_barang);
-        } else {
-            // Jika salah satu atau ketiga nilai tidak ada, abaikan periksa keunikan judul
-            return true;
-        }
-
-        // Menghitung jumlah baris yang sesuai dengan kriteria
+        // Jika ada data yang cocok, return false (tidak unik)
         return $builder->countAllResults() === 0;
     }
 
