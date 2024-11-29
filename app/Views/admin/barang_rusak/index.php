@@ -85,7 +85,7 @@
                                 return $text;
                             }
                             ?>
-                            <table id="tableBarang" class="table table-bordered dt-responsive nowrap w-100">
+                            <table id="tableBarangRusak" class="table table-bordered dt-responsive nowrap w-100">
                                 <?php if (session()->getFlashdata('pesan')) : ?>
                                     <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
                                         <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
@@ -155,7 +155,7 @@
 
     <script>
         $(document).ready(function() {
-            $("#tableBarang").DataTable({
+            $("#tableBarangRusak").DataTable({
                 "paging": true,
                 "responsive": true,
                 "lengthChange": true,
@@ -192,7 +192,7 @@
                     },
                     'colvis'
                 ],
-            }).buttons().container().appendTo('#tableBarang_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#tableBarangRusak_wrapper .col-md-6:eq(0)');
         });
     </script>
 
