@@ -55,6 +55,14 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->POST('updateSandi/(:num)', 'ProfileController::updateSandi/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
+    /*=================================== KATEGORI BARANG ====================================*/
+    $routes->GET('kategori_barang', 'KategoriBarangController::index', ['namespace' => 'App\Controllers\Admin']);
+    $routes->GROUP('kategori_barang', static function ($routes) {
+        $routes->POST('save', 'KategoriBarangController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->PUT('simpan_perubahan', 'KategoriBarangController::simpan_perubahan', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete/(:num)', 'KategoriBarangController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
+    });
+
     /*=================================== BARANG ====================================*/
     $routes->GET('barang', 'BarangController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang', static function ($routes) {
@@ -67,12 +75,28 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->DELETE('delete', 'BarangController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
 
-    /*=================================== KATEGORI BARANG ====================================*/
-    $routes->GET('kategori_barang', 'KategoriBarangController::index', ['namespace' => 'App\Controllers\Admin']);
-    $routes->GROUP('kategori_barang', static function ($routes) {
-        $routes->POST('save', 'KategoriBarangController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->PUT('simpan_perubahan', 'KategoriBarangController::simpan_perubahan', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete/(:num)', 'KategoriBarangController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
+    /*=================================== BARANG BAIK ====================================*/
+    $routes->GET('barang_baik', 'BarangBaikController::index', ['namespace' => 'App\Controllers\Admin']);
+    $routes->GROUP('barang_baik', static function ($routes) {
+        $routes->GET('tambah', 'BarangBaikController::tambah', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('save', 'BarangBaikController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('edit/(:segment)', 'BarangBaikController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->PUT('update/(:num)', 'BarangBaikController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('cek_data/(:segment)', 'BarangBaikController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete2', 'BarangBaikController::delete2', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete', 'BarangBaikController::delete', ['namespace' => 'App\Controllers\Admin']);
+    });
+
+    /*=================================== BARANG RUSAK ====================================*/
+    $routes->GET('barang_rusak', 'BarangRusakController::index', ['namespace' => 'App\Controllers\Admin']);
+    $routes->GROUP('barang_rusak', static function ($routes) {
+        $routes->GET('tambah', 'BarangRusakController::tambah', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('save', 'BarangRusakController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('edit/(:segment)', 'BarangRusakController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->PUT('update/(:num)', 'BarangRusakController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('cek_data/(:segment)', 'BarangRusakController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete2', 'BarangRusakController::delete2', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete', 'BarangRusakController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== FOTO ====================================*/
