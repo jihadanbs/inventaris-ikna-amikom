@@ -7,6 +7,7 @@ use App\Models\UserModel;
 use App\Models\BarangModel;
 use App\Models\FileFotoBarangModel;
 use App\Models\BarangRusakModel;
+use App\Models\BarangBaikModel;
 use App\Models\KategoriBarangModel;
 use App\Models\FaqModel;
 use App\Models\KategoriFaqModel;
@@ -80,6 +81,7 @@ abstract class BaseController extends Controller
     protected $m_barang;
     protected $m_file_foto_barang;
     protected $m_barang_rusak;
+    protected $m_barang_baik;
     protected $m_kategori_barang;
     protected $m_cara;
     protected $m_faq;
@@ -118,6 +120,7 @@ abstract class BaseController extends Controller
         $this->m_barang = new BarangModel();
         $this->m_file_foto_barang = new FileFotoBarangModel();
         $this->m_barang_rusak = new BarangRusakModel();
+        $this->m_barang_baik = new BarangBaikModel();
         $this->m_kategori_barang = new KategoriBarangModel();
         $this->m_faq = new FaqModel();
         $this->m_kategori_faq = new KategoriFaqModel();

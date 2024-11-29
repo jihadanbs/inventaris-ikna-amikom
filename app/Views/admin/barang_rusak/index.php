@@ -252,8 +252,6 @@
         });
     </script>
     <!-- HAPUS -->
-
-
     </body>
 
     </html>

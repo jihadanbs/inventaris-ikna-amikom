@@ -4,11 +4,11 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class BarangRusakModel extends Model
+class BarangBaikModel extends Model
 {
-    protected $table = 'tb_barang_rusak';
-    protected $primaryKey = 'id_barang_rusak';
-    protected $allowedFields = ['id_barang', 'jumlah_total_rusak', 'keterangan_rusak'];
+    protected $table = 'tb_barang_baik';
+    protected $primaryKey = 'id_barang_baik';
+    protected $allowedFields = ['id_barang', 'jumlah_total_baik'];
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
 
@@ -16,28 +16,54 @@ class BarangRusakModel extends Model
     // index
     public function getAllSorted()
     {
-        $builder = $this->db->table('tb_barang_rusak');
+        $builder = $this->db->table('tb_barang_baik');
         $builder->select('
-            tb_barang_rusak.*, 
+            tb_barang_baik.*, 
             tb_barang.nama_barang, 
             tb_barang.jumlah_total,
             tb_kategori_barang.nama_kategori
         ');
-        $builder->join('tb_barang', 'tb_barang.id_barang = tb_barang_rusak.id_barang', 'left');
+        $builder->join('tb_barang', 'tb_barang.id_barang = tb_barang_baik.id_barang', 'left');
         $builder->join('tb_kategori_barang', 'tb_barang.id_kategori_barang = tb_kategori_barang.id_kategori_barang', 'left');
-        $builder->orderBy('tb_barang_rusak.id_barang_rusak', 'DESC');
-        $builder->groupBy('tb_barang_rusak.id_barang_rusak, tb_barang.nama_barang, tb_barang.jumlah_total, tb_kategori_barang.nama_kategori');
+
+        // Tambahkan filter untuk hanya menampilkan barang yang sudah diproses
+        $builder->where('tb_barang_baik.id_barang IN (SELECT id_barang FROM tb_barang_rusak)');
+
+        $builder->orderBy('tb_barang_baik.id_barang_baik', 'DESC');
+        $builder->groupBy('tb_barang_baik.id_barang_baik, tb_barang.nama_barang, tb_barang.jumlah_total, tb_kategori_barang.nama_kategori');
         $query = $builder->get();
-        $results = $query->getResultArray();
+        return $query->getResultArray();
+    }
 
-        // Ambil data tambahan berdasarkan id_barang_rusak
-        foreach ($results as &$result) { // Gunakan reference untuk memodifikasi elemen array
-            $id_barang_rusak = $result['id_barang_rusak'];
-            $additional_data = $this->getDokumenById($id_barang_rusak);
-            $result['additional_data'] = $additional_data;
+    public function updateJumlahBarangBaik($id_barang)
+    {
+        // Ambil data barang yang relevan saja berdasarkan id_barang yang baru saja disimpan
+        $builder = $this->db->table('tb_barang');
+        $builder->select('
+            tb_barang.id_barang,
+            tb_barang.nama_barang,
+            tb_barang.jumlah_total,
+            IFNULL(SUM(tb_barang_rusak.jumlah_total_rusak), 0) AS jumlah_total_rusak
+        ');
+        $builder->join('tb_barang_rusak', 'tb_barang.id_barang = tb_barang_rusak.id_barang', 'left');
+        $builder->where('tb_barang.id_barang', $id_barang); // Filter berdasarkan id_barang
+        $builder->groupBy('tb_barang.id_barang');
+        $query = $builder->get();
+        $result = $query->getRowArray();
+
+        // Pastikan hasil ada dan jumlah_total_baik tidak negatif
+        if ($result) {
+            $jumlah_total_baik = $result['jumlah_total'] - $result['jumlah_total_rusak'];
+            if ($jumlah_total_baik < 0) {
+                $jumlah_total_baik = 0;
+            }
+
+            // Perbarui atau tambah data ke tb_barang_baik
+            $this->db->table('tb_barang_baik')->replace([
+                'id_barang' => $result['id_barang'],
+                'jumlah_total_baik' => $jumlah_total_baik,
+            ]);
         }
-
-        return $results;
     }
 
     // delete
@@ -67,10 +93,10 @@ class BarangRusakModel extends Model
     }
 
     // cek data
-    public function getDokumenById($id_barang_rusak)
+    public function getDokumenById($id_barang_baik)
     {
-        $builder = $this->db->table('tb_barang_rusak');
-        $result = $builder->where('id_barang_rusak', $id_barang_rusak)->get()->getResultArray();
+        $builder = $this->db->table('tb_barang_baik');
+        $result = $builder->where('id_barang_baik', $id_barang_baik)->get()->getResultArray();
         return $result;
     }
 

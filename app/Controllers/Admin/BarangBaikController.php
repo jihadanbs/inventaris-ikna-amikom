@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 
-class BarangRusakController extends BaseController
+class BarangBaikController extends BaseController
 {
 
     public function index()
@@ -17,10 +17,10 @@ class BarangRusakController extends BaseController
         // Menyiapkan data untuk tampilan
         $data = array_merge([
             'title' => 'Admin | Halaman Barang Rusak',
-            'tb_barang_rusak' => $this->m_barang_rusak->getAllSorted(),
+            'tb_barang_baik' => $this->m_barang_baik->getAllSorted(),
         ]);
 
-        return view('admin/barang_rusak/index', $data);
+        return view('admin/barang_baik/index', $data);
     }
 
     public function tambah()
@@ -52,7 +52,7 @@ class BarangRusakController extends BaseController
         $keterangan_rusak = $this->request->getVar('keterangan_rusak');
         $jumlah_total_rusak = $this->request->getVar('jumlah_total_rusak');
 
-        // Validasi input
+        //validasi input 
         if (!$this->validate([
             'id_barang' => [
                 'rules' => 'required|is_unique_id_barang_rusak[tb_barang_rusak,id_barang]',
@@ -80,17 +80,13 @@ class BarangRusakController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        // Simpan data ke tb_barang_rusak
         $this->m_barang_rusak->save([
             'id_barang' => $id_barang,
             'keterangan_rusak' => $keterangan_rusak,
             'jumlah_total_rusak' => $jumlah_total_rusak,
         ]);
 
-        // Perbarui jumlah barang baik
-        $this->m_barang_baik->updateJumlahBarangBaik($id_barang);
-
-        session()->setFlashdata('pesan', 'Data Barang Rusak Berhasil Ditambahkan !');
+        session()->setFlashdata('pesan', 'Data Barang Rusak Berhasil Di Tambahkan !');
 
         return redirect()->to('/admin/barang_rusak');
     }

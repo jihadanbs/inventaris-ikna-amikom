@@ -8,7 +8,7 @@ class BarangModel extends Model
 {
     protected $table = 'tb_barang';
     protected $primaryKey = 'id_barang';
-    protected $allowedFields = ['id_kategori_barang', 'nama_barang', 'deskripsi', 'jumlah_total', 'tanggal_masuk', 'tanggal_keluar', 'slug', 'id_file_foto_barang'];
+    protected $allowedFields = ['id_kategori_barang', 'nama_barang', 'deskripsi', 'jumlah_total', 'tanggal_masuk', 'tanggal_keluar', 'slug', 'id_file_foto_barang', 'id_barang_rusak'];
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
 
@@ -25,16 +25,19 @@ class BarangModel extends Model
         $builder->join('tb_galeri_barang', 'tb_barang.id_barang = tb_galeri_barang.id_barang', 'left');
         $builder->join('tb_file_foto_barang', 'tb_galeri_barang.id_file_foto_barang = tb_file_foto_barang.id_file_foto_barang', 'left');
         $builder->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang', 'left');
+        // Cek jika tb_barang_rusak diperlukan untuk join
+        $builder->join('tb_barang_rusak', 'tb_barang.id_barang = tb_barang_rusak.id_barang', 'left'); // Pastikan ini benar jika perlu
+
         $builder->groupBy('tb_barang.id_barang, tb_kategori_barang.nama_kategori');
         $builder->orderBy('tb_barang.id_barang', 'DESC');
         $query = $builder->get();
-        $results = $query->getResultArray(); // Mengubah query menjadi array
+        $results = $query->getResultArray();
 
         // Ambil data tambahan berdasarkan id_barang
-        foreach ($results as &$result) { // Gunakan reference untuk memodifikasi elemen array
-            $id_barang = $result['id_barang']; // Akses sebagai array
+        foreach ($results as &$result) {
+            $id_barang = $result['id_barang'];
             $additional_data = $this->getDokumenByBarangId($id_barang);
-            $result['additional_data'] = $additional_data; // Tambahkan ke array
+            $result['additional_data'] = $additional_data;
         }
 
         return $results;

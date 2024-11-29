@@ -52,13 +52,13 @@ class Validation extends BaseConfig
         $table = array_shift($params);
         $builder = db_connect()->table($table);
 
-        // Mendapatkan id_barang_rusak dari $data jika tersedia
-        $id_barang_rusak = isset($data[$params[0]]) ? $data[$params[0]] : null;
+        // Mendapatkan id_kategori_barang dari $data jika tersedia
+        $id_kategori_barang = isset($data[$params[0]]) ? $data[$params[0]] : null;
 
-        // Memeriksa keunikan nama barang hanya jika id_barang_rusak telah dipilih
-        if ($id_barang_rusak !== null) {
-            $builder->where('id_barang', $str)
-                ->where('id_barang_rusak', $id_barang_rusak);
+        // Memeriksa keunikan nama barang hanya jika id_kategori_barang telah dipilih
+        if ($id_kategori_barang !== null) {
+            $builder->where('nama_barang', $str)
+                ->where('id_kategori_barang', $id_kategori_barang);
         } else {
             // Jika salah satu atau ketiga nilai tidak ada, abaikan periksa keunikan judul
             return true;
