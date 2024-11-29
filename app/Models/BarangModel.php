@@ -8,7 +8,6 @@ class BarangModel extends Model
 {
     protected $table = 'tb_barang';
     protected $primaryKey = 'id_barang';
-    protected $retunType = 'object';
     protected $allowedFields = ['id_kategori_barang', 'nama_barang', 'deskripsi', 'jumlah_total', 'tanggal_masuk', 'tanggal_keluar', 'slug', 'id_file_foto_barang'];
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
@@ -28,15 +27,14 @@ class BarangModel extends Model
         $builder->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang', 'left');
         $builder->groupBy('tb_barang.id_barang, tb_kategori_barang.nama_kategori');
         $builder->orderBy('tb_barang.id_barang', 'DESC');
-
         $query = $builder->get();
-        $results = $query->getResult();
+        $results = $query->getResultArray(); // Mengubah query menjadi array
 
         // Ambil data tambahan berdasarkan id_barang
-        foreach ($results as $result) {
-            $id_barang = $result->id_barang;
+        foreach ($results as &$result) { // Gunakan reference untuk memodifikasi elemen array
+            $id_barang = $result['id_barang']; // Akses sebagai array
             $additional_data = $this->getDokumenByBarangId($id_barang);
-            $result->additional_data = $additional_data;
+            $result['additional_data'] = $additional_data; // Tambahkan ke array
         }
 
         return $results;

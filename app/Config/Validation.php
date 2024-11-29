@@ -52,13 +52,13 @@ class Validation extends BaseConfig
         $table = array_shift($params);
         $builder = db_connect()->table($table);
 
-        // Mendapatkan id_kategori_barang dari $data jika tersedia
-        $id_kategori_barang = isset($data[$params[0]]) ? $data[$params[0]] : null;
+        // Mendapatkan id_barang_rusak dari $data jika tersedia
+        $id_barang_rusak = isset($data[$params[0]]) ? $data[$params[0]] : null;
 
-        // Memeriksa keunikan nama barang hanya jika id_kategori_barang telah dipilih
-        if ($id_kategori_barang !== null) {
-            $builder->where('nama_barang', $str)
-                ->where('id_kategori_barang', $id_kategori_barang);
+        // Memeriksa keunikan nama barang hanya jika id_barang_rusak telah dipilih
+        if ($id_barang_rusak !== null) {
+            $builder->where('id_barang', $str)
+                ->where('id_barang_rusak', $id_barang_rusak);
         } else {
             // Jika salah satu atau ketiga nilai tidak ada, abaikan periksa keunikan judul
             return true;
@@ -98,10 +98,33 @@ class Validation extends BaseConfig
         return $builder->countAllResults() === 0;
     }
 
+    public static function notEqualTo(string $str, string $fields, array $data): bool
+    {
+        // Pastikan field dibandingkan ada
+        return isset($data[$fields]) && $str !== $data[$fields];
+    }
 
+    public function is_unique_nama_barang_rusak($str, string $fields, array $data): bool
+    {
+        $params = explode(',', $fields);
+        $table = array_shift($params);
+        $builder = db_connect()->table($table);
 
+        // Mendapatkan id_barang dari $data jika tersedia
+        $id_barang = isset($data[$params[0]]) ? $data[$params[0]] : null;
 
+        // Memeriksa keunikan nama barang hanya jika id_barang telah dipilih
+        if ($id_barang !== null) {
+            $builder->where('nama_barang', $str)
+                ->where('id_barang', $id_barang);
+        } else {
+            // Jika salah satu atau ketiga nilai tidak ada, abaikan periksa keunikan judul
+            return true;
+        }
 
+        // Menghitung jumlah baris yang sesuai dengan kriteria
+        return $builder->countAllResults() === 0;
+    }
 
     public function password_match(string $str, ?string $fields = null, array $data = []): bool
     {
@@ -154,11 +177,5 @@ class Validation extends BaseConfig
         }
 
         return true;
-    }
-
-    public static function notEqualTo(string $str, string $fields, array $data): bool
-    {
-        // Pastikan field dibandingkan ada
-        return isset($data[$fields]) && $str !== $data[$fields];
     }
 }

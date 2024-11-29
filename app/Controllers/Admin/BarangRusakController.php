@@ -18,6 +18,7 @@ class BarangRusakController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Barang Rusak',
             'tb_barang_rusak' => $this->m_barang_rusak->getAllSorted(),
+            'tb_barang' => $this->m_barang->getAllSorted(),
         ]);
 
         return view('admin/barang_rusak/index', $data);
@@ -34,10 +35,10 @@ class BarangRusakController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Tambah Barang',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-            'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
+            'tb_barang' => $this->m_barang->getAllSorted(),
         ]);
 
-        return view('admin/barang/tambah', $data);
+        return view('admin/barang_rusak/tambah', $data);
     }
 
     public function save()
@@ -48,55 +49,31 @@ class BarangRusakController extends BaseController
         }
 
         // Ambil data dari request
-        $nama_barang = $this->request->getVar('nama_barang');
-        $jumlah_total = $this->request->getVar('jumlah_total');
-        $id_kategori_barang = $this->request->getVar('id_kategori_barang');
-        $deskripsi = $this->request->getVar('deskripsi');
-        $tanggal_masuk = $this->request->getVar('tanggal_masuk');
-        $tanggal_keluar = $this->request->getVar('tanggal_keluar');
+        $id_barang = $this->request->getVar('id_barang');
+        $keterangan_rusak = $this->request->getVar('keterangan_rusak');
+        $jumlah_total_rusak = $this->request->getVar('jumlah_total_rusak');
 
         //validasi input 
         if (!$this->validate([
-            'id_kategori_barang' => [
-                'rules' => 'required',
+            'id_barang' => [
+                'rules' => 'required|is_unique_nama_barang_rusak[tb_barang,id_barang_rusak]',
                 'errors' => [
-                    'required' => 'Silahkan Pilih Nama Kategori Barang !'
+                    'required' => 'Silahkan Pilih Nama Barang !',
+                    'is_unique_nama_barang_rusak' => 'Nama Barang sudah terdaftar !'
                 ]
             ],
-            'nama_barang' => [
-                'rules' => "required|is_unique_nama_barang[tb_barang,id_kategori_barang]|trim|min_length[5]|max_length[100]",
-                'errors' => [
-                    'required' => 'Kolom Nama Barang Tidak Boleh Kosong !',
-                    'is_unique_nama_barang' => 'Nama Barang sudah terdaftar untuk nama kategori yang sama !',
-                    'min_length' => 'Nama Barang tidak boleh kurang dari 5 karakter !',
-                    'max_length' => 'Nama Barang tidak boleh melebihi 100 karakter !',
-                ]
-            ],
-            'deskripsi' => [
+            'keterangan_rusak' => [
                 'rules' => 'required|trim|min_length[5]|max_length[255]',
                 'errors' => [
-                    'required' => 'Kolom Deskripsi Tidak Boleh Kosong !',
-                    'min_length' => 'Deskripsi tidak boleh kurang dari 5 karakter !',
-                    'max_length' => 'Deskripsi tidak boleh melebihi 255 karakter !',
+                    'required' => 'Kolom Keterangan Rusak Tidak Boleh Kosong !',
+                    'min_length' => 'Keterangan Rusak tidak boleh kurang dari 5 karakter !',
+                    'max_length' => 'Keterangan Rusak tidak boleh melebihi 255 karakter !',
                 ]
             ],
-            'tanggal_masuk' => [
+            'jumlah_total_rusak' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Silahkan Masukkan Tanggal Masuk Barang !'
-                ]
-            ],
-            'tanggal_keluar' => [
-                'rules' => 'required|notEqualTo[tanggal_masuk]',
-                'errors' => [
-                    'required' => 'Silahkan Masukkan Tanggal Keluar Barang !',
-                    'notEqualTo' => 'Tanggal Keluar tidak boleh sama dengan Tanggal Masuk !'
-                ]
-            ],
-            'jumlah_total' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Silahkan Masukkan Jumlah Total dari Barang Tersebut !'
+                    'required' => 'Masukkan Jumlah Total Kerusakan dari Barang Tersebut !'
                 ]
             ],
         ])) {
@@ -104,45 +81,15 @@ class BarangRusakController extends BaseController
             return redirect()->back()->withInput();
         }
 
-        $slug = url_title($this->request->getVar('nama_barang'), '-', true);
-        $uploadFiles = uploadMultiple('path_file_foto_barang', 'dokumen/barang/');
-        if (empty($uploadFiles)) {
-            // Jika file tidak berhasil diunggah, tampilkan pesan error
-            session()->setFlashdata('error', 'File gagal diunggah. Silakan coba lagi !');
-            return redirect()->back()->withInput();
-        }
-        $this->m_barang->save([
-            'id_kategori_barang' => $id_kategori_barang,
-            'nama_barang' => $nama_barang,
-            'jumlah_total' => $jumlah_total,
-            'slug' => $slug,
-            'deskripsi' => $deskripsi,
-            'tanggal_masuk' => $tanggal_masuk,
-            'tanggal_keluar' => $tanggal_keluar,
+        $this->m_barang_rusak->save([
+            'id_barang' => $id_barang,
+            'keterangan_rusak' => $keterangan_rusak,
+            'jumlah_total_rusak' => $jumlah_total_rusak,
         ]);
 
-        // Dapatkan ID dari foto yang baru saja disimpan
-        $idBarang = $this->m_barang->insertID();
+        session()->setFlashdata('pesan', 'Data Barang Rusak Berhasil Di Tambahkan !');
 
-        // Simpan data file yang diunggah ke tb_file_foto_barang dan relasinya ke tb_galeri
-        foreach ($uploadFiles as $filePath) {
-            $this->db->table('tb_file_foto_barang')->insert([
-                'path_file_foto_barang' => $filePath,
-            ]);
-
-            // Dapatkan ID file foto yang baru saja disimpan
-            $idFileFotoBarang = $this->db->insertID();
-
-            // Relasikan file foto dengan foto yang sudah disimpan sebelumnya
-            $this->db->table('tb_galeri_barang')->insert([
-                'id_barang' => $idBarang,
-                'id_file_foto_barang' => $idFileFotoBarang,
-            ]);
-        }
-
-        session()->setFlashdata('pesan', 'Data Barang Berhasil Di Tambahkan !');
-
-        return redirect()->to('/admin/barang');
+        return redirect()->to('/admin/barang_rusak');
     }
 
     public function delete()

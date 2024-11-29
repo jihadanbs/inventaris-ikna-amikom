@@ -117,7 +117,7 @@
                                         <th>Nomor</th>
                                         <th>Nama Barang</th>
                                         <th>Kategori</th>
-                                        <th>Total Rusak</th>
+                                        <th>Total Barang Rusak</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -127,12 +127,12 @@
                                     <?php foreach ($tb_barang_rusak as $row) : ?>
                                         <tr>
                                             <td data-field="id_barang_rusak" style="width: 2px" scope="row"><?= $i++; ?></td>
-                                            <td data-field="nama_barang"><?= truncateText($row->nama_barang, 70); ?></td>
-                                            <td data-field="nama_kategori"><?= $row->nama_kategori; ?></td>
-                                            <td data-field="jumlah_total_rusak"><?= $row->jumlah_total; ?></td>
+                                            <td data-field="nama_barang"><?= truncateText($row['nama_barang'], 70); ?></td>
+                                            <td data-field="nama_kategori"><?= $row['nama_kategori']; ?></td>
+                                            <td data-field="jumlah_total_rusak"><?= $row['jumlah_total_rusak']; ?></td>
                                             <td style="width: 155px">
-                                                <a href="<?= site_url('admin/barang_rusak/cek_data/' . $row->slug) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row->id_barang ?>">
+                                                <a href="<?= site_url('admin/barang_rusak/cek_data/' . $row['nama_barang']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
+                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_rusak'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
                                                 </button>
                                             </td>

@@ -8,7 +8,6 @@ class BarangRusakModel extends Model
 {
     protected $table = 'tb_barang_rusak';
     protected $primaryKey = 'id_barang_rusak';
-    protected $retunType = 'object';
     protected $allowedFields = ['id_barang', 'jumlah_total_rusak', 'keterangan_rusak'];
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
@@ -18,21 +17,28 @@ class BarangRusakModel extends Model
     public function getAllSorted()
     {
         $builder = $this->db->table('tb_barang_rusak');
-        $builder->select('tb_barang_rusak.*, tb_barang.nama_barang');
-        $builder->join('tb_barang', 'tb_barang.id_barang = tb_barang_rusak.id_barang');
+        $builder->select('
+            tb_barang_rusak.*, 
+            tb_barang.nama_barang, 
+            tb_kategori_barang.nama_kategori
+        ');
+        $builder->join('tb_barang', 'tb_barang.id_barang = tb_barang_rusak.id_barang', 'left');
+        $builder->join('tb_kategori_barang', 'tb_barang.id_kategori_barang = tb_kategori_barang.id_kategori_barang', 'left');
         $builder->orderBy('tb_barang_rusak.id_barang_rusak', 'DESC');
+        $builder->groupBy('tb_barang_rusak.id_barang_rusak, tb_barang.nama_barang, tb_kategori_barang.nama_kategori');
         $query = $builder->get();
-        $results = $query->getResult();
+        $results = $query->getResultArray();
 
-        // Ambil data tambahan berdasarkan id barang rusak
-        foreach ($results as $result) {
-            $id_barang_rusak = $result->id_barang_rusak;
+        // Ambil data tambahan berdasarkan id_barang_rusak
+        foreach ($results as &$result) { // Gunakan reference untuk memodifikasi elemen array
+            $id_barang_rusak = $result['id_barang_rusak'];
             $additional_data = $this->getDokumenById($id_barang_rusak);
-            $result->additional_data = $additional_data;
+            $result['additional_data'] = $additional_data;
         }
 
         return $results;
     }
+
 
     // delete
     public function getFilesById($id_barang)
@@ -64,7 +70,7 @@ class BarangRusakModel extends Model
     public function getDokumenById($id_barang_rusak)
     {
         $builder = $this->db->table('tb_barang_rusak');
-        $result = $builder->where('id_barang_rusak', $id_barang_rusak)->get()->getResult();
+        $result = $builder->where('id_barang_rusak', $id_barang_rusak)->get()->getResultArray();
         return $result;
     }
 
