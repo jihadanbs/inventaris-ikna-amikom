@@ -18,7 +18,6 @@ use App\Models\PengunjungModel;
 use App\Models\LaporanModel;
 use App\Models\VidioModel;
 use App\Models\JabatanModel;
-use App\Models\SliderModel;
 use App\Models\WebOptionModel;
 
 // Config
@@ -93,7 +92,6 @@ abstract class BaseController extends Controller
     protected $m_laporan;
     protected $m_vidio;
     protected $m_jabatan;
-    protected $m_slider;
     protected $m_sop;
     protected $m_web_option;
 
@@ -131,7 +129,6 @@ abstract class BaseController extends Controller
         $this->m_laporan = new LaporanModel();
         $this->m_vidio = new VidioModel();
         $this->m_jabatan = new JabatanModel();
-        $this->m_slider = new SliderModel();
         $this->m_web_option = new WebOptionModel();
     }
 
