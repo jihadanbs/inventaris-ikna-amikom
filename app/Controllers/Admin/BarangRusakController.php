@@ -72,7 +72,8 @@ class BarangRusakController extends BaseController
             'jumlah_total_rusak' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Masukkan Jumlah Total Kerusakan dari Barang Tersebut !'
+                    'required' => 'Masukkan Jumlah Total Kerusakan dari Barang Tersebut !',
+                    // 'if_kurang_nol' => 'Jumlah Total Kerusakan tidak boleh kurang dari 0 !'
                 ]
             ],
         ])) {
