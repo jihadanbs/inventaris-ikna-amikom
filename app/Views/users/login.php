@@ -41,64 +41,6 @@
         margin-bottom: 5px;
         font-weight: 600;
     }
-
-    /* Namespace untuk mengisolasi gaya */
-    /* .custom-container {
-        position: relative;
-        width: 100%;
-        background-color: #fff;
-        min-height: 100vh;
-        overflow: hidden;
-    }
-
-    .custom-forms-container {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-    }
-
-    .custom-signin-signup {
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        left: 75%;
-        width: 50%;
-        transition: 1s 0.7s ease-in-out;
-        display: grid;
-        grid-template-columns: 1fr;
-        z-index: 5;
-    }
-
-    .custom-signin-signup form {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0rem 5rem;
-        transition: all 0.2s 0.7s;
-        overflow: hidden;
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
-    }
-
-    .custom-signin-signup form.sign-in-form {
-        z-index: 2;
-    }
-
-    .custom-title {
-        font-size: 2.2rem;
-        color: #F4D160;
-        font-weight: 700;
-    }
-
-    .custom-title2 {
-        font-size: 1.5rem;
-        color: #28527A;
-        margin-bottom: 10px;
-        font-weight: 700;
-    } */
 </style>
 
 <body>
@@ -126,7 +68,6 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php endif; ?>
-
                     <?php if (session()->getFlashdata('gagal')) : ?>
                         <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
                             <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Gagal</strong> -
@@ -134,7 +75,6 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php endif; ?>
-
                     <?php if (session()->getFlashdata('error')) : ?>
                         <div class="alert alert-warning alert-border-left alert-dismissible fade show" role="alert">
                             <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Error</strong> -
@@ -151,6 +91,7 @@
                         <?php setcookie('logout_message', '', time() - 3600, "/"); // Hapus cookie setelah ditampilkan 
                         ?>
                     <?php endif; ?>
+
                     <?= form_open('authentication/cekLogin') ?>
                     <form action="#" method="POST" class="sign-in-form" autocomplete="off">
                         <div class="custom-form-group opacity">

@@ -16,8 +16,6 @@ class RoleController extends BaseController
         switch (session()->get('id_jabatan')) {
             case 1:
                 return redirect()->to('admin/dashboard');
-            case 2:
-                return redirect()->to('staff/dashboard');
             default:
                 return redirect()->to('authentication/login')->with('gagal', 'Akses tidak diizinkan');
         }

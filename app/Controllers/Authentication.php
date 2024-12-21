@@ -14,10 +14,7 @@ class Authentication extends BaseController
         }
 
         $data = [
-            'title' => 'Login IKNAventory',
-            'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-            'pesan' => session()->getFlashdata('pesan'),
-            'gagal' => session()->getFlashdata('gagal')
+            'title' => 'Login IKNAventory'
         ];
 
         return view('users/login', $data);
@@ -31,6 +28,7 @@ class Authentication extends BaseController
 
         $session = $this->session;
 
+        // validasi jika belum ada inputan username dan password di form login
         if ($this->request->getPost()) {
             $rules = [
                 'username' => [
@@ -48,16 +46,19 @@ class Authentication extends BaseController
             ];
 
             if ($this->validate($rules)) {
+                // mengambil inputan username dan password pada form login
                 $usernameOrEmail = $this->request->getVar('username');
                 $password = $this->request->getVar('password');
 
-                // Periksa apakah pengguna menggunakan email atau username
+                // Periksa apakah pengguna sudah menginputkan email atau username
                 $user = $this->m_user->where('email', $usernameOrEmail)
                     ->orWhere('username', $usernameOrEmail)
                     ->first();
 
                 if ($user) {
+                    // mengecek password user setelah mengecek username / email
                     if (password_verify($password, $user['password'])) {
+                        // jika status user aktif
                         if ($user['status'] == 'aktif') {
                             // Periksa apakah password perlu direset
                             if (!empty($user['password_last_reset'])) {
@@ -73,7 +74,7 @@ class Authentication extends BaseController
                             // Perbarui kolom terakhir_login
                             $this->m_user->updateData($user['id_user'], ['terakhir_login' => date('Y-m-d H:i:s')]);
 
-                            // Set session data
+                            // mengecek data pengguna
                             $session->set([
                                 'id_user' => $user['id_user'],
                                 'username' => $user['username'],
@@ -90,6 +91,7 @@ class Authentication extends BaseController
                             // Log the session data for debugging
                             log_message('debug', 'User logged in: ' . json_encode($session->get()));
 
+                            // jika benar maka tertuju ke halaman dashboard
                             if ($user['id_jabatan'] == 1) {
                                 return redirect()->to('admin/dashboard');
                             } elseif ($user['id_jabatan'] == 2) {
@@ -99,16 +101,18 @@ class Authentication extends BaseController
                             $session->setFlashdata('gagal', 'Akun anda dinonaktifkan');
                         }
                     } else {
+                        // jika password salah maka muncul notifikasi
                         $session->setFlashdata('validation', ['password' => 'Password yang Anda masukkan salah !']);
                     }
                 } else {
+                    // jika username salah maka muncul notifikasi
                     $session->setFlashdata('validation', ['username' => 'Username / Email tidak ditemukan !']);
                 }
             } else {
                 $session->setFlashdata('validation', $this->validator->getErrors());
             }
         }
-
+        // setiap salah maka akan kembali kehalaman login dengan notifkasi gagal
         return redirect()->to('authentication/login')->withInput()->with('gagal', 'Silahkan Login Ulang !');
     }
 

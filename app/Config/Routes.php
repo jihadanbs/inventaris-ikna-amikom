@@ -13,6 +13,7 @@ $routes->GET('/error404', 'Home::error', ['namespace' => 'App\Controllers']);
 $routes->GET('/servererror', 'Home::servererror', ['namespace' => 'App\Controllers']);
 
 // USER //
+/*=================================== PROFIL ====================================*/
 $routes->GET('profil', 'ProfilController::profil', ['namespace' => 'App\Controllers']);
 
 /*=================================== LAPORAN ====================================*/
@@ -86,7 +87,17 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->DELETE('delete2', 'BarangBaikController::delete2', ['namespace' => 'App\Controllers\Admin']);
         $routes->DELETE('delete', 'BarangBaikController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
-
+    /*=================================== BARANG ====================================*/
+    $routes->GET('user_peminjam', 'UserPeminjamController::index', ['namespace' => 'App\Controllers\Admin']);
+    $routes->GROUP('user_peminjam', static function ($routes) {
+        $routes->GET('tambah', 'BarangController::tambah', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('save', 'BarangController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('edit/(:segment)', 'BarangController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->PUT('update/(:num)', 'BarangController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('cek_data/(:segment)', 'BarangController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete2', 'BarangController::delete2', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete', 'BarangController::delete', ['namespace' => 'App\Controllers\Admin']);
+    });
     /*=================================== BARANG RUSAK ====================================*/
     $routes->GET('barang_rusak', 'BarangRusakController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang_rusak', static function ($routes) {
