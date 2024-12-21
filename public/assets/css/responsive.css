@@ -22,18 +22,26 @@
     padding-top: 125px;
   }
 
-  /* 
-  .quote_btn-container {
+  
+  /* .quote_btn-container {
     display: none;
   } */
   .quote_btn-container {
+    display: flex;
     flex-direction: column;
     align-items: center;
-  }
+    justify-content: center;
+    width: auto; /* Atur lebar otomatis sesuai konten */
+    max-width: 150px; /* Opsional: batas maksimum lebar */
+    margin: 0 auto; /* Agar tetap berada di tengah */
+    padding: 10px; /* Tambahkan padding jika diperlukan */
+    margin-top:20px;
+    margin-bottom:25px;
+}
 
-  .quote_btn-container a {
+  /* .quote_btn-container a {
     display: none;
-  }
+  } */
 
   .custom_nav-container .nav_search-btn {
     background-position: center;

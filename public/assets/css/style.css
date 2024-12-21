@@ -119,6 +119,9 @@ a:focus {
           box-shadow: none;
 }
 
+
+
+
 .custom_nav-container .nav_search-btn {
   background-image: url(../images/search-icon.png);
   background-size: 22px;
@@ -143,6 +146,7 @@ a:focus {
 
 .custom_nav-container {
   z-index: 99999;
+  background-color:#041c5c;
 }
 
 .navbar-expand-lg .navbar-collapse {
@@ -197,18 +201,27 @@ a:focus {
 }
 
 .quote_btn-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  padding: 6px 15px;
+  margin: 15px 15px;
+  background-color: green; /* Warna hijau sebagai default */
+  border-radius: 5px; /* Opsional: untuk membuat sudut membulat */
+  text-align: center; /* Memastikan teks di tengah */
+  transition: background-color 0.3s ease; /* Animasi perubahan warna */
+ 
 }
 
 .quote_btn-container a {
-  color: #ffffff;
-  margin-right: 25px;
+  color: white; /* Warna teks */
+  text-decoration: none; /* Hilangkan garis bawah */
+  display: block; /* Memastikan area klik menyeluruh */
 }
+
+.quote_btn-container:hover {
+  background-color: blue; /* Warna biru saat hover */
+}
+
+
+
 
 .quote_btn-container a img {
   width: 15px;

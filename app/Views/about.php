@@ -8,10 +8,10 @@
 
     <!-- about section -->
 
-    <section class="about_section ">
+    <section class="about_section">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 ">
                     <div class="img-box">
                         <img src="<?= base_url('assets/images/about-img2.png') ?>" alt="">
                     </div>
@@ -24,7 +24,8 @@
                             </h2>
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et
                             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                         </p>
                         <a href="">
