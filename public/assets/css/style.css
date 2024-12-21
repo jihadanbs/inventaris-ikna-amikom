@@ -202,12 +202,12 @@ a:focus {
 
 .quote_btn-container {
   padding: 6px 15px;
-  margin: 15px 15px;
+  margin: 10px 15px;
   background-color: green; /* Warna hijau sebagai default */
   border-radius: 5px; /* Opsional: untuk membuat sudut membulat */
   text-align: center; /* Memastikan teks di tengah */
   transition: background-color 0.3s ease; /* Animasi perubahan warna */
- 
+  margin-top:15px
 }
 
 .quote_btn-container a {
