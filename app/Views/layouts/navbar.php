@@ -32,7 +32,7 @@
                     </ul>
                 </div>
                 <div class="quote_btn-container ">
-                    <a href="#">Login</a>
+                    <a href="<?= site_url('/authentication/login') ?>">Login</a>
                 </div>
             </div>
         </nav>
