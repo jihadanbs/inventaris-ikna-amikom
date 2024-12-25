@@ -1,3 +1,7 @@
+:root{
+  --biru-latar :#081c5c;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   color: #0c0c0c;
@@ -402,13 +406,13 @@ a:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 35px 60px;
+  padding: 35px 20px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
 .service_section .service_container .box {
-  margin: 25px 10px;
+  margin: 25px 28px;
   min-width: 200px;
   width: 250px;
 }
@@ -429,7 +433,9 @@ a:focus {
 }
 
 .service_section .service_container .box .img-box img {
-  width: 75px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .service_section .service_container .box .detail-box {
@@ -441,6 +447,10 @@ a:focus {
   position: relative;
 }
 
+/* .service_section .service_container .box .detail-box p {
+  text-align: justify;
+} */
+
 .service_section .btn-box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -448,6 +458,7 @@ a:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  gap: 25px; /* Tambahkan jarak antar tombol */
 }
 
 .service_section .btn-box a {
@@ -456,10 +467,15 @@ a:focus {
   background-color: #d8bf36;
   color: #ffffff;
   border-radius: 30px;
+  text-decoration: none; /* Menghapus garis bawah pada link */
+  font-size: 16px; /* Ukuran font untuk tombol */
+  transition: all 0.3s ease;
 }
 
+
 .service_section .btn-box a:hover {
-  background-color: #e0cd61;
+  background-color: #f5f5f5;
+  color: #000000;
 }
 
 .work_section .heading_container {
@@ -545,13 +561,14 @@ a:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 25px 65px;
+  padding: 25px 100px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+      gap: 70px;
 }
 
 .team_section .team_container .box {
-  margin: 35px 45px;
+  margin: 55px 45px;
   min-width: 200px;
   width: 250px;
 }
@@ -597,13 +614,13 @@ a:focus {
   position: relative;
 }
 
-.team_section .team_container .box.b-2 {
+/* .team_section .team_container .box.b-2 {
   margin-top: 130px;
 }
 
 .team_section .team_container .box.b-3 {
   margin-top: 230px;
-}
+} */
 
 .team_section .btn-box {
   display: -webkit-box;
@@ -692,10 +709,10 @@ a:focus {
 }
 
 .footer_bg {
-  background-image: url(../images/footer-bg.png);
+ background-color: var(--biru-latar);
   background-size: cover;
   background-position: right top;
-  padding-top: 250px;
+  padding-top: 50px;
 }
 
 .contact_section {

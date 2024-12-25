@@ -17,7 +17,8 @@
                                             The best marketing
                                         </h1>
                                         <p>
-                                            It is a long established fact that a reader will be distracted by the readable content of a page
+                                            It is a long established fact that a reader will be distracted by the
+                                            readable content of a page
                                             when looking
                                         </p>
                                         <div class="btn-box">
@@ -47,7 +48,8 @@
                                             The best marketing
                                         </h1>
                                         <p>
-                                            It is a long established fact that a reader will be distracted by the readable content of a page
+                                            It is a long established fact that a reader will be distracted by the
+                                            readable content of a page
                                             when looking
                                         </p>
                                         <div class="btn-box">
@@ -77,7 +79,8 @@
                                             The best marketing
                                         </h1>
                                         <p>
-                                            It is a long established fact that a reader will be distracted by the readable content of a page
+                                            It is a long established fact that a reader will be distracted by the
+                                            readable content of a page
                                             when looking
                                         </p>
                                         <div class="btn-box">
@@ -126,11 +129,12 @@
                     <div class="detail-box">
                         <div class="heading_container">
                             <h2>
-                                About Us
+                                Tentang IKNAventory
                             </h2>
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et
                             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                         </p>
                         <a href="">
@@ -145,35 +149,50 @@
     <!-- end about section -->
 
 
-    <!-- service section -->
+    <!-- Kegiatan section -->
     <section class="service_section layout_padding">
         <div class="container-fluid">
             <div class="heading_container">
                 <h2>
-                    Our Services
+                    Kegiatan IKNAventory
                 </h2>
                 <p>
-                    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Dokumentasi beberapa kegiatan yang perbah dilakukan oleh IKNAventory
                 </p>
             </div>
 
             <div class="service_container">
                 <div class="box">
                     <div class="img-box">
-                        <img src="<?= base_url('assets/images/s-1.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/tes.jpg') ?>" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
                             Brand Promotion
                         </h5>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            Lorem ipsum dolor sit
                         </p>
                     </div>
                 </div>
                 <div class="box">
                     <div class="img-box">
-                        <img src="<?= base_url('assets/images/s-2.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/tes.jpg') ?>" alt="">
+                    </div>
+                    <div class="detail-box">
+                        <h5>
+                            Brand Promotion
+                        </h5>
+                        <p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit a sed ea voluptatem
+                            veritatis repellat ex! Necessitatibus eveniet quaerat nisi animi, sint quam facilis
+                            molestias.
+                        </p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="img-box">
+                        <img src="<?= base_url('assets/images/tes2.jpg') ?>" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
@@ -187,7 +206,7 @@
                 </div>
                 <div class="box">
                     <div class="img-box">
-                        <img src="<?= base_url('assets/images/s-3.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/tes3.jpg') ?>" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
@@ -200,7 +219,7 @@
                 </div>
                 <div class="box">
                     <div class="img-box">
-                        <img src="<?= base_url('assets/images/s-4.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/tes2.jpg') ?>" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
@@ -213,7 +232,7 @@
                 </div>
                 <div class="box">
                     <div class="img-box">
-                        <img src="<?= base_url('assets/images/s-5.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/tes3.jpg') ?>" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
@@ -227,16 +246,19 @@
             </div>
             <div class="btn-box">
                 <a href="">
-                    Read More
+                    Back
+                </a>
+
+                <a href="">
+                    Next
                 </a>
             </div>
         </div>
     </section>
-    <!-- end service section -->
+    <!-- end Kegiatan section -->
 
     <!-- work section -->
-
-    <section class="work_section layout_padding">
+    <!-- <section class="work_section layout_padding">
         <div class="container">
             <div class="heading_container">
                 <h2>
@@ -260,7 +282,8 @@
                             </div>
                             <div class="bottom-box">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et
                                     dolore magna aliqua. Ut enim ad minim veniam
                                 </p>
                             </div>
@@ -276,7 +299,8 @@
                             </div>
                             <div class="bottom-box">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et
                                     dolore magna aliqua. Ut enim ad minim veniam
                                 </p>
                             </div>
@@ -296,19 +320,18 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- end work section -->
-
     <!-- team section -->
 
-    <section class="team_section layout_padding2-bottom">
+    <section class="team_section layout_padding2-bottom mt-5">
         <div class="container">
             <div class="heading_container">
                 <h2>
-                    Meet The Team
+                    Pengurus IKNAventory
                 </h2>
                 <p>
-                    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Berikut adalah daftar anggota-anggota pengurus IKNAventory
                 </p>
             </div>
         </div>
@@ -322,7 +345,8 @@
                         Yokit Den
                     </h5>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et
                         dolore
                     </p>
                     <div class="social_box">
@@ -350,7 +374,8 @@
                         Morde Den
                     </h5>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et
                         dolore
                     </p>
                     <div class="social_box">
@@ -378,7 +403,8 @@
                         Marry Doki
                     </h5>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et
                         dolore
                     </p>
                     <div class="social_box">
@@ -397,14 +423,14 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
     <!-- end team section -->
 
     <!-- client section -->
-
-    <section class="client_section layout_padding-bottom">
+    <!-- <section class="client_section layout_padding-bottom">
         <div class="container">
             <div class="heading_container">
                 <h2>
@@ -428,8 +454,10 @@
                                     Normal distribution
                                 </h6>
                                 <p>
-                                    It is a long established fact that a reader will be distracted by the readable content of a page when
-                                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content of a page when
+                                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                    normal
                                     distribution of
                                     letters, as opposed to using 'Content here, content here', making it look
                                 </p>
@@ -449,8 +477,10 @@
                                     Normal distribution
                                 </h6>
                                 <p>
-                                    It is a long established fact that a reader will be distracted by the readable content of a page when
-                                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content of a page when
+                                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                    normal
                                     distribution of
                                     letters, as opposed to using 'Content here, content here', making it look
                                 </p>
@@ -470,8 +500,10 @@
                                     Normal distribution
                                 </h6>
                                 <p>
-                                    It is a long established fact that a reader will be distracted by the readable content of a page when
-                                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                                    It is a long established fact that a reader will be distracted by the readable
+                                    content of a page when
+                                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                    normal
                                     distribution of
                                     letters, as opposed to using 'Content here, content here', making it look
                                 </p>
@@ -491,12 +523,11 @@
             </div>
         </div>
 
-    </section>
-
+    </section> -->
     <!-- end client section -->
 
     <div class="footer_bg">
-        <?= $this->include('layouts/kontak') ?>
+
         <?= $this->include('layouts/info') ?>
         <?= $this->include('layouts/footer') ?>
     </div>
