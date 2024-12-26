@@ -340,19 +340,19 @@
         <nav>
             <div class="nav nav1 nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#nav-home"
-                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">Tab 1</button>
+                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">BPH</button>
                 <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button"
-                    role="tab" aria-controls="nav-profile" aria-selected="false">Tab 2</button>
+                    role="tab" aria-controls="nav-profile" aria-selected="false">Kerohanian</button>
                 <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-contact" type="button"
-                    role="tab" aria-controls="nav-contact" aria-selected="false">Tab 3</button>
+                    role="tab" aria-controls="nav-contact" aria-selected="false">Kerumahtanggaan</button>
                 <button class="nav-link" id="nav-other-tab1" data-toggle="tab" data-target="#nav-other1" type="button"
-                    role="tab" aria-controls="nav-other1" aria-selected="false">Tab 4</button>
+                    role="tab" aria-controls="nav-other1" aria-selected="false">Humas</button>
                 <button class="nav-link" id="nav-other-tab2" data-toggle="tab" data-target="#nav-other2" type="button"
-                    role="tab" aria-controls="nav-other2" aria-selected="false">Tab 5</button>
+                    role="tab" aria-controls="nav-other2" aria-selected="false">Talenta</button>
                 <button class="nav-link" id="nav-other-tab3" data-toggle="tab" data-target="#nav-other3" type="button"
-                    role="tab" aria-controls="nav-other3" aria-selected="false">Tab 6</button>
+                    role="tab" aria-controls="nav-other3" aria-selected="false">Usaha dana</button>
                 <button class="nav-link" id="nav-other-tab4" data-toggle="tab" data-target="#nav-other4" type="button"
-                    role="tab" aria-controls="nav-other4" aria-selected="false">Tab 7</button>
+                    role="tab" aria-controls="nav-other4" aria-selected="false">Litbang</button>
             </div>
         </nav>
 
@@ -483,7 +483,7 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <div class="row g-4">
+                <div class="row g-4" style=" margin:0px 40px;">
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="img-circle rounded-circle overflow-hidden m-4">
@@ -501,7 +501,7 @@
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/team-2.jpg" alt="">
+                                <img class="img-fluid" src="<?= base_url('assets/images/t-2.png') ?>" alt="">
                             </div>
                             <h5 class="mb-0">Full Name</h5>
                             <small>Designation</small>
@@ -515,7 +515,7 @@
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/team-3.jpg" alt="">
+                                <img class="img-fluid" src="<?= base_url('assets/images/t-3.png') ?>" alt="">
                             </div>
                             <h5 class="mb-0">Full Name</h5>
                             <small>Designation</small>
@@ -529,7 +529,7 @@
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="img/team-4.jpg" alt="">
+                                <img class="img-fluid" src="<?= base_url('assets/images/t-1.png') ?>" alt="">
                             </div>
                             <h5 class="mb-0">Full Name</h5>
                             <small>Designation</small>
