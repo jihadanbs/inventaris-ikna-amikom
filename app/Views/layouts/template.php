@@ -9,8 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>IKNAventory</title>
-    <meta name="keywords" content="amikom, AMIKOM, Organisasi IKNA AMIKOM, IKNA AMIKOM YOGYAKARTA, IKNA, inventaris, stok barang, manajemen inventaris, barang IKNA, peminjaman barang, barang rusak, organisasi IKNA, inventaris IKNA, gudang IKNA, inventarisasi, manajemen aset" />
-    <meta name="description" content="Website Inventaris IKNA menyediakan sistem manajemen inventaris yang mudah dan efisien untuk mendata barang, barang rusak, dan peminjaman barang dalam organisasi IKNA." />
+    <meta name="keywords"
+        content="amikom, AMIKOM, Organisasi IKNA AMIKOM, IKNA AMIKOM YOGYAKARTA, IKNA, inventaris, stok barang, manajemen inventaris, barang IKNA, peminjaman barang, barang rusak, organisasi IKNA, inventaris IKNA, gudang IKNA, inventarisasi, manajemen aset" />
+    <meta name="description"
+        content="Website Inventaris IKNA menyediakan sistem manajemen inventaris yang mudah dan efisien untuk mendata barang, barang rusak, dan peminjaman barang dalam organisasi IKNA." />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Organisasi IKNA AMIKOM Yogyakarta" />
     <meta name="language" content="Indonesian" />
@@ -30,7 +32,8 @@
     <meta property="og:title" content="IKNAventory" />
     <meta property="og:url" content="<?= current_url(); ?>" />
     <meta property="og:type" content="website" />
-    <meta property="og:description" content="Website Inventaris IKNA menyediakan sistem manajemen inventaris yang mudah dan efisien untuk mendata barang, barang rusak, dan peminjaman barang dalam organisasi IKNA Universitas Amikom Yogyakarta." />
+    <meta property="og:description"
+        content="Website Inventaris IKNA menyediakan sistem manajemen inventaris yang mudah dan efisien untuk mendata barang, barang rusak, dan peminjaman barang dalam organisasi IKNA Universitas Amikom Yogyakarta." />
     <meta property="og:image" content="<?= base_url('assets/images/logo-ikna.jpg'); ?>" />
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="600" />
@@ -38,7 +41,8 @@
     <!-- Schema.org for Google+ -->
     <meta itemprop="name" content="IKNAventory" />
     <meta itemprop="url" content="<?= current_url(); ?>" />
-    <meta itemprop="description" content="Website Inventaris IKNA menyediakan sistem manajemen inventaris yang mudah dan efisien untuk mendata barang, barang rusak, dan peminjaman barang dalam organisasi IKNA Universitas Amikom Yogyakarta." />
+    <meta itemprop="description"
+        content="Website Inventaris IKNA menyediakan sistem manajemen inventaris yang mudah dan efisien untuk mendata barang, barang rusak, dan peminjaman barang dalam organisasi IKNA Universitas Amikom Yogyakarta." />
     <meta itemprop="thumbnailUrl" content="<?= base_url('assets/images/logo-ikna.jpg'); ?>" />
     <link rel="image_src" href="<?= base_url('assets/images/logo-ikna.jpg'); ?>" />
     <meta itemprop="image" content="<?= base_url('assets/images/logo-ikna.jpg'); ?>" />
@@ -48,7 +52,8 @@
     <meta name="twitter:image" content="<?= base_url('assets/images/logo-ikna.jpg'); ?>" />
     <meta name="twitter:url" content="<?= current_url(); ?>" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:description" content="Website Inventaris IKNA menyediakan sistem manajemen inventaris yang mudah dan efisien untuk mendata barang, barang rusak, dan peminjaman barang dalam organisasi IKNA Universitas Amikom Yogyakarta." />
+    <meta name="twitter:description"
+        content="Website Inventaris IKNA menyediakan sistem manajemen inventaris yang mudah dan efisien untuk mendata barang, barang rusak, dan peminjaman barang dalam organisasi IKNA Universitas Amikom Yogyakarta." />
 
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-src 'self' https://www.youtube.com;"> -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -57,7 +62,8 @@
     <!-- End SEO -->
 
     <!-- slider stylesheet -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
     <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/bootstrap.css') ?>" />
     <!-- fonts style -->
@@ -66,4 +72,8 @@
     <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet" />
     <!-- responsive style -->
     <link href="<?= base_url('assets/css/responsive.css') ?>" rel="stylesheet" />
+
+    <!-- ICON galeri baru -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 </head>

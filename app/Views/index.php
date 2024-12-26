@@ -1,5 +1,6 @@
 <?= $this->include('layouts/template') ?>
 
+
 <body>
 
     <div class="hero_area">
@@ -337,18 +338,57 @@
         </div>
 
         <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <div class="nav nav1 nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#nav-home"
-                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">BPH</button>
+                    type="button" role="tab" aria-controls="nav-home" aria-selected="true">Tab 1</button>
                 <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#nav-profile" type="button"
-                    role="tab" aria-controls="nav-profile" aria-selected="false">Departemen Kerohanian</button>
+                    role="tab" aria-controls="nav-profile" aria-selected="false">Tab 2</button>
                 <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#nav-contact" type="button"
-                    role="tab" aria-controls="nav-contact" aria-selected="false">Departemen Kerumahtanggaan</button>
+                    role="tab" aria-controls="nav-contact" aria-selected="false">Tab 3</button>
+                <button class="nav-link" id="nav-other-tab1" data-toggle="tab" data-target="#nav-other1" type="button"
+                    role="tab" aria-controls="nav-other1" aria-selected="false">Tab 4</button>
+                <button class="nav-link" id="nav-other-tab2" data-toggle="tab" data-target="#nav-other2" type="button"
+                    role="tab" aria-controls="nav-other2" aria-selected="false">Tab 5</button>
+                <button class="nav-link" id="nav-other-tab3" data-toggle="tab" data-target="#nav-other3" type="button"
+                    role="tab" aria-controls="nav-other3" aria-selected="false">Tab 6</button>
+                <button class="nav-link" id="nav-other-tab4" data-toggle="tab" data-target="#nav-other4" type="button"
+                    role="tab" aria-controls="nav-other4" aria-selected="false">Tab 7</button>
             </div>
         </nav>
+
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="team_container">
+                    <div class="box b-1">
+                        <div class="img-box">
+                            <img src="<?= base_url('assets/images/t-1.png') ?>" alt="">
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                Yokit Den
+                            </h5>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut
+                                labore et
+                                dolore
+                            </p>
+                            <div class="social_box">
+                                <a href="">
+                                    <img src="<?= base_url('assets/images/fb.png') ?>" alt="">
+                                </a>
+                                <a href="">
+                                    <img src="<?= base_url('assets/images/twitter.png') ?>" alt="">
+                                </a>
+                                <a href="">
+                                    <img src="<?= base_url('assets/images/linkedin.png') ?>" alt="">
+                                </a>
+                                <a href="">
+                                    <img src="<?= base_url('assets/images/insta.png') ?>" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="box b-1">
                         <div class="img-box">
                             <img src="<?= base_url('assets/images/t-1.png') ?>" alt="">
@@ -442,7 +482,66 @@
 
                 </div>
             </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="team-item text-center rounded overflow-hidden">
+                            <div class="img-circle rounded-circle overflow-hidden m-4">
+                                <img class="img-fluid" src="<?= base_url('assets/images/t-1.png') ?>" alt="">
+                            </div>
+                            <h5 class="mb-0">Full Name</h5>
+                            <small>Designation</small>
+                            <div class="d-flex justify-content-center mt-3">
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="team-item text-center rounded overflow-hidden">
+                            <div class="rounded-circle overflow-hidden m-4">
+                                <img class="img-fluid" src="img/team-2.jpg" alt="">
+                            </div>
+                            <h5 class="mb-0">Full Name</h5>
+                            <small>Designation</small>
+                            <div class="d-flex justify-content-center mt-3">
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                        <div class="team-item text-center rounded overflow-hidden">
+                            <div class="rounded-circle overflow-hidden m-4">
+                                <img class="img-fluid" src="img/team-3.jpg" alt="">
+                            </div>
+                            <h5 class="mb-0">Full Name</h5>
+                            <small>Designation</small>
+                            <div class="d-flex justify-content-center mt-3">
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                        <div class="team-item text-center rounded overflow-hidden">
+                            <div class="rounded-circle overflow-hidden m-4">
+                                <img class="img-fluid" src="img/team-4.jpg" alt="">
+                            </div>
+                            <h5 class="mb-0">Full Name</h5>
+                            <small>Designation</small>
+                            <div class="d-flex justify-content-center mt-3">
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">121212</div>
         </div>
     </section>

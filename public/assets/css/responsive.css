@@ -1,8 +1,8 @@
-@media (max-width: 1120px) {
+/* @media (max-width: 1120px) {
   .team_section .team_container .box.b-3 {
     margin-top: 100px;
   }
-}
+} */
 
 @media (max-width: 992px) {
 
@@ -88,9 +88,9 @@
     margin-top: 35px;
   }
 
-  .team_section .team_container .box.b-2 {
+  /* .team_section .team_container .box.b-2 {
     margin-top: 100px;
-  }
+  } */
 
   .client_section {
     text-align: center;
