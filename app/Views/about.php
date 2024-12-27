@@ -40,7 +40,7 @@
     <!-- end about section -->
 
     <div class="footer_bg">
-        <?= $this->include('layouts/kontak') ?>
+
         <?= $this->include('layouts/info') ?>
         <?= $this->include('layouts/footer') ?>
     </div>

@@ -11,30 +11,43 @@
         <div class="container-fluid">
             <div class="heading_container">
                 <h2>
-                    Our Services
+                    Kegiatan IKNAventory
                 </h2>
                 <p>
-                    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Dokumentasi beberapa kegiatan yang perbah dilakukan oleh IKNAventory
                 </p>
             </div>
 
             <div class="service_container">
                 <div class="box">
                     <div class="img-box">
-                        <img src="<?= base_url('assets/images/s-1.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/tes.jpg') ?>" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
                             Brand Promotion
                         </h5>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                            Lorem ipsum dolor sit
                         </p>
                     </div>
                 </div>
                 <div class="box">
                     <div class="img-box">
-                        <img src="<?= base_url('assets/images/s-2.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/tes.jpg') ?>" alt="">
+                    </div>
+                    <div class="detail-box">
+                        <h5>
+                            Brand Promotion
+                        </h5>
+                        <p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        </p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="img-box">
+                        <img src="<?= base_url('assets/images/tes2.jpg') ?>" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
@@ -48,7 +61,7 @@
                 </div>
                 <div class="box">
                     <div class="img-box">
-                        <img src="<?= base_url('assets/images/s-3.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/tes3.jpg') ?>" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
@@ -61,7 +74,7 @@
                 </div>
                 <div class="box">
                     <div class="img-box">
-                        <img src="<?= base_url('assets/images/s-4.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/tes2.jpg') ?>" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
@@ -74,7 +87,7 @@
                 </div>
                 <div class="box">
                     <div class="img-box">
-                        <img src="<?= base_url('assets/images/s-5.png') ?>" alt="">
+                        <img src="<?= base_url('assets/images/tes3.jpg') ?>" alt="">
                     </div>
                     <div class="detail-box">
                         <h5>
@@ -88,7 +101,11 @@
             </div>
             <div class="btn-box">
                 <a href="">
-                    Read More
+                    Back
+                </a>
+
+                <a href="">
+                    Next
                 </a>
             </div>
         </div>
@@ -96,7 +113,7 @@
     <!-- end service section -->
 
     <div class="footer_bg">
-        <?= $this->include('layouts/kontak') ?>
+
         <?= $this->include('layouts/info') ?>
         <?= $this->include('layouts/footer') ?>
     </div>
