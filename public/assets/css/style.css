@@ -104,6 +104,7 @@ body {
 
 .custom_nav-container .navbar-nav .nav-item.active .nav-link, .custom_nav-container .navbar-nav .nav-item:hover .nav-link {
   background-color: #d8bf36;
+  color: var(--biru-latar);
 }
 
 a,
@@ -218,17 +219,17 @@ a:focus {
 }
 
 .quote_btn-container a {
-  color: white; /* Warna teks */
+  color: var(--biru-latar);
   text-decoration: none; /* Hilangkan garis bawah */
   display: block; /* Memastikan area klik menyeluruh */
+  color: #ddd;
 }
 
 .quote_btn-container:hover {
   background-color: var(--biru-latar); /* Warna biru saat hover */
   border: 1px solid white;
+ 
 }
-
-
 
 
 .quote_btn-container a img {
@@ -973,8 +974,8 @@ a:focus {
 
 .nav1 .nav-link:hover {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color:var(--kuning-secondary);
+  border-color:var(--kuning-secondary);
   box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
 

@@ -15,20 +15,20 @@
                                 <div class="col-md-6 ">
                                     <div class="detail_box">
                                         <h1>
-                                            The best marketing
+                                            IKNAvenastory
                                         </h1>
-                                        <p>
+                                        <!-- <p>
                                             It is a long established fact that a reader will be distracted by the
                                             readable content of a page
                                             when looking
-                                        </p>
+                                        </p> -->
                                         <div class="btn-box">
                                             <a href="#contactLink" class="btn-1">
                                                 Kontak Kami
                                             </a>
-                                            <a href="" class="btn-2">
+                                            <!-- <a href="" class="btn-2">
                                                 Beri Review
-                                            </a>
+                                            </a> -->
                                         </div>
                                     </div>
                                 </div>
@@ -40,77 +40,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item ">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 ">
-                                    <div class="detail_box">
-                                        <h1>
-                                            The best marketing
-                                        </h1>
-                                        <p>
-                                            It is a long established fact that a reader will be distracted by the
-                                            readable content of a page
-                                            when looking
-                                        </p>
-                                        <div class="btn-box">
-                                            <a href="" class="btn-1">
-                                                Kontak Kami
-                                            </a>
-                                            <a href="" class="btn-2">
-                                                Beri Review
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="img-box">
-                                        <img src="<?= base_url('assets/images/slider-img.png') ?>" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item ">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-6 ">
-                                    <div class="detail_box">
-                                        <h1>
-                                            The best marketing
-                                        </h1>
-                                        <p>
-                                            It is a long established fact that a reader will be distracted by the
-                                            readable content of a page
-                                            when looking
-                                        </p>
-                                        <div class="btn-box">
-                                            <a href="" class="btn-1">
-                                                Kontak Kami
-                                            </a>
-                                            <a href="" class="btn-2">
-                                                Beri Review
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="img-box">
-                                        <img src="<?= base_url('assets/images/slider-img.png') ?>" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
-                <div class="carousel_btn-container">
+                <!-- <div class="carousel_btn-container">
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                         <span class="sr-only">Next</span>
                     </a>
-                </div>
+                </div> -->
             </div>
         </section>
         <!-- end slider section -->
@@ -134,9 +73,8 @@
                             </h2>
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            UKM IKNA didirikan di Yogyakarta pada tanggal 14 November 1995 dan diresmikan tanggal 7
+                            Desember 2011 oleh STMIK AMIKOM Yogyakarta (sekarang menjadi Universitas AMIKOM)
                         </p>
                         <a href="">
                             Read More
@@ -279,7 +217,11 @@
                 <button class="nav-link" id="nav-other-tab1" data-toggle="tab" data-target="#nav-other1" type="button"
                     role="tab" aria-controls="nav-other1" aria-selected="false">Humas</button>
                 <button class="nav-link" id="nav-other-tab2" data-toggle="tab" data-target="#nav-other2" type="button"
-                    role="tab" aria-controls="nav-other2" aria-selected="false">Talenta</button>
+                    role="tab" aria-controls="nav-other2" aria-selected="false">Talenta Olahraga</button>
+                <button class="nav-link" id="nav-other-tab2" data-toggle="tab" data-target="#nav-other2" type="button"
+                    role="tab" aria-controls="nav-other2" aria-selected="false">Talenta Musik</button>
+                <button class="nav-link" id="nav-other-tab2" data-toggle="tab" data-target="#nav-other2" type="button"
+                    role="tab" aria-controls="nav-other2" aria-selected="false">Talenta Pertunjukan</button>
                 <button class="nav-link" id="nav-other-tab3" data-toggle="tab" data-target="#nav-other3" type="button"
                     role="tab" aria-controls="nav-other3" aria-selected="false">Usaha dana</button>
                 <button class="nav-link" id="nav-other-tab4" data-toggle="tab" data-target="#nav-other4" type="button"
@@ -326,25 +268,9 @@
                                 Yokit Den
                             </h5>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore et
-                                dolore
+                                Lorem
                             </p>
-                            <div class="social_box">
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/fb.png') ?>" alt="">
-                                </a>
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/twitter.png') ?>" alt="">
-                                </a>
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/linkedin.png') ?>" alt="">
-                                </a>
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/insta.png') ?>" alt="">
-                                </a>
-                            </div>
+
                         </div>
                     </div>
                     <div class="box b-2">
@@ -356,25 +282,9 @@
                                 Morde Den
                             </h5>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore et
-                                dolore
+                                Lorem
                             </p>
-                            <div class="social_box">
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/fb.png') ?>" alt="">
-                                </a>
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/twitter.png') ?>" alt="">
-                                </a>
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/linkedin.png') ?>" alt="">
-                                </a>
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/insta.png') ?>" alt="">
-                                </a>
-                            </div>
+
                         </div>
                     </div>
                     <div class="box b-3">
@@ -386,25 +296,9 @@
                                 Marry Doki
                             </h5>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore et
-                                dolore
+                                Lorem
                             </p>
-                            <div class="social_box">
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/fb.png') ?>" alt="">
-                                </a>
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/twitter.png') ?>" alt="">
-                                </a>
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/linkedin.png') ?>" alt="">
-                                </a>
-                                <a href="">
-                                    <img src="<?= base_url('assets/images/insta.png') ?>" alt="">
-                                </a>
-                            </div>
+
                         </div>
                     </div>
 
