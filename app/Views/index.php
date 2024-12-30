@@ -172,7 +172,7 @@
                             Brand Promotion
                         </h5>
                         <p>
-                            Lorem ipsum dolor sit
+
                         </p>
                     </div>
                 </div>
@@ -185,7 +185,7 @@
                             Brand Promotion
                         </h5>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore qui animi quos.
                         </p>
                     </div>
                 </div>
@@ -299,12 +299,9 @@
                                 Yokit Den
                             </h5>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore et
-                                dolore
+                                Ketua Umum
                             </p>
-                            <div class="social_box">
+                            <!-- <div class="social_box">
                                 <a href="">
                                     <img src="<?= base_url('assets/images/fb.png') ?>" alt="">
                                 </a>
@@ -317,7 +314,7 @@
                                 <a href="">
                                     <img src="<?= base_url('assets/images/insta.png') ?>" alt="">
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="box b-1">

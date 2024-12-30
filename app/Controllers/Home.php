@@ -52,4 +52,15 @@ class Home extends BaseController
 
         return view('service', $data);
     }
+
+
+    public function kontak()
+    {
+
+
+        $data = [];
+
+
+        return view('kontak', $data);
+    }
 }

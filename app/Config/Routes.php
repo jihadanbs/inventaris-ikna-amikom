@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->GET('/', 'Home::index', ['namespace' => 'App\Controllers']);
 $routes->GET('/about', 'Home::about', ['namespace' => 'App\Controllers']);
 $routes->GET('/service', 'Home::service', ['namespace' => 'App\Controllers']);
+$routes->GET('/kontak', 'Home::kontak', ['namespace' => 'App\Controllers']);
 
 $routes->GET('/error404', 'Home::error', ['namespace' => 'App\Controllers']);
 $routes->GET('/servererror', 'Home::servererror', ['namespace' => 'App\Controllers']);

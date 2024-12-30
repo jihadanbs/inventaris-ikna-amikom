@@ -208,7 +208,7 @@ a:focus {
 .quote_btn-container {
   padding: 6px 15px;
   margin: 10px 15px;
-  background-color: green; /* Warna hijau sebagai default */
+  background-color: var(--kuning-secondary);
   border-radius: 5px; /* Opsional: untuk membuat sudut membulat */
   text-align: center; /* Memastikan teks di tengah */
   transition: background-color 0.3s ease; /* Animasi perubahan warna */
@@ -716,7 +716,7 @@ a:focus {
  background-color: var(--biru-latar);
   background-size: cover;
   background-position: right top;
-  padding-top: 50px;
+  /* padding-top: 50px; */
 }
 
 .contact_section {

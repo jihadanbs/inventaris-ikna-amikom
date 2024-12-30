@@ -26,8 +26,8 @@
                         <li class="nav-item <?= uri_string() == 'service' ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('/service') ?>">galeri</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contactLink">Kontak Kami</a>
+                        <li class="nav-item <?= uri_string() == 'kontak' ? 'active' : '' ?>">
+                            <a class="nav-link" href="<?= site_url('/kontak') ?>">Kontak Kami</a>
                         </li>
                     </ul>
                 </div>
