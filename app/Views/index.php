@@ -15,7 +15,7 @@
                                 <div class="col-md-6 ">
                                     <div class="detail_box">
                                         <h1>
-                                            IKNAvenastory
+                                            IKNAventory
                                         </h1>
                                         <!-- <p>
                                             It is a long established fact that a reader will be distracted by the
@@ -76,7 +76,7 @@
                             UKM IKNA didirikan di Yogyakarta pada tanggal 14 November 1995 dan diresmikan tanggal 7
                             Desember 2011 oleh STMIK AMIKOM Yogyakarta (sekarang menjadi Universitas AMIKOM)
                         </p>
-                        <a href="">
+                        <a href="<?= site_url('/about') ?>">
                             Read More
                         </a>
                     </div>
@@ -92,104 +92,118 @@
     <section class="service_section layout_padding">
         <div class="container-fluid">
             <div class="heading_container">
-                <h2>
-                    Kegiatan IKNAventory
-                </h2>
-                <p>
-                    Dokumentasi beberapa kegiatan yang perbah dilakukan oleh IKNAventory
-                </p>
+                <h2>Kegiatan IKNAventory</h2>
+                <p>Dokumentasi beberapa kegiatan yang pernah dilakukan oleh IKNAventory</p>
             </div>
 
-            <div class="service_container">
-                <div class="box">
-                    <div class="img-box">
-                        <img src="<?= base_url('assets/images/tes.jpg') ?>" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Brand Promotion
-                        </h5>
-                        <p>
+            <div class="service_container row container-fluid">
+                <!-- Card 1 -->
 
-                        </p>
+                <div class="box" data-toggle="modal" data-target="#modal1">
+                    <div class="img-box">
+                        <img src="<?= base_url('assets/images/tes.jpg') ?>" alt="" class="img-fluid">
+                    </div>
+                    <div class="detail-box text-center">
+                        <h5>Kegiatan 1</h5>
                     </div>
                 </div>
-                <div class="box">
-                    <div class="img-box">
-                        <img src="<?= base_url('assets/images/tes.jpg') ?>" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Brand Promotion
-                        </h5>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore qui animi quos.
-                        </p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="img-box">
-                        <img src="<?= base_url('assets/images/tes2.jpg') ?>" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Video Marketing
 
-                        </h5>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        </p>
+
+                <!-- Card 2 -->
+
+                <div class="box" data-toggle="modal" data-target="#modal2">
+                    <div class="img-box">
+                        <img src="<?= base_url('assets/images/tes2.jpg') ?>" alt="" class="img-fluid">
+                    </div>
+                    <div class="detail-box text-center">
+                        <h5>Kegiatan 2</h5>
                     </div>
                 </div>
-                <div class="box">
+
+
+                <!-- Card 3 -->
+
+                <div class="box" data-toggle="modal" data-target="#modal3">
                     <div class="img-box">
-                        <img src="<?= base_url('assets/images/tes3.jpg') ?>" alt="">
+                        <img src="<?= base_url('assets/images/tes3.jpg') ?>" alt="" class="img-fluid">
                     </div>
-                    <div class="detail-box">
-                        <h5>
-                            Site Analysis
-                        </h5>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        </p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="img-box">
-                        <img src="<?= base_url('assets/images/tes2.jpg') ?>" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            Social Media Marketing
-                        </h5>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        </p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="img-box">
-                        <img src="<?= base_url('assets/images/tes3.jpg') ?>" alt="">
-                    </div>
-                    <div class="detail-box">
-                        <h5>
-                            SEO Optimization
-                        </h5>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        </p>
+                    <div class="detail-box text-center">
+                        <h5>Kegiatan 3</h5>
                     </div>
                 </div>
             </div>
+
+
+
+
+
             <div class="btn-box">
-                <a href="">
+                <a href="<?= site_url('/service') ?>">
                     Lebih lanjut
                 </a>
-
-
             </div>
         </div>
     </section>
+
+
+    <!-- Modal 1 -->
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="<?= base_url('assets/images/tes.jpg') ?>" alt="Brand Promotion" class="img-fluid mb-3">
+                    <h5 class="modal-title font-weight-bold d-flex justify-content-center">Kegiatan 1</h5>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus eligendi maxime aliquid minus
+                        deleniti odit? Illo facere enim inventore quae?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modalLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="<?= base_url('assets/images/tes2.jpg') ?>" alt="Video Marketing" class="img-fluid mb-3">
+                    <h5 class="modal-title font-weight-bold d-flex justify-content-center">Kegiatan 2</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis similique accusamus voluptas
+                        fugiat nostrum tenetur non accusantium, nobis libero numquam!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="modalLabel3" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="<?= base_url('assets/images/tes3.jpg') ?>" alt="Site Analysis" class="img-fluid mb-3">
+                    <h5 class="modal-title font-weight-bold d-flex justify-content-center">kegiatan 3</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dignissimos iure facere! Eius,
+                        accusamus praesentium expedita dolore blanditiis fugit eveniet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- end Kegiatan section -->
 
 

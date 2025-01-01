@@ -209,12 +209,12 @@ a:focus {
 .quote_btn-container {
   padding: 6px 15px;
   margin: 10px 15px;
-  background-color: var(--kuning-secondary);
-  border-radius: 5px; /* Opsional: untuk membuat sudut membulat */
+  background-color: var(--biru-latar);
+  border-radius: 5px; 
   text-align: center; /* Memastikan teks di tengah */
   transition: background-color 0.3s ease; /* Animasi perubahan warna */
   margin-top:15px;
-  border: 1px solid ;
+  border: 1px solid white ;
   transition: 500ms;
 }
 
@@ -226,7 +226,7 @@ a:focus {
 }
 
 .quote_btn-container:hover {
-  background-color: var(--biru-latar); /* Warna biru saat hover */
+  background-color: var(--kuning-secondary); /* Warna biru saat hover */
   border: 1px solid white;
  
 }
@@ -236,8 +236,8 @@ a:focus {
   width: 15px;
   margin: 0 25px;
 }
-
 /*end header section*/
+
 /* slider section */
 .slider_section {
   height: calc(100% - 80px);
@@ -405,7 +405,7 @@ a:focus {
 }
 
 .service_section .service_container {
-  display: -webkit-box;
+  display: -webkit-box; 
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
@@ -482,6 +482,41 @@ a:focus {
   background-color: #f5f5f5;
   color: #000000;
 }
+
+
+/* MODAL KEGIATAN */
+.modal-content {
+  margin-top: 50px;
+}
+
+.modal-body {
+  max-height: 70vh; /* Limits the height to 70% of the viewport */
+  overflow-y: auto; /* Enables vertical scrolling */
+}
+
+
+.img-box img {
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.service_container .box:hover .img-box img {
+  transform: scale(1.05); /* Membesarkan gambar */
+}
+
+.box {
+  cursor: pointer;
+}
+
+.detail-box h5 {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+
 
 .work_section .heading_container {
   margin-bottom: 45px;
@@ -917,8 +952,11 @@ a:focus {
 }
 
 .info_section .info_form .social_box a svg{
-  
-  color: white;
+  color: #9c9c9c;
+}
+
+.info_section .info_form .social_box a svg:hover{
+  color: #ffffff;
 }
 
 
