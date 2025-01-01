@@ -133,10 +133,6 @@
                 </div>
             </div>
 
-
-
-
-
             <div class="btn-box">
                 <a href="<?= site_url('/service') ?>">
                     Lebih lanjut

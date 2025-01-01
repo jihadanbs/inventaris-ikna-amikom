@@ -20,17 +20,16 @@
                     <div class="detail-box">
                         <div class="heading_container">
                             <h2>
-                                About Us
+                                Tentang IKNAventory
                             </h2>
                         </div>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                            UKM IKNA didirikan di Yogyakarta pada tanggal 14 November 1995 dan diresmikan tanggal 7
+                            Desember 2011 oleh STMIK AMIKOM Yogyakarta (sekarang menjadi Universitas AMIKOM)
                         </p>
-                        <a href="">
+                        <!-- <a href="">
                             Read More
-                        </a>
+                        </a -->
                     </div>
                 </div>
             </div>
