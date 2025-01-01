@@ -475,7 +475,7 @@ a:focus {
   text-decoration: none; /* Menghapus garis bawah pada link */
   font-size: 16px; /* Ukuran font untuk tombol */
   transition: all 0.3s ease;
-  border:1px solid;
+  border:1px solid ;
 }
 
 
@@ -748,6 +748,41 @@ a:focus {
 .client_section .carousel_btn-container .carousel-control-next {
   background-image: url(../images/next-white.png);
 }
+
+
+
+.kontak_section .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.kontak_section .card:hover {
+  transform: translateY(-5px);
+  /* Mengangkat card ke atas */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  /* Efek bayangan */
+}
+
+.kontak_section .card-body {
+  transition: color 0.3s ease;
+}
+
+.kontak_section .card:hover .card-body h5 {
+  color: #007bff;
+  /* Ubah warna judul saat hover */
+}
+
+.kontak_section .card:hover svg {
+
+  /* Sedikit memutar icon saat hover */
+  transition: transform 0.3s ease;
+}
+
+.kontak_section .card:hover i {
+  transform: scale(1.2);
+  /* Perbesar icon sedikit saat hover */
+  transition: transform 0.3s ease;
+}
+
 
 .footer_bg {
  background-color: var(--biru-latar);
