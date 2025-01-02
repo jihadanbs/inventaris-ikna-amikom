@@ -603,13 +603,14 @@ a:focus {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 25px 25px;
+  margin-bottom: 50px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
       gap: 85px;
 }
 
 .team_section .team_container .box {
-  margin: 55px 15px;
+  margin: 55px 15px 0px 15px;
   /* min-width: 100px; */
   width: 180px;
 }

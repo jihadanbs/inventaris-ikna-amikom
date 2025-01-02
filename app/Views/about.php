@@ -7,7 +7,6 @@
     </div>
 
     <!-- about section -->
-
     <section class="about_section">
         <div class="container">
             <div class="row">
@@ -27,9 +26,6 @@
                             UKM IKNA didirikan di Yogyakarta pada tanggal 14 November 1995 dan diresmikan tanggal 7
                             Desember 2011 oleh STMIK AMIKOM Yogyakarta (sekarang menjadi Universitas AMIKOM)
                         </p>
-                        <!-- <a href="">
-                            Read More
-                        </a -->
                     </div>
                 </div>
             </div>
@@ -37,7 +33,6 @@
     </section>
 
     <!-- end about section -->
-
     <div class="footer_bg">
 
         <?= $this->include('layouts/info') ?>

@@ -1,15 +1,11 @@
 <?= $this->include('layouts/template') ?>
 
 <body class="sub_page">
-    <style>
-    </style>
-
-
     <div class="hero_area">
         <?= $this->include('layouts/navbar') ?>
     </div>
 
-    <!-- service section -->
+    <!--Star Kontak section -->
     <section class="kontak_section layout_padding">
         <div class="container-fluid text-center">
             <!-- Judul -->
@@ -53,11 +49,9 @@
             </div>
         </div>
     </section>
-
-    <!-- end service section -->
+    <!-- end KONATK section -->
 
     <div class="footer_bg">
-
         <?= $this->include('layouts/info') ?>
         <?= $this->include('layouts/footer') ?>
     </div>

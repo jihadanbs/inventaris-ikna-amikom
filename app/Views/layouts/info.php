@@ -39,14 +39,6 @@
                 <h4>
                     DETAIL KONTAK
                 </h4>
-                <!-- <a href="">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/telephone-white.png') ?>" width="12px" alt="">
-                        </div>
-                        <p>
-                            +62 1234567890
-                        </p>
-                    </a> -->
                 <a href="">
                     <div class="img-box">
                         <img src="<?= base_url('assets/images/envelope-white.png') ?>" width="18px" alt="">
