@@ -222,11 +222,11 @@
                 <div class="team_container">
                     <div class="box b-1">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-1.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/bph/f1.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Yokit Den
+                                Dandi
                             </h5>
                             <p>
                                 Ketua Umum
@@ -235,11 +235,11 @@
                     </div>
                     <div class="box b-1">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-1.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/bph/f3.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Yokit Den
+                                Ariel
                             </h5>
                             <p>
                                 Wakil ketua
@@ -249,11 +249,11 @@
                     </div>
                     <div class="box b-2">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-2.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/bph/f2.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Morde Den
+                                Anjani
                             </h5>
                             <p>
                                 Sekretaris
@@ -263,11 +263,11 @@
                     </div>
                     <div class="box b-3">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-3.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/bph/f4.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Marry Doki
+                                Anggi
                             </h5>
                             <p>
                                 Bendahara
@@ -282,11 +282,11 @@
                 <div class="team_container">
                     <div class="box b-1">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-1.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/kerohanian/f1.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Yokit Den
+                                Dave
                             </h5>
                             <p>
                                 Anggota 1
@@ -295,11 +295,11 @@
                     </div>
                     <div class="box b-1">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-1.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/kerohanian/f2.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                zakan yur
+                                Fanya
                             </h5>
                             <p>
                                 Anggota 2
@@ -308,11 +308,11 @@
                     </div>
                     <div class="box b-2">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-2.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/kerohanian/f3.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Morde Den
+                                Deta
                             </h5>
                             <p>
                                 Pengurus 3
@@ -321,11 +321,11 @@
                     </div>
                     <div class="box b-3">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-3.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/kerohanian/f4.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Marry Doki
+                                Dede
                             </h5>
                             <p>
                                 Pengurus 4
@@ -340,11 +340,11 @@
                 <div class="team_container">
                     <div class="box b-1">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-1.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/kerumahtanggaan/f1.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Yokit Den
+                                Hera
                             </h5>
                             <p>
                                 Anggota 1
@@ -353,11 +353,11 @@
                     </div>
                     <div class="box b-1">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-1.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/kerumahtanggaan/f2.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                zakan yur
+                                Kristin
                             </h5>
                             <p>
                                 Anggota 2
@@ -366,11 +366,11 @@
                     </div>
                     <div class="box b-2">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-2.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/kerumahtanggaan/f3.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Morde Den
+                                Ikne
                             </h5>
                             <p>
                                 Pengurus 3
@@ -379,11 +379,11 @@
                     </div>
                     <div class="box b-3">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/t-3.png') ?>" alt="">
+                            <img src="<?= base_url('assets/images/kerumahtanggaan/f4.JPG') ?>" alt="">
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Marry Doki
+                                indy
                             </h5>
                             <p>
                                 Pengurus 4
