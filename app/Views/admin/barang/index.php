@@ -128,12 +128,12 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($tb_barang as $row) : ?>
                                         <tr>
-                                            <td data-field="id_barang" style="width: 2px" scope="row"><?= $i++; ?></td>
-                                            <td data-field="nama_barang"><?= truncateText($row['nama_barang'], 70); ?></td>
-                                            <td data-field="nama_kategori"><?= $row['nama_kategori']; ?></td>
-                                            <td data-field="jumlah_total"><?= $row['jumlah_total']; ?></td>
-                                            <td data-field="tanggal_masuk"><?= $row['tanggal_masuk']; ?></td>
-                                            <td data-field="tanggal_keluar"><?= $row['tanggal_keluar']; ?></td>
+                                            <td style="width: 2px" scope="row"><?= $i++; ?></td>
+                                            <td><?= truncateText($row['nama_barang'], 70); ?></td>
+                                            <td><?= $row['nama_kategori']; ?></td>
+                                            <td><?= $row['jumlah_total']; ?></td>
+                                            <td><?= $row['tanggal_masuk']; ?></td>
+                                            <td><?= $row['tanggal_keluar']; ?></td>
                                             <td style="width: 155px">
                                                 <a href="<?= site_url('admin/barang/cek_data/' . $row['slug']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang'] ?>">

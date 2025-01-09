@@ -88,22 +88,34 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow">
+                    <a href="barang">
                         <i data-feather="package"></i>
-                        <span data-key="t-components">Barang IKNA</span>
+                        <span data-key="t-dashboard">Barang IKNA</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i data-feather="refresh-cw"></i>
+                        <span data-key="t-components">Aktivitas Barang</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="barang" data-key="t-apps">Data Barang</a></li>
-                        <li><a href="barang_baik" data-key="t-apps">Barang Kondisi Baik</a></li>
-                        <li><a href="barang_rusak" data-key="t-apps">Barang Kondisi Rusak</a></li>
+                        <li><a href="barang_masuk" data-key="t-apps">Data Barang Masuk</a></li>
+                        <li><a href="barang_keluar" data-key="t-apps">Data Barang Keluar</a></li>
+                        <li><a href="barang_baru" data-key="t-apps">Data Barang Baru</a></li>
+                        <li><a href="barang_bekas" data-key="t-apps">Data Barang Bekas</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="peminjaman">
-                        <i data-feather="refresh-cw"></i>
-                        <span data-key="t-dashboard">Peminjaman</span>
+                    <a href="javascript: void(0);" class="has-arrow">
+                        <i data-feather="codesandbox"></i>
+                        <span data-key="t-components">Kondisi Barang</span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="barang_baik" data-key="t-apps">Barang Kondisi Baik</a></li>
+                        <li><a href="barang_rusak" data-key="t-apps">Barang Kondisi Rusak</a></li>
+                    </ul>
                 </li>
 
                 <li>
@@ -114,9 +126,23 @@
                 </li>
 
                 <li>
+                    <a href="peminjaman">
+                        <i data-feather="shopping-bag"></i>
+                        <span data-key="t-dashboard">Peminjaman</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="foto">
+                        <i data-feather="user-check"></i>
+                        <span data-key="t-dashboard">Anggota IKNA</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="kegiatan">
                         <i data-feather="camera"></i>
-                        <span data-key="t-dashboard">Foto IKNA</span>
+                        <span data-key="t-dashboard">Kegiatan IKNA</span>
                     </a>
                 </li>
 
@@ -124,13 +150,6 @@
                     <a href="faq">
                         <i data-feather="help-circle"></i>
                         <span data-key="t-dashboard">FAQ</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="feedback">
-                        <i data-feather="user-check"></i>
-                        <span data-key="t-dashboard">Feedback Pengunjung</span>
                     </a>
                 </li>
 
@@ -155,6 +174,16 @@
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
+                        <i data-feather="user"></i>
+                        <span data-key="t-components">Master Anggota</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="kategori_anggota" data-key="t-apps">Kategori Anggota</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="disc"></i>
                         <span data-key="t-components">Master FAQ</span>
                     </a>
@@ -163,18 +192,6 @@
                     </ul>
                 </li>
             </ul>
-
-            <!-- bisa untuk profil ni nanti -->
-            <!-- <div class="card sidebar-alert border-0 text-center mx-4 mb-0 mt-5">
-                <div class="card-body">
-                    <img src="<?= base_url('assets/admin/images/giftbox.png') ?>" alt="">
-                    <div class="mt-4">
-                        <h5 class="alertcard-title font-size-16">Unlimited Access</h5>
-                        <p class="font-size-13">Upgrade your plan from a Free trial, to select ‘Business Plan’.</p>
-                        <a href="#!" class="btn btn-primary mt-2">Upgrade Now</a>
-                    </div>
-                </div>
-            </div> -->
 
         </div>
         <!-- Sidebar -->
