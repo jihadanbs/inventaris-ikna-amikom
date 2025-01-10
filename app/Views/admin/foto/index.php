@@ -127,7 +127,7 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($tb_foto as $row) : ?>
                                         <tr>
-                                            <td data-field="id_foto" style="width: 10px" scope="row"><?= $i++; ?></td>
+                                            <td style="width: 10px" scope="row"><?= $i++; ?></td>
                                             <td>
                                                 <div id="carouselExample<?= $row['id_foto'] ?>" class="carousel slide" data-bs-ride="carousel">
                                                     <div class="carousel-indicators">
@@ -161,7 +161,7 @@
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td data-field="judul"><?= $row['judul_foto']; ?></td>
+                                            <td><?= $row['judul_foto']; ?></td>
                                             <td style="width: 155px">
                                                 <a href="/admin/foto/cek_data/<?= $row['id_foto'] ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_foto'] ?>">
