@@ -121,6 +121,13 @@
                 </li>
 
                 <li>
+                <a href="galeri-kegiatan">
+                        <i data-feather="camera"></i>
+                        <span data-key="t-dashboard">Kegiatan IKNA</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="faq">
                         <i data-feather="help-circle"></i>
                         <span data-key="t-dashboard">FAQ</span>
