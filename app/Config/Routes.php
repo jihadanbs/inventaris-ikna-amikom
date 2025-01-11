@@ -125,8 +125,20 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->GET('cek_data/(:segment)', 'FotoController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('delete', 'FotoController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
+
+     /*=================================== GALERI KEGIATAN =============================== */
+     $routes->GET('foto-pengurus', 'FotoPengurusController::index', ['namespace' => 'App\Controllers\Admin']);
+     $routes->GROUP('foto-pengurus', static function ($routes) {
+         $routes->GET('tambah', 'FotoPengurusController::create', ['namespace' => 'App\Controllers\Admin']);
+         $routes->POST('save', 'FotoPengurusController::store', ['namespace' => 'App\Controllers\Admin']);
+         $routes->GET('edit/(:segment)', 'FotoPengurusController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
+         $routes->POST('update/(:num)', 'FotoPengurusController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+         $routes->GET('cek_data/(:segment)', 'FotoPengurusController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+         $routes->POST('delete', 'FotoPengurusController::delete', ['namespace' => 'App\Controllers\Admin']);
+     });
     
 
+    /*=================================== GALERI KEGIATAN =============================== */
     $routes->GET('galeri-kegiatan', 'GaleriKegiatanController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('galeri-kegiatan', static function ($routes) {
         $routes->GET('tambah', 'GaleriKegiatanController::create', ['namespace' => 'App\Controllers\Admin']);

@@ -139,12 +139,12 @@
                     </a>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="kegiatan">
                         <i data-feather="camera"></i>
                         <span data-key="t-dashboard">Kegiatan IKNA</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li>
                 <a href="galeri-kegiatan">
