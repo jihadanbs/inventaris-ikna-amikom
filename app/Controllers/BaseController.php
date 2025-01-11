@@ -5,6 +5,10 @@ namespace App\Controllers;
 // Models
 use App\Models\UserModel;
 use App\Models\BarangModel;
+use App\Models\BarangMasukModel;
+use App\Models\BarangKeluarModel;
+use App\Models\BarangBaruModel;
+use App\Models\BarangBekasModel;
 use App\Models\FileFotoBarangModel;
 use App\Models\BarangRusakModel;
 use App\Models\BarangBaikModel;
@@ -79,6 +83,10 @@ abstract class BaseController extends Controller
     // Protected Inisialisasi Models
     protected $m_user;
     protected $m_barang;
+    protected $m_barang_masuk;
+    protected $m_barang_keluar;
+    protected $m_barang_baru;
+    protected $m_barang_bekas;
     protected $m_file_foto_barang;
     protected $m_barang_rusak;
     protected $m_barang_baik;
@@ -118,6 +126,10 @@ abstract class BaseController extends Controller
         // Inisialisasi Models
         $this->m_user = new UserModel();
         $this->m_barang = new BarangModel();
+        $this->m_barang_masuk = new BarangMasukModel();
+        $this->m_barang_keluar = new BarangKeluarModel();
+        $this->m_barang_baru = new BarangBaruModel();
+        $this->m_barang_bekas = new BarangBekasModel();
         $this->m_file_foto_barang = new FileFotoBarangModel();
         $this->m_barang_rusak = new BarangRusakModel();
         $this->m_barang_baik = new BarangBaikModel();
