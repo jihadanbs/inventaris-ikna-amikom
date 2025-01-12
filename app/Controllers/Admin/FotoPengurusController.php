@@ -24,7 +24,7 @@ class FotoPengurusController extends BaseController
         
         $data = [
             'title' => 'Admin | Halaman Foto Pengurus',
-            'pengurus' => $this->fotoPengurusModel->findAll(),
+            'pengurus' => $this->fotoPengurusModel->orderBy('id', 'DESC')->findAll(),
         ];
 
         return view('admin/foto_pengurus/index', $data);
@@ -49,62 +49,66 @@ class FotoPengurusController extends BaseController
 
 public function save()
 {
-    $validation = \Config\Services::validation();
-    
     // Aturan validasi input
     $rules = [
-        'judul_foto' => [
-            'rules' => 'required|max_length[100]',
+        'nama' => [
+            'rules' => 'required|min_length[3]|max_length[255]',
             'errors' => [
-                'required' => 'Judul foto wajib diisi.',
-                'max_length' => 'Judul foto tidak boleh lebih dari 100 karakter.',
+                'required' => 'Nama pengurus wajib diisi.',
+                'min_length' => 'Nama pengurus minimal 3 karakter.',
+                'max_length' => 'Nama pengurus maksimal 255 karakter.',
             ],
         ],
-        'deskripsi' => [
-            'rules' => 'required',
-            'errors' => [
-                'required' => 'Deskripsi wajib diisi.',
-            ],
-        ],
-        'file_foto' => [
-            'rules' => 'uploaded[file_foto]|max_size[file_foto,2048]|is_image[file_foto]',
+        'foto' => [
+            'rules' => 'uploaded[foto]|max_size[foto,2048]|is_image[foto]',
             'errors' => [
                 'uploaded' => 'Foto wajib diunggah.',
                 'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB.',
                 'is_image' => 'File harus berupa gambar (JPEG, PNG, dll).',
             ],
         ],
-        'tanggal_foto' => [
+        'posisi' => [
+            'rules' => 'required|min_length[3]|max_length[255]',
+            'errors' => [
+                'required' => 'Posisi wajib diisi.',
+                'min_length' => 'Posisi minimal 3 karakter.',
+                'max_length' => 'Posisi maksimal 255 karakter.',
+            ],
+        ],
+        'divisi' => [
             'rules' => 'required',
             'errors' => [
-                'required' => 'Tanggal upload wajib diisi.',
+                'required' => 'Divisi wajib dipilih.',
             ],
         ],
     ];
 
     if (!$this->validate($rules)) {
-        // Kirim kembali input dan pesan error validasi
-        return redirect()->back()->withInput()->with('validation', $validation);
+        // Kirim kembali ke form dengan error validasi
+        return redirect()->to('/admin/foto-pengurus/tambah')
+            ->withInput()
+            ->with('errors', $this->validator->getErrors());
     }
 
-    // Proses file upload
-    $file = $this->request->getFile('file_foto');
-    if (!$file->isValid()) {
-        return redirect()->back()->with('error', 'File upload gagal.')->withInput();
+
+    // Proses upload foto
+    $foto = $this->request->getFile('foto');
+    if ($foto->isValid() && !$foto->hasMoved()) {
+        $newName = $foto->getRandomName();
+        $foto->move('uploads/pengurus', $newName);
+        
+        // Simpan data ke database
+        $this->fotoPengurusModel->save([
+            'nama' => $this->request->getPost('nama'),
+            'foto' => 'uploads/pengurus/' . $newName,
+            'posisi' => $this->request->getPost('posisi'),
+            'divisi' => $this->request->getPost('divisi'),
+        ]);
+
+        return redirect()->to('/admin/foto-pengurus')->with('success', 'Data pengurus berhasil ditambahkan!');
     }
 
-    $fileName = $file->getRandomName();
-    $file->move('uploads/pengurus', $fileName);
-
-    // Simpan data ke database
-    $this->fotoPengurusModel->save([
-        'judul_foto'    => $this->request->getPost('judul_foto'),
-        'deskripsi'     => $this->request->getPost('deskripsi'),
-        'file_foto'     => 'uploads/pengurus/' . $fileName,
-        'tanggal_foto'  => $this->request->getPost('tanggal_foto'),
-    ]);
-
-    return redirect()->to('/admin/foto-pengurus')->with('success', 'Data berhasil ditambahkan!');
+    return redirect()->back()->with('error', 'Gagal mengupload foto')->withInput();
 }
 
 
@@ -130,50 +134,95 @@ public function save()
     }
 
     public function update($id)
-    {
-        $pengurus = $this->fotoPengurusModel->find($id);
-        if (!$pengurus) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Pengurus tidak ditemukan');
-        }
-
-        // Validation remains the same
-        if (!$this->validate([
-            'nama' => 'required|min_length[3]|max_length[255]',
-            'foto' => 'permit_empty|is_image[foto]|max_size[foto,2048]',
-            'posisi' => 'required|min_length[3]|max_length[255]',
-            'divisi' => 'required',
-        ])) {
-            return redirect()->to('/admin/foto-pengurus/edit/' . $id)->withInput();
-        }
-
-        $data = [
-            'nama' => $this->request->getPost('nama'),
-            'posisi' => $this->request->getPost('posisi'),
-            'divisi' => $this->request->getPost('divisi'),
-            'created_at' => $this->request->getPost('created_at'),
-        ];
-
-        $fileFoto = $this->request->getFile('foto');
-        if ($fileFoto->isValid() && !$fileFoto->hasMoved()) {
-            // Delete old photo if exists
-            if ($pengurus['foto'] && file_exists($pengurus['foto'])) {
-                unlink($pengurus['foto']);
-            }
-            
-            // Move new photo to public directory
-            $newFileName = $fileFoto->getRandomName();
-            $fileFoto->move('uploads/pengurus', $newFileName);
-            
-            // Update photo path in database
-            $data['foto'] = 'uploads/pengurus/' . $newFileName;
-        }
-
-        // Update database
-        $this->fotoPengurusModel->update($id, $data);
-
-        return redirect()->to('/admin/foto-pengurus')->with('success', 'Data pengurus berhasil diperbarui');
+{
+    // Cek sesi pengguna
+    if ($this->checkSession() !== true) {
+        return $this->checkSession();
     }
 
+    // Cari data pengurus
+    $pengurus = $this->fotoPengurusModel->find($id);
+    if (!$pengurus) {
+        throw new \CodeIgniter\Exceptions\PageNotFoundException('Pengurus tidak ditemukan');
+    }
+
+    // Aturan validasi
+    $rules = [
+        'nama' => [
+            'rules' => 'required|min_length[3]|max_length[255]',
+            'errors' => [
+                'required' => 'Nama pengurus wajib diisi',
+                'min_length' => 'Nama pengurus minimal 3 karakter',
+                'max_length' => 'Nama pengurus maksimal 255 karakter'
+            ]
+        ],
+        'posisi' => [
+            'rules' => 'required|min_length[3]|max_length[255]',
+            'errors' => [
+                'required' => 'Posisi wajib diisi',
+                'min_length' => 'Posisi minimal 3 karakter',
+                'max_length' => 'Posisi maksimal 255 karakter'
+            ]
+        ],
+        'divisi' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Divisi wajib dipilih'
+            ]
+        ]
+    ];
+
+    // Tambah validasi foto jika ada foto yang diupload
+    $foto = $this->request->getFile('foto');
+    if ($foto->isValid()) {
+        $rules['foto'] = [
+            'rules' => 'max_size[foto,2048]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]',
+            'errors' => [
+                'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB',
+                'is_image' => 'File harus berupa gambar',
+                'mime_in' => 'File harus berupa gambar (JPG, JPEG, atau PNG)'
+            ]
+        ];
+    }
+
+    // Jalankan validasi
+    if (!$this->validate($rules)) {
+        return redirect()->back()
+            ->withInput()
+            ->with('errors', $this->validator->getErrors());
+    }
+
+    // Siapkan data untuk update
+    $data = [
+        'nama' => $this->request->getPost('nama'),
+        'posisi' => $this->request->getPost('posisi'),
+        'divisi' => $this->request->getPost('divisi')
+    ];
+
+    // Proses upload foto baru jika ada
+    if ($foto->isValid() && !$foto->hasMoved()) {
+        // Hapus foto lama
+        if ($pengurus['foto'] && file_exists($pengurus['foto'])) {
+            unlink($pengurus['foto']);
+        }
+
+        // Upload foto baru
+        $newName = $foto->getRandomName();
+        $foto->move('uploads/pengurus', $newName);
+        $data['foto'] = 'uploads/pengurus/' . $newName;
+    }
+
+    // Update data
+    try {
+        $this->fotoPengurusModel->update($id, $data);
+        return redirect()->to('/admin/foto-pengurus')
+            ->with('success', 'Data pengurus berhasil diperbarui');
+    } catch (\Exception $e) {
+        return redirect()->back()
+            ->withInput()
+            ->with('error', 'Gagal memperbarui data: ' . $e->getMessage());
+    }
+}
     public function delete()
     {
         // Check if this is an AJAX request

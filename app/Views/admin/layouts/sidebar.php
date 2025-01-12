@@ -132,12 +132,12 @@
                     </a>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="foto">
                         <i data-feather="user-check"></i>
                         <span data-key="t-dashboard">Anggota IKNA</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li>
                     <a href="foto-pengurus">
