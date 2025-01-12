@@ -4,13 +4,13 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class TbBarangBaik extends Migration
+class TbBarangKeluar extends Migration
 {
     public function up()
     {
-        // Membuat tabel tb_barang_baik
+        // Membuat tabel tb_barang_keluar
         $this->forge->addField([
-            'id_barang_baik' => [
+            'id_barang_keluar' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => TRUE,
@@ -21,9 +21,19 @@ class TbBarangBaik extends Migration
                 'constraint' => 11,
                 'unsigned' => TRUE
             ],
-            'jumlah_total_baik' => [
+            'id_peminjaman' => [
                 'type' => 'INT',
                 'constraint' => 11,
+                'unsigned' => TRUE
+            ],
+            'tanggal_keluar' => [
+                'type' => 'DATE',
+                'null' => TRUE,
+            ],
+            'total_barang' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'null' => TRUE
             ],
             'keterangan' => [
                 'type' => 'VARCHAR',
@@ -34,19 +44,19 @@ class TbBarangBaik extends Migration
             'updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
         ]);
 
-        $this->forge->addKey('id_barang_baik', TRUE);
+        $this->forge->addKey('id_barang_keluar', TRUE);
 
         // membuat foreign key
         $this->forge->addForeignKey('id_barang', 'tb_barang', 'id_barang', 'CASCADE', 'CASCADE');
-        // end foreign key
+        $this->forge->addForeignKey('id_peminjaman', 'tb_peminjaman', 'id_peminjaman', 'CASCADE', 'CASCADE');
 
-        // Membuat tabel tb_barang_baik
-        $this->forge->createTable('tb_barang_baik');
+        // Membuat tabel tb_barang_keluar
+        $this->forge->createTable('tb_barang_keluar');
     }
 
     public function down()
     {
-        // Menghapus tabel tb_barang_baik
-        $this->forge->dropTable('tb_barang_baik');
+        // Menghapus tabel tb_barang_keluar
+        $this->forge->dropTable('tb_barang_keluar');
     }
 }

@@ -34,7 +34,7 @@ class TbPeminjaman extends Migration
         // membuat foreign key
         $this->forge->addForeignKey('id_user_peminjam', 'tb_user_peminjam', 'id_user_peminjam', 'CASCADE', 'CASCADE');
         // $this->forge->addForeignKey('id_barang', 'tb_barang', 'id_barang', 'CASCADE', 'CASCADE');
-        // end foreign key
+
         $this->forge->createTable('tb_peminjaman');
     }
 

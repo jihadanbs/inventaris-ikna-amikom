@@ -46,7 +46,7 @@
 
                                 <div class="mb-3">
                                     <label for="nama" class="col-form-label">Nama:</label>
-                                    <input type="text" class="form-control <?= session('errors.nama') ? 'is-invalid' : '' ?>" 
+                                    <input type="text" class="form-control <?= session('errors.nama') ? 'is-invalid' : '' ?>"
                                         id="nama" name="nama" value="<?= old('nama') ?>">
                                     <?php if (session('errors.nama')) : ?>
                                         <div class="invalid-feedback">
@@ -55,10 +55,10 @@
                                     <?php endif ?>
                                 </div>
 
-                               <!-- Foto -->
+                                <!-- Foto -->
                                 <div class="mb-3">
                                     <label for="foto" class="col-form-label">Foto:</label>
-                                    <input type="file" class="form-control <?= session('errors.foto') ? 'is-invalid' : '' ?>" 
+                                    <input type="file" class="form-control <?= session('errors.foto') ? 'is-invalid' : '' ?>"
                                         id="foto" name="foto" accept="image/*" onchange="previewImg()">
                                     <?php if (session('errors.foto')) : ?>
                                         <div class="invalid-feedback">
@@ -74,7 +74,7 @@
                                 <!-- Posisi -->
                                 <div class="mb-3">
                                     <label for="posisi" class="col-form-label">Posisi:</label>
-                                    <input type="text" class="form-control <?= session('errors.posisi') ? 'is-invalid' : '' ?>" 
+                                    <input type="text" class="form-control <?= session('errors.posisi') ? 'is-invalid' : '' ?>"
                                         id="posisi" name="posisi" value="<?= old('posisi') ?>">
                                     <?php if (session('errors.posisi')) : ?>
                                         <div class="invalid-feedback">
@@ -86,8 +86,8 @@
                                 <!-- Divisi -->
                                 <div class="mb-3">
                                     <label for="divisi" class="col-form-label">Divisi:</label>
-                                    <select class="form-control <?= session('errors.divisi') ? 'is-invalid' : '' ?>" 
-                                    id="divisi" name="divisi">
+                                    <select class="form-control <?= session('errors.divisi') ? 'is-invalid' : '' ?>"
+                                        id="divisi" name="divisi">
                                         <option value="">-- Pilih Divisi --</option>
                                         <option value="BPH" <?= (old('divisi') == 'BPH') ? 'selected' : ''; ?>>BPH</option>
                                         <option value="Kerohanian" <?= (old('divisi') == 'Kerohanian') ? 'selected' : ''; ?>>Kerohanian</option>
@@ -100,10 +100,10 @@
                                         <option value="Litbang" <?= (old('divisi') == 'Litbang') ? 'selected' : ''; ?>>Litbang</option>
                                     </select>
                                     <?php if (session('errors.divisi')) : ?>
-                                    <div class="invalid-feedback">
-                                        <?= session('errors.divisi') ?>
-                                    </div>
-                                <?php endif ?>
+                                        <div class="invalid-feedback">
+                                            <?= session('errors.divisi') ?>
+                                        </div>
+                                    <?php endif ?>
                                 </div>
 
                                 <!-- Tombol Submit -->
@@ -126,10 +126,10 @@
     function previewImg() {
         const foto = document.querySelector('#foto');
         const imgPreview = document.querySelector('.img-preview');
-        
+
         const fileFoto = new FileReader();
         fileFoto.readAsDataURL(foto.files[0]);
-        
+
         fileFoto.onload = function(e) {
             imgPreview.src = e.target.result;
         }

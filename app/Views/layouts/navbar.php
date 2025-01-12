@@ -24,7 +24,7 @@
                             <a class="nav-link" href="<?= site_url('/about') ?>">Tentang Kami</a>
                         </li>
                         <li class="nav-item <?= uri_string() == 'service' ? 'active' : '' ?>">
-                            <a class="nav-link" href="<?= site_url('/service') ?>">galeri</a>
+                            <a class="nav-link" href="<?= site_url('/service') ?>">Galeri</a>
                         </li>
                         <li class="nav-item <?= uri_string() == 'kontak' ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('/kontak') ?>">Kontak Kami</a>
