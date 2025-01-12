@@ -1094,7 +1094,7 @@ a:focus {
 }
 
 
-/* FOTO PENGRUS */
+/* FOTO PENGuRUS */
 .image-modal {
   display: none;
   position: fixed;
@@ -1124,7 +1124,7 @@ a:focus {
   max-width: 100%;
   max-height: 80vh;
   transition: transform 0.3s ease;
-  object-fit: contain; /* Ensures image aspect ratio is maintained */
+  object-fit: contain; 
 }
 
 .close-modal {

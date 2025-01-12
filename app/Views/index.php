@@ -186,63 +186,62 @@
 
     <!-- Konten Tab -->
     <!-- HTML -->
-<div class="tab-content" id="nav-tabContent">
-    <?php foreach($divisi as $index => $div) :
-        $isActive = ($index === 0) ? 'show active' : '';
-        $id = strtolower(str_replace(' ', '-', $div));
-    ?>
-        <div class="tab-pane fade <?= $isActive ?>"
-             id="nav-<?= $id ?>"
-             role="tabpanel"
-             aria-labelledby="nav-<?= $id ?>-tab">
-            <div class="team_container">
-                <?php
-                $pengurusDivisi = array_filter($pengurus, function($p) use ($div) {
-                    return $p['divisi'] === $div;
-                });
-                
-                foreach($pengurusDivisi as $row) :
-                ?>
-                    <div class="box b-1">
-                        <div class="img-box">
-                            <img src="<?= base_url($row['foto']) ?>" 
-                                 alt="Foto <?= $row['nama'] ?>"
-                                 onclick="openImageModal(this.src, '<?= $row['nama'] ?>')">
-                        </div>
-                        <div class="detail-box">
-                            <h5><?= $row['nama'] ?></h5>
-                            <p><?= $row['posisi'] ?></p>
-                        </div>
+        <div class="tab-content" id="nav-tabContent">
+            <?php foreach($divisi as $index => $div) :
+                $isActive = ($index === 0) ? 'show active' : '';
+                $id = strtolower(str_replace(' ', '-', $div));
+            ?>
+                <div class="tab-pane fade <?= $isActive ?>"
+                    id="nav-<?= $id ?>"
+                    role="tabpanel"
+                    aria-labelledby="nav-<?= $id ?>-tab">
+                    <div class="team_container">
+                        <?php
+                        $pengurusDivisi = array_filter($pengurus, function($p) use ($div) {
+                            return $p['divisi'] === $div;
+                        });
+                        
+                        foreach($pengurusDivisi as $row) :
+                        ?>
+                            <div class="box b-1">
+                                <div class="img-box">
+                                    <img src="<?= base_url($row['foto']) ?>" 
+                                        alt="Foto <?= $row['nama'] ?>"
+                                        onclick="openImageModal(this.src, '<?= $row['nama'] ?>')">
+                                </div>
+                                <div class="detail-box">
+                                    <h5><?= $row['nama'] ?></h5>
+                                    <p><?= $row['posisi'] ?></p>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
-                <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- Modal for Image Zoom -->
+        <div id="imageModal" class="image-modal">
+            <span class="close-modal" onclick="closeImageModal()">&times;</span>
+            <div class="modal-pengurus modal-content">
+                <img id="modalImage" src="" alt="">
+                <div class="zoom-controls">
+                <button class="zoom-btn" onclick="zoomImage('in')"><i class="bi bi-plus-circle"></i> Zoom In</button>
+                    <button class="zoom-btn" onclick="zoomImage('out')"><i class="bi bi-dash-circle"></i> Zoom Out</button>
+                    <button class="zoom-btn" onclick="resetZoom()"><i class="bi bi-arrow-clockwise"></i> Reset</button>
+                </div>
             </div>
         </div>
-    <?php endforeach; ?>
-</div>
-
-<!-- Modal for Image Zoom -->
-<div id="imageModal" class="image-modal">
-    <span class="close-modal" onclick="closeImageModal()">&times;</span>
-    <div class="modal-pengurus modal-content">
-        <img id="modalImage" src="" alt="">
-        <div class="zoom-controls">
-        <button class="zoom-btn" onclick="zoomImage('in')"><i class="bi bi-plus-circle"></i> Zoom In</button>
-            <button class="zoom-btn" onclick="zoomImage('out')"><i class="bi bi-dash-circle"></i> Zoom Out</button>
-            <button class="zoom-btn" onclick="resetZoom()"><i class="bi bi-arrow-clockwise"></i> Reset</button>
-        </div>
-    </div>
-</div>
-
-        </section>
+     </section>
     <!-- end team section -->
 
-<!-- First, add this modal HTML structure at the end of your body tag -->
-<div id="imageModal" class="modal" style="display: none;">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <img id="modalImage" src="" alt="Modal Image">
-    </div>
-</div>
+        <!-- Modal untuk foto pengurus -->
+        <div id="imageModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img id="modalImage" src="" alt="Modal Image">
+            </div>
+        </div>
 
     <div class="footer_bg">
 
@@ -263,7 +262,7 @@ function openImageModal(imgSrc, name) {
     modalImg.src = imgSrc;
     modalImg.alt = 'Foto ' + name;
     
-    // Reset zoom when opening new image
+    // reset zoom foto
     currentZoom = 1;
     modalImg.style.transform = `scale(${currentZoom})`;
 }
@@ -292,14 +291,14 @@ function resetZoom() {
     modalImg.style.transform = `scale(${currentZoom})`;
 }
 
-// Close modal when clicking outside the image
+// Close foto pengurus
 document.getElementById('imageModal').addEventListener('click', function(event) {
     if (event.target === this) {
         closeImageModal();
     }
 });
 
-// Add keyboard controls
+
 document.addEventListener('keydown', function(event) {
     if (document.getElementById('imageModal').style.display === 'block') {
         switch(event.key) {
