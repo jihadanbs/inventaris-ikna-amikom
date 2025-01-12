@@ -159,207 +159,64 @@
                 </p>
             </div>
         </div>
+<!-- Navigasi Tab -->
+<nav>
+    <div class="nav nav1 nav-tabs" id="nav-tab" role="tablist">
+        <?php
+        // Array divisi yang tersedia
+        $divisi = ['BPH', 'Kerohanian', 'Kerumahtanggaan', 'Humas', 'Talenta Olahraga', 'Talenta Musik', 'Talenta Pertunjukan', 'Usaha Dana', 'Litbang'];
+        
+        foreach($divisi as $index => $div) :
+            $isActive = ($index === 0) ? 'active' : '';
+            $id = strtolower(str_replace(' ', '-', $div));
+        ?>
+            <button class="nav-link <?= $isActive ?>" 
+                    id="nav-<?= $id ?>-tab" 
+                    data-toggle="tab" 
+                    data-target="#nav-<?= $id ?>" 
+                    type="button" 
+                    role="tab" 
+                    aria-controls="nav-<?= $id ?>" 
+                    aria-selected="<?= $index === 0 ? 'true' : 'false' ?>">
+                <?= $div ?>
+            </button>
+        <?php endforeach; ?>
+    </div>
+</nav>
 
-        <nav>
-            <div class="nav nav1 nav-tabs" id="nav-tab" role="tablist">
-                <button class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#nav-bph" type="button"
-                    role="tab" aria-controls="nav-bph" aria-selected="true">BPH</button>
-                <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#nav-Kerohanian"
-                    type="button" role="tab" aria-controls="nav-Kerohanian" aria-selected="false">Kerohanian</button>
-                <button class="nav-link" id="nav-Kerumahtanggaan-tab" data-toggle="tab"
-                    data-target="#nav-Kerumahtanggaan" type="button" role="tab" aria-controls="nav-Kerumahtanggaan"
-                    aria-selected="false">Kerumahtanggaan</button>
-                <button class="nav-link" id="nav-other-tab1" data-toggle="tab" data-target="#nav-other1" type="button"
-                    role="tab" aria-controls="nav-other1" aria-selected="false">Humas</button>
-                <button class="nav-link" id="nav-other-tab2" data-toggle="tab" data-target="#nav-other2" type="button"
-                    role="tab" aria-controls="nav-other2" aria-selected="false">Talenta Olahraga</button>
-                <button class="nav-link" id="nav-other-tab2" data-toggle="tab" data-target="#nav-other2" type="button"
-                    role="tab" aria-controls="nav-other2" aria-selected="false">Talenta Musik</button>
-                <button class="nav-link" id="nav-other-tab2" data-toggle="tab" data-target="#nav-other2" type="button"
-                    role="tab" aria-controls="nav-other2" aria-selected="false">Talenta Pertunjukan</button>
-                <button class="nav-link" id="nav-other-tab3" data-toggle="tab" data-target="#nav-other3" type="button"
-                    role="tab" aria-controls="nav-other3" aria-selected="false">Usaha dana</button>
-                <button class="nav-link" id="nav-other-tab4" data-toggle="tab" data-target="#nav-other4" type="button"
-                    role="tab" aria-controls="nav-other4" aria-selected="false">Litbang</button>
-            </div>
-        </nav>
-
-        <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-bph" role="tabpanel" aria-labelledby="nav-bph-tab">
-                <div class="team_container">
+<!-- Konten Tab -->
+<div class="tab-content" id="nav-tabContent">
+    <?php foreach($divisi as $index => $div) : 
+        $isActive = ($index === 0) ? 'show active' : '';
+        $id = strtolower(str_replace(' ', '-', $div));
+    ?>
+        <div class="tab-pane fade <?= $isActive ?>" 
+             id="nav-<?= $id ?>" 
+             role="tabpanel" 
+             aria-labelledby="nav-<?= $id ?>-tab">
+            <div class="team_container">
+                <?php 
+                // Filter pengurus berdasarkan divisi
+                $pengurusDivisi = array_filter($pengurus, function($p) use ($div) {
+                    return $p['divisi'] === $div;
+                });
+                
+                foreach($pengurusDivisi as $row) : 
+                ?>
                     <div class="box b-1">
                         <div class="img-box">
-                            <img src="<?= base_url('assets/images/bph/f1.JPG') ?>" alt="">
+                            <img src="<?= base_url($row['foto']) ?>" alt="Foto <?= $row['nama'] ?>">
                         </div>
                         <div class="detail-box">
-                            <h5>
-                                Dandi
-                            </h5>
-                            <p>
-                                Ketua Umum
-                            </p>
+                            <h5><?= $row['nama'] ?></h5>
+                            <p><?= $row['posisi'] ?></p>
                         </div>
                     </div>
-                    <div class="box b-1">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/bph/f3.JPG') ?>" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Ariel
-                            </h5>
-                            <p>
-                                Wakil ketua
-                            </p>
-
-                        </div>
-                    </div>
-                    <div class="box b-2">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/bph/f2.JPG') ?>" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Anjani
-                            </h5>
-                            <p>
-                                Sekretaris
-                            </p>
-
-                        </div>
-                    </div>
-                    <div class="box b-3">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/bph/f4.JPG') ?>" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Anggi
-                            </h5>
-                            <p>
-                                Bendahara
-                            </p>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="tab-pane fade" id="nav-Kerohanian" role="tabpanel" aria-labelledby="nav-Kerohanian-tab">
-                <div class="team_container">
-                    <div class="box b-1">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/kerohanian/f1.JPG') ?>" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Dave
-                            </h5>
-                            <p>
-                                Anggota 1
-                            </p>
-                        </div>
-                    </div>
-                    <div class="box b-1">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/kerohanian/f2.JPG') ?>" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Fanya
-                            </h5>
-                            <p>
-                                Anggota 2
-                            </p>
-                        </div>
-                    </div>
-                    <div class="box b-2">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/kerohanian/f3.JPG') ?>" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Deta
-                            </h5>
-                            <p>
-                                Pengurus 3
-                            </p>
-                        </div>
-                    </div>
-                    <div class="box b-3">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/kerohanian/f4.JPG') ?>" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Dede
-                            </h5>
-                            <p>
-                                Pengurus 4
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="tab-pane fade" id="nav-Kerumahtanggaan" role="tabpanel"
-                aria-labelledby="nav-Kerumahtanggaan-tab">
-                <div class="team_container">
-                    <div class="box b-1">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/kerumahtanggaan/f1.JPG') ?>" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Hera
-                            </h5>
-                            <p>
-                                Anggota 1
-                            </p>
-                        </div>
-                    </div>
-                    <div class="box b-1">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/kerumahtanggaan/f2.JPG') ?>" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Kristin
-                            </h5>
-                            <p>
-                                Anggota 2
-                            </p>
-                        </div>
-                    </div>
-                    <div class="box b-2">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/kerumahtanggaan/f3.JPG') ?>" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                Ikne
-                            </h5>
-                            <p>
-                                Pengurus 3
-                            </p>
-                        </div>
-                    </div>
-                    <div class="box b-3">
-                        <div class="img-box">
-                            <img src="<?= base_url('assets/images/kerumahtanggaan/f4.JPG') ?>" alt="">
-                        </div>
-                        <div class="detail-box">
-                            <h5>
-                                indy
-                            </h5>
-                            <p>
-                                Pengurus 4
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
+    <?php endforeach; ?>
+</div>
     </section>
     <!-- end team section -->
 

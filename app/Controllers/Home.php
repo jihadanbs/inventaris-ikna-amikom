@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\PemohonModel;
 use App\Models\WebOptionModel;
+use App\Models\FotoPengurusModel;
 use App\Models\GaleriKegiatanModel;
 use App\Models\InformasiPublikModel;
 
@@ -18,6 +19,8 @@ class Home extends BaseController
     protected $db;
     protected $galeriKegiatanModel;
 
+    protected $fotoPengurusModel;
+
     public function __construct()
     {
         $this->db = \Config\Database::connect();
@@ -25,6 +28,7 @@ class Home extends BaseController
         $this->m_pemohon = new PemohonModel();
         $this->m_informasi_publik = new InformasiPublikModel();
         $this->galeriKegiatanModel = new GaleriKegiatanModel();
+        $this->fotoPengurusModel = new FotoPengurusModel();
     }
 
     
@@ -36,11 +40,13 @@ class Home extends BaseController
         $offset = ($page - 1) * $perPage;
         // Ambil data dari database
         $galeriKegiatan = $this->galeriKegiatanModel->orderBy('tanggal_foto', 'DESC')->findAll($perPage, $offset);
+     
 
         // Kirim data ke view
         $data = [
         'title' => 'Galeri Kegiatan',
         'galeriKegiatan' => $galeriKegiatan,
+       'pengurus' => $this->fotoPengurusModel->findAll(),
     ];
 
 
