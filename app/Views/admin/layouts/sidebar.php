@@ -154,7 +154,7 @@
                 </li> -->
 
                 <li>
-                <a href="galeri-kegiatan">
+                    <a href="galeri-kegiatan">
                         <i data-feather="camera"></i>
                         <span data-key="t-dashboard">Kegiatan IKNA</span>
                     </a>
@@ -183,6 +183,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="kategori_barang" data-key="t-apps">Kategori Barang</a></li>
+                        <li><a href="kondisi_barang" data-key="t-apps">Kondisi Barang</a></li>
                     </ul>
                 </li>
 

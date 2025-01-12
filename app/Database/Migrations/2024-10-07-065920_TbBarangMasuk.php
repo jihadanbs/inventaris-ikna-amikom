@@ -4,13 +4,13 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class TbBarangBaik extends Migration
+class TbBarangMasuk extends Migration
 {
     public function up()
     {
-        // Membuat tabel tb_barang_baik
+        // Membuat tabel tb_barang_masuk
         $this->forge->addField([
-            'id_barang_baik' => [
+            'id_barang_masuk' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => TRUE,
@@ -21,30 +21,29 @@ class TbBarangBaik extends Migration
                 'constraint' => 11,
                 'unsigned' => TRUE
             ],
-            'jumlah_total_baik' => [
-                'type' => 'INT',
-                'constraint' => 11,
+            'tanggal_masuk' => [
+                'type' => 'DATE',
+                'null' => TRUE,
             ],
-            'keterangan_baik' => [
+            'keterangan_masuk' => [
                 'type' => 'TEXT',
             ],
             'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
         ]);
 
-        $this->forge->addKey('id_barang_baik', TRUE);
+        $this->forge->addKey('id_barang_masuk', TRUE);
 
         // membuat foreign key
         $this->forge->addForeignKey('id_barang', 'tb_barang', 'id_barang', 'CASCADE', 'CASCADE');
-        // end foreign key
 
-        // Membuat tabel tb_barang_baik
-        $this->forge->createTable('tb_barang_baik');
+        // Membuat tabel tb_barang_masuk
+        $this->forge->createTable('tb_barang_masuk');
     }
 
     public function down()
     {
-        // Menghapus tabel tb_barang_baik
-        $this->forge->dropTable('tb_barang_baik');
+        // Menghapus tabel tb_barang_masuk
+        $this->forge->dropTable('tb_barang_masuk');
     }
 }

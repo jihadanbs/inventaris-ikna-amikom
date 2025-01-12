@@ -68,6 +68,14 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->DELETE('delete/(:num)', 'KategoriBarangController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
+    /*=================================== KONDISI BARANG ====================================*/
+    $routes->GET('kondisi_barang', 'KondisiBarangController::index', ['namespace' => 'App\Controllers\Admin']);
+    $routes->GROUP('kondisi_barang', static function ($routes) {
+        $routes->POST('save', 'KondisiBarangController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->PUT('simpan_perubahan', 'KondisiBarangController::simpan_perubahan', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete/(:num)', 'KondisiBarangController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
+    });
+
     /*=================================== BARANG IKNA ====================================*/
     $routes->GET('barang', 'BarangController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang', static function ($routes) {
@@ -188,17 +196,17 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->POST('delete', 'FotoController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
-     /*=================================== FOTO PENGURUS =============================== */
-     $routes->GET('foto-pengurus', 'FotoPengurusController::index', ['namespace' => 'App\Controllers\Admin']);
-     $routes->GROUP('foto-pengurus', static function ($routes) {
-         $routes->GET('tambah', 'FotoPengurusController::create', ['namespace' => 'App\Controllers\Admin']);
-         $routes->POST('save', 'FotoPengurusController::save', ['namespace' => 'App\Controllers\Admin']);
-         $routes->GET('edit/(:segment)', 'FotoPengurusController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
-         $routes->POST('update/(:num)', 'FotoPengurusController::update/$1', ['namespace' => 'App\Controllers\Admin']);
-         $routes->GET('cek_data/(:segment)', 'FotoPengurusController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-         $routes->POST('delete', 'FotoPengurusController::delete', ['namespace' => 'App\Controllers\Admin']);
-     });
-    
+    /*=================================== FOTO PENGURUS =============================== */
+    $routes->GET('foto-pengurus', 'FotoPengurusController::index', ['namespace' => 'App\Controllers\Admin']);
+    $routes->GROUP('foto-pengurus', static function ($routes) {
+        $routes->GET('tambah', 'FotoPengurusController::create', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('save', 'FotoPengurusController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('edit/(:segment)', 'FotoPengurusController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('update/(:num)', 'FotoPengurusController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('cek_data/(:segment)', 'FotoPengurusController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('delete', 'FotoPengurusController::delete', ['namespace' => 'App\Controllers\Admin']);
+    });
+
     /*=================================== GALERI KEGIATAN =============================== */
     $routes->GET('galeri-kegiatan', 'GaleriKegiatanController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('galeri-kegiatan', static function ($routes) {
@@ -209,7 +217,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->GET('cek_data/(:segment)', 'GaleriKegiatanController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('delete', 'GaleriKegiatanController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
-    
+
 
     /*=================================== KATEGORI FAQ ====================================*/
     $routes->GET('kategori_faq', 'KategoriFaqController::index', ['namespace' => 'App\Controllers\Admin']);

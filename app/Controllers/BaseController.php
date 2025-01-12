@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 // Models
 use App\Models\UserModel;
+use App\Models\KondisiBarangModel;
+use App\Models\KategoriBarangModel;
 use App\Models\BarangModel;
 use App\Models\BarangMasukModel;
 use App\Models\BarangKeluarModel;
@@ -13,7 +15,6 @@ use App\Models\FileFotoBarangModel;
 use App\Models\BarangRusakModel;
 use App\Models\BarangBaikModel;
 use App\Models\UserPeminjamModel;
-use App\Models\KategoriBarangModel;
 use App\Models\FaqModel;
 use App\Models\KategoriFaqModel;
 use App\Models\FeedbackModel;
@@ -82,6 +83,8 @@ abstract class BaseController extends Controller
 
     // Protected Inisialisasi Models
     protected $m_user;
+    protected $m_kondisi_barang;
+    protected $m_kategori_barang;
     protected $m_barang;
     protected $m_barang_masuk;
     protected $m_barang_keluar;
@@ -90,7 +93,6 @@ abstract class BaseController extends Controller
     protected $m_file_foto_barang;
     protected $m_barang_rusak;
     protected $m_barang_baik;
-    protected $m_kategori_barang;
     protected $m_user_peminjam;
     protected $m_cara;
     protected $m_faq;
@@ -122,9 +124,12 @@ abstract class BaseController extends Controller
 
         // Helper
         helper("upload_helper");
+        helper("date_helper");
 
         // Inisialisasi Models
         $this->m_user = new UserModel();
+        $this->m_kategori_barang = new KategoriBarangModel();
+        $this->m_kondisi_barang = new KondisiBarangModel();
         $this->m_barang = new BarangModel();
         $this->m_barang_masuk = new BarangMasukModel();
         $this->m_barang_keluar = new BarangKeluarModel();
@@ -133,7 +138,6 @@ abstract class BaseController extends Controller
         $this->m_file_foto_barang = new FileFotoBarangModel();
         $this->m_barang_rusak = new BarangRusakModel();
         $this->m_barang_baik = new BarangBaikModel();
-        $this->m_kategori_barang = new KategoriBarangModel();
         $this->m_faq = new FaqModel();
         $this->m_user_peminjam = new UserPeminjamModel();
         $this->m_kategori_faq = new KategoriFaqModel();

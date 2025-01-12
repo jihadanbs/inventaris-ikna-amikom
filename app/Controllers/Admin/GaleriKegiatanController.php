@@ -17,11 +17,11 @@ class GaleriKegiatanController extends BaseController
     // Menampilkan daftar kegiatan
     public function index()
     {
-         // Cek sesi pengguna
-         if ($this->checkSession() !== true) {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
-        
+
         $data = [
             'title' => 'Admin | Halaman Galeri',
             'kegiatan' => $this->galeriKegiatanModel->findAll(),
@@ -50,7 +50,7 @@ class GaleriKegiatanController extends BaseController
     public function store()
     {
         $validation = \Config\Services::validation();
-    
+
         // Validasi input
         if (!$this->validate([
             'judul_kegiatan' => 'required|max_length[255]',
@@ -60,20 +60,15 @@ class GaleriKegiatanController extends BaseController
         ])) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
-    
-        // Proses upload file
-        $file = $this->request->getFile('foto_kegiatan');
-        $fileName = $file->getRandomName();
-        $file->move('uploads/kegiatan', $fileName);
-    
+
         // Simpan data ke database
         $this->galeriKegiatanModel->save([
             'judul_kegiatan' => $this->request->getPost('judul_kegiatan'),
-            'foto_kegiatan'  => 'uploads/kegiatan/' . $fileName,
+            'foto_kegiatan'  => uploadFile('foto_kegiatan', 'uploads/kegiatan'),
             'tanggal_foto'   => $this->request->getPost('tanggal_foto'),
             'deskripsi'      => $this->request->getPost('deskripsi'),
         ]);
-    
+
         return redirect()->to('/admin/galeri-kegiatan')->with('success', 'Data kegiatan berhasil ditambahkan!');
     }
 
@@ -83,24 +78,24 @@ class GaleriKegiatanController extends BaseController
         if ($this->checkSession() !== true) {
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
-    
+
         // Mengambil data kegiatan berdasarkan ID
         $tb_kegiatan = $this->galeriKegiatanModel->find($id_kegiatan);
-    
+
         if (!$tb_kegiatan) {
             // Jika data tidak ditemukan
             return redirect()->back()->with('error', 'Data kegiatan tidak ditemukan.');
         }
-    
+
         // Menyiapkan data untuk tampilan
         $data = [
             'title' => 'Admin | Halaman Cek Data',
             'tb_kegiatan' => [$tb_kegiatan], // Bungkus dalam array untuk kompatibilitas dengan tampilan
         ];
-    
+
         return view('admin/galeri_kegiatan/cek_data', $data);
     }
-    
+
 
     // Menampilkan form edit kegiatan
     public function edit($id)
@@ -122,7 +117,7 @@ class GaleriKegiatanController extends BaseController
     public function update($id)
     {
         $validation = \Config\Services::validation();
-    
+
         // Validasi input
         if (!$this->validate([
             'judul_kegiatan' => 'required|max_length[255]',
@@ -132,24 +127,24 @@ class GaleriKegiatanController extends BaseController
         ])) {
             return redirect()->to("/admin/galeri-kegiatan/edit/$id")->withInput()->with('errors', $validation->getErrors());
         }
-    
+
         // Ambil file foto_kegiatan yang baru
         $file = $this->request->getFile('foto_kegiatan');
         if ($file->isValid() && !$file->hasMoved()) {
             // Hapus file lama jika ada file baru yang diunggah
             $oldFile = $this->request->getPost('old_foto_kegiatan');
-            if (file_exists($oldFile) && $oldFile != 'uploads/kegiatan/default.jpg') {
+            if (file_exists($oldFile) && $oldFile != 'file_upload/uploads/kegiatan/default.jpg') {
                 unlink($oldFile); // Hapus file lama
             }
-    
+
             // Proses file baru
             $fileName = $file->getRandomName();
-            $file->move('uploads/kegiatan', $fileName);
+            $file->move('file_upload/uploads/kegiatan', $fileName);
         } else {
             // Jika tidak ada file baru, gunakan file lama
             $fileName = explode(', ', $this->request->getVar('old_foto_kegiatan'));
         }
-    
+
         // Update data di database dengan path relatif
         $this->galeriKegiatanModel->update($id, [
             'judul_kegiatan' => $this->request->getPost('judul_kegiatan'),
@@ -157,11 +152,11 @@ class GaleriKegiatanController extends BaseController
             'tanggal_foto'   => $this->request->getPost('tanggal_foto'),
             'deskripsi'      => $this->request->getPost('deskripsi'),
         ]);
-    
+
         // Redirect ke halaman galeri kegiatan dengan pesan sukses
         return redirect()->to('/admin/galeri-kegiatan')->with('success', 'Data kegiatan berhasil diperbarui!');
     }
-    
+
 
     public function delete()
     {
@@ -172,7 +167,7 @@ class GaleriKegiatanController extends BaseController
                 'message' => 'ID tidak ditemukan.'
             ]);
         }
-    
+
         if ($this->galeriKegiatanModel->delete($id)) {
             return $this->response->setJSON([
                 'status' => 'success',
@@ -187,18 +182,18 @@ class GaleriKegiatanController extends BaseController
     }
 
 
-//     public function kegiatan()
-// {
-//     // Ambil data dari database
-//     $galeriKegiatan = $this->galeriKegiatanModel->findAll();
+    //     public function kegiatan()
+    // {
+    //     // Ambil data dari database
+    //     $galeriKegiatan = $this->galeriKegiatanModel->findAll();
 
-//     // Kirim data ke view
-//     $data = [
-//         'title' => 'Galeri Kegiatan',
-//         'galeriKegiatan' => $galeriKegiatan,
-//     ];
+    //     // Kirim data ke view
+    //     $data = [
+    //         'title' => 'Galeri Kegiatan',
+    //         'galeriKegiatan' => $galeriKegiatan,
+    //     ];
 
-//     return view('/index', $data);
-// }
+    //     return view('/index', $data);
+    // }
 
 }

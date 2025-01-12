@@ -8,7 +8,7 @@ class BarangModel extends Model
 {
     protected $table = 'tb_barang';
     protected $primaryKey = 'id_barang';
-    protected $allowedFields = ['id_kategori_barang', 'nama_barang', 'deskripsi', 'jumlah_total', 'tanggal_masuk', 'tanggal_keluar', 'slug', 'id_file_foto_barang', 'id_barang_rusak'];
+    protected $allowedFields = ['id_kategori_barang', 'id_kondisi_barang', 'id_barang_masuk', 'nama_barang', 'deskripsi', 'jumlah_total', 'tanggal_keluar', 'slug', 'id_file_foto_barang'];
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
 
@@ -20,15 +20,20 @@ class BarangModel extends Model
         $builder->select('
             tb_barang.*, 
             GROUP_CONCAT(tb_file_foto_barang.path_file_foto_barang SEPARATOR ", ") as path_file_foto_barang,
-            tb_kategori_barang.nama_kategori
+            tb_kategori_barang.nama_kategori, 
+            tb_kondisi_barang.nama_kondisi, 
+            tb_barang_masuk.tanggal_masuk
         ');
         $builder->join('tb_galeri_barang', 'tb_barang.id_barang = tb_galeri_barang.id_barang', 'left');
         $builder->join('tb_file_foto_barang', 'tb_galeri_barang.id_file_foto_barang = tb_file_foto_barang.id_file_foto_barang', 'left');
         $builder->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang', 'left');
+        $builder->join('tb_kondisi_barang', 'tb_kondisi_barang.id_kondisi_barang = tb_barang.id_kondisi_barang', 'left');
+        $builder->join('tb_barang_masuk', 'tb_barang_masuk.id_barang = tb_barang.id_barang', 'left');
         // Cek jika tb_barang_rusak diperlukan untuk join
         $builder->join('tb_barang_rusak', 'tb_barang.id_barang = tb_barang_rusak.id_barang', 'left'); // Pastikan ini benar jika perlu
 
         $builder->groupBy('tb_barang.id_barang, tb_kategori_barang.nama_kategori');
+        // $builder->groupBy('tb_barang.id_barang, tb_kondisi_barang.nama_kondisi');
         $builder->orderBy('tb_barang.id_barang', 'DESC');
         $query = $builder->get();
         $results = $query->getResultArray();
