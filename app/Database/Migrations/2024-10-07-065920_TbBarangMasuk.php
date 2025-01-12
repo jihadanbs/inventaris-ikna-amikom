@@ -25,10 +25,8 @@ class TbBarangMasuk extends Migration
                 'type' => 'DATE',
                 'null' => TRUE,
             ],
-            'keterangan' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => TRUE
+            'keterangan_masuk' => [
+                'type' => 'TEXT',
             ],
             'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'

@@ -117,9 +117,9 @@
                                         <th>Nomor</th>
                                         <th>Nama Barang</th>
                                         <th>Kategori</th>
+                                        <th>Kondisi</th>
                                         <th>Total Barang</th>
                                         <th>Tanggal Masuk</th>
-                                        <th>Tanggal Keluar</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -131,9 +131,9 @@
                                             <td style="width: 2px" scope="row"><?= $i++; ?></td>
                                             <td><?= truncateText($row['nama_barang'], 70); ?></td>
                                             <td><?= $row['nama_kategori']; ?></td>
+                                            <td><?= $row['nama_kondisi']; ?></td>
                                             <td><?= $row['jumlah_total']; ?></td>
-                                            <td><?= $row['tanggal_masuk']; ?></td>
-                                            <td><?= $row['tanggal_keluar']; ?></td>
+                                            <td><?= formatTanggalIndo($row['tanggal_masuk']); ?></td>
                                             <td style="width: 155px">
                                                 <a href="<?= site_url('admin/barang/cek_data/' . $row['slug']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang'] ?>">

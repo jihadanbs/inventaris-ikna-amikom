@@ -25,10 +25,8 @@ class TbBarangBaik extends Migration
                 'type' => 'INT',
                 'constraint' => 11,
             ],
-            'keterangan' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => TRUE
+            'keterangan_baik' => [
+                'type' => 'TEXT',
             ],
             'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'

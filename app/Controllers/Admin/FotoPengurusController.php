@@ -95,21 +95,9 @@ class FotoPengurusController extends BaseController
                 ->with('errors', $this->validator->getErrors());
         }
 
-
-        // Proses upload foto
-        // $foto = $this->request->getFile('foto');
-        // if ($foto->isValid() && !$foto->hasMoved()) {
-        //     $newName = $foto->getRandomName();
-        //     $foto->move('uploads/pengurus', $newName);
-
-        // $foto = uploadFile('foto', 'uploads/pengurus/');
-
         // Simpan data ke database
         $this->fotoPengurusModel->save([
             'nama' => $this->request->getPost('nama'),
-            // 'foto' => 'uploads/pengurus/' . $newName,
-            // 'foto' => $foto,
-            // atau bisa juga langsung 
             'foto' => uploadFile('foto', 'uploads/pengurus/'),
             'posisi' => $this->request->getPost('posisi'),
             'divisi' => $this->request->getPost('divisi'),
@@ -223,8 +211,8 @@ class FotoPengurusController extends BaseController
 
             // Upload foto baru
             $newName = $foto->getRandomName();
-            $foto->move('uploads/pengurus', $newName);
-            $data['foto'] = 'uploads/pengurus/' . $newName;
+            $foto->move('file_upload/uploads/pengurus', $newName);
+            $data['foto'] = 'file_upload/uploads/pengurus/' . $newName;
         }
 
         // Update data

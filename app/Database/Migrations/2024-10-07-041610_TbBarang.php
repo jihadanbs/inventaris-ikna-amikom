@@ -21,6 +21,11 @@ class TbBarang extends Migration
                 'constraint' => 11,
                 'unsigned' => TRUE
             ],
+            'id_kondisi_barang' => [
+                'type' => 'INT',
+                'constraint' => 11,
+                'unsigned' => TRUE
+            ],
             'nama_barang' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
@@ -52,6 +57,7 @@ class TbBarang extends Migration
 
         // membuat foreign key
         $this->forge->addForeignKey('id_kategori_barang', 'tb_kategori_barang', 'id_kategori_barang', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_kondisi_barang', 'tb_kondisi_barang', 'id_kondisi_barang', 'CASCADE', 'CASCADE');
 
         // Membuat tabel tb_barang
         $this->forge->createTable('tb_barang');
