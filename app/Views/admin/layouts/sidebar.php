@@ -139,6 +139,13 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="foto-pengurus">
+                        <i data-feather="user-check"></i>
+                        <span data-key="t-dashboard">Anggota IKNA</span>
+                    </a>
+                </li>
+
                 <!-- <li>
                     <a href="kegiatan">
                         <i data-feather="camera"></i>

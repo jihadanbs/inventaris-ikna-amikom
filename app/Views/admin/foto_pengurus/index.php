@@ -56,7 +56,6 @@
     }
 </style>
 
-
 <?= $this->include('admin/layouts/navbar') ?>
 <?= $this->include('admin/layouts/sidebar') ?>
 <?= $this->include('admin/layouts/rightsidebar') ?>
@@ -71,11 +70,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Data Foto</h4>
+                        <h4 class="mb-sm-0 font-size-18">Data Foto Pengurus</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Foto</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Foto Pengurus</a></li>
                                 <li class="breadcrumb-item active">Data Foto</li>
                             </ol>
                         </div>
@@ -84,7 +83,6 @@
                 </div>
             </div>
             <!-- end page title -->
-
 
             <div class="row">
 
@@ -110,61 +108,35 @@
                                     </div>
                                 <?php endif; ?>
                                 <div class="col-md-3 mb-3">
-                                    <a href="/admin/foto/tambah" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
+                                    <a href="/admin/foto-pengurus/tambah" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
                                     </a>
                                 </div>
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
-                                        <th>Sampul</th>
-                                        <th>Judul</th>
+                                        <th>Foto</th>
+                                        <th>Nama</th>
+                                        <th>Posisi</th>
+                                        <th>Divisi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <?php $i = 1; ?>
-                                    <?php foreach ($tb_foto as $row) : ?>
+                                    <?php foreach ($pengurus as $row) : ?>
                                         <tr>
                                             <td style="width: 10px" scope="row"><?= $i++; ?></td>
                                             <td>
-                                                <div id="carouselExample<?= $row['id_foto'] ?>" class="carousel slide" data-bs-ride="carousel">
-                                                    <div class="carousel-indicators">
-                                                        <?php
-                                                        $files = explode(', ', $row['file_foto']);
-                                                        $isActive = true;
-                                                        foreach ($files as $index => $file) : ?>
-                                                            <button type="button" data-bs-target="#carouselExample<?= $row['id_foto'] ?>" data-bs-slide-to="<?= $index ?>" class="<?= $isActive ? 'active' : '' ?>" aria-current="<?= $isActive ? 'true' : '' ?>" aria-label="Slide <?= $index + 1 ?>"></button>
-                                                            <?php $isActive = false; ?>
-                                                        <?php endforeach; ?>
-                                                    </div>
-
-                                                    <div class="carousel-inner">
-                                                        <?php
-                                                        $isActive = true;
-                                                        foreach ($files as $file) : ?>
-                                                            <div class="carousel-item <?= $isActive ? 'active' : '' ?>">
-                                                                <img src="<?= base_url($file) ?>" class="carousel-img" alt="...">
-                                                            </div>
-                                                            <?php $isActive = false; ?>
-                                                        <?php endforeach; ?>
-                                                    </div>
-
-                                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample<?= $row['id_foto'] ?>" data-bs-slide="prev">
-                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                        <span class="visually-hidden">Previous</span>
-                                                    </button>
-                                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample<?= $row['id_foto'] ?>" data-bs-slide="next">
-                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                        <span class="visually-hidden">Next</span>
-                                                    </button>
-                                                </div>
+                                                <img src="<?= base_url($row['foto']) ?>" class="carousel-img" alt="Foto Pengurus">
                                             </td>
-                                            <td><?= $row['judul_foto']; ?></td>
+                                            <td><?= $row['nama']; ?></td>
+                                            <td><?= $row['posisi']; ?></td>
+                                            <td><?= $row['divisi']; ?></td>
                                             <td style="width: 155px">
-                                                <a href="/admin/foto/cek_data/<?= $row['id_foto'] ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_foto'] ?>">
+                                                <a href="/admin/foto-pengurus/edit/<?= $row['id'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
                                                 </button>
                                             </td>
@@ -198,31 +170,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     'colvis'
@@ -236,7 +208,7 @@
         $(document).ready(function() {
             $('.sa-warning').click(function(e) {
                 e.preventDefault();
-                var id_foto = $(this).data('id');
+                var id = $(this).data('id');
 
                 Swal.fire({
                     title: "Anda Yakin Ingin Menghapus?",
@@ -250,9 +222,9 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "POST",
-                            url: "<?= site_url('/admin/foto/delete') ?>", // Ubah sesuai dengan URL
+                            url: "<?= site_url('/admin/foto-pengurus/delete') ?>",
                             data: {
-                                id_foto: id_foto
+                                id: id
                             },
                             dataType: 'json',
                             success: function(response) {
@@ -262,7 +234,7 @@
                                         text: response.message,
                                         icon: "success"
                                     }).then(() => {
-                                        location.reload(); // Refresh halaman setelah sukses menghapus
+                                        location.reload();
                                     });
                                 } else if (response.status === 'error') {
                                     Swal.fire({

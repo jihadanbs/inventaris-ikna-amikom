@@ -1,4 +1,5 @@
 <?= $this->include('admin/layouts/script') ?>
+
 <style>
     .separator {
         border-right: 1px solid #ccc;
@@ -6,7 +7,7 @@
     }
 </style>
 
-<!-- saya nonaktifkan agar side bar tidak dapat di klik sembarangan -->
+<!-- Sidebar dinonaktifkan untuk mencegah interaksi -->
 <div style="pointer-events: none;">
     <?= $this->include('admin/layouts/navbar') ?>
     <?= $this->include('admin/layouts/sidebar') ?>
@@ -17,87 +18,103 @@
 <div class="main-content">
     <div class="page-content">
         <div class="container-fluid">
+
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Formulir Ubah Data Foto</h4>
-
+                        <h4 class="mb-sm-0 font-size-18">Formulir Edit Data Pengurus</h4>
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Foto</a></li>
-                                <li class="breadcrumb-item active">Formulir Ubah Data Foto</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Pengurus</a></li>
+                                <li class="breadcrumb-item active">Formulir Edit Data Pengurus</li>
                             </ol>
                         </div>
-
                     </div>
                 </div>
             </div>
             <!-- end page title -->
 
             <div class="row justify-content-center">
-
                 <div class="col-10">
                     <div class="card border border-secondary rounded p-4">
                         <div class="card-body">
-                            <h2 class="text-center mb-4">Formulir Ubah Data Foto</h2>
-                            <form action="/admin/foto/update/<?= $tb_foto['id_foto']; ?>" method="post" enctype="multipart/form-data" id="validationForm" novalidate>
+                            <h2 class="text-center mb-4">Formulir Edit Data Pengurus</h2>
+                            <form action="/admin/foto-pengurus/update/<?= $pengurus['id']; ?>" method="post" enctype="multipart/form-data" id="validationForm" novalidate>
                                 <?= csrf_field(); ?>
-                                <input type="hidden" name="slug" value="<?= $tb_foto['slug']; ?>">
-                                <input type="hidden" name="file_foto" value="<?= $tb_foto['file_foto']; ?>">
+                                <!-- <input type="hidden" name="_method" value="PUT"> -->
 
-                                <di class="mb-3">
-                                    <label for="judul_foto" class="col-form-label">Judul Foto :</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control <?= ($validation->hasError('judul_foto')) ? 'is-invalid' : ''; ?>" id="judul_foto" style="background-color: white;" placeholder="Masukkan Judul Foto" name="judul_foto" value="<?= old('judul_foto', $tb_foto['judul_foto']); ?>">
-                                        <small class="form-text text-muted">Judul Singkat Saja Maksimal 2-3 Kalimat. Cth: Kegiatan Bupati Pesawaran</small>
-                                        <div class="invalid-feedback">
-                                            <?= $validation->getError('judul_foto'); ?>
-                                        </div>
-                                    </div>
-                                </di>
-
+                                <!-- Nama -->
                                 <div class="mb-3">
-                                    <label for="deskripsi" class="col-form-label">Deskripsi :</label>
-                                    <textarea class="form-control custom-border <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" id="deskripsi" cols="30" rows="10" style="background-color: white;" placeholder="Masukkan Deskripsi" name="deskripsi"><?= old('deskripsi', $tb_foto['deskripsi']); ?></textarea>
+                                    <label for="nama" class="col-form-label">Nama:</label>
+                                    <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" value="<?= old('nama', $pengurus['nama']); ?>">
                                     <div class="invalid-feedback">
-                                        <?= $validation->getError('deskripsi'); ?>
+                                        <?= $validation->getError('nama'); ?>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3 separator">
-                                        <label for="file_foto" class="col-form-label">File Foto :</label>
-                                        <input type="file" accept="image/*" class="form-control custom-border" id="file_foto" name="file_foto[]" style="background-color: white;" <?= (old('file_foto')) ? 'disabled' : 'required'; ?> multiple>
-                                        <small class="form-text text-muted">
-                                            <span style="color: blue;">NOTE : Untuk Menginputkan 3 Foto atau Lebih Anda Dapat Menggunakan CTRL Pada Keyboard Lalu<span style="color: red;"> TAHAN CTRL nya </span> Sambil Pilih Gambar yang Dimau Lalu Klik Kiri pada MOUSE ataupun TOUCHPAD (CTRL Masih Tetap Ditahan Ya!). Lakukan Hal Yang Sama Untuk Memilih Foto Lainnya.</span>
-                                        </small>
-                                        <?php if (!empty($tb_foto['file_foto'])) : ?>
-                                            <input type="hidden" name="old_file_foto" value="<?= $tb_foto['file_foto']; ?>">
-                                        <?php endif; ?>
-                                    </div>
 
-                                    <di class="col-md-6 mb-3">
-                                        <label for="tanggal_foto" class="col-form-label">Tanggal Ubah Upload Foto :</label>
-                                        <div class="col-sm-12">
-                                            <input type="date" class="form-control <?= ($validation->hasError('tanggal_foto')) ? 'is-invalid' : ''; ?>" id="tanggal_foto" style="background-color: white;" name="tanggal_foto" value="<?= old('tanggal_foto', $tb_foto['tanggal_foto']); ?>">
-                                            <div class="invalid-feedback">
-                                                <?= $validation->getError('tanggal_foto'); ?>
-                                            </div>
+                                <!-- Foto -->
+                                <div class="mb-3">
+                                    <label for="foto" class="col-form-label">Foto:</label>
+                                    <!-- Tampilkan foto lama jika ada -->
+                                    <?php if ($pengurus['foto']): ?>
+                                        <div class="mb-2">
+                                            <img src="<?= base_url( $pengurus['foto']); ?>" alt="Foto Pengurus" class="img-thumbnail" style="max-width: 200px;">
                                         </div>
-                                    </di>
-                                </div>
-                                <div class="form-group mb-4 mt-4">
-                                    <div class="d-grid gap-2 d-md-flex justify-content-end">
-                                        <a href="/admin/foto/cek_data/<?= $tb_foto['id_foto'] ?>" class="btn btn-secondary btn-md ml-3">
-                                            <i class="fas fa-arrow-left"></i> Kembali
-                                        </a>
-                                        <button type="submit" class="btn btn-primary ">Ubah Data</button>
+                                    <?php endif; ?>
+                                    <input type="file" class="form-control <?= ($validation->hasError('foto')) ? 'is-invalid' : ''; ?>" id="foto" name="foto" accept="image/*">
+                                    <small class="text-muted">Biarkan kosong jika tidak ingin mengganti foto</small>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('foto'); ?>
                                     </div>
                                 </div>
 
+                                <!-- Posisi -->
+                                <div class="mb-3">
+                                    <label for="posisi" class="col-form-label">Posisi:</label>
+                                    <input type="text" class="form-control <?= ($validation->hasError('posisi')) ? 'is-invalid' : ''; ?>" id="posisi" name="posisi" value="<?= old('posisi', $pengurus['posisi']); ?>">
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('posisi'); ?>
+                                    </div>
+                                </div>
+
+                                <!-- Divisi -->
+                                <div class="mb-3">
+                                    <label for="divisi" class="col-form-label">Divisi:</label>
+                                    <select class="form-control <?= ($validation->hasError('divisi')) ? 'is-invalid' : ''; ?>" id="divisi" name="divisi">
+                                        <option value="">-- Pilih Divisi --</option>
+                                        <option value="BPH" <?= (old('divisi', $pengurus['divisi']) == 'BPH') ? 'selected' : ''; ?>>BPH</option>
+                                        <option value="Kerohanian" <?= (old('divisi', $pengurus['divisi']) == 'Kerohanian') ? 'selected' : ''; ?>>Kerohanian</option>
+                                        <option value="Kerumahtanggaan" <?= (old('divisi', $pengurus['divisi']) == 'Kerumahtanggaan') ? 'selected' : ''; ?>>Kerumahtanggaan</option>
+                                        <option value="Humas" <?= (old('divisi', $pengurus['divisi']) == 'Humas') ? 'selected' : ''; ?>>Humas</option>
+                                        <option value="Talenta Olahraga" <?= (old('divisi', $pengurus['divisi']) == 'Talenta Olahraga') ? 'selected' : ''; ?>>Talenta Olahraga</option>
+                                        <option value="Talenta Musik" <?= (old('divisi', $pengurus['divisi']) == 'Talenta Musik') ? 'selected' : ''; ?>>Talenta Musik</option>
+                                        <option value="Talenta Pertunjukan" <?= (old('divisi', $pengurus['divisi']) == 'Talenta Pertunjukan') ? 'selected' : ''; ?>>Talenta Pertunjukan</option>
+                                        <option value="Usaha Dana" <?= (old('divisi', $pengurus['divisi']) == 'Usaha Dana') ? 'selected' : ''; ?>>Usaha Dana</option>
+                                        <option value="Litbang" <?= (old('divisi', $pengurus['divisi']) == 'Litbang') ? 'selected' : ''; ?>>Litbang</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('divisi'); ?>
+                                    </div>
+                                </div>
+
+                                <!-- Tanggal Pembuatan -->
+                                <div class="mb-3">
+                                    <label for="created_at" class="col-form-label">Tanggal Dibuat:</label>
+                                    <input type="date" class="form-control <?= ($validation->hasError('created_at')) ? 'is-invalid' : ''; ?>" id="created_at" name="created_at" value="<?= old('created_at', $pengurus['created_at']); ?>" readonly>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('created_at'); ?>
+                                    </div>
+                                </div>
+
+                                <!-- Tombol Submit -->
+                                <div class="modal-footer">
+                                    <a href="/admin/foto-pengurus" class="btn btn-secondary btn-md ml-3">
+                                        <i class="fas fa-arrow-left"></i> Batal
+                                    </a>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #28527A; color:white; margin-left: 10px;">Simpan Perubahan</button>
+                                </div>
                             </form>
-
-
                         </div>
                     </div>
                 </div>
@@ -106,26 +123,5 @@
     </div>
 </div>
 
-
 <?= $this->include('admin/layouts/footer') ?>
-<!-- end main content-->
 <?= $this->include('admin/layouts/script2') ?>
-
-<!-- autofocus input edit langsung kebelakang kata -->
-<script>
-    window.addEventListener('DOMContentLoaded', function() {
-        var inputJudul = document.getElementById('judul_foto');
-
-        // Fungsi untuk mengatur fokus ke posisi akhir input
-        function setFocusToEnd(element) {
-            element.focus();
-            var val = element.value;
-            element.value = ''; // kosongkan nilai input
-            element.value = val; // isi kembali nilai input untuk memindahkan fokus ke posisi akhir
-        }
-
-        // Panggil fungsi setFocusToEnd setelah DOM selesai dimuat
-        setFocusToEnd(inputJudul);
-    });
-</script>
-<!-- end autofocus input edit langsung kebelakang kata -->

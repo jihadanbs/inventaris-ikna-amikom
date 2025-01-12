@@ -102,8 +102,6 @@ class GaleriKegiatanController extends BaseController
     }
     
 
-    
-    
     // Menampilkan form edit kegiatan
     public function edit($id)
     {
