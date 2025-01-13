@@ -21,16 +21,16 @@
                             <a class="nav-link" href="<?= site_url('/') ?>">Beranda</a>
                         </li>
                         <li class="nav-item <?= uri_string() == 'about' ? 'active' : '' ?>">
-                            <a class="nav-link" href="<?= site_url('/about') ?>">Tentang Kami</a>
+                            <a class="nav-link" href="<?= site_url('about') ?>">Tentang Kami</a>
                         </li>
                         <li class="nav-item <?= uri_string() == 'galeri' ? 'active' : '' ?>">
-                            <a class="nav-link" href="<?= site_url('/galeri') ?>">Galeri</a>
+                            <a class="nav-link" href="<?= site_url('galeri') ?>">Galeri</a>
                         </li>
                         <li class="nav-item <?= uri_string() == 'kontak' ? 'active' : '' ?>">
-                            <a class="nav-link" href="<?= site_url('/kontak') ?>">Kontak Kami</a>
+                            <a class="nav-link" href="<?= site_url('kontak') ?>">Kontak Kami</a>
                         </li>
                         <li class="nav-item <?= uri_string() == 'barang' ? 'active' : '' ?>">
-                            <a class="nav-link" href="<?= site_url('/barang') ?>">Barang</a>
+                            <a class="nav-link" href="<?= site_url('barang') ?>">Barang</a>
                         </li>
                     </ul>
                 </div>

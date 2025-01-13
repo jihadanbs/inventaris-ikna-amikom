@@ -214,7 +214,7 @@
 
                                 <div class="mb-3">
                                     <label for="path_file_foto_barang" class="col-form-label">Foto Barang<span class="text-danger">*</span></label>
-                                    <input type="file" accept="image/*" class="form-control custom-border <?= session('errors.deskripsi') ? 'is-invalid' : ''; ?>" id="path_file_foto_barang" name="path_file_foto_barang[]" style="background-color: white;" <?= (old('path_file_foto_barang')) ? 'disabled' : 'required'; ?> value="<?= old('path_file_foto_barang'); ?>" multiple>
+                                    <input type="file" accept="image/*" class="form-control custom-border <?= session('errors.path_file_foto_barang') ? 'is-invalid' : ''; ?>" id="path_file_foto_barang" name="path_file_foto_barang[]" style="background-color: white;" <?= (old('path_file_foto_barang')) ? 'disabled' : 'required'; ?> value="<?= old('path_file_foto_barang'); ?>" multiple>
 
                                     <?php if (session('errors.path_file_foto_barang')) : ?>
                                         <div class="invalid-feedback">

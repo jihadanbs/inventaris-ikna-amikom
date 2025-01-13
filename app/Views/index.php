@@ -18,7 +18,7 @@
                                             IKNAventory
                                         </h1>
                                         <div class="btn-box">
-                                            <a href="#contactLink" class="btn-1">
+                                            <a href="<?= site_url('kontak'); ?>" class="btn-1">
                                                 Kontak Kami
                                             </a>
                                         </div>

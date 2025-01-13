@@ -365,7 +365,6 @@ class BarangController extends BaseController
         }
     }
 
-
     public function cek_data($slug)
     {
         // Cek sesi pengguna
@@ -396,6 +395,7 @@ class BarangController extends BaseController
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_barang' => $this->m_barang->getBarangBySlug($slug),
             'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
+            'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
         ]);
 
         return view('admin/barang/edit', $data);
@@ -407,20 +407,128 @@ class BarangController extends BaseController
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
 
-        // Validasi input
-        if (!$this->validate([
+        $data = $this->request->getPost();
+        $existingBarang = $this->m_barang->find($id_barang);
+
+        if (!$existingBarang) {
+            return redirect()->back()->with('error', 'Data barang tidak ditemukan !');
+        }
+
+        // Konversi nilai jumlah ke integer untuk mencegah error tipe data
+        $data['jumlah_total_baik'] = (int)($data['jumlah_total_baik'] ?? 0);
+        $data['jumlah_total_rusak'] = (int)($data['jumlah_total_rusak'] ?? 0);
+        $data['jumlah_total'] = (int)($data['jumlah_total'] ?? 0);
+
+        // Konversi nilai existing ke integer untuk perbandingan yang akurat
+        $existingBarang['jumlah_total'] = (int)$existingBarang['jumlah_total'];
+
+        // Get existing related data
+        $existingBarangBaik = $this->m_barang_baik->where('id_barang', $id_barang)->first();
+        $existingBarangRusak = $this->m_barang_rusak->where('id_barang', $id_barang)->first();
+        $existingBarangMasuk = $this->m_barang_masuk->where('id_barang', $id_barang)->first();
+
+        // Konversi nilai existing related data ke integer
+        $existingBarangBaik['jumlah_total_baik'] = (int)$existingBarangBaik['jumlah_total_baik'];
+        $existingBarangRusak['jumlah_total_rusak'] = (int)$existingBarangRusak['jumlah_total_rusak'];
+
+        $changes = [];
+
+        // Compare main table changes dengan strict comparison (===)
+        if ($existingBarang['nama_barang'] !== trim($data['nama_barang'])) {
+            $changes[] = 'nama barang';
+        }
+        if ((int)$existingBarang['id_kategori_barang'] !== (int)$data['id_kategori_barang']) {
+            $changes[] = 'kategori barang';
+        }
+        if ((int)$existingBarang['id_kondisi_barang'] !== (int)$data['id_kondisi_barang']) {
+            $changes[] = 'kondisi barang';
+        }
+        if ($existingBarang['jumlah_total'] !== $data['jumlah_total']) {
+            $changes[] = 'jumlah total';
+        }
+        if ($existingBarang['deskripsi'] !== trim($data['deskripsi'])) {
+            $changes[] = 'deskripsi';
+        }
+
+        // Cek perubahan jumlah_total_baik dan keterangan_baik
+        if ($existingBarangBaik['jumlah_total_baik'] !== $data['jumlah_total_baik']) {
+            $changes[] = 'jumlah barang baik';
+        } else {
+            // Bandingkan keterangan yang akan dihasilkan oleh getter
+            $oldKetBaik = $this->getKeteranganBaik($existingBarangBaik['jumlah_total_baik'], $existingBarangBaik['keterangan_baik']);
+            $newKetBaik = $this->getKeteranganBaik($data['jumlah_total_baik'], $data['keterangan_baik'] ?? '');
+            if ($oldKetBaik !== $newKetBaik) {
+                $changes[] = 'keterangan baik';
+            }
+        }
+
+        // Cek perubahan jumlah_total_rusak dan keterangan_rusak
+        if ($existingBarangRusak['jumlah_total_rusak'] !== $data['jumlah_total_rusak']) {
+            $changes[] = 'jumlah barang rusak';
+        } else {
+            // Bandingkan keterangan yang akan dihasilkan oleh getter
+            $oldKetRusak = $this->getKeteranganRusak($existingBarangRusak['jumlah_total_rusak'], $existingBarangRusak['keterangan_rusak']);
+            $newKetRusak = $this->getKeteranganRusak($data['jumlah_total_rusak'], $data['keterangan_rusak'] ?? '');
+            if ($oldKetRusak !== $newKetRusak) {
+                $changes[] = 'keterangan rusak';
+            }
+        }
+
+        // Cek perubahan tanggal_masuk dan keterangan_masuk
+        if ($existingBarangMasuk['tanggal_masuk'] !== $data['tanggal_masuk']) {
+            $changes[] = 'tanggal masuk';
+        } else {
+            // Bandingkan keterangan yang akan dihasilkan oleh getter
+            $oldKetMasuk = $this->getKeteranganMasuk($existingBarangMasuk['tanggal_masuk'], $existingBarangMasuk['keterangan_masuk']);
+            $newKetMasuk = $this->getKeteranganMasuk($data['tanggal_masuk'], $data['keterangan_masuk'] ?? '');
+            if ($oldKetMasuk !== $newKetMasuk) {
+                $changes[] = 'keterangan masuk';
+            }
+        }
+
+        // Check if files were uploaded
+        $filesUploaded = $this->request->getFileMultiple('path_file_foto_barang');
+        if ($filesUploaded && is_array($filesUploaded)) {
+            foreach ($filesUploaded as $file) {
+                if ($file->isValid() && !$file->hasMoved()) {
+                    $changes[] = 'foto barang';
+                    break;
+                }
+            }
+        }
+
+        // If no changes detected, redirect back with message
+        if (empty($changes)) {
+            return redirect()->to('/admin/barang')->with('warning', 'Tidak ada data barang yang diubah !');
+        }
+
+        // Validasi jumlah baik dan rusak tidak melebihi atau kurang dari jumlah total
+        if (($data['jumlah_total_baik'] + $data['jumlah_total_rusak']) > $data['jumlah_total']) {
+            return redirect()->back()->withInput()->with('error', 'Jumlah barang layak dan rusak tidak boleh melebihi jumlah total barang yang dimasukkan !');
+        } else if (($data['jumlah_total_baik'] + $data['jumlah_total_rusak']) < $data['jumlah_total']) {
+            return redirect()->back()->withInput()->with('error', 'Total jumlah dari barang layak dan rusak (' . $data['jumlah_total_baik'] + $data['jumlah_total_rusak'] . ') kurang dari jumlah total barang yang dimasukkan (' . $data['jumlah_total'] . ') !');
+        }
+
+        //validasi input 
+        $rules = [
             'id_kategori_barang' => [
                 'rules' => 'required',
                 'errors' => [
                     'required' => 'Silahkan Pilih Nama Kategori Barang !'
                 ]
             ],
+            'id_kondisi_barang' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Silahkan Pilih Kondisi Barang Saat Ini !'
+                ]
+            ],
             'nama_barang' => [
-                'rules' => "required|is_unique_nama_barang_lainnya[tb_barang,id_kategori_barang,id_barang]|trim|min_length[5]|max_length[100]",
+                'rules' => "required|is_unique_nama_barang_lainnya[tb_barang,id_kategori_barang,id_barang]|trim|min_length[2]|max_length[100]",
                 'errors' => [
                     'required' => 'Kolom Nama Barang Tidak Boleh Kosong !',
                     'is_unique_nama_barang_lainnya' => 'Nama Barang sudah terdaftar untuk nama kategori yang sama !',
-                    'min_length' => 'Nama Barang tidak boleh kurang dari 5 karakter !',
+                    'min_length' => 'Nama Barang tidak boleh kurang dari 2 karakter !',
                     'max_length' => 'Nama Barang tidak boleh melebihi 100 karakter !',
                 ]
             ],
@@ -438,11 +546,22 @@ class BarangController extends BaseController
                     'required' => 'Silahkan Masukkan Tanggal Masuk Barang !'
                 ]
             ],
-            'tanggal_keluar' => [
-                'rules' => 'required|notEqualTo[tanggal_masuk]',
+            'keterangan_masuk' => [
+                'rules' => 'max_length[255]',
                 'errors' => [
-                    'required' => 'Silahkan Masukkan Tanggal Keluar Barang !',
-                    'notEqualTo' => 'Tanggal Keluar tidak boleh sama dengan Tanggal Masuk !'
+                    'max_length' => 'Keterangan tidak boleh melebihi 255 karakter !',
+                ]
+            ],
+            'keterangan_baik' => [
+                'rules' => 'max_length[255]',
+                'errors' => [
+                    'max_length' => 'Keterangan tidak boleh melebihi 255 karakter !',
+                ]
+            ],
+            'keterangan_rusak' => [
+                'rules' => 'max_length[255]',
+                'errors' => [
+                    'max_length' => 'Keterangan tidak boleh melebihi 255 karakter !',
                 ]
             ],
             'jumlah_total' => [
@@ -451,94 +570,138 @@ class BarangController extends BaseController
                     'required' => 'Silahkan Masukkan Jumlah Total dari Barang Tersebut !'
                 ]
             ],
-        ])) {
-            // Jika terjadi kesalahan validasi, kembalikan dengan pesan validasi
-            session()->setFlashdata('validation', \Config\Services::validation());
-            return redirect()->back()->withInput();
+            'jumlah_total_baik' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Layak !'
+                ]
+            ],
+            'jumlah_total_rusak' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Rusak !'
+                ]
+            ],
+        ];
+
+        // Cek file upload dengan cara yang lebih aman
+        $filesUploaded = $this->request->getFileMultiple('path_file_foto_barang');
+        if ($filesUploaded && is_array($filesUploaded)) {
+            $hasValidFile = false;
+            foreach ($filesUploaded as $file) {
+                if ($file->isValid() && !$file->hasMoved()) {
+                    $hasValidFile = true;
+                    break;
+                }
+            }
+
+            if ($hasValidFile) {
+                $rules['path_file_foto_barang'] = [
+                    'rules' => 'max_size[path_file_foto_barang,10240]|is_image[path_file_foto_barang]',
+                    'errors' => [
+                        'max_size' => 'Ukuran foto tidak boleh lebih dari 10MB !',
+                        'is_image' => 'File harus berupa gambar (JPG, JPEG, PNG, dll) !',
+                    ]
+                ];
+            }
+        }
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
         // Ambil data barang yang ada saat ini dari database
         $existingBarang = $this->m_barang->find($id_barang);
+        if (!$existingBarang) {
+            return redirect()->back()->with('error', 'Data barang tidak ditemukan !');
+        }
 
-        // Persiapkan data untuk update
+        // Data untuk update tabel utama
         $dataToUpdate = [
             'id_barang' => $id_barang,
-            'nama_barang' => $this->request->getVar('nama_barang'),
-            'id_kategori_barang' => $this->request->getVar('id_kategori_barang'),
-            'jumlah_total' => $this->request->getVar('jumlah_total'),
-            'deskripsi' => $this->request->getVar('deskripsi'),
-            'tanggal_masuk' => $this->request->getVar('tanggal_masuk'),
-            'tanggal_keluar' => $this->request->getVar('tanggal_keluar'),
-            'slug' => url_title($this->request->getVar('nama_barang'), '-', true)
+            'nama_barang' => $data['nama_barang'],
+            'id_kategori_barang' => $data['id_kategori_barang'],
+            'id_kondisi_barang' => $data['id_kondisi_barang'],
+            'jumlah_total' => $data['jumlah_total'],
+            'deskripsi' => $data['deskripsi'],
+            'slug' => url_title($data['nama_barang'], '-', true)
         ];
 
-        // Panggil helper uploadMultiple untuk multiple files
-        $uploadedFiles = uploadMultiple('path_file_foto_barang', 'dokumen/barang/');
+        // Start transaction
+        $this->db->transStart();
 
-        // Cek apakah ada perubahan pada file foto
-        $oldFileNames = explode(', ', $this->request->getVar('old_path_file_foto_barang'));
-        $isFileChanged = !empty($uploadedFiles);
+        try {
+            // Update tabel utama
+            $this->m_barang->update($id_barang, $dataToUpdate);
 
-        // Cek apakah ada perubahan data
-        $isDataChanged = false;
-        foreach ($dataToUpdate as $key => $value) {
-            if ($key !== 'id_barang' && $key !== 'slug') {
-                if ($existingBarang[$key] != $value) {
-                    $isDataChanged = true;
-                    break;
+            // Handle file upload
+            $uploadedFiles = uploadMultiple('path_file_foto_barang', 'dokumen/barang/');
+            if (!empty($uploadedFiles)) {
+                // Hapus file lama
+                $oldFileNames = explode(', ', $data['old_path_file_foto_barang']);
+                foreach ($oldFileNames as $oldFileName) {
+                    if (file_exists(ROOTPATH . 'public/' . $oldFileName)) {
+                        unlink(ROOTPATH . 'public/' . $oldFileName);
+                    }
                 }
-            }
-        }
 
-        // Jika tidak ada perubahan pada data dan file
-        if (!$isDataChanged && !$isFileChanged) {
-            // Set flash message untuk data tidak ada yang diubah
-            session()->setFlashdata('warning', 'Data Barang Tidak Ada Yang Diubah !');
-            return redirect()->to('/admin/barang');
-        }
+                // Hapus relasi lama
+                $this->db->table('tb_galeri_barang')->where('id_barang', $id_barang)->delete();
+                $this->db->table('tb_file_foto_barang')->whereIn('path_file_foto_barang', $oldFileNames)->delete();
 
-        // Proses file upload (sama seperti kode sebelumnya)
-        if (!empty($uploadedFiles)) {
-            // Hapus file lama jika ada file baru yang diunggah
-            foreach ($oldFileNames as $oldFileName) {
-                if (file_exists(ROOTPATH . 'public/' . $oldFileName)) {
-                    unlink(ROOTPATH . 'public/' . $oldFileName);
+                // Insert file baru
+                foreach ($uploadedFiles as $fileName) {
+                    // Insert ke tb_file_foto_barang
+                    $this->db->table('tb_file_foto_barang')->insert([
+                        'path_file_foto_barang' => $fileName,
+                    ]);
+
+                    // Ambil ID yang baru diinsert
+                    $idFileFoto = $this->db->insertID();
+
+                    // Insert ke tb_galeri_barang
+                    $this->db->table('tb_galeri_barang')->insert([
+                        'id_barang' => $id_barang,
+                        'id_file_foto_barang' => $idFileFoto,
+                    ]);
                 }
+
+                // Update path di tabel utama
+                $dataToUpdate['path_file_foto_barang'] = implode(', ', $uploadedFiles);
+            } else {
+                // Jika tidak ada file baru yang diunggah, gunakan file lama
+                $dataToUpdate['path_file_foto_barang'] = $data['old_path_file_foto_barang'];
             }
 
-            // Hapus relasi lama dari tb_galeri_barang dan tb_file_foto_barang
-            $this->db->table('tb_galeri_barang')->where('id_barang', $id_barang)->delete();
-            $this->db->table('tb_file_foto_barang')->whereIn('path_file_foto_barang', $oldFileNames)->delete();
+            // Update tabel barang_baik
+            $this->m_barang_baik->where('id_barang', $id_barang)->set([
+                'jumlah_total_baik' => $data['jumlah_total_baik'],
+                'keterangan_baik' => $this->getKeteranganBaik($data['jumlah_total_baik'], $data['keterangan_baik'] ?? '')
+            ])->update();
 
-            // Simpan file baru
-            foreach ($uploadedFiles as $fileName) {
-                $this->db->table('tb_file_foto_barang')->insert([
-                    'path_file_foto_barang' => $fileName,
-                ]);
+            // Update tabel barang_rusak
+            $this->m_barang_rusak->where('id_barang', $id_barang)->set([
+                'jumlah_total_rusak' => $data['jumlah_total_rusak'],
+                'keterangan_rusak' => $this->getKeteranganRusak($data['jumlah_total_rusak'], $data['keterangan_rusak'] ?? '')
+            ])->update();
 
-                // Dapatkan ID file foto yang baru saja disimpan
-                $idFileFoto = $this->db->insertID();
+            // Update tabel barang_masuk
+            $this->m_barang_masuk->where('id_barang', $id_barang)->set([
+                'tanggal_masuk' => $data['tanggal_masuk'],
+                'keterangan_masuk' => $this->getKeteranganMasuk($data['tanggal_masuk'], $data['keterangan_masuk'] ?? '')
+            ])->update();
 
-                // Relasikan file foto dengan foto yang sudah disimpan sebelumnya
-                $this->db->table('tb_galeri_barang')->insert([
-                    'id_barang' => $id_barang,
-                    'id_file_foto_barang' => $idFileFoto,
-                ]);
+            $this->db->transComplete();
+
+            if ($this->db->transStatus() === false) {
+                return redirect()->back()->with('error', 'Gagal mengubah data barang!');
             }
 
-            // Update path file foto di data barang
-            $dataToUpdate['path_file_foto_barang'] = implode(', ', $uploadedFiles);
-        } else {
-            // Jika tidak ada file baru yang diunggah, gunakan file lama
-            $dataToUpdate['path_file_foto_barang'] = $this->request->getVar('old_path_file_foto_barang');
+            $changedFields = implode(', ', $changes);
+            return redirect()->to('/admin/barang')->with('pesan', 'Data Barang Berhasil Diubah! Perubahan pada: ' . $changedFields);
+        } catch (\Exception $e) {
+            $this->db->transRollback();
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
-
-        // Simpan data ke dalam database
-        $this->m_barang->save($dataToUpdate);
-
-        // Set flash message untuk sukses
-        session()->setFlashdata('pesan', 'Data Barang Berhasil Diubah !');
-
-        return redirect()->to('/admin/barang');
     }
 }

@@ -49,12 +49,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Data Barang Rusak</h4>
+                        <h4 class="mb-sm-0 font-size-18">Data Barang Baik</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang_rusak') ?>">Barang IKNA</a></li>
-                                <li class="breadcrumb-item active">Data Barang Rusak</li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang_baik') ?>">Barang IKNA</a></li>
+                                <li class="breadcrumb-item active">Data Barang Baik</li>
                             </ol>
                         </div>
 
@@ -85,39 +85,20 @@
                                 return $text;
                             }
                             ?>
-                            <table id="tableBarangRusak" class="table table-bordered dt-responsive nowrap w-100">
-                                <?php if (session()->getFlashdata('pesan')) : ?>
-                                    <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
-                                        <?= session()->getFlashdata('pesan') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (session()->getFlashdata('gagal')) : ?>
-                                    <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Gagal</strong> -
-                                        <?= session()->getFlashdata('gagal') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (session()->getFlashdata('warning')) : ?>
-                                    <div class="alert alert-warning alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-alert-outline align-middle me-3"></i><strong>Peringatan</strong> -
-                                        <?= session()->getFlashdata('warning') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-                                <div class="col-md-3 mb-3">
+                            <table id="tableBarangBaik" class="table table-bordered dt-responsive nowrap w-100">
+                                <?= $this->include('alert/alert'); ?>
+                                <!-- <div class="col-md-3 mb-3">
                                     <a href=" <?= site_url('admin/barang_rusak/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
                                     </a>
-                                </div>
+                                </div> -->
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
                                         <th>Nama Barang</th>
                                         <th>Kategori</th>
-                                        <th>Total Barang Rusak</th>
+                                        <th>Total Barang</th>
+                                        <th>Keterangan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -130,11 +111,12 @@
                                             <td><?= truncateText($row['nama_barang'], 70); ?></td>
                                             <td><?= $row['nama_kategori']; ?></td>
                                             <td><?= $row['jumlah_total_baik']; ?></td>
-                                            <td style="width: 155px">
-                                                <a href="<?= site_url('admin/barang_rusak/cek_data/' . $row['nama_barang']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_baik'] ?>">
+                                            <td><?= $row['keterangan_baik']; ?></td>
+                                            <td style="width: 50px">
+                                                <a href="<?= site_url('admin/barang_rusak/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-pencil-alt"></i> Edit</a>
+                                                <!-- <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_baik'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
-                                                </button>
+                                                </button> -->
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -155,7 +137,7 @@
 
     <script>
         $(document).ready(function() {
-            $("#tableBarangRusak").DataTable({
+            $("#tableBarangBaik").DataTable({
                 "paging": true,
                 "responsive": true,
                 "lengthChange": true,
@@ -192,7 +174,7 @@
                     },
                     'colvis'
                 ],
-            }).buttons().container().appendTo('#tableBarangRusak_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#tableBarangBaik_wrapper .col-md-6:eq(0)');
         });
     </script>
 

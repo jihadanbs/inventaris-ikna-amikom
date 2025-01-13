@@ -131,11 +131,19 @@
                                             </div>
 
                                             <div class="col-md-2">
+                                                <label class="fw-bold text-black">Kondisi Barang</label>
+                                            </div>
+                                            <div class="col-auto">:</div>
+                                            <div class="col-md-8">
+                                                <p><?= esc($tb_barang['nama_kondisi'] ?? '', 'html'); ?></p>
+                                            </div>
+
+                                            <div class="col-md-2">
                                                 <label class="fw-bold text-black">Jumlah Total</label>
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <p><?= esc($tb_barang['jumlah_total'] ?? '', 'html'); ?></p>
+                                                <p><?= esc($tb_barang['jumlah_total'] ?? '', 'html'); ?> Barang</p>
                                             </div>
 
                                             <div class="col-md-2">
@@ -143,16 +151,25 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <p><?= esc($tb_barang['tanggal_masuk'] ?? '', 'html'); ?></p>
+                                                <p><?= formatTanggalIndo($tb_barang['tanggal_masuk'] ?? '', 'html'); ?></p>
                                             </div>
 
                                             <div class="col-md-2">
-                                                <label class="fw-bold text-black">Tanggal Keluar</label>
+                                                <label class="fw-bold text-black">Kondisi Baik/Layak</label>
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <p><?= esc($tb_barang['tanggal_keluar'] ?? '', 'html'); ?></p>
+                                                <p><?= esc($tb_barang['jumlah_total_baik'] ?? '', 'html'); ?> Barang</p>
                                             </div>
+
+                                            <div class="col-md-2">
+                                                <label class="fw-bold text-black">Kondisi Rusak</label>
+                                            </div>
+                                            <div class="col-auto">:</div>
+                                            <div class="col-md-8">
+                                                <p><?= esc($tb_barang['jumlah_total_rusak'] ?? '', 'html'); ?> Barang</p>
+                                            </div>
+
                                             <!-- truncate text -->
                                             <?php
                                             function truncateText($text, $maxLength)
