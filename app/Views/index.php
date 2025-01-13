@@ -18,7 +18,7 @@
                                             IKNAventory
                                         </h1>
                                         <div class="btn-box">
-                                            <a href="#contactLink" class="btn-1">
+                                            <a href="<?= site_url('kontak'); ?>" class="btn-1">
                                                 Kontak Kami
                                             </a>
                                         </div>
@@ -98,7 +98,7 @@
                 <?php endif; ?>
             </div>
             <div class="btn-box">
-                <a href="<?= site_url('/service') ?>">
+                <a href="<?= site_url('galeri') ?>">
                     Lebih lanjut
                 </a>
             </div>
