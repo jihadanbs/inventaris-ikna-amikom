@@ -86,38 +86,19 @@
                             }
                             ?>
                             <table id="tableBarangRusak" class="table table-bordered dt-responsive nowrap w-100">
-                                <?php if (session()->getFlashdata('pesan')) : ?>
-                                    <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
-                                        <?= session()->getFlashdata('pesan') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (session()->getFlashdata('gagal')) : ?>
-                                    <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Gagal</strong> -
-                                        <?= session()->getFlashdata('gagal') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (session()->getFlashdata('warning')) : ?>
-                                    <div class="alert alert-warning alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-alert-outline align-middle me-3"></i><strong>Peringatan</strong> -
-                                        <?= session()->getFlashdata('warning') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-                                <div class="col-md-3 mb-3">
+                                <?= $this->include('alert/alert'); ?>
+                                <!-- <div class="col-md-3 mb-3">
                                     <a href=" <?= site_url('admin/barang_rusak/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
                                     </a>
-                                </div>
+                                </div> -->
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
                                         <th>Nama Barang</th>
                                         <th>Kategori</th>
-                                        <th>Total Barang Rusak</th>
+                                        <th>Total Barang</th>
+                                        <th>Keterangan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -130,11 +111,12 @@
                                             <td><?= truncateText($row['nama_barang'], 70); ?></td>
                                             <td><?= $row['nama_kategori']; ?></td>
                                             <td><?= $row['jumlah_total_rusak']; ?></td>
-                                            <td style="width: 155px">
-                                                <a href="<?= site_url('admin/barang_rusak/cek_data/' . $row['nama_barang']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_rusak'] ?>">
+                                            <td><?= $row['keterangan_rusak']; ?></td>
+                                            <td style="width: 50px">
+                                                <a href="<?= site_url('admin/barang_rusak/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-pencil-alt"></i> Edit</a>
+                                                <!-- <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_rusak'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
-                                                </button>
+                                                </button> -->
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

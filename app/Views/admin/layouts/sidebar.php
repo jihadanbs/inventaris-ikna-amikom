@@ -102,8 +102,8 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="barang_masuk" data-key="t-apps">Data Barang Masuk</a></li>
                         <li><a href="barang_keluar" data-key="t-apps">Data Barang Keluar</a></li>
-                        <li><a href="barang_baru" data-key="t-apps">Data Barang Baru</a></li>
-                        <li><a href="barang_bekas" data-key="t-apps">Data Barang Bekas</a></li>
+                        <!-- <li><a href="barang_baru" data-key="t-apps">Data Barang Baru</a></li>
+                        <li><a href="barang_bekas" data-key="t-apps">Data Barang Bekas</a></li> -->
                     </ul>
                 </li>
 

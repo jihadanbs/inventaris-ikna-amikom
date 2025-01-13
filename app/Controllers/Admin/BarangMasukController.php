@@ -17,12 +17,11 @@ class BarangMasukController extends BaseController
         // Menyiapkan data untuk tampilan
         $data = array_merge([
             'title' => 'Admin | Halaman Barang Masuk',
-            'tb_barang_masuk' => $this->m_barang->getAllSorted(),
+            'tb_barang_masuk' => $this->m_barang_masuk->getAllSorted(),
         ]);
 
         return view('admin/barang_masuk/index', $data);
     }
-
     // public function tambah()
     // {
     //     // Cek sesi pengguna
