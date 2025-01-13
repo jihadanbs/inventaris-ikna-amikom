@@ -38,60 +38,76 @@
                     <div class="card border border-secondary rounded p-4">
                         <div class="card-body">
                             <h2 class="text-center mb-4">Formulir Ubah Data Foto</h2>
-                            <form action="/admin/galeri-kegiatan/update/<?= $kegiatan['id_kegiatan']; ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?= site_url('admin/galeri-kegiatan/update/' . $kegiatan['id_kegiatan']); ?>" method="post" enctype="multipart/form-data">
                                 <?= csrf_field(); ?>
+                                <input type="hidden" name="_method" value="PUT">
                                 <input type="hidden" name="old_foto_kegiatan" value="<?= $kegiatan['foto_kegiatan']; ?>">
 
-                                <div class="mb-3">
-                                    <label for="judul_kegiatan" class="col-form-label">Judul Kegiatan:</label>
-                                    <input type="text" class="form-control <?= ($validation->hasError('judul_kegiatan')) ? 'is-invalid' : ''; ?>" 
-                                           id="judul_kegiatan" 
-                                           name="judul_kegiatan" 
-                                           value="<?= old('judul_kegiatan', $kegiatan['judul_kegiatan']); ?>" 
-                                           placeholder="Masukkan Judul Kegiatan">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('judul_kegiatan'); ?>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3 separator">
+                                        <label for="judul_kegiatan" class="col-form-label">Judul Kegiatan<span style="color: red;">*</span></label>
+                                        <input type="text" style="background-color: #fff;" class="form-control <?= session('errors.judul_kegiatan') ? 'is-invalid' : ''; ?>" id="judul_kegiatan" name="judul_kegiatan" value="<?= old('judul_kegiatan', $kegiatan['judul_kegiatan']); ?>" placeholder="Masukkan Judul Kegiatan">
+                                        <?php if (session('errors.judul_kegiatan')) : ?>
+                                            <div class="invalid-feedback">
+                                                <?= session('errors.judul_kegiatan') ?>
+                                            </div>
+                                        <?php endif ?>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="tanggal_foto" class="col-form-label">Tanggal Foto<span style="color: red;">*</span></label>
+                                        <input type="date" style="background-color: #fff;" class="form-control <?= session('errors.tanggal_foto') ? 'is-invalid' : ''; ?>" id="tanggal_foto" name="tanggal_foto" value="<?= old('tanggal_foto', $kegiatan['tanggal_foto']); ?>">
+                                        <?php if (session('errors.tanggal_foto')) : ?>
+                                            <div class="invalid-feedback">
+                                                <?= session('errors.tanggal_foto') ?>
+                                            </div>
+                                        <?php endif ?>
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="deskripsi" class="col-form-label">Deskripsi:</label>
-                                    <textarea class="form-control <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" 
-                                              id="deskripsi" 
-                                              name="deskripsi" 
-                                              placeholder="Masukkan Deskripsi"
-                                              rows="5"><?= old('deskripsi', $kegiatan['deskripsi']); ?></textarea>
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('deskripsi'); ?>
-                                    </div>
+                                    <label for="deskripsi" class="col-form-label">Deskripsi<span style="color: red;">*</span></label>
+                                    <textarea style="background-color: #fff;" class="form-control <?= session('errors.deskripsi') ? 'is-invalid' : ''; ?>" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi" rows="5"><?= old('deskripsi', $kegiatan['deskripsi']); ?></textarea>
+                                    <?php if (session('errors.deskripsi')) : ?>
+                                        <div class="invalid-feedback">
+                                            <?= session('errors.deskripsi') ?>
+                                        </div>
+                                    <?php endif ?>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="foto_kegiatan" class="col-form-label">Foto Kegiatan:</label>
-                                    <input type="file" class="form-control <?= ($validation->hasError('foto_kegiatan')) ? 'is-invalid' : ''; ?>" 
-                                           id="foto_kegiatan" 
-                                           name="foto_kegiatan" 
-                                           accept="image/*">
-                                    <small class="text-muted">File saat ini: <a href="/<?= $kegiatan['foto_kegiatan']; ?>" target="_blank">Lihat Foto</a></small>
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('foto_kegiatan'); ?>
-                                    </div>
+                                    <label for="foto_kegiatan" class="col-form-label">Foto Kegiatan<span style="color: red;">*</span></label>
+                                    <?php if ($kegiatan['foto_kegiatan']): ?>
+                                        <div class="mb-2">
+                                            <img src="<?= base_url($kegiatan['foto_kegiatan']); ?>" alt="Foto Kegiatan" class="img-thumbnail img-preview" style="max-width: 200px;">
+                                        </div>
+                                    <?php endif; ?>
+                                    <input type="file" style="background-color: #fff;" class="form-control <?= session('errors.foto_kegiatan') ? 'is-invalid' : ''; ?>" id="foto_kegiatan" name="foto_kegiatan" accept="image/*" onchange="previewImg()">
+                                    <small class="text-muted">Biarkan kosong jika tidak ingin mengganti foto</small>
+                                    <?php if (session('errors.foto_kegiatan')) : ?>
+                                        <div class="invalid-feedback">
+                                            <?= session('errors.foto_kegiatan') ?>
+                                        </div>
+                                    <?php endif ?>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="tanggal_foto" class="col-form-label">Tanggal Foto:</label>
-                                    <input type="date" class="form-control <?= ($validation->hasError('tanggal_foto')) ? 'is-invalid' : ''; ?>" 
-                                           id="tanggal_foto" 
-                                           name="tanggal_foto" 
-                                           value="<?= old('tanggal_foto', $kegiatan['tanggal_foto']); ?>">
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('tanggal_foto'); ?>
-                                    </div>
-                                </div>
+                                <script>
+                                    function previewImg() {
+                                        const foto = document.querySelector('#foto_kegiatan');
+                                        const imgPreview = document.querySelector('.img-preview');
+
+                                        const fileFoto = new FileReader();
+                                        fileFoto.readAsDataURL(foto.files[0]);
+
+                                        fileFoto.onload = function(e) {
+                                            imgPreview.src = e.target.result;
+                                        }
+                                    }
+                                </script>
 
                                 <div class="form-group mt-4">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="/admin/galeri-kegiatan" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
+                                    <div class="d-grid gap-2 d-md-flex justify-content-end">
+                                        <a href="<?= site_url('admin/galeri-kegiatan/cek_data/' . $kegiatan['judul_kegiatan']); ?>" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
                                         <button type="submit" class="btn btn-primary">Ubah Data</button>
                                     </div>
                                 </div>
@@ -105,3 +121,4 @@
 </div>
 
 <?= $this->include('admin/layouts/footer') ?>
+<?= $this->include('admin/layouts/script2') ?>

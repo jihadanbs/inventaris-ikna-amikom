@@ -3,17 +3,9 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\GaleriKegiatanModel;
 
 class GaleriKegiatanController extends BaseController
 {
-    protected $galeriKegiatanModel;
-
-    public function __construct()
-    {
-        $this->galeriKegiatanModel = new GaleriKegiatanModel();
-    }
-
     // Menampilkan daftar kegiatan
     public function index()
     {
@@ -24,7 +16,7 @@ class GaleriKegiatanController extends BaseController
 
         $data = [
             'title' => 'Admin | Halaman Galeri',
-            'kegiatan' => $this->galeriKegiatanModel->findAll(),
+            'kegiatan' => $this->galeriKegiatanModel->orderBy('id_kegiatan', 'DESC')->findAll(),
         ];
 
         return view('admin/galeri_kegiatan/index', $data);
@@ -49,151 +41,247 @@ class GaleriKegiatanController extends BaseController
     // Menyimpan data kegiatan baru
     public function store()
     {
-        $validation = \Config\Services::validation();
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
 
         // Validasi input
-        if (!$this->validate([
-            'judul_kegiatan' => 'required|max_length[255]',
-            'foto_kegiatan'  => 'uploaded[foto_kegiatan]|max_size[foto_kegiatan,2048]|is_image[foto_kegiatan]',
-            'tanggal_foto'   => 'required|valid_date',
-            'deskripsi'      => 'permit_empty',
-        ])) {
-            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        $rules = [
+            'judul_kegiatan' => [
+                'rules' => 'required|min_length[3]|max_length[255]',
+                'errors' => [
+                    'required' => 'Judul Kegiatan harus diisi !',
+                    'max_length' => 'Judul Kegiatan maksimal 255 karakter !',
+                ],
+            ],
+            'foto_kegiatan' => [
+                'rules' => 'uploaded[foto_kegiatan]|max_size[foto_kegiatan,2048]|is_image[foto_kegiatan]',
+                'errors' => [
+                    'uploaded' => 'Foto Kegiatan wajib diunggah !',
+                    'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB !',
+                    'is_image' => 'File harus berupa gambar (JPEG, PNG, dll) !',
+                ],
+            ],
+            'tanggal_foto' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tanggal Kegiatan harus diisi !',
+                ],
+            ],
+            'deskripsi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Deskripsi Kegiatan harus diisi !',
+                ],
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            // Kirim kembali ke form dengan error validasi
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
         // Simpan data ke database
         $this->galeriKegiatanModel->save([
             'judul_kegiatan' => $this->request->getPost('judul_kegiatan'),
-            'foto_kegiatan'  => uploadFile('foto_kegiatan', 'uploads/kegiatan'),
+            'foto_kegiatan'  => uploadFile('foto_kegiatan', 'dokumen/kegiatan/'),
             'tanggal_foto'   => $this->request->getPost('tanggal_foto'),
             'deskripsi'      => $this->request->getPost('deskripsi'),
         ]);
 
-        return redirect()->to('/admin/galeri-kegiatan')->with('success', 'Data kegiatan berhasil ditambahkan!');
+        return redirect()->to('/admin/galeri-kegiatan')->with('pesan', 'Data kegiatan berhasil ditambahkan !');
     }
 
-    public function cek_data($id_kegiatan)
+    public function cek_data($judul_kegiatan)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
 
-        // Mengambil data kegiatan berdasarkan ID
-        $tb_kegiatan = $this->galeriKegiatanModel->find($id_kegiatan);
+        // Mengambil data kegiatan berdasarkan judul_kegiatan
+        $tb_kegiatan = $this->galeriKegiatanModel->where('judul_kegiatan', $judul_kegiatan)->first();
 
+        // Mengecek apakah kegiatan ditemukan
         if (!$tb_kegiatan) {
-            // Jika data tidak ditemukan
-            return redirect()->back()->with('error', 'Data kegiatan tidak ditemukan.');
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Kegiatan dengan Judul Kegiatan ' . $judul_kegiatan . ' tidak ditemukan');
         }
 
         // Menyiapkan data untuk tampilan
         $data = [
-            'title' => 'Admin | Halaman Cek Data',
-            'tb_kegiatan' => [$tb_kegiatan], // Bungkus dalam array untuk kompatibilitas dengan tampilan
+            'title' => 'Admin | Halaman Cek Data Kegiatan',
+            'tb_kegiatan' => [$tb_kegiatan],
         ];
 
         return view('admin/galeri_kegiatan/cek_data', $data);
     }
 
-
     // Menampilkan form edit kegiatan
-    public function edit($id)
+    public function edit($judul_kegiatan)
     {
-        $kegiatan = $this->galeriKegiatanModel->find($id);
+        // Mengambil data kegiatan berdasarkan judul_kegiatan
+        $kegiatan = $this->galeriKegiatanModel->where('judul_kegiatan', $judul_kegiatan)->first();
 
+        // Mengecek apakah kegiatan ditemukan
         if (!$kegiatan) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Kegiatan tidak ditemukan');
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Kegiatan dengan Judul Kegiatan ' . $judul_kegiatan . ' tidak ditemukan');
         }
 
         $data = [
             'title' => 'Admin | Halaman Cek Data',
             'kegiatan' => $kegiatan,
-            'validation' => \Config\Services::validation(), // Tambahkan ini
+            'validation' => \Config\Services::validation(),
         ];
 
         return view('admin/galeri_kegiatan/edit', $data);
     }
+
     public function update($id)
     {
-        $validation = \Config\Services::validation();
-
-        // Validasi input
-        if (!$this->validate([
-            'judul_kegiatan' => 'required|max_length[255]',
-            'foto_kegiatan'  => 'is_image[foto_kegiatan]|max_size[foto_kegiatan,2048]|permit_empty',
-            'tanggal_foto'   => 'required|valid_date',
-            'deskripsi'      => 'permit_empty',
-        ])) {
-            return redirect()->to("/admin/galeri-kegiatan/edit/$id")->withInput()->with('errors', $validation->getErrors());
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
         }
 
-        // Ambil file foto_kegiatan yang baru
-        $file = $this->request->getFile('foto_kegiatan');
-        if ($file->isValid() && !$file->hasMoved()) {
-            // Hapus file lama jika ada file baru yang diunggah
-            $oldFile = $this->request->getPost('old_foto_kegiatan');
-            if (file_exists($oldFile) && $oldFile != 'file_upload/uploads/kegiatan/default.jpg') {
-                unlink($oldFile); // Hapus file lama
-            }
+        // Cari data kegiatan
+        $kegiatan = $this->galeriKegiatanModel->find($id);
+        if (!$kegiatan) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Kegiatan tidak ditemukan');
+        }
 
-            // Proses file baru
-            $fileName = $file->getRandomName();
-            $file->move('file_upload/uploads/kegiatan', $fileName);
-        } else {
-            // Jika tidak ada file baru, gunakan file lama
-            $fileName = explode(', ', $this->request->getVar('old_foto_kegiatan'));
+        // Validasi input
+        $rules = [
+            'judul_kegiatan' => [
+                'rules' => 'required|min_length[3]|max_length[255]',
+                'errors' => [
+                    'required' => 'Judul Kegiatan harus diisi !',
+                    'max_length' => 'Judul Kegiatan maksimal 255 karakter !',
+                ],
+            ],
+            'tanggal_foto' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tanggal Kegiatan harus diisi !',
+                ],
+            ],
+            'deskripsi' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Deskripsi Kegiatan harus diisi !',
+                ],
+            ],
+        ];
+
+        // Tambah validasi foto jika ada foto yang diupload
+        $foto = $this->request->getFile('foto_kegiatan');
+        if ($foto->isValid()) {
+            $rules['foto_kegiatan'] = [
+                'rules' => 'max_size[foto_kegiatan,2048]|is_image[foto_kegiatan]|mime_in[foto_kegiatan,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB !',
+                    'is_image' => 'File harus berupa gambar !',
+                    'mime_in' => 'File harus berupa gambar (JPG, JPEG, atau PNG) !'
+                ]
+            ];
+        }
+
+        if (!$this->validate($rules)) {
+            // Kirim kembali ke form dengan error validasi
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
         // Update data di database dengan path relatif
-        $this->galeriKegiatanModel->update($id, [
+        $data = [
             'judul_kegiatan' => $this->request->getPost('judul_kegiatan'),
-            'foto_kegiatan'  => implode(', ', $fileName),
             'tanggal_foto'   => $this->request->getPost('tanggal_foto'),
             'deskripsi'      => $this->request->getPost('deskripsi'),
-        ]);
+        ];
 
-        // Redirect ke halaman galeri kegiatan dengan pesan sukses
-        return redirect()->to('/admin/galeri-kegiatan')->with('success', 'Data kegiatan berhasil diperbarui!');
+        // Proses upload foto baru jika ada
+        if ($foto->isValid() && !$foto->hasMoved()) {
+            // Hapus foto lama
+            if ($kegiatan['foto_kegiatan'] && file_exists($kegiatan['foto_kegiatan'])) {
+                unlink($kegiatan['foto_kegiatan']);
+            }
+
+            // Upload foto baru
+            $newName = $foto->getRandomName();
+            $foto->move('file_upload/dokumen/kegiatan', $newName);
+            $data['foto_kegiatan'] = 'file_upload/dokumen/kegiatan/' . $newName;
+        }
+
+        // Update data
+        try {
+            $this->galeriKegiatanModel->update($id, $data);
+            return redirect()->to('/admin/galeri-kegiatan')
+                ->with('pesan', 'Data Kegiatan berhasil diperbarui !');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Gagal memperbarui data: ' . $e->getMessage());
+        }
     }
-
 
     public function delete()
     {
-        $id = $this->request->getPost('id_foto'); // Tangkap data ID dari POST
-        if (!$id) {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
+
+        // Cek permintaan AJAX
+        if (!$this->request->isAJAX()) {
             return $this->response->setJSON([
                 'status' => 'error',
-                'message' => 'ID tidak ditemukan.'
+                'message' => 'Invalid request method'
             ]);
         }
 
-        if ($this->galeriKegiatanModel->delete($id)) {
-            return $this->response->setJSON([
-                'status' => 'success',
-                'message' => 'Kegiatan berhasil dihapus.'
-            ]);
-        } else {
+        // Ambil ID dari data POST
+        $id = $this->request->getPost('id_kegiatan');
+
+        try {
+            // Cari data kegiatan berdasarkan ID
+            $kegiatan = $this->galeriKegiatanModel->find($id);
+
+            if (!$kegiatan) {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'Data kegiatan tidak ditemukan'
+                ]);
+            }
+
+            // Cek apakah foto_kegiatan ada dalam array dan tidak kosong
+            if (isset($kegiatan['foto_kegiatan']) && !empty($kegiatan['foto_kegiatan'])) {
+                // Path lengkap file foto
+                $filePath = ROOTPATH . 'public/' . $kegiatan['foto_kegiatan'];
+
+                // Hapus file jika ada dan path valid
+                if (file_exists(realpath($filePath))) {
+                    if (!unlink(realpath($filePath))) {
+                        log_message('error', 'Gagal menghapus file: ' . $filePath);
+                    }
+                }
+            }
+
+            // Hapus data dari database
+            if ($this->galeriKegiatanModel->delete($id)) {
+                return $this->response->setJSON([
+                    'status' => 'success',
+                    'message' => 'Data kegiatan berhasil dihapus'
+                ]);
+            } else {
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'Gagal menghapus data kegiatan'
+                ]);
+            }
+        } catch (\Exception $e) {
             return $this->response->setJSON([
                 'status' => 'error',
-                'message' => 'Gagal menghapus kegiatan.'
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
             ]);
         }
     }
-
-
-    //     public function kegiatan()
-    // {
-    //     // Ambil data dari database
-    //     $galeriKegiatan = $this->galeriKegiatanModel->findAll();
-
-    //     // Kirim data ke view
-    //     $data = [
-    //         'title' => 'Galeri Kegiatan',
-    //         'galeriKegiatan' => $galeriKegiatan,
-    //     ];
-
-    //     return view('/index', $data);
-    // }
-
 }
