@@ -86,27 +86,7 @@
                             }
                             ?>
                             <table id="tableBarang" class="table table-bordered dt-responsive nowrap w-100">
-                                <?php if (session()->getFlashdata('pesan')) : ?>
-                                    <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
-                                        <?= session()->getFlashdata('pesan') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (session()->getFlashdata('gagal')) : ?>
-                                    <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Gagal</strong> -
-                                        <?= session()->getFlashdata('gagal') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (session()->getFlashdata('warning')) : ?>
-                                    <div class="alert alert-warning alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-alert-outline align-middle me-3"></i><strong>Peringatan</strong> -
-                                        <?= session()->getFlashdata('warning') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
+                                <?= $this->include('alert/alert'); ?>
                                 <div class="col-md-3 mb-3">
                                     <a href=" <?= site_url('admin/barang/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
