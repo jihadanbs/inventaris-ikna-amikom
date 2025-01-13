@@ -29,6 +29,9 @@
                         <li class="nav-item <?= uri_string() == 'kontak' ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('/kontak') ?>">Kontak Kami</a>
                         </li>
+                        <li class="nav-item <?= uri_string() == 'bsrsng' ? 'active' : '' ?>">
+                            <a class="nav-link" href="<?= site_url('/barang') ?>">Barang</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="quote_btn-container ">

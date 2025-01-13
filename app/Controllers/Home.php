@@ -63,4 +63,14 @@ class Home extends BaseController
 
         return view('kontak', $data);
     }
+    
+    public function barang()
+    {
+
+
+        $data = [];
+
+
+        return view('barang', $data);
+    }
 }

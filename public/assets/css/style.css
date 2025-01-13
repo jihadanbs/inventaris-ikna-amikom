@@ -754,9 +754,10 @@ a:focus {
 }
 
 
-
+/* KONTAK KAMI */
 .kontak_section .card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color:black;
 }
 
 .kontak_section .card:hover {
@@ -764,6 +765,7 @@ a:focus {
   /* Mengangkat card ke atas */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   /* Efek bayangan */
+  
 }
 
 .kontak_section .card-body {
@@ -1166,3 +1168,29 @@ a:focus {
 }
 
 
+
+/* FAQ */
+.border-faq {
+  border: 0.01px solid rgb(81, 82, 82); 
+  border-radius: 10px; 
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.border-faq:hover {
+  border: 1px solid rgb(81, 82, 82); /* Ketebalan 5px, warna biru */
+  border-radius: 10px; /* Sudut melengkung opsional */
+  transform: scale(1.01); /* Membesar sedikit */
+  box-shadow: 0 8px 15px rgba(81, 82, 82, 0.4); 
+}
+.tombol-lebih-lanjut-faq {
+  background: var(--kuning-secondary);
+  width: 200px;
+  height: 50px;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Menentukan transisi */
+}
+
+.tombol-lebih-lanjut-faq:hover {
+  background: var(--biru-latar);
+  color: white;
+  transform: scale(1.1); /* Efek membesar saat hover */
+}
