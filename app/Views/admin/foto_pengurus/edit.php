@@ -40,80 +40,85 @@
                     <div class="card border border-secondary rounded p-4">
                         <div class="card-body">
                             <h2 class="text-center mb-4">Formulir Edit Data Pengurus</h2>
-                            <form action="/admin/foto-pengurus/update/<?= $pengurus['id']; ?>" method="post" enctype="multipart/form-data" novalidate>
-                            <?= csrf_field(); ?>
+                            <form action="<?= site_url('admin/foto-pengurus/update/' . $pengurus['id']); ?>" autocomplete="off" method="post" enctype="multipart/form-data" novalidate>
+                                <?= csrf_field(); ?>
+                                <input type="hidden" name="_method" value="PUT">
 
-                            <!-- Nama -->
-                            <div class="mb-3">
-                                <label for="nama" class="col-form-label">Nama:</label>
-                                <input type="text" class="form-control <?= session('errors.nama') ? 'is-invalid' : '' ?>" 
-                                    id="nama" name="nama" value="<?= old('nama', $pengurus['nama']); ?>">
-                                <?php if (session('errors.nama')) : ?>
-                                    <div class="invalid-feedback">
-                                        <?= session('errors.nama') ?>
+                                <div class="row">
+                                    <!-- Nama -->
+                                    <div class="col-md-6 mb-3 separator">
+                                        <label for="nama" class="col-form-label">Nama<span style="color: red;">*</span></label>
+                                        <input type="text" style="background-color: #fff;" placeholder="Masukkan Nama Pengurus" class="form-control <?= session('errors.nama') ? 'is-invalid' : '' ?>"
+                                            id="nama" name="nama" value="<?= old('nama', $pengurus['nama']); ?>">
+                                        <?php if (session('errors.nama')) : ?>
+                                            <div class="invalid-feedback">
+                                                <?= session('errors.nama') ?>
+                                            </div>
+                                        <?php endif ?>
                                     </div>
-                                <?php endif ?>
-                            </div>
 
-                            <!-- Foto -->
-                            <div class="mb-3">
-                                <label for="foto" class="col-form-label">Foto:</label>
-                                <?php if ($pengurus['foto']): ?>
-                                    <div class="mb-2">
-                                        <img src="<?= base_url($pengurus['foto']); ?>" alt="Foto Pengurus" class="img-thumbnail img-preview" style="max-width: 200px;">
+                                    <!-- Divisi -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="divisi" class="col-form-label">Divisi<span style="color: red;">*</span></label>
+                                        <select style="background-color: #fff;" class="form-control <?= session('errors.divisi') ? 'is-invalid' : '' ?>"
+                                            id="divisi" name="divisi">
+                                            <option value="" disabled>~ Silahkan Pilih Divisi Anda ~</option>
+                                            <option style="text-align: center" value="<?= old('divisi', $pengurus['divisi']); ?>">~ <?= old('divisi', $pengurus['divisi']); ?> ~</option>
+                                            <option value="BPH" <?= (old('divisi') == 'BPH') ? 'selected' : ''; ?>>BPH</option>
+                                            <option value="Kerohanian" <?= (old('divisi') == 'Kerohanian') ? 'selected' : ''; ?>>Kerohanian</option>
+                                            <option value="Kerumahtanggaan" <?= (old('divisi') == 'Kerumahtanggaan') ? 'selected' : ''; ?>>Kerumahtanggaan</option>
+                                            <option value="Humas" <?= (old('divisi') == 'Humas') ? 'selected' : ''; ?>>Humas</option>
+                                            <option value="Talenta Olahraga" <?= (old('divisi') == 'Talenta Olahraga') ? 'selected' : ''; ?>>Talenta Olahraga</option>
+                                            <option value="Talenta Musik" <?= (old('divisi') == 'Talenta Musik') ? 'selected' : ''; ?>>Talenta Musik</option>
+                                            <option value="Talenta Pertunjukan" <?= (old('divisi') == 'Talenta Pertunjukan') ? 'selected' : ''; ?>>Talenta Pertunjukan</option>
+                                            <option value="Usaha Dana" <?= (old('divisi') == 'Usaha Dana') ? 'selected' : ''; ?>>Usaha Dana</option>
+                                            <option value="Litbang" <?= (old('divisi') == 'Litbang') ? 'selected' : ''; ?>>Litbang</option>
+                                        </select>
+                                        <?php if (session('errors.divisi')) : ?>
+                                            <div class="invalid-feedback">
+                                                <?= session('errors.divisi') ?>
+                                            </div>
+                                        <?php endif ?>
                                     </div>
-                                <?php endif; ?>
-                                <input type="file" class="form-control <?= session('errors.foto') ? 'is-invalid' : '' ?>" 
-                                    id="foto" name="foto" accept="image/*" onchange="previewImg()">
-                                <small class="text-muted">Biarkan kosong jika tidak ingin mengganti foto</small>
-                                <?php if (session('errors.foto')) : ?>
-                                    <div class="invalid-feedback">
-                                        <?= session('errors.foto') ?>
-                                    </div>
-                                <?php endif ?>
-                            </div>
+                                </div>
 
-                            <!-- Posisi -->
-                            <div class="mb-3">
-                                <label for="posisi" class="col-form-label">Posisi:</label>
-                                <input type="text" class="form-control <?= session('errors.posisi') ? 'is-invalid' : '' ?>" 
-                                    id="posisi" name="posisi" value="<?= old('posisi', $pengurus['posisi']); ?>">
-                                <?php if (session('errors.posisi')) : ?>
-                                    <div class="invalid-feedback">
-                                        <?= session('errors.posisi') ?>
-                                    </div>
-                                <?php endif ?>
-                            </div>
+                                <!-- Posisi -->
+                                <div class="mb-3">
+                                    <label for="posisi" class="col-form-label">Posisi<span style="color: red;">*</span></label>
+                                    <input type="text" style="background-color: #fff;" placeholder="Masukkan Posisi Pengurus" class="form-control <?= session('errors.posisi') ? 'is-invalid' : '' ?>"
+                                        id="posisi" name="posisi" value="<?= old('posisi', $pengurus['posisi']); ?>">
+                                    <?php if (session('errors.posisi')) : ?>
+                                        <div class="invalid-feedback">
+                                            <?= session('errors.posisi') ?>
+                                        </div>
+                                    <?php endif ?>
+                                </div>
 
-                            <!-- Divisi -->
-                            <div class="mb-3">
-                                <label for="divisi" class="col-form-label">Divisi:</label>
-                                <select class="form-control <?= session('errors.divisi') ? 'is-invalid' : '' ?>" 
-                                        id="divisi" name="divisi">
-                                    <option value="">-- Pilih Divisi --</option>
-                                    <option value="BPH" <?= (old('divisi') == 'BPH') ? 'selected' : ''; ?>>BPH</option>
-                                        <option value="Kerohanian" <?= (old('divisi') == 'Kerohanian') ? 'selected' : ''; ?>>Kerohanian</option>
-                                        <option value="Kerumahtanggaan" <?= (old('divisi') == 'Kerumahtanggaan') ? 'selected' : ''; ?>>Kerumahtanggaan</option>
-                                        <option value="Humas" <?= (old('divisi') == 'Humas') ? 'selected' : ''; ?>>Humas</option>
-                                        <option value="Talenta Olahraga" <?= (old('divisi') == 'Talenta Olahraga') ? 'selected' : ''; ?>>Talenta Olahraga</option>
-                                        <option value="Talenta Musik" <?= (old('divisi') == 'Talenta Musik') ? 'selected' : ''; ?>>Talenta Musik</option>
-                                        <option value="Talenta Pertunjukan" <?= (old('divisi') == 'Talenta Pertunjukan') ? 'selected' : ''; ?>>Talenta Pertunjukan</option>
-                                        <option value="Usaha Dana" <?= (old('divisi') == 'Usaha Dana') ? 'selected' : ''; ?>>Usaha Dana</option>
-                                        <option value="Litbang" <?= (old('divisi') == 'Litbang') ? 'selected' : ''; ?>>Litbang</option>
-                                </select>
-                                <?php if (session('errors.divisi')) : ?>
-                                    <div class="invalid-feedback">
-                                        <?= session('errors.divisi') ?>
-                                    </div>
-                                <?php endif ?>
-                            </div>
+                                <!-- Foto -->
+                                <div class="mb-3">
+                                    <label for="foto" class="col-form-label">Foto<span style="color: red;">*</span></label>
+                                    <?php if ($pengurus['foto']): ?>
+                                        <div class="mb-2">
+                                            <img src="<?= base_url($pengurus['foto']); ?>" alt="Foto Pengurus" class="img-thumbnail img-preview" style="max-width: 200px;">
+                                        </div>
+                                    <?php endif; ?>
+                                    <input type="file" style="background-color: #fff;" placeholder="Masukkan Foto Anda" class="form-control <?= session('errors.foto') ? 'is-invalid' : '' ?>"
+                                        id="foto" name="foto" accept="image/*" onchange="previewImg()">
+                                    <small class="text-muted">Biarkan kosong jika tidak ingin mengganti foto</small>
+                                    <?php if (session('errors.foto')) : ?>
+                                        <div class="invalid-feedback">
+                                            <?= session('errors.foto') ?>
+                                        </div>
+                                    <?php endif ?>
+                                </div>
 
-                            <!-- Tombol Submit -->
-                            <div class="modal-footer">
-                                <a href="/admin/foto-pengurus" class="btn btn-secondary me-3">Batal</a>
-                                <button type="submit" class="btn btn-primary" style="background-color: #28527A;">Simpan Perubahan</button>
-                            </div>
-                        </form>
+
+                                <!-- Tombol Submit -->
+                                <div class="modal-footer">
+                                    <a href="<?= site_url('admin/foto-pengurus'); ?>" class="btn btn-secondary me-3">Batal</a>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #28527A;">Simpan Perubahan</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -122,17 +127,17 @@
     </div>
 </div>
 <script>
-function previewImg() {
-    const foto = document.querySelector('#foto');
-    const imgPreview = document.querySelector('.img-preview');
-    
-    const fileFoto = new FileReader();
-    fileFoto.readAsDataURL(foto.files[0]);
-    
-    fileFoto.onload = function(e) {
-        imgPreview.src = e.target.result;
+    function previewImg() {
+        const foto = document.querySelector('#foto');
+        const imgPreview = document.querySelector('.img-preview');
+
+        const fileFoto = new FileReader();
+        fileFoto.readAsDataURL(foto.files[0]);
+
+        fileFoto.onload = function(e) {
+            imgPreview.src = e.target.result;
+        }
     }
-}
 </script>
 
 <?= $this->include('admin/layouts/footer') ?>

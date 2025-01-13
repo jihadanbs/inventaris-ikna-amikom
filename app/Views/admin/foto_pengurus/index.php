@@ -135,7 +135,7 @@
                                             <td><?= $row['posisi']; ?></td>
                                             <td><?= $row['divisi']; ?></td>
                                             <td style="width: 155px">
-                                                <a href="/admin/foto-pengurus/edit/<?= $row['id'] ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="<?= site_url('admin/foto-pengurus/edit/' . $row['nama']); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
                                                 </button>

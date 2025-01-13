@@ -51,31 +51,31 @@ class FotoPengurusController extends BaseController
             'nama' => [
                 'rules' => 'required|min_length[3]|max_length[255]',
                 'errors' => [
-                    'required' => 'Nama pengurus wajib diisi.',
-                    'min_length' => 'Nama pengurus minimal 3 karakter.',
-                    'max_length' => 'Nama pengurus maksimal 255 karakter.',
+                    'required' => 'Nama pengurus wajib diisi !',
+                    'min_length' => 'Nama pengurus minimal 3 karakter !',
+                    'max_length' => 'Nama pengurus maksimal 255 karakter !',
                 ],
             ],
             'foto' => [
                 'rules' => 'uploaded[foto]|max_size[foto,2048]|is_image[foto]',
                 'errors' => [
-                    'uploaded' => 'Foto wajib diunggah.',
-                    'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB.',
-                    'is_image' => 'File harus berupa gambar (JPEG, PNG, dll).',
+                    'uploaded' => 'Foto wajib diunggah !',
+                    'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB !',
+                    'is_image' => 'File harus berupa gambar (JPEG, PNG, dll) !',
                 ],
             ],
             'posisi' => [
                 'rules' => 'required|min_length[3]|max_length[255]',
                 'errors' => [
-                    'required' => 'Posisi wajib diisi.',
-                    'min_length' => 'Posisi minimal 3 karakter.',
-                    'max_length' => 'Posisi maksimal 255 karakter.',
+                    'required' => 'Posisi wajib diisi !',
+                    'min_length' => 'Posisi minimal 3 karakter !',
+                    'max_length' => 'Posisi maksimal 255 karakter !',
                 ],
             ],
             'divisi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Divisi wajib dipilih.',
+                    'required' => 'Divisi wajib dipilih !',
                 ],
             ],
         ];
@@ -90,38 +90,37 @@ class FotoPengurusController extends BaseController
         // Simpan data ke database
         $this->fotoPengurusModel->save([
             'nama' => $this->request->getPost('nama'),
-            'foto' => uploadFile('foto', 'uploads/pengurus/'),
+            'foto' => uploadFile('foto', 'dokumen/pengurus/'),
             'posisi' => $this->request->getPost('posisi'),
             'divisi' => $this->request->getPost('divisi'),
         ]);
 
-        return redirect()->to('/admin/foto-pengurus')->with('success', 'Data pengurus berhasil ditambahkan!');
+        return redirect()->to('/admin/foto-pengurus')->with('pesan', 'Data pengurus berhasil ditambahkan !');
         // }
 
-        return redirect()->back()->with('error', 'Gagal mengupload foto')->withInput();
+        return redirect()->back()->with('error', 'Gagal mengupload foto !')->withInput();
     }
 
-
     // Menampilkan form edit kegiatan
-    public function edit($id)
+    public function edit($nama)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
             return $this->checkSession();
         }
 
-        // Mengambil data pengurus berdasarkan ID
-        $pengurus = $this->fotoPengurusModel->find($id);
+        // Mengambil data pengurus berdasarkan nama
+        $pengurus = $this->fotoPengurusModel->where('nama', $nama)->first();
 
         // Mengecek apakah pengurus ditemukan
         if (!$pengurus) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Pengurus tidak ditemukan');
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Pengurus dengan nama ' . $nama . ' tidak ditemukan');
         }
 
         // Mengirim data ke view
         $data = [
             'title' => 'Admin | Halaman Edit Data Pengurus',
-            'pengurus' => $pengurus, // Pastikan ini hanya data satu pengurus
+            'pengurus' => $pengurus,
             'validation' => \Config\Services::validation(),
         ];
 
@@ -146,23 +145,23 @@ class FotoPengurusController extends BaseController
             'nama' => [
                 'rules' => 'required|min_length[3]|max_length[255]',
                 'errors' => [
-                    'required' => 'Nama pengurus wajib diisi',
-                    'min_length' => 'Nama pengurus minimal 3 karakter',
-                    'max_length' => 'Nama pengurus maksimal 255 karakter'
+                    'required' => 'Nama pengurus wajib diisi !',
+                    'min_length' => 'Nama pengurus minimal 3 karakter !',
+                    'max_length' => 'Nama pengurus maksimal 255 karakter !'
                 ]
             ],
             'posisi' => [
                 'rules' => 'required|min_length[3]|max_length[255]',
                 'errors' => [
-                    'required' => 'Posisi wajib diisi',
-                    'min_length' => 'Posisi minimal 3 karakter',
-                    'max_length' => 'Posisi maksimal 255 karakter'
+                    'required' => 'Posisi wajib diisi !',
+                    'min_length' => 'Posisi minimal 3 karakter !',
+                    'max_length' => 'Posisi maksimal 255 karakter !'
                 ]
             ],
             'divisi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Divisi wajib dipilih'
+                    'required' => 'Divisi wajib dipilih !'
                 ]
             ]
         ];
@@ -173,9 +172,9 @@ class FotoPengurusController extends BaseController
             $rules['foto'] = [
                 'rules' => 'max_size[foto,2048]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]',
                 'errors' => [
-                    'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB',
-                    'is_image' => 'File harus berupa gambar',
-                    'mime_in' => 'File harus berupa gambar (JPG, JPEG, atau PNG)'
+                    'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB !',
+                    'is_image' => 'File harus berupa gambar !',
+                    'mime_in' => 'File harus berupa gambar (JPG, JPEG, atau PNG) !'
                 ]
             ];
         }
@@ -203,15 +202,15 @@ class FotoPengurusController extends BaseController
 
             // Upload foto baru
             $newName = $foto->getRandomName();
-            $foto->move('file_upload/uploads/pengurus', $newName);
-            $data['foto'] = 'file_upload/uploads/pengurus/' . $newName;
+            $foto->move('file_upload/dokumen/pengurus', $newName);
+            $data['foto'] = 'file_upload/dokumen/pengurus/' . $newName;
         }
 
         // Update data
         try {
             $this->fotoPengurusModel->update($id, $data);
             return redirect()->to('/admin/foto-pengurus')
-                ->with('success', 'Data pengurus berhasil diperbarui');
+                ->with('pesan', 'Data pengurus berhasil diperbarui');
         } catch (\Exception $e) {
             return redirect()->back()
                 ->withInput()
@@ -220,7 +219,12 @@ class FotoPengurusController extends BaseController
     }
     public function delete()
     {
-        // Check if this is an AJAX request
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
+
+        // Pastikan ini adalah permintaan AJAX
         if (!$this->request->isAJAX()) {
             return $this->response->setJSON([
                 'status' => 'error',
@@ -228,11 +232,11 @@ class FotoPengurusController extends BaseController
             ]);
         }
 
-        // Get the ID from POST data
+        // Ambil ID dari data POST
         $id = $this->request->getPost('id');
 
         try {
-            // Find the pengurus data first
+            // Cari data pengurus berdasarkan ID
             $pengurus = $this->fotoPengurusModel->find($id);
 
             if (!$pengurus) {
@@ -242,12 +246,17 @@ class FotoPengurusController extends BaseController
                 ]);
             }
 
-            // Delete the photo file if it exists
-            if ($pengurus['foto'] && file_exists($pengurus['foto'])) {
-                unlink($pengurus['foto']);
+            // Path lengkap file foto
+            $filePath = ROOTPATH . 'public/' . $pengurus['foto'];
+
+            // Hapus file jika ada
+            if ($pengurus['foto'] && file_exists(realpath($filePath))) {
+                if (!unlink(realpath($filePath))) {
+                    log_message('error', 'Gagal menghapus file: ' . $filePath);
+                }
             }
 
-            // Delete the database record
+            // Hapus data dari database
             if ($this->fotoPengurusModel->delete($id)) {
                 return $this->response->setJSON([
                     'status' => 'success',
