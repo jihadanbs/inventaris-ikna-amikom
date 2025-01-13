@@ -3,17 +3,9 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\GaleriKegiatanModel;
 
 class GaleriKegiatanController extends BaseController
 {
-    protected $galeriKegiatanModel;
-
-    public function __construct()
-    {
-        $this->galeriKegiatanModel = new GaleriKegiatanModel();
-    }
-
     // Menampilkan daftar kegiatan
     public function index()
     {
@@ -24,7 +16,7 @@ class GaleriKegiatanController extends BaseController
 
         $data = [
             'title' => 'Admin | Halaman Galeri',
-            'kegiatan' => $this->galeriKegiatanModel->findAll(),
+            'kegiatan' => $this->galeriKegiatanModel->orderBy('id_kegiatan', 'DESC')->findAll(),
         ];
 
         return view('admin/galeri_kegiatan/index', $data);
@@ -84,7 +76,7 @@ class GaleriKegiatanController extends BaseController
 
         if (!$tb_kegiatan) {
             // Jika data tidak ditemukan
-            return redirect()->back()->with('error', 'Data kegiatan tidak ditemukan.');
+            return redirect()->back()->with('error', 'Data kegiatan tidak ditemukan');
         }
 
         // Menyiapkan data untuk tampilan
@@ -95,7 +87,6 @@ class GaleriKegiatanController extends BaseController
 
         return view('admin/galeri_kegiatan/cek_data', $data);
     }
-
 
     // Menampilkan form edit kegiatan
     public function edit($id)
@@ -109,11 +100,12 @@ class GaleriKegiatanController extends BaseController
         $data = [
             'title' => 'Admin | Halaman Cek Data',
             'kegiatan' => $kegiatan,
-            'validation' => \Config\Services::validation(), // Tambahkan ini
+            'validation' => \Config\Services::validation(),
         ];
 
         return view('admin/galeri_kegiatan/edit', $data);
     }
+
     public function update($id)
     {
         $validation = \Config\Services::validation();
@@ -157,7 +149,6 @@ class GaleriKegiatanController extends BaseController
         return redirect()->to('/admin/galeri-kegiatan')->with('success', 'Data kegiatan berhasil diperbarui!');
     }
 
-
     public function delete()
     {
         $id = $this->request->getPost('id_foto'); // Tangkap data ID dari POST
@@ -180,20 +171,4 @@ class GaleriKegiatanController extends BaseController
             ]);
         }
     }
-
-
-    //     public function kegiatan()
-    // {
-    //     // Ambil data dari database
-    //     $galeriKegiatan = $this->galeriKegiatanModel->findAll();
-
-    //     // Kirim data ke view
-    //     $data = [
-    //         'title' => 'Galeri Kegiatan',
-    //         'galeriKegiatan' => $galeriKegiatan,
-    //     ];
-
-    //     return view('/index', $data);
-    // }
-
 }

@@ -20,6 +20,8 @@ use App\Models\KategoriFaqModel;
 use App\Models\FeedbackModel;
 use App\Models\FotoModel;
 use App\Models\FileFotoModel;
+use App\Models\FotoPengurusModel;
+use App\Models\GaleriKegiatanModel;
 use App\Models\PengunjungModel;
 use App\Models\LaporanModel;
 use App\Models\VidioModel;
@@ -100,6 +102,8 @@ abstract class BaseController extends Controller
     protected $m_feedback;
     protected $m_foto;
     protected $m_file_foto;
+    protected $fotoPengurusModel;
+    protected $galeriKegiatanModel;
     protected $m_pengunjung;
     protected $m_laporan;
     protected $m_vidio;
@@ -144,6 +148,8 @@ abstract class BaseController extends Controller
         $this->m_feedback = new FeedbackModel();
         $this->m_foto = new FotoModel();
         $this->m_file_foto = new FileFotoModel();
+        $this->fotoPengurusModel = new FotoPengurusModel();
+        $this->galeriKegiatanModel = new GaleriKegiatanModel();
         $this->m_pengunjung = new PengunjungModel();
         $this->m_laporan = new LaporanModel();
         $this->m_vidio = new VidioModel();

@@ -2,18 +2,10 @@
 
 namespace App\Controllers\Admin;
 
-use App\Models\FotoPengurusModel;
 use App\Controllers\BaseController;
 
 class FotoPengurusController extends BaseController
 {
-    protected $fotoPengurusModel;
-
-    public function __construct()
-    {
-        $this->fotoPengurusModel = new FotoPengurusModel();
-    }
-
     // Menampilkan daftar kegiatan
     public function index()
     {
