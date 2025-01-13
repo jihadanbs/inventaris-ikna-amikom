@@ -98,7 +98,7 @@
                 <?php endif; ?>
             </div>
             <div class="btn-box">
-                <a href="<?= site_url('/service') ?>">
+                <a href="<?= site_url('/galeri') ?>">
                     Lebih lanjut
                 </a>
             </div>
@@ -108,7 +108,7 @@
     <!-- Modal untuk setiap kegiatan -->
     <?php if (!empty($galeriKegiatan)) : ?>
         <?php foreach ($galeriKegiatan as $kegiatan) : ?>
-            <div class="modal fade" id="modal<?= $kegiatan['id_kegiatan'] ?>" tabindex="-1" role="dialog" aria-labelledby="modalLabel<?= $kegiatan['id_kegiatan'] ?>" aria-hidden="true">
+            <div class="modal fade" id="modal<?= $kegiatan['id_kegiatan'] ?>"tabindex="-1" role="dialog" aria-labelledby="modalLabel<?= $kegiatan['id_kegiatan'] ?>" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <!-- Modal Header -->
@@ -128,8 +128,8 @@
                                 </div>
                                 <!-- Details Section -->
                                 <div class="col-md-6">
-                                    <h6><b>Waktu Kegiatan :</b> <?= formatTanggalIndo($kegiatan['tanggal_foto']); ?></h6>
-                                    <p class="text-muted mt-2"><b class="text-dark">Keterangan Kegiatan : </b><br><?= $kegiatan['deskripsi'] ?></p>
+                                    <!-- <h6><b>Waktu Kegiatan :</b> <?= formatTanggalIndo($kegiatan['tanggal_foto']); ?></h6> -->
+                                    <p class="text-muted mt-0"><b class="text-dark">Keterangan Kegiatan : </b><br><?= $kegiatan['deskripsi'] ?></p>
                                 </div>
                             </div>
                         </div>
@@ -205,7 +205,8 @@
                         if (!empty($pengurusDivisi)) :
                             foreach ($pengurusDivisi as $row) :
                         ?>
-                                <div class="box b-1">
+                                <!-- Card foto pengurus -->
+                                <div class="box b-1 col-lg-2">
                                     <div class="img-box">
                                         <img src="<?= base_url($row['foto']) ?>"
                                             alt="Foto <?= $row['nama'] ?>"

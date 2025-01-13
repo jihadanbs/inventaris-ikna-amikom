@@ -57,7 +57,7 @@ class FotoPengurusController extends BaseController
                 ],
             ],
             'foto' => [
-                'rules' => 'uploaded[foto]|max_size[foto,2048]|is_image[foto]',
+                'rules' => 'uploaded[foto]|max_size[foto,5048]|is_image[foto]',
                 'errors' => [
                     'uploaded' => 'Foto wajib diunggah !',
                     'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB !',
@@ -169,7 +169,7 @@ class FotoPengurusController extends BaseController
         $foto = $this->request->getFile('foto');
         if ($foto->isValid()) {
             $rules['foto'] = [
-                'rules' => 'max_size[foto,2048]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]',
+                'rules' => 'max_size[foto,5048]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]',
                 'errors' => [
                     'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB !',
                     'is_image' => 'File harus berupa gambar !',

@@ -9,6 +9,7 @@ $routes->GET('/', 'Home::index', ['namespace' => 'App\Controllers']);
 $routes->GET('/about', 'Home::about', ['namespace' => 'App\Controllers']);
 $routes->GET('/service/(:num)', 'Home::service/$1', ['namespace' => 'App\Controllers']);
 $routes->GET('/service', 'Home::service', ['namespace' => 'App\Controllers']);
+$routes->GET('/galeri/(:num)', 'Home::galeri/$1', ['namespace' => 'App\Controllers']);
 $routes->GET('/galeri', 'Home::galeri', ['namespace' => 'App\Controllers']);
 
 $routes->GET('/kontak', 'Home::kontak', ['namespace' => 'App\Controllers']);

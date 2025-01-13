@@ -36,7 +36,7 @@
 
             <div class="btn-box d-flex justify-content-center">
                 <?php if ($currentPage > 1) : ?>
-                    <a href="<?= site_url('service/' . ($currentPage - 1)) ?>" class="btn btn-secondary">
+                    <a href="<?= site_url('galeri/' . ($currentPage - 1)) ?>" class="btn btn-secondary">
                         Back
                     </a>
                 <?php else : ?>
@@ -44,7 +44,7 @@
                 <?php endif; ?>
 
                 <?php if ($currentPage < $totalPages) : ?>
-                    <a href="<?= site_url('service/' . ($currentPage + 1)) ?>" class="btn btn-primary">
+                    <a href="<?= site_url('galeri/' . ($currentPage + 1)) ?>" class="btn btn-primary">
                         Next
                     </a>
                 <?php else : ?>
@@ -79,8 +79,8 @@
                                 </div>
                                 <!-- Details Section -->
                                 <div class="col-md-6">
-                                    <h6><b>Waktu Kegiatan :</b> <?= formatTanggalIndo($kegiatan['tanggal_foto']); ?></h6>
-                                    <p class="text-muted mt-2"><b class="text-dark">Keterangan Kegiatan : </b><br><?= $kegiatan['deskripsi'] ?></p>
+                                    <!-- <h6><b>Waktu Kegiatan :</b> <?= formatTanggalIndo($kegiatan['tanggal_foto']); ?></h6> -->
+                                    <p class="text-muted mt-0"><b class="text-dark">Keterangan Kegiatan : </b><br><?= $kegiatan['deskripsi'] ?></p>
                                 </div>
                             </div>
                         </div>

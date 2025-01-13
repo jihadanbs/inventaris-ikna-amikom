@@ -25,11 +25,14 @@
                     <li class="<?= uri_string() == 'about' ? 'active' : '' ?>">
                         <a class="" href="<?= site_url('/about') ?>">Tentang Kami</a>
                     </li>
-                    <li class="<?= uri_string() == 'service' ? 'active' : '' ?>">
-                        <a class="" href="<?= site_url('/service') ?>">Galeri</a>
+                    <li class="<?= uri_string() == 'galeri' ? 'active' : '' ?>">
+                        <a class="" href="<?= site_url('/galeri') ?>">Galeri</a>
                     </li>
-                    <li class="<?= uri_string() == 'contact' ? 'active' : '' ?>">
-                        <a class="" href="#contactLink">Kontak Kami</a>
+                    <li class="<?= uri_string() == 'kontak' ? 'active' : '' ?>">
+                        <a class="" href="<?= site_url('/kontak') ?>">Kontak Kami</a>
+                    </li>
+                    <li class="<?= uri_string() == 'barang' ? 'active' : '' ?>">
+                        <a class="" href="<?= site_url('/barang') ?>">Barang</a>
                     </li>
                 </ul>
             </div>
