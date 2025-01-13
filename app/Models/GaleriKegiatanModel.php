@@ -14,12 +14,10 @@ class GaleriKegiatanModel extends Model
     protected $protectFields    = true; // Proteksi terhadap field yang bisa diubah
 
     // Kolom yang diperbolehkan untuk diinsert atau update
-    protected $allowedFields    = [
-        'judul_kegiatan',
-        'foto_kegiatan',
-        'tanggal_foto',
-        'deskripsi'
-    ];
+    protected $allowedFields    = ['judul_kegiatan', 'foto_kegiatan', 'tanggal_foto', 'deskripsi'];
+
+    protected $skipValidation       = false;
+    protected $cleanValidationRules = true;
 
     // Dates
     protected $useTimestamps    = true; // Menandakan bahwa tabel menggunakan timestamps
@@ -28,28 +26,6 @@ class GaleriKegiatanModel extends Model
     protected $updatedField     = 'updated_at'; // Nama field untuk updated_at
     protected $deletedField     = 'deleted_at'; // Nama field untuk deleted_at (jika soft delete digunakan)
 
-    // Validation
-    protected $validationRules      = [
-        'judul_kegiatan' => 'required|max_length[255]',
-        'foto_kegiatan'  => 'required|max_length[255]',
-        'tanggal_foto'   => 'required|valid_date',
-        'deskripsi'      => 'permit_empty'
-    ];
-    protected $validationMessages   = [
-        'judul_kegiatan' => [
-            'required' => 'Judul kegiatan harus diisi',
-            'max_length' => 'Judul kegiatan tidak boleh lebih dari 255 karakter'
-        ],
-        'foto_kegiatan' => [
-            'required' => 'Foto kegiatan harus diisi',
-            'max_length' => 'Foto kegiatan tidak boleh lebih dari 255 karakter'
-        ],
-        'tanggal_foto' => [
-            'required' => 'Tanggal foto harus diisi',
-            'valid_date' => 'Tanggal foto tidak valid'
-        ]
-    ];
-    protected $skipValidation       = false; // Tidak melewati validasi
 
     // Callbacks
     protected $allowCallbacks = true;

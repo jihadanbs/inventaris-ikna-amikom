@@ -1,15 +1,15 @@
 <?php
 
 use CodeIgniter\Router\RouteCollection;
-use App\Controllers\Admin\GaleriKegiatanController;
 
 /**
  * @var RouteCollection $routes
  */
 $routes->GET('/', 'Home::index', ['namespace' => 'App\Controllers']);
 $routes->GET('/about', 'Home::about', ['namespace' => 'App\Controllers']);
-$routes->get('/service/(:num)', 'Home::service/$1', ['namespace' => 'App\Controllers']); // Route dengan parameter halaman
-$routes->get('/service', 'Home::service/1', ['namespace' => 'App\Controllers']); // Default ke halaman 1
+$routes->GET('/service/(:num)', 'Home::service/$1', ['namespace' => 'App\Controllers']);
+$routes->GET('/service', 'Home::service', ['namespace' => 'App\Controllers']);
+$routes->GET('/galeri', 'Home::galeri', ['namespace' => 'App\Controllers']);
 
 $routes->GET('/kontak', 'Home::kontak', ['namespace' => 'App\Controllers']);
 
@@ -213,7 +213,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->GET('tambah', 'GaleriKegiatanController::create', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('save', 'GaleriKegiatanController::store', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'GaleriKegiatanController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->POST('update/(:num)', 'GaleriKegiatanController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->PUT('update/(:num)', 'GaleriKegiatanController::update/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('cek_data/(:segment)', 'GaleriKegiatanController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('delete', 'GaleriKegiatanController::delete', ['namespace' => 'App\Controllers\Admin']);
     });

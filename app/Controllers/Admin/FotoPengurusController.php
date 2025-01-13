@@ -96,7 +96,6 @@ class FotoPengurusController extends BaseController
         ]);
 
         return redirect()->to('/admin/foto-pengurus')->with('pesan', 'Data pengurus berhasil ditambahkan !');
-        // }
 
         return redirect()->back()->with('error', 'Gagal mengupload foto !')->withInput();
     }
@@ -217,6 +216,7 @@ class FotoPengurusController extends BaseController
                 ->with('error', 'Gagal memperbarui data: ' . $e->getMessage());
         }
     }
+
     public function delete()
     {
         // Cek sesi pengguna

@@ -91,7 +91,10 @@
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <p class="text-center">Tidak ada data kegiatan yang ditemukan.</p>
+                    <div class="no-data">
+                        <img src="<?= base_url('assets/img/404.gif'); ?>" style=" width: 250px;" alt="Data Tidak Ditemukan" class="no-data-img">
+                        <p class="no-data-text">Data Tidak Ditemukan</p>
+                    </div>
                 <?php endif; ?>
             </div>
             <div class="btn-box">
@@ -102,7 +105,6 @@
         </div>
     </section>
 
-
     <!-- Modal untuk setiap kegiatan -->
     <?php if (!empty($galeriKegiatan)) : ?>
         <?php foreach ($galeriKegiatan as $kegiatan) : ?>
@@ -111,10 +113,8 @@
                     <div class="modal-content">
                         <!-- Modal Header -->
                         <div class="modal-header text-white" style=background:#081c5c;>
-                            <h5 class="modal-title" id="modalLabel<?= $kegiatan['id_kegiatan'] ?>">
-                                <?= $kegiatan['judul_kegiatan'] ?>
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <h5 class="modal-title" id="modalLabel<?= $kegiatan['id_kegiatan'] ?>"><?= $kegiatan['judul_kegiatan'] ?></h5>
+                            <button type="button" class="close" style="color: #FFF;" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -128,8 +128,8 @@
                                 </div>
                                 <!-- Details Section -->
                                 <div class="col-md-6">
-                                    <h6><b>Waktu Kegiatan:</b> <?= $kegiatan['tanggal_foto'] ?></h6>
-                                    <p class="text-muted mt-2"><b class="text-dark">Keterangan kegiatan : </b><br><?= $kegiatan['deskripsi'] ?></p>
+                                    <h6><b>Waktu Kegiatan :</b> <?= formatTanggalIndo($kegiatan['tanggal_foto']); ?></h6>
+                                    <p class="text-muted mt-2"><b class="text-dark">Keterangan Kegiatan : </b><br><?= $kegiatan['deskripsi'] ?></p>
                                 </div>
                             </div>
                         </div>

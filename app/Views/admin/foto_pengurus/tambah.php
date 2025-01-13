@@ -93,8 +93,7 @@
                                 <!-- Foto -->
                                 <div class="mb-3">
                                     <label for="foto" class="col-form-label">Foto<span style="color: red;">*</span></label>
-                                    <input type="file" style="background-color: #fff;" placeholder="Masukkan Foto Anda" class="form-control <?= session('errors.foto') ? 'is-invalid' : '' ?>"
-                                        id="foto" name="foto" accept="image/*" onchange="previewImg()">
+                                    <input type="file" style="background-color: #fff;" placeholder="Masukkan Foto Anda" class="form-control <?= session('errors.foto') ? 'is-invalid' : '' ?>" id="foto" name="foto" accept="image/*" onchange="previewImg()">
                                     <?php if (session('errors.foto')) : ?>
                                         <div class="invalid-feedback">
                                             <?= session('errors.foto') ?>
@@ -105,6 +104,20 @@
                                         <img src="<?= base_url('assets/img/404.gif'); ?>" class="img-thumbnail img-preview" width="200px">
                                     </div>
                                 </div>
+
+                                <script>
+                                    function previewImg() {
+                                        const foto = document.querySelector('#foto');
+                                        const imgPreview = document.querySelector('.img-preview');
+
+                                        const fileFoto = new FileReader();
+                                        fileFoto.readAsDataURL(foto.files[0]);
+
+                                        fileFoto.onload = function(e) {
+                                            imgPreview.src = e.target.result;
+                                        }
+                                    }
+                                </script>
 
                                 <!-- Tombol Submit -->
                                 <div class="modal-footer">
@@ -121,20 +134,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    function previewImg() {
-        const foto = document.querySelector('#foto');
-        const imgPreview = document.querySelector('.img-preview');
-
-        const fileFoto = new FileReader();
-        fileFoto.readAsDataURL(foto.files[0]);
-
-        fileFoto.onload = function(e) {
-            imgPreview.src = e.target.result;
-        }
-    }
-</script>
 
 <?= $this->include('admin/layouts/footer') ?>
 <?= $this->include('admin/layouts/script2') ?>

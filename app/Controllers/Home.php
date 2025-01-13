@@ -31,7 +31,7 @@ class Home extends BaseController
         $this->fotoPengurusModel = new FotoPengurusModel();
     }
 
-    
+
 
     public function index($page = 1)
     {
@@ -40,14 +40,14 @@ class Home extends BaseController
         $offset = ($page - 1) * $perPage;
         // Ambil data dari database
         $galeriKegiatan = $this->galeriKegiatanModel->orderBy('tanggal_foto', 'DESC')->findAll($perPage, $offset);
-     
+
 
         // Kirim data ke view
         $data = [
-        'title' => 'Galeri Kegiatan',
-        'galeriKegiatan' => $galeriKegiatan,
-       'pengurus' => $this->fotoPengurusModel->findAll(),
-    ];
+            'title' => 'Galeri Kegiatan',
+            'galeriKegiatan' => $galeriKegiatan,
+            'pengurus' => $this->fotoPengurusModel->findAll(),
+        ];
 
 
         return view('index', $data);
@@ -67,11 +67,11 @@ class Home extends BaseController
     {
         $perPage = 8; // Jumlah data per halaman
         $offset = ($page - 1) * $perPage;
-    
+
         // Ambil data dengan limit dan offset
         $galeriKegiatan = $this->galeriKegiatanModel->orderBy('tanggal_foto', 'DESC')->findAll($perPage, $offset);
         $totalData = $this->galeriKegiatanModel->countAll(); // Total data
-    
+
         // Kirim data ke view
         $data = [
             'title' => 'Galeri Kegiatan',
@@ -79,12 +79,30 @@ class Home extends BaseController
             'currentPage' => $page,
             'totalPages' => ceil($totalData / $perPage),
         ];
-    
+
         return view('service', $data);
     }
-    
 
-    
+
+    public function galeri($page = 1)
+    {
+        $perPage = 8; // Jumlah data per halaman
+        $offset = ($page - 1) * $perPage;
+
+        // Ambil data dengan limit dan offset
+        $galeriKegiatan = $this->galeriKegiatanModel->orderBy('tanggal_foto', 'DESC')->findAll($perPage, $offset);
+        $totalData = $this->galeriKegiatanModel->countAll();
+
+        // Kirim data ke view
+        $data = [
+            'title' => 'Galeri Kegiatan',
+            'galeriKegiatan' => $galeriKegiatan,
+            'currentPage' => $page,
+            'totalPages' => ceil($totalData / $perPage),
+        ];
+
+        return view('galeri', $data);
+    }
 
 
     public function kontak()

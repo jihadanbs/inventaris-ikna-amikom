@@ -112,10 +112,23 @@
                                     <?php endif ?>
                                 </div>
 
+                                <script>
+                                    function previewImg() {
+                                        const foto = document.querySelector('#foto');
+                                        const imgPreview = document.querySelector('.img-preview');
+
+                                        const fileFoto = new FileReader();
+                                        fileFoto.readAsDataURL(foto.files[0]);
+
+                                        fileFoto.onload = function(e) {
+                                            imgPreview.src = e.target.result;
+                                        }
+                                    }
+                                </script>
 
                                 <!-- Tombol Submit -->
                                 <div class="modal-footer">
-                                    <a href="<?= site_url('admin/foto-pengurus'); ?>" class="btn btn-secondary me-3">Batal</a>
+                                    <a href="<?= site_url('admin/foto-pengurus'); ?>" class="btn btn-secondary me-3"><i class="fas fa-arrow-left"> Batal</i></a>
                                     <button type="submit" class="btn btn-primary" style="background-color: #28527A;">Simpan Perubahan</button>
                                 </div>
                             </form>
@@ -126,19 +139,6 @@
         </div>
     </div>
 </div>
-<script>
-    function previewImg() {
-        const foto = document.querySelector('#foto');
-        const imgPreview = document.querySelector('.img-preview');
-
-        const fileFoto = new FileReader();
-        fileFoto.readAsDataURL(foto.files[0]);
-
-        fileFoto.onload = function(e) {
-            imgPreview.src = e.target.result;
-        }
-    }
-</script>
 
 <?= $this->include('admin/layouts/footer') ?>
 <?= $this->include('admin/layouts/script2') ?>

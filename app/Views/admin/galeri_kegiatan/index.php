@@ -119,6 +119,7 @@
                                         <th>Nomor</th>
                                         <th>Foto Kegiatan</th>
                                         <th>Judul</th>
+                                        <th>Tanggal Kegiatan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -127,14 +128,15 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($kegiatan as $row) : ?>
                                         <tr>
-                                        <td data-field="id_kegiatan" style="width: 10px" scope="row"><?= $i++; ?></td>
-                                        <td data-field="id_kegiatan" style="width: 10px" scope="row">
-                                                <img src="<?= base_url($row['foto_kegiatan']); ?>" alt="Foto Kegiatan" style="width: 100px; height: auto;">
+                                            <td style="width: 10px" scope="row"><?= $i++; ?></td>
+                                            <td>
+                                                <img src="<?= base_url($row['foto_kegiatan']); ?>" alt="Foto Kegiatan" style="width: 180px; height: auto;">
                                             </td>
-                                            <td data-field="judul"><?= $row['judul_kegiatan']; ?></td>
+                                            <td><?= $row['judul_kegiatan']; ?></td>
+                                            <td><?= formatTanggalIndo($row['tanggal_foto']); ?></td>
                                             <td style="width: 155px">
-                                                <a href="/admin/galeri-kegiatan/cek_data/<?= $row['id_kegiatan'] ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_kegiatan'] ?>">
+                                                <a href="<?= site_url('admin/galeri-kegiatan/cek_data/' . $row['judul_kegiatan']); ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
+                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id_kegiatan="<?= $row['id_kegiatan'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
                                                 </button>
                                             </td>
@@ -203,59 +205,59 @@
 
     <!-- HAPUS -->
     <script>
-       $(document).ready(function() {
-    $('.sa-warning').click(function(e) {
-        e.preventDefault();
-        var id_foto = $(this).data('id'); // Ambil ID dari atribut data-id
+        $(document).ready(function() {
+            $('.sa-warning').click(function(e) {
+                e.preventDefault();
+                var id_kegiatan = $(this).data('id_kegiatan');
 
-        Swal.fire({
-            title: "Anda Yakin Ingin Menghapus?",
-            text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#28527A",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Ya, Hapus!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    type: "POST",
-                    url: "<?= site_url('/admin/galeri-kegiatan/delete') ?>", // Sesuaikan dengan rute
-                    data: { id_foto: id_foto }, // Kirim ID sebagai data POST
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            Swal.fire({
-                                title: "Dihapus!",
-                                text: response.message,
-                                icon: "success"
-                            }).then(() => {
-                                location.reload(); // Refresh halaman
-                            });
-                        } else {
-                            Swal.fire({
-                                title: "Gagal!",
-                                text: response.message,
-                                icon: "error"
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        Swal.fire({
-                            title: "Error",
-                            text: "Terjadi kesalahan. Silakan coba lagi.",
-                            icon: "error"
+                Swal.fire({
+                    title: "Anda Yakin Ingin Menghapus?",
+                    text: "Data yang sudah dihapus tidak bisa dikembalikan!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#28527A",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Hapus!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: "POST",
+                            url: "<?= site_url('admin/galeri-kegiatan/delete') ?>",
+                            data: {
+                                id_kegiatan: id_kegiatan
+                            }, // Kirim ID sebagai data POST
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    Swal.fire({
+                                        title: "Dihapus!",
+                                        text: response.message,
+                                        icon: "success"
+                                    }).then(() => {
+                                        location.reload(); // Refresh halaman
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: "Gagal!",
+                                        text: response.message,
+                                        icon: "error"
+                                    });
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                Swal.fire({
+                                    title: "Error",
+                                    text: "Terjadi kesalahan. Silakan coba lagi.",
+                                    icon: "error"
+                                });
+                            }
                         });
                     }
                 });
-            }
+            });
         });
-    });
-});
-
     </script>
     <!-- HAPUS -->
-
 
     </body>
 
