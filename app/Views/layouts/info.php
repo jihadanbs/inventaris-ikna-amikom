@@ -28,11 +28,11 @@
                     <li class="<?= uri_string() == 'galeri' ? 'active' : '' ?>">
                         <a class="" href="<?= site_url('/galeri') ?>">Galeri</a>
                     </li>
-                    <li class="<?= uri_string() == 'kontak' ? 'active' : '' ?>">
-                        <a class="" href="<?= site_url('/kontak') ?>">Kontak Kami</a>
-                    </li>
                     <li class="<?= uri_string() == 'barang' ? 'active' : '' ?>">
                         <a class="" href="<?= site_url('/barang') ?>">Barang</a>
+                    </li>
+                    <li class="<?= uri_string() == 'kontak' ? 'active' : '' ?>">
+                        <a class="" href="<?= site_url('/kontak') ?>">Kontak Kami</a>
                     </li>
                 </ul>
             </div>
