@@ -127,6 +127,14 @@
   .info_section .info_form .social_box {
     justify-content: center;
   }
+
+
+  /* barang */
+  .category-tabs .nav-item{
+    width:100%;
+    text-align:center;
+    padding:10px;
+  }
 }
 
 @media (max-width: 576px) {

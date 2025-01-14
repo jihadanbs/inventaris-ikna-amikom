@@ -29,23 +29,122 @@
             <div class="tab-content" id="categoryTabsContent">
             <!-- barang Tab -->
             <div class="tab-pane fade show active" id="kategoritab1">
-                <div class="row">
+                <div class="row d-flex justify-content-center">
                     <!-- card barang yang looping -->
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
+                        <a href="">
                         <div class="card product-card">
-                            <img src="/api/placeholder/200/200" class="card-img-top product-img p-2" alt="Product">
+                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
                             <div class="card-body">
-                                <h6 class="card-title">Powerbank Anker Nano 10,000 mAh</h6>
-                                <span class="badge badge-warning category-badge mb-2">Power Bank</span>
+                                <h6 class="card-title">Judul nama barang disisni  </h6>
+                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
                                 <p class="card-text mb-1">Stock: 50 units</p>
                                 <span class="badge badge-light city-badge">Jakarta Utara</span>
-                                <p class="card-text mt-2">
-                                    <strong>Rp 449.000</strong>
-                                </p>
+                                    <p>Masa pinjam : 2 hari</p>
                             </div>
                         </div>
+                        </a>
                     </div>
-                    <!-- More product cards would go here -->
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
+                        <a href="">
+                        <div class="card product-card">
+                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
+                            <div class="card-body">
+                                <h6 class="card-title">Judul nama barang disisni  </h6>
+                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
+                                <p class="card-text mb-1">Stock: 50 units</p>
+                                <span class="badge badge-light city-badge">Jakarta Utara</span>
+                                    <p>Masa pinjam : 2 hari</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
+                        <a href="">
+                        <div class="card product-card">
+                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
+                            <div class="card-body">
+                                <h6 class="card-title">Judul nama barang disisni  </h6>
+                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
+                                <p class="card-text mb-1">Stock: 50 units</p>
+                                <span class="badge badge-light city-badge">Jakarta Utara</span>
+                                    <p>Masa pinjam : 2 hari</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
+                        <a href="">
+                        <div class="card product-card">
+                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
+                            <div class="card-body">
+                                <h6 class="card-title">Judul nama barang disisni  </h6>
+                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
+                                <p class="card-text mb-1">Stock: 50 units</p>
+                                <span class="badge badge-light city-badge">Jakarta Utara</span>
+                                    <p>Masa pinjam : 2 hari</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
+                        <a href="">
+                        <div class="card product-card">
+                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
+                            <div class="card-body">
+                                <h6 class="card-title">Judul nama barang disisni  </h6>
+                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
+                                <p class="card-text mb-1">Stock: 50 units</p>
+                                <span class="badge badge-light city-badge">Jakarta Utara</span>
+                                    <p>Masa pinjam : 2 hari</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
+                        <a href="">
+                        <div class="card product-card">
+                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
+                            <div class="card-body">
+                                <h6 class="card-title">Judul nama barang disisni  </h6>
+                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
+                                <p class="card-text mb-1">Stock: 50 units</p>
+                                <span class="badge badge-light city-badge">Jakarta Utara</span>
+                                    <p>Masa pinjam : 2 hari</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
+                        <a href="">
+                        <div class="card product-card">
+                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
+                            <div class="card-body">
+                                <h6 class="card-title">Judul nama barang disisni  </h6>
+                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
+                                <p class="card-text mb-1">Stock: 50 units</p>
+                                <span class="badge badge-light city-badge">Jakarta Utara</span>
+                                    <p>Masa pinjam : 2 hari</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
+                        <a href="">
+                        <div class="card product-card">
+                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
+                            <div class="card-body">
+                                <h6 class="card-title">Judul nama barang disisni  </h6>
+                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
+                                <p class="card-text mb-1">Stock: 50 units</p>
+                                <span class="badge badge-light city-badge">Jakarta Utara</span>
+                                    <p>Masa pinjam : 2 hari</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+ \
+                    <!-- lanjutkan card -->
                 </div>
                 
                 <!-- Pagination -->
@@ -65,13 +164,13 @@
             </div>
 
             <!-- Other category tabs would follow the same pattern -->
-            <div class="tab-pane fade" id="#kategoritab2">
+            <div class="tab-pane fade" id="kategoritab2">
                 <!-- Similar structure as power bank tab -->
             </div>
-            <div class="tab-pane fade" id="#kategoritab3">
+            <div class="tab-pane fade" id="kategoritab3">
                 <!-- Similar structure as power bank tab -->
             </div>
-            <div class="tab-pane fade" id="#kategoritab4">
+            <div class="tab-pane fade" id="kategoritab4">
                 <!-- Similar structure as power bank tab -->
             </div>
         </div>

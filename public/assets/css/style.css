@@ -1208,6 +1208,22 @@ a:focus {
           align-items: center;
 }
 
+.barang_section .container .tab-content .tab-pane .row{
+  /* gap:10px; */
+  padding-vertical:10px;
+}
+
+.category-tabs {
+  display:flex;
+  justify-content :center;
+}
+
+.category-tabs .nav-item{
+  width:290px;
+  padding:10px;
+}
+
+
 .category-tabs .nav-link {
   border-radius: 8px;
   margin-right: 10px;
@@ -1224,10 +1240,11 @@ a:focus {
 .product-card {
   transition: transform 0.2s;
   height: 100%;
+  cursor:pointer;
 }
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 .product-img {
   height: 200px;
