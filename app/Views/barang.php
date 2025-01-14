@@ -1,5 +1,28 @@
 <?= $this->include('layouts/template') ?>
 
+<style>
+    .btn-secondary{
+        background-color: rgba(0, 0, 0, 0.1); /* Warna hitam dengan transparansi 50% */
+        border:none;
+    }
+
+  .scrollable-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.scrollable-tabs .nav-item {
+    white-space: nowrap;
+}
+
+.scrollable-tabs::-webkit-scrollbar {
+    display: none;
+}
+  
+</style>
 <body class="sub_page">
 
     <div class="hero_area">
@@ -9,22 +32,39 @@
     <!-- about section -->
     <section class="barang_section">
         <div class="container">
-            <div class="row d-flex justify-content-center">
-                <ul class="nav nav-tabs category-tabs mb-4" id="categoryTabs" role="tablist">
-                    <li class="nav-item" id="kategori1">
-                        <a class="nav-link active" data-toggle="tab" href="#kategoritab1">Perlengkapan</a>
-                    </li>
-                    <li class="nav-item" id="kategori2">
-                        <a class="nav-link" data-toggle="tab" href="#kategoritab2">Kategori 2</a>
-                    </li>
-                    <li class="nav-item" id="kategori3">
-                        <a class="nav-link" data-toggle="tab" href="#kategoritab3">Kategori 3</a>
-                    </li>
-                    <li class="nav-item" id="kategori4">
-                        <a class="nav-link" data-toggle="tab" href="#kategoritab4">Mirip yang kamu </a>
-                    </li>
-                </ul>
-            </div>
+        <div class="row d-flex justify-content-center align-items-center ">
+    <div class="d-flex justify-content-between align-items-center w-100">
+        <button class="btn btn-secondary" id="scrollLeftBtn">&lt;</button>
+        <ul class="nav nav-tabs category-tabs  scrollable-tabs" id="categoryTabs" role="tablist">
+        <li class="nav-item" id="kategori1">
+            <a class="nav-link active" data-toggle="tab" href="#kategoritab1">Perlengkapan</a>
+        </li>
+        <li class="nav-item" id="kategori2">
+            <a class="nav-link" data-toggle="tab" href="#kategoritab2">Kategori 2</a>
+        </li>
+        <li class="nav-item" id="kategori3">
+            <a class="nav-link" data-toggle="tab" href="#kategoritab3">Kategori 3</a>
+        </li>
+        <li class="nav-item" id="kategori4">
+            <a class="nav-link" data-toggle="tab" href="#kategoritab4">Mirip yang kamu</a>
+        </li>
+        <!-- Tambahkan lebih banyak kategori di sini -->
+        <li class="nav-item" id="kategori5">
+            <a class="nav-link" data-toggle="tab" href="#kategoritab5">Kategori 5</a>
+        </li>
+        <li class="nav-item" id="kategori6">
+            <a class="nav-link" data-toggle="tab" href="#kategoritab6">Kategori 6</a>
+        </li>
+        <li class="nav-item" id="kategori6">
+            <a class="nav-link" data-toggle="tab" href="#kategoritab6">Kategori 6</a>
+        </li>
+        <li class="nav-item" id="kategori6">
+            <a class="nav-link" data-toggle="tab" href="#kategoritab6">Kategori 6</a>
+        </li>
+        </ul>
+        <button class="btn btn-secondary" id="scrollRightBtn">&gt;</button>
+    </div>
+</div>
 
             <div class="tab-content" id="categoryTabsContent">
             <!-- barang Tab -->
@@ -185,7 +225,32 @@
     </div>
     <?= $this->include('layouts/script') ?>
 
+    <script>
+        const categoryTabs = document.getElementById('categoryTabs');
+const scrollLeftBtn = document.getElementById('scrollLeftBtn');
+const scrollRightBtn = document.getElementById('scrollRightBtn');
 
+scrollLeftBtn.addEventListener('click', () => {
+    categoryTabs.scrollLeft -= 100;
+});
+
+scrollRightBtn.addEventListener('click', () => {
+    categoryTabs.scrollLeft += 100;
+});
+  // Memastikan lebar tabs sesuai dengan konten
+  function adjustTabWidth() {
+    const tabsWidth = $('.scrollable-tabs').width();
+    const totalTabsWidth = $('.scrollable-tabs .nav-item').toArray().reduce((sum, tab) => sum + $(tab).outerWidth(), 0);
+    
+    if (totalTabsWidth > tabsWidth) {
+      $('.scrollable-tabs').css('justify-content', 'flex-start');
+    } else {
+      $('.scrollable-tabs').css('justify-content', 'center');
+    }
+  }
+
+  $(window).on('load resize', adjustTabWidth);
+</script>
 </body>
 
 </html>
