@@ -1199,7 +1199,7 @@ a:focus {
 
 /* BARANG */
 .barang_section .container{
-  margin-top:100px;
+  margin-top:110px;
 }
 
 .barang_section .row {
@@ -1230,7 +1230,13 @@ a:focus {
   color: white;
   padding: 10px 30px;
   background:var(--biru-latar);
+  transition:background 0.5s ease;
 }
+.category-tabs .nav-link:hover {
+  /* background:rgb(0, 44, 188);  */
+  background:var(--kuning-secondary); 
+}
+
 .category-tabs .nav-link.active {
   font-weight:600;
   background:var(--kuning-secondary);
@@ -1256,3 +1262,33 @@ a:focus {
 .city-badge {
   font-size: 0.75rem;
 }
+
+.pagination-barang .page-item:active .page-link {
+  background:var(--biru-latar) !important;
+  color:white;
+  
+}
+
+
+/* scroll bar barang */
+.btn-secondary{
+  background-color: rgba(0, 0, 0, 0.1); 
+  border:none;
+}
+
+.scrollable-tabs {
+flex-wrap: nowrap;
+overflow-x: auto;
+overflow-y: hidden;
+scroll-behavior: smooth;
+-webkit-overflow-scrolling: touch;
+}
+
+.scrollable-tabs .nav-item {
+white-space: nowrap;
+}
+
+.scrollable-tabs::-webkit-scrollbar {
+display: none;
+}
+/* end scroll bar barang */

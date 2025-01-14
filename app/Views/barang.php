@@ -1,26 +1,7 @@
 <?= $this->include('layouts/template') ?>
 
 <style>
-    .btn-secondary{
-        background-color: rgba(0, 0, 0, 0.1); /* Warna hitam dengan transparansi 50% */
-        border:none;
-    }
-
-  .scrollable-tabs {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-}
-
-.scrollable-tabs .nav-item {
-    white-space: nowrap;
-}
-
-.scrollable-tabs::-webkit-scrollbar {
-    display: none;
-}
+  
   
 </style>
 <body class="sub_page">
@@ -32,7 +13,9 @@
     <!-- about section -->
     <section class="barang_section">
         <div class="container">
-        <div class="row d-flex justify-content-center align-items-center ">
+            
+        <div class="row d-flex justify-content-center mb-4">
+        <h2 class="p-2 mb-3">Barang IKNAventory</h2>
     <div class="d-flex justify-content-between align-items-center w-100">
         <button class="btn btn-secondary" id="scrollLeftBtn">&lt;</button>
         <ul class="nav nav-tabs category-tabs  scrollable-tabs" id="categoryTabs" role="tablist">
@@ -48,7 +31,6 @@
         <li class="nav-item" id="kategori4">
             <a class="nav-link" data-toggle="tab" href="#kategoritab4">Mirip yang kamu</a>
         </li>
-        <!-- Tambahkan lebih banyak kategori di sini -->
         <li class="nav-item" id="kategori5">
             <a class="nav-link" data-toggle="tab" href="#kategoritab5">Kategori 5</a>
         </li>
@@ -71,10 +53,24 @@
             <div class="tab-pane fade show active" id="kategoritab1">
                 <div class="row d-flex justify-content-center">
                     <!-- card barang yang looping -->
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1 mx-3 mx-sm-0">
+                        <a href="">
+                        <div class="card product-card">
+                            <img src="assets/images/tes4.jpeg" class="card-img-top product-img p-2" alt="Product">
+                            <div class="card-body">
+                                <h6 class="card-title">Judul nama barang disisni  </h6>
+                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
+                                <p class="card-text mb-1">Stock: 50 units</p>
+                                <span class="badge badge-light city-badge">Jakarta Utara</span>
+                                    <p>Masa pinjam : 2 hari</p>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
                         <a href="">
                         <div class="card product-card">
-                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
+                            <img src="assets/images/tes.jpg" class="card-img-top product-img p-2" alt="Product">
                             <div class="card-body">
                                 <h6 class="card-title">Judul nama barang disisni  </h6>
                                 <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
@@ -169,31 +165,16 @@
                         </div>
                         </a>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
-                        <a href="">
-                        <div class="card product-card">
-                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
-                            <div class="card-body">
-                                <h6 class="card-title">Judul nama barang disisni  </h6>
-                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
-                                <p class="card-text mb-1">Stock: 50 units</p>
-                                <span class="badge badge-light city-badge">Jakarta Utara</span>
-                                    <p>Masa pinjam : 2 hari</p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
- \
                     <!-- lanjutkan card -->
                 </div>
                 
                 <!-- Pagination -->
-                <nav aria-label="Page navigation" class="mt-4">
-                    <ul class="pagination justify-content-center">
+                <nav aria-label="Page navigation" class="my-4 pb-5">
+                    <ul class="pagination-barang pagination justify-content-center">
                         <li class="page-item disabled">
                             <a class="page-link" href="#" tabindex="-1">Previous</a>
                         </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item">
