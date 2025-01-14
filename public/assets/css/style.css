@@ -1170,6 +1170,7 @@ a:focus {
 
 
 /* FAQ */
+
 .border-faq {
   border: 0.01px solid rgb(81, 82, 82); 
   border-radius: 10px; 
@@ -1193,4 +1194,48 @@ a:focus {
   background: var(--biru-latar);
   color: white;
   transform: scale(1.1); /* Efek membesar saat hover */
+}
+
+
+/* BARANG */
+.barang_section .container{
+  margin-top:100px;
+}
+
+.barang_section .row {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.category-tabs .nav-link {
+  border-radius: 8px;
+  margin-right: 10px;
+  color: white;
+  padding: 10px 30px;
+  background:var(--biru-latar);
+}
+.category-tabs .nav-link.active {
+  font-weight:600;
+  background:var(--kuning-secondary);
+}
+
+
+.product-card {
+  transition: transform 0.2s;
+  height: 100%;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.product-img {
+  height: 200px;
+  object-fit: contain;
+}
+.category-badge {
+  font-size: 0.8rem;
+}
+.city-badge {
+  font-size: 0.75rem;
 }
