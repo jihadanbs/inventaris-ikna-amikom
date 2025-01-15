@@ -1292,3 +1292,128 @@ white-space: nowrap;
 display: none;
 }
 /* end scroll bar barang */
+
+
+
+/* BARANG DETAIL */
+.product-thumbnail {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.product-thumbnail.active {
+  border: 2px solid #007bff;
+}
+
+.main-image-barang {
+  overflow: hidden;
+  object-fit:cover;
+}
+
+#main-product-image {
+  transition: transform 0.3s ease;
+}
+
+.product-title {
+  font-weight: bold;
+  color: #333;
+}
+.rating-terjual{
+  font-size: 22px;
+}
+
+.size-selection .btn-group .btn,
+.color-selection .btn-group .btn {
+  padding: 0.5rem 1.5rem;
+}
+
+.additional-info {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+.product-description {
+  border-top: 1px solid #dee2e6;
+  padding-top: 1rem;
+}
+
+.action-buttons {
+  position: sticky;
+  bottom: 0;
+  background-color: white;
+  padding: 1rem 0;
+  border-top: 1px;
+}
+
+.thumbnail-images {
+  position: relative;
+}
+
+.thumbnail-images img {
+  height:120px;
+  object-fit:cover;
+}
+
+.thumbnail-images .btn-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.2);
+  color: white;
+  border: none;
+  padding: 10px;
+  z-index: 1;
+}
+.thumbnail-images .btn-nav:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 10px;
+  z-index: 1;
+}
+
+.thumbnail-images .btn-prev {
+  left: 0;
+}
+
+.thumbnail-images .btn-next {
+  right: 0;
+}
+
+.thumbnail-images .col {
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+}
+
+.thumbnail-images .col::-webkit-scrollbar {
+  display: none;
+}
+
+.modal-dialog {
+  max-width: 500px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.modal-form-peminjaman{
+  z-index: 999999;
+}
+
+.modal-form-peminjaman .modal-footer {
+  border-top: 1px solid #dee2e6;
+  padding: 1rem;
+}

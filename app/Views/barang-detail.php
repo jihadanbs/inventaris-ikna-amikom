@@ -1,114 +1,7 @@
 <?= $this->include('layouts/template') ?>
 
-<style>
-.product-thumbnail {
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
 
-.product-thumbnail.active {
-    border: 2px solid #007bff;
-}
-
-.main-image {
-    overflow: hidden;
-}
-
-#main-product-image {
-    transition: transform 0.3s ease;
-}
-
-.product-title {
-    font-weight: bold;
-    color: #333;
-}
-.rating-terjual{
-    font-size: 22px;
-}
-
-.size-selection .btn-group .btn,
-.color-selection .btn-group .btn {
-    padding: 0.5rem 1.5rem;
-}
-
-.additional-info {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-radius: 0.25rem;
-}
-
-.product-description {
-    border-top: 1px solid #dee2e6;
-    padding-top: 1rem;
-}
-
-.action-buttons {
-    position: sticky;
-    bottom: 0;
-    background-color: white;
-    padding: 1rem 0;
-    border-top: 1px;
-}
-
-.thumbnail-images {
-    position: relative;
-}
-
-
-.btn-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    z-index: 1;
-}
-
-.btn-prev {
-    left: 0;
-}
-
-.btn-next {
-    right: 0;
-}
-
-.thumbnail-images .col {
-    overflow-x: auto;
-    white-space: nowrap;
-    scroll-behavior: smooth;
-}
-
-.thumbnail-images .col::-webkit-scrollbar {
-    display: none;
-}
-
-.modal-dialog {
-    max-width: 500px;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-}
-
-.form-control:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-}
-
-.modal-footer {
-    border-top: 1px solid #dee2e6;
-    padding: 1rem;
-}
-</style>
-
-    <?= $this->include('layouts/navbar') ?>
+<?= $this->include('layouts/navbar') ?>
 
 
 <section class="product-detail-section py-5">
@@ -117,7 +10,7 @@
             <!-- Bagian Kiri - Foto Produk -->
             <div class="col-md-6">
                 <!-- Main Image -->
-                <div class="main-image mb-3">
+                <div class="main-image-barang mb-3">
                     <img src="<?= base_url('assets/images/tes2.jpg') ?>" id="main-product-image" class="img-fluid" style="width: 100%; height: auto;">
                 </div>
                 
@@ -133,7 +26,7 @@
                                     <img src="<?= base_url('assets/images/tes2.jpg') ?>" class="img-thumbnail product-thumbnail active" onclick="changeImage(this.src)">
                                 </div>
                                 <div class="col-3">
-                                    <img src="<?= base_url('assets/images/tes.jpg') ?>" class="img-thumbnail product-thumbnail" onclick="changeImage(this.src)">
+                                    <img src="<?= base_url('assets/images/tes4.jpeg') ?>" class="img-thumbnail product-thumbnail" onclick="changeImage(this.src)">
                                 </div>
                                 <div class="col-3">
                                     <img src="<?= base_url('assets/images/tes3.jpg') ?>" class="img-thumbnail product-thumbnail" onclick="changeImage(this.src)">
@@ -217,8 +110,7 @@
 
 
 <!-- MODAL FORM AJUKIAN PEMINJAMAN -->
- <!-- Modal -->
-<div class="modal fade" id="peminjamanModal" tabindex="-1" aria-labelledby="peminjamanModalLabel" aria-hidden="true">
+<div class="modal modal-form-peminjaman fade" id="peminjamanModal" tabindex="-1" aria-labelledby="peminjamanModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -286,7 +178,7 @@ function changeImage(src) {
     });
 }
 
-// Zoom functionality
+// KODINAGN UNTUK ZOOM FOTO
 document.getElementById('main-product-image').addEventListener('mousemove', function(e) {
     const image = this;
     const offsetX = e.offsetX;
