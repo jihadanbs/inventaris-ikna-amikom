@@ -83,6 +83,29 @@
 .thumbnail-images .col::-webkit-scrollbar {
     display: none;
 }
+
+.modal-dialog {
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.modal-footer {
+    border-top: 1px solid #dee2e6;
+    padding: 1rem;
+}
 </style>
 
     <?= $this->include('layouts/navbar') ?>
@@ -185,12 +208,60 @@
 
                     <!-- Tombol Ajukan Peminjaman -->
                     <div class="action-buttons">
-                        <button class="btn btn-primary btn-lg btn-block">Ajukan Peminjaman</button>
+                    <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#peminjamanModal">Ajukan Peminjaman</button>
                      </div>
             </div>
         </div>
     </div>
 </section>
+
+
+<!-- MODAL FORM AJUKIAN PEMINJAMAN -->
+ <!-- Modal -->
+<div class="modal fade" id="peminjamanModal" tabindex="-1" aria-labelledby="peminjamanModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 text-center" id="peminjamanModalLabel">Form Pengajuan Peminjaman</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formPeminjaman">
+                    <div class="form-group">
+                        <label for="namaLengkap">Nama Lengkap</label>
+                        <input type="text" class="form-control" id="namaLengkap" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pekerjaan">Pekerjaan</label>
+                        <input type="text" class="form-control" id="pekerjaan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="noTelepon">No. Telepon</label>
+                        <input type="tel" class="form-control" id="noTelepon" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <textarea class="form-control" id="alamat" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="kepentingan">Kepentingan</label>
+                        <textarea class="form-control" id="kepentingan" rows="3" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary" onclick="submitForm()">Kirim Pengajuan</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Footer -->
 <div class="footer_bg" style="margin-top : auto;">
