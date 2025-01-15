@@ -73,4 +73,13 @@ class Home extends BaseController
 
         return view('barang', $data);
     }
+    public function barangdetail()
+    {
+
+
+        $data = [];
+
+
+        return view('barang-detail', $data);
+    }
 }

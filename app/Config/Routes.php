@@ -14,6 +14,7 @@ $routes->GET('/galeri', 'Home::galeri', ['namespace' => 'App\Controllers']);
 
 $routes->GET('/kontak', 'Home::kontak', ['namespace' => 'App\Controllers']);
 $routes->GET('/barang', 'Home::barang', ['namespace' => 'App\Controllers']);
+$routes->GET('/barang-detail', 'Home::barangdetail', ['namespace' => 'App\Controllers']);
 
 $routes->GET('/error404', 'Home::error', ['namespace' => 'App\Controllers']);
 $routes->GET('/servererror', 'Home::servererror', ['namespace' => 'App\Controllers']);

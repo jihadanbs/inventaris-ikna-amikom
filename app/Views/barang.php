@@ -54,7 +54,7 @@
                 <div class="row d-flex justify-content-center">
                     <!-- card barang yang looping -->
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1 mx-3 mx-sm-0">
-                        <a href="">
+                        <a href="/barang-detail">
                         <div class="card product-card">
                             <img src="assets/images/tes4.jpeg" class="card-img-top product-img p-2" alt="Product">
                             <div class="card-body">
