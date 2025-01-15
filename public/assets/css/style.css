@@ -1274,6 +1274,7 @@ a:focus {
 .btn-secondary{
   background-color: rgba(0, 0, 0, 0.1); 
   border:none;
+  padding:10px;
 }
 
 .scrollable-tabs {

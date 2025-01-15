@@ -15,7 +15,7 @@
         <div class="container">
             
         <div class="row d-flex justify-content-center mb-4">
-        <h2 class="p-2 mb-3">Barang IKNAventory</h2>
+        <h2 class="p-2 mb-3" style="font-weight:700;">Barang IKNAVENTORY</h2>
     <div class="d-flex justify-content-between align-items-center w-100">
         <button class="btn btn-secondary" id="scrollLeftBtn">&lt;</button>
         <ul class="nav nav-tabs category-tabs  scrollable-tabs" id="categoryTabs" role="tablist">
@@ -109,62 +109,6 @@
                         </div>
                         </a>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
-                        <a href="">
-                        <div class="card product-card">
-                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
-                            <div class="card-body">
-                                <h6 class="card-title">Judul nama barang disisni  </h6>
-                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
-                                <p class="card-text mb-1">Stock: 50 units</p>
-                                <span class="badge badge-light city-badge">Jakarta Utara</span>
-                                    <p>Masa pinjam : 2 hari</p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
-                        <a href="">
-                        <div class="card product-card">
-                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
-                            <div class="card-body">
-                                <h6 class="card-title">Judul nama barang disisni  </h6>
-                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
-                                <p class="card-text mb-1">Stock: 50 units</p>
-                                <span class="badge badge-light city-badge">Jakarta Utara</span>
-                                    <p>Masa pinjam : 2 hari</p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
-                        <a href="">
-                        <div class="card product-card">
-                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
-                            <div class="card-body">
-                                <h6 class="card-title">Judul nama barang disisni  </h6>
-                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
-                                <p class="card-text mb-1">Stock: 50 units</p>
-                                <span class="badge badge-light city-badge">Jakarta Utara</span>
-                                    <p>Masa pinjam : 2 hari</p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4 p-1">
-                        <a href="">
-                        <div class="card product-card">
-                            <img src="assets/images/work-img.png" class="card-img-top product-img p-2" alt="Product">
-                            <div class="card-body">
-                                <h6 class="card-title">Judul nama barang disisni  </h6>
-                                <span class="badge badge-warning category-badge mb-2">Kategori barang</span>
-                                <p class="card-text mb-1">Stock: 50 units</p>
-                                <span class="badge badge-light city-badge">Jakarta Utara</span>
-                                    <p>Masa pinjam : 2 hari</p>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
                     <!-- lanjutkan card -->
                 </div>
                 
@@ -184,15 +128,15 @@
                 </nav>
             </div>
 
-            <!-- Other category tabs would follow the same pattern -->
+            <!-- kategori barang lain-->
             <div class="tab-pane fade" id="kategoritab2">
-                <!-- Similar structure as power bank tab -->
+               
             </div>
             <div class="tab-pane fade" id="kategoritab3">
-                <!-- Similar structure as power bank tab -->
+               
             </div>
             <div class="tab-pane fade" id="kategoritab4">
-                <!-- Similar structure as power bank tab -->
+               
             </div>
         </div>
         </div>
@@ -206,7 +150,7 @@
     </div>
     <?= $this->include('layouts/script') ?>
 
-    <script>
+<script>
         const categoryTabs = document.getElementById('categoryTabs');
 const scrollLeftBtn = document.getElementById('scrollLeftBtn');
 const scrollRightBtn = document.getElementById('scrollRightBtn');
