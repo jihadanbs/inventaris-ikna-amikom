@@ -9,7 +9,7 @@ class FaqModel extends Model
     protected $table = 'tb_faq';
     protected $primaryKey = 'id_faq';
     protected $retunType = 'object';
-    protected $allowedFields = ['id_kategori_faq', 'pertanyaan', 'jawaban'];
+    protected $allowedFields = ['id_kategori_faq', 'slug', 'pertanyaan', 'jawaban'];
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
 
@@ -22,26 +22,23 @@ class FaqModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
-    public function getFaq($id_faq = false)
+    public function getFaq($slug = false)
     {
-        if ($id_faq == false) {
+        if ($slug == false) {
             return $this->findAll();
         }
 
-        return $this->where(['id_faq' => $id_faq])->first();
+        return $this->where(['slug' => $slug])->first();
     }
 
-    public function getAll($id_faq = null)
+    public function getSlug($slug)
     {
         $builder = $this->db->table('tb_faq');
-        $builder->join('tb_kategori_faq', 'tb_kategori_faq.id_kategori_faq = tb_faq.id_kategori_faq');
+        $query = $builder->join('tb_kategori_faq', 'tb_kategori_faq.id_kategori_faq = tb_faq.id_kategori_faq')->where('tb_faq.slug', $slug)->get();
 
-        if ($id_faq !== null) {
-            $builder->where('id_faq', $id_faq);
-        }
-
-        return $builder->get()->getRow();
+        return $query->getRowArray();
     }
+
 
     public function ambil_data($id_faq)
     {

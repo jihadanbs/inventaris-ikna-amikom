@@ -21,6 +21,10 @@ class TbFAQ extends Migration
                 'constraint' => 11,
                 'unsigned' => TRUE
             ],
+            'slug' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255
+            ],
             'pertanyaan' => [
                 'type' => 'TEXT',
             ],

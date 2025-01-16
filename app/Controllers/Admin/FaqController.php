@@ -3,11 +3,9 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Validation\FaqValidation;
 
 class FaqController extends BaseController
 {
-
     public function index()
     {
         // Cek sesi pengguna
@@ -17,10 +15,9 @@ class FaqController extends BaseController
 
         // Menyiapkan data untuk tampilan
         $data = array_merge([
-            'title' => 'Admin | Halaman Informasi Publik',
+            'title' => 'Admin | Halaman FAQ',
             'tb_faq' => $this->m_faq->getAllSorted(),
             'tb_kategori_faq' => $this->m_kategori_faq->getAllData(),
-            'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
         ]);
 
         return view('admin/faq/index', $data);
@@ -50,22 +47,43 @@ class FaqController extends BaseController
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
 
-        // Validasi input menggunakan FotoValidation
-        if (!$this->validate(FaqValidation::validationRules())) {
-            // Jika terjadi kesalahan validasi, kembalikan dengan pesan validasi
-            session()->setFlashdata('validation', \Config\Services::validation());
-            return redirect()->back()->withInput();
+        // Aturan validasi input
+        $rules = [
+            'id_kategori_faq' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Silahkan Pilih Nama Kategori FAQ !'
+                ]
+            ],
+            'pertanyaan' => [
+                'rules' => "required|min_length[5]",
+                'errors' => [
+                    'required' => 'Kolom Pertanyaan Tidak Boleh Kosong !',
+                    'min_length' => 'Pertanyaan tidak boleh kurang dari 5 karakter !'
+                ]
+            ],
+            'jawaban' => [
+                'rules' => "required|min_length[5]",
+                'errors' => [
+                    'required' => 'Kolom Jawaban Tidak Boleh Kosong !',
+                    'min_length' => 'Jawaban tidak boleh kurang dari 5 karakter !'
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            // Kirim kembali ke form dengan error validasi
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
         $this->m_faq->save([
-            'id_kategori_faq' => $this->request->getVar('id_kategori_faq'),
-            'pertanyaan' => $this->request->getVar('pertanyaan'),
-            'jawaban' => $this->request->getVar('jawaban'),
+            'id_kategori_faq' => $this->request->getPost('id_kategori_faq'),
+            'pertanyaan' => $this->request->getPost('pertanyaan'),
+            'slug' => url_title(strip_tags($this->request->getPost('pertanyaan')), '-', true),
+            'jawaban' => $this->request->getPost('jawaban'),
         ]);
 
-        session()->setFlashdata('pesan', 'Data Berhasil Di Tambahkan &#128077;');
-
-        return redirect()->to('/admin/faq');
+        return redirect()->to('admin/faq')->with('pesan', 'Data FAQ berhasil ditambahkan !');
     }
 
     public function delete()
@@ -98,6 +116,30 @@ class FaqController extends BaseController
         }
     }
 
+    public function cek_data($slug)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession(); // Redirect jika sesi tidak valid
+        }
+
+        $tb_faq = $this->m_faq->getSlug($slug);
+
+        if (!$tb_faq) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('FAQ dengan ' . $slug . ' tidak ditemukan');
+        }
+
+        // Menyiapkan data untuk tampilan
+        $data = array_merge([
+            'title' => 'Admin | Halaman Cek Data FAQ',
+            'tb_faq' => $tb_faq,
+        ]);
+
+        // print_r($data['tb_faq']); // Cetak nilai tb_faq untuk debugging
+
+        return view('admin/faq/cek_data', $data);
+    }
+
     public function edit($id_faq)
     {
         // Cek sesi pengguna
@@ -105,11 +147,17 @@ class FaqController extends BaseController
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
 
+        $tb_faq = $this->m_faq->getFaq($id_faq);
+
+        if (!$tb_faq) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('FAQ dengan ' . $id_faq . ' tidak ditemukan');
+        }
+
         // Menyiapkan data untuk tampilan
         $data = array_merge([
             'title' => 'Admin | Halaman Edit FAQ',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-            'tb_faq' => $this->m_faq->getFaq($id_faq),
+            'tb_faq' => $tb_faq,
             'tb_kategori_faq' => $this->m_kategori_faq->getAllData(),
         ]);
 
@@ -122,43 +170,47 @@ class FaqController extends BaseController
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
 
-        // Validasi input menggunakan FotoValidation
-        if (!$this->validate(FaqValidation::validationRules())) {
-            // Jika terjadi kesalahan validasi, kembalikan dengan pesan validasi
-            session()->setFlashdata('validation', \Config\Services::validation());
-            return redirect()->back()->withInput();
+        $rules = [
+            'id_kategori_faq' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Silahkan Pilih Nama Kategori FAQ !'
+                ]
+            ],
+            'pertanyaan' => [
+                'rules' => "required|min_length[5]",
+                'errors' => [
+                    'required' => 'Kolom Pertanyaan Tidak Boleh Kosong !',
+                    'min_length' => 'Pertanyaan tidak boleh kurang dari 5 karakter !'
+                ]
+            ],
+            'jawaban' => [
+                'rules' => "required|min_length[5]",
+                'errors' => [
+                    'required' => 'Kolom Jawaban Tidak Boleh Kosong !',
+                    'min_length' => 'Jawaban tidak boleh kurang dari 5 karakter !'
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            // Kirim kembali ke form dengan error validasi
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        // Simpan data ke dalam database
-        $this->m_faq->save([
-            'id_faq' => $id_faq,
-            'id_kategori_faq' => $this->request->getVar('id_kategori_faq'),
-            'pertanyaan' => $this->request->getVar('pertanyaan'),
-            'jawaban' => $this->request->getVar('jawaban'),
-        ]);
+        $data = [
+            'id_kategori_faq' => $this->request->getPost('id_kategori_faq'),
+            'slug' => url_title(strip_tags($this->request->getPost('pertanyaan')), '-', true),
+            'pertanyaan' => $this->request->getPost('pertanyaan'),
+            'jawaban' => $this->request->getPost('jawaban'),
+        ];
 
-        // Set flash message untuk sukses
-        session()->setFlashdata('pesan', 'Data Berhasil Diubah &#128077;');
-
-        return redirect()->to('/admin/faq');
-    }
-
-    public function cek_data($id_faq)
-    {
-        // Cek sesi pengguna
-        if ($this->checkSession() !== true) {
-            return $this->checkSession(); // Redirect jika sesi tidak valid
+        if (empty($data)) {
+            return $this->response->setJSON('Tidak ada data untuk diperbarui !', $data);
         }
 
-        // Menyiapkan data untuk tampilan
-        $data = array_merge([
-            'title' => 'Admin | Halaman Cek Data FAQ',
-            'tb_faq' => $this->m_faq->getAll($id_faq),
-            'id_faq' => $this->m_faq->getid($id_faq),
-        ]);
+        $this->m_faq->update($id_faq, $data);
 
-        // print_r($data['tb_faq']); // Cetak nilai tb_faq untuk debugging
-
-        return view('admin/faq/cek_data', $data);
+        return redirect()->to('admin/faq')->with('pesan', 'Data FAQ berhasil diubah !');
     }
 }

@@ -89,21 +89,7 @@
                             ?>
 
                             <table id="example1" class="table table-bordered dt-responsive nowrap w-100">
-                                <?php if (session()->getFlashdata('pesan')) : ?>
-                                    <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
-                                        <?= session()->getFlashdata('pesan') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if (session()->getFlashdata('gagal')) : ?>
-                                    <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Gagal</strong> -
-                                        <?= session()->getFlashdata('gagal') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
+                                <?= $this->include('alert/alert'); ?>
                                 <div class="col-md-3 mb-3">
                                     <a href="/admin/faq/tambah" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
@@ -122,11 +108,11 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($tb_faq as $row) : ?>
                                         <tr>
-                                            <td data-field="id_faq" style="max-width: 5px" scope="row"><?= $i++; ?></td>
-                                            <td data-field="nama_kategori"><?= $row->nama_kategori; ?></td>
-                                            <td data-field="pertanyaan"><?= truncateText($row->pertanyaan, 30); ?></td>
+                                            <td style="max-width: 5px" scope="row"><?= $i++; ?></td>
+                                            <td><?= $row->nama_kategori; ?></td>
+                                            <td><?= truncateText($row->pertanyaan, 150); ?></td>
                                             <td style="width: 155px">
-                                                <a href="/admin/faq/cek_data/<?= $row->id_faq ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
+                                                <a href="<?= site_url('admin/faq/cek_data/' . $row->slug); ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row->id_faq ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
                                                 </button>

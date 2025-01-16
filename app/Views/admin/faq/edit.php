@@ -35,110 +35,67 @@
                     <div class="card border border-secondary rounded p-4">
                         <div class="card-body">
                             <h2 class="text-center mb-4">Formulir Ubah Data FAQ</h2>
-                            <form action="/admin/faq/update/<?= $tb_faq['id_faq']; ?>" method="post" enctype="multipart/form-data" id="validationForm" novalidate>
-                                <!-- dengan id tersebut -> kategori -> judul  2x cek-->
+                            <form action="<?= site_url('admin/faq/update/' . $tb_faq['id_faq']); ?>" method="post" enctype="multipart/form-data" id="validationForm" novalidate>
+                                <?= $this->include('alert/alert'); ?>
                                 <input type="hidden" name="_method" value="PUT">
                                 <?= csrf_field(); ?>
 
                                 <div class="mb-3">
-                                    <label for="id_kategori_faq" class="col-form-label">Nama Kategori FAQ</label>
-                                    <select class="form-select custom-border <?= ($validation->hasError('id_kategori_faq')) ? 'is-invalid' : ''; ?>" id="id_kategori_faq" name="id_kategori_faq" aria-label="Default select example" style="background-color: white;" required>
-                                        <option value="" selected disabled>Silahkan Pilih Nama Kategori FAQ --</option>
+                                    <label for="id_kategori_faq" class="col-form-label">Nama Kategori FAQ</label><span style="color: red;">*</span>
+                                    <select class="form-select custom-border <?= session('errors.id_kategori_faq') ? 'is-invalid' : ''; ?>" id="id_kategori_faq" name="id_kategori_faq" aria-label="Default select example" style="background-color: white;" required>
+                                        <option value="" selected disabled>~ Silahkan Pilih Nama Kategori FAQ ~</option>
                                         <?php foreach ($tb_kategori_faq as $value) : ?>
                                             <?php $selected = ($value['id_kategori_faq'] == old('id_kategori_faq', $tb_faq['id_kategori_faq'])) ? 'selected' : ''; ?>
                                             <option value="<?= $value['id_kategori_faq'] ?>" <?= $selected ?>><?= $value['nama_kategori'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
+                                    <?php if (session('errors.id_kategori_faq')) : ?>
+                                        <div class="invalid-feedback">
+                                            <?= session('errors.id_kategori_faq') ?>
+                                        </div>
+                                    <?php endif ?>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="pertanyaan" class="col-form-label">Pertanyaan :</label>
-                                    <textarea class="form-control <?= ($validation->hasError('pertanyaan')) ? 'is-invalid' : ''; ?>" name="pertanyaan" id="pertanyaan" required><?= old('pertanyaan', $tb_faq['pertanyaan']); ?></textarea>
+                                    <label for="pertanyaan" class="col-form-label">Pertanyaan</label><span style="color: red;">*</span>
+                                    <textarea class="form-control <?= session('errors.pertanyaan') ? 'is-invalid' : ''; ?>" name="pertanyaan" style="background-color: white" id="pertanyaan"><?= old('pertanyaan', $tb_faq['pertanyaan']); ?>
+                                    </textarea>
 
-                                    <!-- Menambahkan div untuk menampilkan pesan validasi -->
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('pertanyaan'); ?>
-                                    </div>
+                                    <?php if (session('errors.pertanyaan')) : ?>
+                                        <div class="invalid-feedback">
+                                            <?= session('errors.pertanyaan') ?>
+                                        </div>
+                                    <?php endif ?>
+                                    <!-- inisiasi CKEditor -->
                                     <script>
-                                        CKEDITOR.replace('pertanyaan', {
-                                            toolbar: [{
-                                                    name: 'clipboard',
-                                                    groups: ['clipboard', 'undo'],
-                                                    items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo']
-                                                },
-                                                {
-                                                    name: 'editing',
-                                                    groups: ['find', 'selection', 'spellchecker'],
-                                                    items: ['Find', 'Replace']
-                                                },
-                                                {
-                                                    name: 'basicstyles',
-                                                    groups: ['basicstyles', 'cleanup'],
-                                                    items: ['Bold', 'Italic', 'Underline', '-', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']
-                                                },
-                                                {
-                                                    name: 'paragraph',
-                                                    groups: ['list', 'indent', 'blocks', 'align', 'bidi'],
-                                                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-']
-                                                },
-                                                // { name: 'links', items: [ 'Link', 'Unlink' ] },
-                                                // { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar' ] },
-                                                {
-                                                    name: 'styles',
-                                                    items: ['Styles', 'Format', 'Font', 'FontSize']
-                                                },
-                                                // { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                                                {
-                                                    name: 'others',
-                                                    items: ['-']
-                                                },
-                                            ]
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            if (typeof initEditor === 'function') {
+                                                initEditor('#pertanyaan');
+                                            } else {
+                                                console.error('initEditor function is not available.');
+                                            }
                                         });
                                     </script>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="jawaban" class="col-form-label">Jawaban :</label>
-                                    <textarea class="form-control <?= ($validation->hasError('jawaban')) ? 'is-invalid' : ''; ?>" name="jawaban" id="jawaban" required><?= old('jawaban', $tb_faq['jawaban']); ?></textarea>
+                                    <label for="jawaban" class="col-form-label">Jawaban</label><span style="color: red;">*</span>
+                                    <textarea class="form-control <?= session('errors.jawaban') ? 'is-invalid' : ''; ?>" name="jawaban" style="background-color: white" id="jawaban"><?= old('jawaban', $tb_faq['jawaban']); ?>
+                                    </textarea>
 
-                                    <!-- Menambahkan div untuk menampilkan pesan validasi -->
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('jawaban'); ?>
-                                    </div>
+                                    <?php if (session('errors.jawaban')) : ?>
+                                        <div class="invalid-feedback">
+                                            <?= session('errors.jawaban') ?>
+                                        </div>
+                                    <?php endif ?>
+                                    <!-- inisiasi CKEditor -->
                                     <script>
-                                        CKEDITOR.replace('jawaban', {
-                                            toolbar: [{
-                                                    name: 'clipboard',
-                                                    groups: ['clipboard', 'undo'],
-                                                    items: ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo']
-                                                },
-                                                {
-                                                    name: 'editing',
-                                                    groups: ['find', 'selection', 'spellchecker'],
-                                                    items: ['Find', 'Replace']
-                                                },
-                                                {
-                                                    name: 'basicstyles',
-                                                    groups: ['basicstyles', 'cleanup'],
-                                                    items: ['Bold', 'Italic', 'Underline', '-', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']
-                                                },
-                                                {
-                                                    name: 'paragraph',
-                                                    groups: ['list', 'indent', 'blocks', 'align', 'bidi'],
-                                                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-']
-                                                },
-                                                // { name: 'links', items: [ 'Link', 'Unlink' ] },
-                                                // { name: 'insert', items: ['Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar' ] },
-                                                {
-                                                    name: 'styles',
-                                                    items: ['Styles', 'Format', 'Font', 'FontSize']
-                                                },
-                                                // { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-                                                {
-                                                    name: 'others',
-                                                    items: ['-']
-                                                },
-                                            ]
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                            if (typeof initEditor === 'function') {
+                                                initEditor('#jawaban');
+                                            } else {
+                                                console.error('initEditor function is not available.');
+                                            }
                                         });
                                     </script>
                                 </div>
