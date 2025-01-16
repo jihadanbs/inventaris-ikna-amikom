@@ -384,7 +384,7 @@
     <?= $this->include('layouts/script') ?>
 
 <script>
-        const categoryTabs = document.getElementById('categoryTabs');
+const categoryTabs = document.getElementById('categoryTabs');
 const scrollLeftBtn = document.getElementById('scrollLeftBtn');
 const scrollRightBtn = document.getElementById('scrollRightBtn');
 

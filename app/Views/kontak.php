@@ -76,8 +76,8 @@
                 </div>
             </div>
 
-            <!-- FAQ Section -->
-            <section class="bsb-faq-2 bg-light py-3 py-md-5 py-xl-8 text-left">
+                    <!-- FAQ Section -->
+                    <section class="bsb-faq-2 bg-light py-3 py-md-5 py-xl-8 text-left">
                 <div class="container">
                     <h2 class="m-5 text-center">Frequently Asked Questions (FAQ)</h2>
                     <div class="row gy-5 gy-lg-0">
@@ -89,97 +89,28 @@
                             <div class="row">
                                 <div class="col-12 col-xl-11">
                                     <div id="accordionExample" class="accordion">
-                                        <!-- FAQ Item 1 -->
-                                        <div class=" mb-4 shadow-md border-faq ">
-                                            <div class="card-header" id="headingOne">
-                                                <h2 class="mb-0">
-                                                    <button class="btn text-left font-weight-bold" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        How Do I Change My Billing Information?
-                                                    </button>
-                                                </h2>
-                                            </div>
-                                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <p>To change your billing information, please follow these steps:</p>
-                                                    <ul>
-                                                        <li>Go to our website and sign in to your account.</li>
-                                                        <li>Click on your profile picture in the top right corner of the page and select "Account Settings."</li>
-                                                        <li>Under the "Billing Information" section, click on "Edit."</li>
-                                                        <li>Make your changes and click on "Save."</li>
-                                                    </ul>
+                                        <?php foreach (array_slice($faqs, 0, 5) as $key => $faq): ?>
+                                            <div class="mb-4 shadow-md border-faq">
+                                                <div class="card-header" id="heading<?= $key ?>">
+                                                    <h2 class="mb-0">
+                                                        <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $key ?>" aria-expanded="false" aria-controls="collapse<?= $key ?>">
+                                                            <?= $faq->pertanyaan ?>
+                                                        </button>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapse<?= $key ?>" class="collapse" aria-labelledby="heading<?= $key ?>" data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <?= $faq->jawaban ?>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- FAQ Item 2 -->
-                                        <div class="mb-4 shadow-md border-faq">
-                                            <div class="card-header" id="headingTwo">
-                                                <h2 class="mb-0">
-                                                    <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                        How Does Payment System Work?
-                                                    </button>
-                                                </h2>
-                                            </div>
-                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    A payment system is a way to transfer money from one person or organization to another. It is a complex process that involves many different parties, including banks, credit card companies, and merchants.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- FAQ Item 3 -->
-                                        <div class=" mb-4 shadow-md border-faq ">
-                                            <div class="card-header" id="headingThree">
-                                                <h2 class="mb-0">
-                                                    <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                        Will taxes be included in my monthly invoice?
-                                                    </button>
-                                                </h2>
-                                            </div>
-                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    Whether or not taxes are included in your monthly invoice depends on a number of factors, including your location, the type of services you are receiving, and the policies of the company providing you with those services.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- FAQ Item 4 -->
-                                        <div class=" mb-4 shadow-md border-faq">
-                                            <div class="card-header" id="headingFour">
-                                                <h2 class="mb-0">
-                                                    <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                                        What currency will I be charged in?
-                                                    </button>
-                                                </h2>
-                                            </div>
-                                            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    The currency you are charged in when making a purchase will depend on a number of factors, including the merchant you are purchasing from, the country you are purchasing from, and the payment method you are using.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- FAQ Item 5 -->
-                                        <div class="mb-4 shadow-md border-faq">
-                                            <div class="card-header" id="headingFive">
-                                                <h2 class="mb-0">
-                                                    <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                                        How Do I Cancel My Account?
-                                                    </button>
-                                                </h2>
-                                            </div>
-                                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <p>To cancel your account, please follow these steps:</p>
-                                                    <ul>
-                                                        <li>Go to our website and sign in to your account.</li>
-                                                        <li>Click on your profile picture in the top right corner of the page and select "Account Settings."</li>
-                                                        <li>Scroll to the bottom of the page and click on "Cancel Account."</li>
-                                                        <li>Enter your password and click on "Cancel Account."</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-center p-3">
-                                            <button class="tombol-lebih-lanjut-faq btn border border-radius">Lebih lanjut</button>
-                                        </div>
+                                        <?php endforeach; ?>
                                     </div>
+                                    <?php if ($faqCount > 5): ?>
+                                        <div class="d-flex justify-content-center p-3">
+                                            <button class="tombol-lebih-lanjut-faq btn border border-radius">Lebih Lanjut</button>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -189,7 +120,7 @@
 
         </div>
     </section>
-    <!-- End Kontak section -->
+    <!-- End Kontak Section -->
 
     <div class="footer_bg">
         <?= $this->include('layouts/info') ?>
@@ -197,107 +128,48 @@
     </div>
     <?= $this->include('layouts/script') ?>
     <script>
-        // Pastikan jQuery sudah dimuat di proyek Anda.
-        $(document).ready(function() {
-            // Simpan FAQ tambahan dalam array
-            const additionalFaqs = [
-                `<!-- FAQ Item 6 -->
-        <div class="mb-4 shadow-md border-faq">
-            <div class="card-header" id="headingSix">
-                <h2 class="mb-0">
-                    <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                        How Can I Update My Profile Information?
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
-                <div class="card-body">
-                    To update your profile information, navigate to "Account Settings" and edit the desired fields.
-                </div>
-            </div>
-        </div>`,
+    $(document).ready(function () {
+        let allFaqs = <?= json_encode($faqs) ?>; // Semua FAQ dari PHP
+        let displayedFaqs = 5; // Jumlah FAQ awal yang ditampilkan
+        let isExpanded = false; // Status toggle FAQ (default ditampilkan 5 FAQ)
 
-                `<!-- FAQ Item 7 -->
-        <div class="mb-4 shadow-md border-faq">
-            <div class="card-header" id="headingSeven">
-                <h2 class="mb-0">
-                    <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                        What Happens If I Forget My Password?
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
-                <div class="card-body">
-                    You can reset your password by clicking "Forgot Password" on the login page and following the instructions.
-                </div>
-            </div>
-        </div>`,
+        $(".tombol-lebih-lanjut-faq").click(function () {
+            let additionalFaqs = "";
 
-                `<!-- FAQ Item 8 -->
-        <div class="mb-4 shadow-md border-faq">
-            <div class="card-header" id="headingEight">
-                <h2 class="mb-0">
-                    <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                        Can I Change My Subscription Plan?
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
-                <div class="card-body">
-                    Yes, you can change your subscription plan at any time under "Subscription Settings."
-                </div>
-            </div>
-        </div>`,
-
-                `<!-- FAQ Item 9 -->
-        <div class="mb-4 shadow-md border-faq">
-            <div class="card-header" id="headingNine">
-                <h2 class="mb-0">
-                    <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                        Is There A Refund Policy?
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
-                <div class="card-body">
-                    Refunds are available based on our policy terms, which you can find in the "Help" section.
-                </div>
-            </div>
-        </div>`,
-
-                `<!-- FAQ Item 10 -->
-        <div class="mb-4 shadow-md border-faq">
-            <div class="card-header" id="headingTen">
-                <h2 class="mb-0">
-                    <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                        How Can I Contact Customer Support?
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
-                <div class="card-body">
-                    You can contact customer support through the "Contact Us" page on our website.
-                </div>
-            </div>
-        </div>`
-            ];
-
-
-            let additionalFaqsVisible = false; // Flag to track FAQ visibility
-
-            $(".tombol-lebih-lanjut-faq").click(function() {
-                if (!additionalFaqsVisible) {
-                    // Prepend additional FAQs to the accordion, before the button
-                    $("#accordionExample .d-flex").before(additionalFaqs.join(""));
-                    $(this).text("Lebih Sedikit"); // Update button text
-                } else {
-                    // Remove additional FAQs
-                    $("#accordionExample .shadow-md.border-faq").slice(-5).remove();
-                    $(this).text("Lebih Lanjut"); // Reset button text
+            if (!isExpanded) {
+                // Menampilkan FAQ tambahan
+                for (let i = displayedFaqs; i < allFaqs.length; i++) {
+                    additionalFaqs += `
+                    <div class="mb-4 shadow-md border-faq" id="faq${i}">
+                        <div class="card-header" id="heading${i}">
+                            <h2 class="mb-0">
+                                <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="false" aria-controls="collapse${i}">
+                                    ${allFaqs[i].pertanyaan}
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordionExample">
+                            <div class="card-body">
+                                ${allFaqs[i].jawaban}
+                            </div>
+                        </div>
+                    </div>`;
                 }
-
-                additionalFaqsVisible = !additionalFaqsVisible; // Toggle flag
-            });
+                // Tambahkan FAQ baru ke accordion
+                $("#accordionExample").append(additionalFaqs);
+                $(this).text("Lebih Sedikit"); // Ubah teks tombol
+                isExpanded = true;
+            } else {
+                // Menghapus FAQ tambahan
+                for (let i = displayedFaqs; i < allFaqs.length; i++) {
+                    $(`#faq${i}`).remove(); // Hapus elemen FAQ tambahan
+                }
+                $(this).text("Lebih Lanjut"); // Ubah teks tombol kembali
+                isExpanded = false;
+            }
         });
-    </script>
+    });
+</script>
+
+
 </body>

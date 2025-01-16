@@ -55,14 +55,19 @@ class Home extends BaseController
     }
 
     public function kontak()
-    {
+{
+    $faqModel = new \App\Models\FaqModel();
+    $allFaqs = $faqModel->getAllSorted(); 
+    $faqCount = count($allFaqs); 
 
+    $data = [
+        'faqs' => $allFaqs,
+        'faqCount' => $faqCount 
+    ];
 
-        $data = [];
+    return view('kontak', $data);
+}
 
-
-        return view('kontak', $data);
-    }
     
     public function barang()
     {
