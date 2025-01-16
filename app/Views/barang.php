@@ -73,8 +73,9 @@
                                                             <h6 class="card-title"><?= $barang['nama_barang'] ?></h6>
                                                             <span class="badge badge-warning category-badge mb-2"><?= $barang['nama_kategori'] ?></span>
                                                             <p class="card-text mb-1">Stok : <?= $barang['jumlah_total_baik'] ?> unit</p>
+                                                            <p class="mb-0">Masa pinjam : <?= $barang['masa_pinjam'] ?> hari</p>
+                                                            <i class="bi bi-geo-alt-fill"></i>
                                                             <span class="badge badge-light city-badge"><?= $barang['lokasi'] ?></span>
-                                                            <p>Masa pinjam : <?= $barang['masa_pinjam'] ?> hari</p>
                                                         </div>
                                                     </div>
                                                 </a>
