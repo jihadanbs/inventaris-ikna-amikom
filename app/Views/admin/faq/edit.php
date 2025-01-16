@@ -1,60 +1,26 @@
 <?= $this->include('admin/layouts/script') ?>
 
-<style>
-    /* CSS untuk input field saat tidak diedit */
-    input[type="text"].input-readonly {
-        background-color: #f0f0f0 !important;
-        border: 1px solid #ccc !important;
-    }
-
-    /* CSS untuk input field saat diedit */
-    input[type="text"]:not(.input-readonly) {
-        background-color: white !important;
-        border: 1px solid white;
-    }
-
-    input[type="text"].form-control {
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        padding: 8px;
-    }
-
-    .btn-success.save {
-        background-color: green !important;
-        border-color: green !important;
-    }
-
-    .btn-success.save:focus {
-        box-shadow: none !important;
-    }
-
-    .custom-border {
-        border: 1px solid #ced4da;
-        border-radius: 5px;
-    }
-</style>
-
-
-<?= $this->include('admin/layouts/navbar') ?>
-<?= $this->include('admin/layouts/sidebar') ?>
+<!-- saya nonaktifkan agar side bar tidak dapat di klik sembarangan -->
+<div style="pointer-events: none;">
+    <?= $this->include('admin/layouts/navbar') ?>
+    <?= $this->include('admin/layouts/sidebar') ?>
+</div>
 <?= $this->include('admin/layouts/rightsidebar') ?>
 
 <?= $this->section('content'); ?>
 <div class="main-content">
-
     <div class="page-content">
         <div class="container-fluid">
-
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Data Barang</h4>
+                        <h4 class="mb-sm-0 font-size-18">Formulir Ubah Data FAQ</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang') ?>">Barang IKNA</a></li>
-                                <li class="breadcrumb-item active">Data Barang</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">FAQ</a></li>
+                                <li class="breadcrumb-item active">Formulir Ubah Data FAQ</li>
                             </ol>
                         </div>
 
@@ -63,183 +29,105 @@
             </div>
             <!-- end page title -->
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <?php
-                            function truncateText($text, $maxLength)
-                            {
-                                // Memeriksa apakah teks lebih panjang dari batas maksimum
-                                if (strlen($text) > $maxLength) {
-                                    // Mengambil substring dari awal hingga batas maksimum
-                                    $text = substr($text, 0, $maxLength);
-                                    // Mencari posisi spasi terakhir untuk memastikan tidak memotong kata di tengah
-                                    $lastSpace = strrpos($text, ' ');
-                                    if ($lastSpace !== false) {
-                                        $text = substr($text, 0, $lastSpace);
-                                    }
-                                    // Menambahkan ellipsis (...) untuk menunjukkan bahwa teks dipotong
-                                    $text .= '...';
-                                }
-                                return $text;
-                            }
-                            ?>
-                            <table id="tableBarang" class="table table-bordered dt-responsive nowrap w-100">
-                                <?= $this->include('alert/alert'); ?>
-                                <div class="col-md-3 mb-3">
-                                    <a href=" <?= site_url('admin/barang/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
-                                        <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
-                                    </a>
-                                </div>
-                                <thead>
-                                    <tr class="highlight text-center" style="background-color: #28527A; color: white;">
-                                        <th>Nomor</th>
-                                        <th>Nama Barang</th>
-                                        <th>Kategori</th>
-                                        <th>Kondisi</th>
-                                        <th>Total Barang</th>
-                                        <th>Tanggal Masuk</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
+            <div class="row justify-content-center">
 
-                                <tbody>
-                                    <?php $i = 1; ?>
-                                    <?php foreach ($tb_barang as $row) : ?>
-                                        <tr>
-                                            <td style="width: 2px" scope="row"><?= $i++; ?></td>
-                                            <td><?= truncateText($row['nama_barang'], 70); ?></td>
-                                            <td><?= $row['nama_kategori']; ?></td>
-                                            <td><?= $row['nama_kondisi']; ?></td>
-                                            <td><?= $row['jumlah_total']; ?></td>
-                                            <td><?= formatTanggalIndo($row['tanggal_masuk']); ?></td>
-                                            <td style="width: 155px">
-                                                <a href="<?= site_url('admin/barang/cek_data/' . $row['slug']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang'] ?>">
-                                                    <i class="fas fa-trash-alt"></i> Delete
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            <small class="form-text text-muted">
-                                <span style="color: red;">Note : Menghapus dan mengubah data berarti menghapus dan mengubah juga relasi data tersebut yang ada di fitur : <br>1. Data barang masuk<br>2. Data Barang Kondisi Baik<br>3. Data Barang Kondisi Rusak</span>
-                            </small>
+                <div class="col-10">
+                    <div class="card border border-secondary rounded p-4">
+                        <div class="card-body">
+                            <h2 class="text-center mb-4">Formulir Ubah Data FAQ</h2>
+                            <form action="<?= site_url('admin/faq/update/' . $tb_faq['id_faq']); ?>" method="post" enctype="multipart/form-data" id="validationForm" novalidate>
+                                <?= $this->include('alert/alert'); ?>
+                                <input type="hidden" name="_method" value="PUT">
+                                <?= csrf_field(); ?>
+
+                                <div class="mb-3">
+                                    <form action="<?= site_url('admin/faq/update/' . $tb_faq['id_faq']); ?>" method="post" enctype="multipart/form-data" id="validationForm" novalidate>
+                                        <?= $this->include('alert/alert'); ?>
+                                        <input type="hidden" name="_method" value="PUT">
+                                        <?= csrf_field(); ?>
+
+                                        <div class="mb-3">
+                                            <label for="pertanyaan" class="col-form-label">Pertanyaan</label><span style="color: red;">*</span>
+                                            <textarea class="form-control <?= session('errors.pertanyaan') ? 'is-invalid' : ''; ?>" name="pertanyaan" style="background-color: white" id="pertanyaan"><?= old('pertanyaan', $tb_faq['pertanyaan']); ?>
+                                    </textarea>
+                                            <?php if (session('errors.pertanyaan')) : ?>
+                                                <div class="invalid-feedback">
+                                                    <?= session('errors.pertanyaan') ?>
+                                                </div>
+                                            <?php endif ?>
+                                            <!-- inisiasi CKEditor -->
+                                            <script>
+                                                document.addEventListener('DOMContentLoaded', function() {
+                                                    if (typeof initEditor === 'function') {
+                                                        initEditor('#pertanyaan');
+                                                    } else {
+                                                        console.error('initEditor function is not available.');
+                                                    }
+                                                });
+                                            </script>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="jawaban" class="col-form-label">Jawaban</label><span style="color: red;">*</span>
+                                            <textarea class="form-control <?= session('errors.jawaban') ? 'is-invalid' : ''; ?>" name="jawaban" style="background-color: white" id="jawaban"><?= old('jawaban', $tb_faq['jawaban']); ?>
+                                    </textarea>
+                                            <?php if (session('errors.jawaban')) : ?>
+                                                <div class="invalid-feedback">
+                                                    <?= session('errors.jawaban') ?>
+                                                </div>
+                                            <?php endif ?>
+                                            <!-- inisiasi CKEditor -->
+                                            <script>
+                                                document.addEventListener('DOMContentLoaded', function() {
+                                                    if (typeof initEditor === 'function') {
+                                                        initEditor('#jawaban');
+                                                    } else {
+                                                        console.error('initEditor function is not available.');
+                                                    }
+                                                });
+                                            </script>
+                                        </div>
+
+                                        <div class="form-group mb-4 mt-4">
+                                            <div class="d-grid gap-2 d-md-flex justify-content-end">
+                                                <a href="/admin/faq/cek_data/<?= $tb_faq['id_faq'] ?>" class="btn btn-secondary btn-md ml-3">
+                                                    <i class="fas fa-arrow-left"></i> Kembali
+                                                </a>
+                                                <button type="submit" class="btn btn-primary ">Ubah Data</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+
+                                </div>
                         </div>
                     </div>
-                </div> <!-- end col -->
-            </div> <!-- container-fluid -->
+                </div>
+            </div>
         </div>
-        <!-- End Page-content -->
-        <?= $this->include('admin/layouts/footer') ?>
-        <!-- end main content-->
     </div>
-    <!-- END layout-wrapper -->
-    <?= $this->include('admin/layouts/script2') ?>
-
-    <script>
-        $(document).ready(function() {
-            $("#tableBarang").DataTable({
-                "paging": true,
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": true,
-                "buttons": [{
-                        extend: 'copy',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        }
-                    },
-                    {
-                        extend: 'csv',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        }
-                    },
-                    {
-                        extend: 'excel',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        }
-                    },
-                    {
-                        extend: 'pdf',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        }
-                    },
-                    {
-                        extend: 'print',
-                        exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
-                        }
-                    },
-                    'colvis'
-                ],
-            }).buttons().container().appendTo('#tableBarang_wrapper .col-md-6:eq(0)');
-        });
-    </script>
-
-    <!-- HAPUS -->
-    <script>
-        $(document).ready(function() {
-            $('.sa-warning').click(function(e) {
-                e.preventDefault();
-                var id_barang = $(this).data('id');
-
-                Swal.fire({
-                    title: "Anda Yakin Ingin Menghapus?",
-                    text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#28527A",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, Hapus!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: "POST",
-                            url: '<?= site_url('admin/barang/delete') ?>',
-                            data: {
-                                id_barang: id_barang,
-                                _method: 'DELETE'
-                            },
-                            dataType: 'json',
-                            success: function(response) {
-                                if (response.status === 'success') {
-                                    Swal.fire({
-                                        title: "Dihapus!",
-                                        text: response.message,
-                                        icon: "success"
-                                    }).then(() => {
-                                        location.reload();
-                                    });
-                                } else if (response.status === 'error') {
-                                    Swal.fire({
-                                        title: "Gagal!",
-                                        text: response.message,
-                                        icon: "error"
-                                    });
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                Swal.fire({
-                                    title: "Error",
-                                    text: "Terjadi kesalahan, Silakan coba lagi.",
-                                    icon: "error"
-                                });
-                            }
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-    <!-- HAPUS -->
+</div>
 
 
-    </body>
+<?= $this->include('admin/layouts/footer') ?>
+<!-- end main content-->
+<?= $this->include('admin/layouts/script2') ?>
 
-    </html>
+<!-- autofocus input edit langsung kebelakang kata -->
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        var inputJudul = document.getElementById('judul');
+
+        // Fungsi untuk mengatur fokus ke posisi akhir input
+        function setFocusToEnd(element) {
+            element.focus();
+            var val = element.value;
+            element.value = ''; // kosongkan nilai input
+            element.value = val; // isi kembali nilai input untuk memindahkan fokus ke posisi akhir
+        }
+
+        // Panggil fungsi setFocusToEnd setelah DOM selesai dimuat
+        setFocusToEnd(inputJudul);
+    });
+</script>
