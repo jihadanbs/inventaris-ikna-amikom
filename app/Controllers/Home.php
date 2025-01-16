@@ -36,14 +36,12 @@ class Home extends BaseController
 
     public function galeri($page = 1)
     {
-        $perPage = 8; // Jumlah data per halaman
+        $perPage = 8;
         $offset = ($page - 1) * $perPage;
 
-        // Ambil data dengan limit dan offset
         $galeriKegiatan = $this->galeriKegiatanModel->orderBy('tanggal_foto', 'DESC')->findAll($perPage, $offset);
         $totalData = $this->galeriKegiatanModel->countAll();
 
-        // Kirim data ke view
         $data = [
             'title' => 'Galeri Kegiatan',
             'galeriKegiatan' => $galeriKegiatan,
@@ -55,29 +53,42 @@ class Home extends BaseController
     }
 
     public function kontak()
-{
-    $faqModel = new \App\Models\FaqModel();
-    $allFaqs = $faqModel->getAllSorted(); 
-    $faqCount = count($allFaqs); 
+    {
+        $allFaqs = $this->m_faq->getAllSorted();
+        $faqCount = count($allFaqs);
 
-    $data = [
-        'faqs' => $allFaqs,
-        'faqCount' => $faqCount 
-    ];
+        $data = [
+            'faqs' => $allFaqs,
+            'faqCount' => $faqCount
+        ];
 
-    return view('kontak', $data);
-}
+        return view('kontak', $data);
+    }
 
-    
     public function barang()
     {
+        $perPage = 12;
+        $page = $this->request->getVar('page') ?? 1;
+        $offset = ($page - 1) * $perPage;
 
+        $total = $this->m_pinjam_barang->countAllTampil();
 
-        $data = [];
+        $pager = service('pager');
+        $pager->setPath('barang');
 
+        $data = [
+            'tb_setting_pinjam_barang' => $this->m_pinjam_barang->getTampil($perPage, $offset),
+            'pager' => $pager,
+            'total' => $total,
+            'perPage' => $perPage,
+            'currentPage' => $page
+        ];
+
+        $pager->makeLinks($page, $perPage, $total);
 
         return view('barang', $data);
     }
+
     public function barangdetail()
     {
 

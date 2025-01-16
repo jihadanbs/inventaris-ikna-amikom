@@ -21,6 +21,10 @@ class TbSettingPinjamBarang extends Migration
                 'constraint' => 11,
                 'unsigned' => TRUE
             ],
+            'slug' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+            ],
             'is_tampil' => [
                 'type' => 'TINYINT',
                 'constraint' => 1,
@@ -31,6 +35,10 @@ class TbSettingPinjamBarang extends Migration
                 'type' => 'INT',
                 'constraint' => 11,
                 'comment' => 'Durasi peminjaman dalam hari'
+            ],
+            'lokasi' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
             ],
             // 'status' => [
             //     'type' => 'ENUM',

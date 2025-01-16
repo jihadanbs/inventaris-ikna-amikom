@@ -98,6 +98,24 @@ class Validation extends BaseConfig
         return $builder->countAllResults() === 0;
     }
 
+    public function check_unique_id_barang($id_barang, string $params, array $data)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('tb_setting_pinjam_barang');
+
+        // Ambil slug dari data yang dikirim
+        $slug = isset($data['slug']) ? $data['slug'] : null;
+
+        // Cari data berdasarkan id_barang, kecuali data yang sedang diedit (berdasarkan slug)
+        $builder->where('id_barang', $id_barang);
+        if ($slug) {
+            $builder->where('slug !=', $slug);
+        }
+
+        // Hitung hasilnya
+        return $builder->countAllResults() === 0;
+    }
+
     public static function notEqualTo(string $str, string $fields, array $data): bool
     {
         // Pastikan field dibandingkan ada

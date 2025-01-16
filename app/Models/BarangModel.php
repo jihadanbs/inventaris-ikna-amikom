@@ -86,7 +86,14 @@ class BarangModel extends Model
     public function getBarangBySlug($slug)
     {
         return $this->db->table('tb_barang')
-            ->select('tb_barang.*, GROUP_CONCAT(tb_file_foto_barang.path_file_foto_barang SEPARATOR ", ") as path_file_foto_barang, tb_kategori_barang.nama_kategori, tb_kondisi_barang.nama_kondisi, tb_barang_masuk.tanggal_masuk, tb_barang_masuk.keterangan_masuk, tb_barang_rusak.jumlah_total_rusak, tb_barang_rusak.keterangan_rusak, tb_barang_baik.jumlah_total_baik, tb_barang_baik.keterangan_baik')
+            ->select('tb_barang.*, GROUP_CONCAT(tb_file_foto_barang.path_file_foto_barang SEPARATOR ", ") as path_file_foto_barang, tb_kategori_barang.nama_kategori, 
+            tb_kondisi_barang.nama_kondisi, 
+            tb_barang_masuk.tanggal_masuk, 
+            tb_barang_masuk.keterangan_masuk, 
+            tb_barang_rusak.jumlah_total_rusak, 
+            tb_barang_rusak.keterangan_rusak, 
+            tb_barang_baik.jumlah_total_baik, 
+            tb_barang_baik.keterangan_baik')
             ->join('tb_galeri_barang', 'tb_barang.id_barang = tb_galeri_barang.id_barang', 'left')
             ->join('tb_file_foto_barang', 'tb_galeri_barang.id_file_foto_barang = tb_file_foto_barang.id_file_foto_barang', 'left')
             ->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang', 'left')

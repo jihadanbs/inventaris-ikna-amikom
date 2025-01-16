@@ -95,6 +95,13 @@
                 </li>
 
                 <li>
+                    <a href="setting-pinjam-barang">
+                        <i data-feather="monitor"></i>
+                        <span data-key="t-dashboard">Setting Barang</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="refresh-cw"></i>
                         <span data-key="t-components">Aktivitas Barang</span>
@@ -102,8 +109,6 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="barang_masuk" data-key="t-apps">Data Barang Masuk</a></li>
                         <li><a href="barang_keluar" data-key="t-apps">Data Barang Keluar</a></li>
-                        <!-- <li><a href="barang_baru" data-key="t-apps">Data Barang Baru</a></li>
-                        <li><a href="barang_bekas" data-key="t-apps">Data Barang Bekas</a></li> -->
                     </ul>
                 </li>
 
@@ -132,26 +137,12 @@
                     </a>
                 </li>
 
-                <!-- <li>
-                    <a href="foto">
-                        <i data-feather="user-check"></i>
-                        <span data-key="t-dashboard">Anggota IKNA</span>
-                    </a>
-                </li> -->
-
                 <li>
                     <a href="foto-pengurus">
                         <i data-feather="user-check"></i>
                         <span data-key="t-dashboard">Anggota IKNA</span>
                     </a>
                 </li>
-
-                <!-- <li>
-                    <a href="kegiatan">
-                        <i data-feather="camera"></i>
-                        <span data-key="t-dashboard">Kegiatan IKNA</span>
-                    </a>
-                </li> -->
 
                 <li>
                     <a href="galeri-kegiatan">

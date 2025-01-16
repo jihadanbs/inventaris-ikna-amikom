@@ -28,7 +28,7 @@
                     <?php endforeach; ?>
                 <?php else : ?>
                     <div class="no-data">
-                        <img src="<?= base_url('assets/img/404.gif'); ?>" style=" width: 250px;" alt="Data Tidak Ditemukan" class="no-data-img">
+                        <img src="<?= base_url('assets/img/404.gif'); ?>" style="width: 250px;" alt="Data Tidak Ditemukan" class="no-data-img">
                         <p class="no-data-text">Data Tidak Ditemukan</p>
                     </div>
                 <?php endif; ?>

@@ -152,6 +152,9 @@
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
+                                <small class="form-text text-muted">
+                                    <span">Contoh : Baru, Bekas</span>
+                                </small>
                             </div>
                         </div> <!-- end card -->
                     </div> <!-- end col -->

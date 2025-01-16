@@ -112,7 +112,7 @@
                                             <td><?= truncateText($row['nama_barang'], 70); ?></td>
                                             <td><?= $row['nama_kategori']; ?></td>
                                             <td><?= $row['nama_kondisi']; ?></td>
-                                            <td><?= $row['jumlah_total']; ?></td>
+                                            <td><?= $row['jumlah_total']; ?> Unit</td>
                                             <td><?= formatTanggalIndo($row['tanggal_masuk']); ?></td>
                                             <td style="width: 155px">
                                                 <a href="<?= site_url('admin/barang/cek_data/' . $row['slug']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>

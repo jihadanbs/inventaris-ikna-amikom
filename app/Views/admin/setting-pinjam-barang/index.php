@@ -1,90 +1,251 @@
-<!-- File: app/Views/admin/setting_pinjam/index.php -->
-<?= $this->extend('templates/admin/index'); ?>
+<?= $this->include('admin/layouts/script') ?>
+
+<style>
+    /* CSS untuk input field saat tidak diedit */
+    input[type="text"].input-readonly {
+        background-color: #f0f0f0 !important;
+        border: 1px solid #ccc !important;
+    }
+
+    /* CSS untuk input field saat diedit */
+    input[type="text"]:not(.input-readonly) {
+        background-color: white !important;
+        border: 1px solid white;
+    }
+
+    input[type="text"].form-control {
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        padding: 8px;
+    }
+
+    .btn-success.save {
+        background-color: green !important;
+        border-color: green !important;
+    }
+
+    .btn-success.save:focus {
+        box-shadow: none !important;
+    }
+
+    .custom-border {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+</style>
+
+
+<?= $this->include('admin/layouts/navbar') ?>
+<?= $this->include('admin/layouts/sidebar') ?>
+<?= $this->include('admin/layouts/rightsidebar') ?>
 
 <?= $this->section('content'); ?>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="page-title-box">
-                <div class="row align-items-center">
-                    <div class="col-md-8">
-                        <h4 class="page-title mb-0">Pengaturan Peminjaman Barang</h4>
-                        <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Pengaturan Peminjaman</li>
-                        </ol>
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <!-- start page title -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                        <h4 class="mb-sm-0 font-size-18">Setting Pinjam Barang</h4>
+
+                        <div class="page-title-right">
+                            <ol class="breadcrumb m-0">
+                                <li class="breadcrumb-item"><a href="<?= site_url('admin/setting-pinjam-barang') ?>">Setting Barang</a></li>
+                                <li class="breadcrumb-item active">Setting Pinjam Barang</li>
+                            </ol>
+                        </div>
+
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <!-- end page title -->
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="card-title">Daftar Pengaturan Peminjaman</h4>
-                        <a href="<?= site_url('admin/setting-pinjam/create') ?>" class="btn btn-primary">
-                            <i class="fas fa-plus"></i> Tambah Pengaturan
-                        </a>
-                    </div>
-
-                    <?= $this->include('alert/alert'); ?>
-
-                    <div class="table-responsive">
-                        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Barang</th>
-                                    <th>Status Tampil</th>
-                                    <th>Masa Pinjam (Hari)</th>
-                                    <th>Status Barang</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach ($setting_pinjam as $setting) : ?>
-                                    <tr>
-                                        <td><?= $i++; ?></td>
-                                        <td><?= $setting['nama_barang']; ?></td>
-                                        <td>
-                                            <?php if ($setting['is_tampil']) : ?>
-                                                <span class="badge badge-success">Ditampilkan</span>
-                                            <?php else : ?>
-                                                <span class="badge badge-secondary">Tidak Ditampilkan</span>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td><?= $setting['masa_pinjam']; ?> hari</td>
-                                        <td>
-                                            <?php if ($setting['status'] == 'tersedia') : ?>
-                                                <span class="badge badge-success">Tersedia</span>
-                                            <?php else : ?>
-                                                <span class="badge badge-danger">Dipinjam</span>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <a href="<?= site_url('admin/setting-pinjam/edit/' . $setting['id_setting_pinjam']) ?>" class="btn btn-warning btn-sm">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form action="<?= site_url('admin/setting-pinjam/delete/' . $setting['id_setting_pinjam']) ?>" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengaturan ini?')">
-                                                <?= csrf_field() ?>
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </td>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <?php
+                            function truncateText($text, $maxLength)
+                            {
+                                // Memeriksa apakah teks lebih panjang dari batas maksimum
+                                if (strlen($text) > $maxLength) {
+                                    // Mengambil substring dari awal hingga batas maksimum
+                                    $text = substr($text, 0, $maxLength);
+                                    // Mencari posisi spasi terakhir untuk memastikan tidak memotong kata di tengah
+                                    $lastSpace = strrpos($text, ' ');
+                                    if ($lastSpace !== false) {
+                                        $text = substr($text, 0, $lastSpace);
+                                    }
+                                    // Menambahkan ellipsis (...) untuk menunjukkan bahwa teks dipotong
+                                    $text .= '...';
+                                }
+                                return $text;
+                            }
+                            ?>
+                            <table id="tableSettingBarang" class="table table-bordered dt-responsive nowrap w-100">
+                                <?= $this->include('alert/alert'); ?>
+                                <div class="col-md-3 mb-3">
+                                    <a href=" <?= site_url('admin/setting-pinjam-barang/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
+                                        <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
+                                    </a>
+                                </div>
+                                <thead>
+                                    <tr class="highlight text-center" style="background-color: #28527A; color: white;">
+                                        <th>Nomor</th>
+                                        <th>Nama Barang</th>
+                                        <th>Kategori</th>
+                                        <th>Kondisi</th>
+                                        <th>Total Barang</th>
+                                        <th>Masa Pinjam (Hari)</th>
+                                        <th>Status Tampil</th>
+                                        <th>Aksi</th>
                                     </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                </thead>
+
+                                <tbody>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($tb_setting_pinjam_barang as $row) : ?>
+                                        <tr>
+                                            <td style="width: 2px" scope="row"><?= $i++; ?></td>
+                                            <td><?= truncateText($row['nama_barang'], 70); ?></td>
+                                            <td><?= $row['nama_kategori']; ?></td>
+                                            <td><?= $row['nama_kondisi']; ?></td>
+                                            <td><?= $row['jumlah_total_baik']; ?> Unit</td>
+                                            <td><?= $row['masa_pinjam']; ?> Hari</td>
+                                            <td>
+                                                <?php if ($row['is_tampil']) : ?>
+                                                    <span class="badge bg-success-subtle text-success">Ditampilkan</span>
+                                                <?php else : ?>
+                                                    <span class="badge bg-danger-subtle text-danger">Tidak Ditampilkan</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td style="width: 155px">
+                                                <a href="<?= site_url('admin/setting-pinjam-barang/edit/' . $row['slug']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a>
+                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_setting_pinjam_barang'] ?>">
+                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <small class="form-text text-muted">
+                                <span style="color: red;">Note : Total Barang yang tampilkan berdasarkan kondisi barang yang layak digunakan</span>
+                            </small>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </div> <!-- end col -->
+            </div> <!-- container-fluid -->
         </div>
+        <!-- End Page-content -->
+        <?= $this->include('admin/layouts/footer') ?>
+        <!-- end main content-->
     </div>
-</div>
-<?= $this->endSection(); ?>
+    <!-- END layout-wrapper -->
+    <?= $this->include('admin/layouts/script2') ?>
+
+    <script>
+        $(document).ready(function() {
+            $("#tableSettingBarang").DataTable({
+                "paging": true,
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": true,
+                "buttons": [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5]
+                        }
+                    },
+                    'colvis'
+                ],
+            }).buttons().container().appendTo('#tableSettingBarang_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+
+    <!-- HAPUS -->
+    <script>
+        $('.sa-warning').click(function(e) {
+            e.preventDefault();
+            var id_setting_pinjam_barang = $(this).data('id');
+
+            // console.log('ID yang dikirim:', id_setting_pinjam_barang); // Debugging ID
+
+            Swal.fire({
+                title: "Anda Yakin Ingin Menghapus?",
+                text: "Data yang sudah dihapus tidak bisa dikembalikan!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#28527A",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Hapus!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: '<?= site_url('admin/setting-pinjam-barang/delete') ?>/' + id_setting_pinjam_barang,
+                        data: {
+                            _method: 'DELETE'
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                Swal.fire({
+                                    title: "Dihapus!",
+                                    text: response.message,
+                                    icon: "success"
+                                }).then(() => {
+                                    location.reload();
+                                });
+                            } else if (response.status === 'error') {
+                                Swal.fire({
+                                    title: "Gagal!",
+                                    text: response.message,
+                                    icon: "error"
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: "Error",
+                                text: "Terjadi kesalahan, Silakan coba lagi.",
+                                icon: "error"
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!-- HAPUS -->
+
+    </body>
+
+    </html>

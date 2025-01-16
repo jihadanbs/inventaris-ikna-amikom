@@ -111,11 +111,11 @@
                                                     </div>
                                                     <!-- Modal Body -->
                                                     <div class="modal-body">
-                                                        <form action="/admin/kategori_faq/save" method="POST">
+                                                        <form action="<?= site_url('admin/kategori_faq/save'); ?>" method="POST">
                                                             <?= csrf_field(); ?>
                                                             <div class="mb-3">
                                                                 <label for="nama_kategori" class="col-form-label">Nama Kategori FAQ :</label>
-                                                                <input class="form-control" id="nama_kategori" name="nama_kategori" cols="30" rows="10" style="background-color: white;" placeholder="Masukkan Nama Kategori FAQ" autofocus></input>
+                                                                <input class="form-control" id="nama_kategori" name="nama_kategori" cols="30" rows="10" style="background-color: white;" placeholder="Masukkan Nama Kategori FAQ" autofocus autocomplete="off"></input>
                                                                 <!-- Menambahka div untuk menampilkan pesan validasi -->
                                                                 <div id="nama_kategoriValidation" class="text-danger"></div>
                                                             </div>

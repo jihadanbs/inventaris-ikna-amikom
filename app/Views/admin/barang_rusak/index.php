@@ -110,10 +110,10 @@
                                             <td style="width: 2px" scope="row"><?= $i++; ?></td>
                                             <td><?= truncateText($row['nama_barang'], 70); ?></td>
                                             <td><?= $row['nama_kategori']; ?></td>
-                                            <td><?= $row['jumlah_total_rusak']; ?></td>
+                                            <td><?= $row['jumlah_total_rusak']; ?> Unit</td>
                                             <td><?= $row['keterangan_rusak']; ?></td>
                                             <td style="width: 50px">
-                                                <a href="<?= site_url('admin/barang_rusak/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-pencil-alt"></i> Edit</a>
+                                                <a href="<?= site_url('admin/barang_rusak/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a>
                                                 <!-- <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_rusak'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
                                                 </button> -->

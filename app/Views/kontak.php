@@ -76,8 +76,8 @@
                 </div>
             </div>
 
-                    <!-- FAQ Section -->
-                    <section class="bsb-faq-2 bg-light py-3 py-md-5 py-xl-8 text-left">
+            <!-- FAQ Section -->
+            <section class="bsb-faq-2 bg-light py-3 py-md-5 py-xl-8 text-left">
                 <div class="container">
                     <h2 class="m-5 text-center">Frequently Asked Questions (FAQ)</h2>
                     <div class="row gy-5 gy-lg-0">
@@ -89,22 +89,30 @@
                             <div class="row">
                                 <div class="col-12 col-xl-11">
                                     <div id="accordionExample" class="accordion">
-                                        <?php foreach (array_slice($faqs, 0, 5) as $key => $faq): ?>
-                                            <div class="mb-4 shadow-md border-faq">
-                                                <div class="card-header" id="heading<?= $key ?>">
-                                                    <h2 class="mb-0">
-                                                        <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $key ?>" aria-expanded="false" aria-controls="collapse<?= $key ?>">
-                                                            <?= $faq->pertanyaan ?>
-                                                        </button>
-                                                    </h2>
-                                                </div>
-                                                <div id="collapse<?= $key ?>" class="collapse" aria-labelledby="heading<?= $key ?>" data-parent="#accordionExample">
-                                                    <div class="card-body">
-                                                        <?= $faq->jawaban ?>
+                                        <?php if (!empty($faqs)): ?>
+                                            <?php foreach (array_slice($faqs, 0, 5) as $key => $faq): ?>
+                                                <div class="mb-4 shadow-md border-faq">
+                                                    <div class="card-header" id="heading<?= $key ?>">
+                                                        <h2 class="mb-0">
+                                                            <button class="btn text-left font-weight-bold collapsed" type="button" data-toggle="collapse" data-target="#collapse<?= $key ?>" aria-expanded="false" aria-controls="collapse<?= $key ?>">
+                                                                <?= $faq->pertanyaan ?>
+                                                            </button>
+                                                        </h2>
+                                                    </div>
+                                                    <div id="collapse<?= $key ?>" class="collapse" aria-labelledby="heading<?= $key ?>" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <?= $faq->jawaban ?>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                            <?php endforeach; ?>
+                                        <?php else:
+                                        ?>
+                                            <div class="text-center">
+                                                <img src="<?= base_url('assets/img/404.gif'); ?>" style=" width: 250px;" alt="Data Tidak Ditemukan" class="no-data-img">
+                                                <p class="mt-3 font-weight-bold">Data tidak ditemukan</p>
                                             </div>
-                                        <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </div>
                                     <?php if ($faqCount > 5): ?>
                                         <div class="d-flex justify-content-center p-3">
@@ -128,18 +136,18 @@
     </div>
     <?= $this->include('layouts/script') ?>
     <script>
-    $(document).ready(function () {
-        let allFaqs = <?= json_encode($faqs) ?>; // Semua FAQ dari PHP
-        let displayedFaqs = 5; // Jumlah FAQ awal yang ditampilkan
-        let isExpanded = false; // Status toggle FAQ (default ditampilkan 5 FAQ)
+        $(document).ready(function() {
+            let allFaqs = <?= json_encode($faqs) ?>; // Semua FAQ dari PHP
+            let displayedFaqs = 5; // Jumlah FAQ awal yang ditampilkan
+            let isExpanded = false; // Status toggle FAQ (default ditampilkan 5 FAQ)
 
-        $(".tombol-lebih-lanjut-faq").click(function () {
-            let additionalFaqs = "";
+            $(".tombol-lebih-lanjut-faq").click(function() {
+                let additionalFaqs = "";
 
-            if (!isExpanded) {
-                // Menampilkan FAQ tambahan
-                for (let i = displayedFaqs; i < allFaqs.length; i++) {
-                    additionalFaqs += `
+                if (!isExpanded) {
+                    // Menampilkan FAQ tambahan
+                    for (let i = displayedFaqs; i < allFaqs.length; i++) {
+                        additionalFaqs += `
                     <div class="mb-4 shadow-md border-faq" id="faq${i}">
                         <div class="card-header" id="heading${i}">
                             <h2 class="mb-0">
@@ -154,22 +162,22 @@
                             </div>
                         </div>
                     </div>`;
+                    }
+                    // Tambahkan FAQ baru ke accordion
+                    $("#accordionExample").append(additionalFaqs);
+                    $(this).text("Lebih Sedikit"); // Ubah teks tombol
+                    isExpanded = true;
+                } else {
+                    // Menghapus FAQ tambahan
+                    for (let i = displayedFaqs; i < allFaqs.length; i++) {
+                        $(`#faq${i}`).remove(); // Hapus elemen FAQ tambahan
+                    }
+                    $(this).text("Lebih Lanjut"); // Ubah teks tombol kembali
+                    isExpanded = false;
                 }
-                // Tambahkan FAQ baru ke accordion
-                $("#accordionExample").append(additionalFaqs);
-                $(this).text("Lebih Sedikit"); // Ubah teks tombol
-                isExpanded = true;
-            } else {
-                // Menghapus FAQ tambahan
-                for (let i = displayedFaqs; i < allFaqs.length; i++) {
-                    $(`#faq${i}`).remove(); // Hapus elemen FAQ tambahan
-                }
-                $(this).text("Lebih Lanjut"); // Ubah teks tombol kembali
-                isExpanded = false;
-            }
+            });
         });
-    });
-</script>
+    </script>
 
 
 </body>
