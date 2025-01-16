@@ -125,7 +125,7 @@
                                 </tbody>
                             </table>
                             <small class="form-text text-muted">
-                                <span style="color: red;">Note : Menghapus data berarti menghapus juga relasi data tersebut yang ada di fitur : <br>1. Data barang masuk<br>2. Data Barang Kondisi Baik<br>3. Data Barang Kondisi Rusak</span>
+                                <span style="color: red;">Note : Menghapus dan mengubah data berarti menghapus dan mengubah juga relasi data tersebut yang ada di fitur : <br>1. Data barang masuk<br>2. Data Barang Kondisi Baik<br>3. Data Barang Kondisi Rusak</span>
                             </small>
                         </div>
                     </div>

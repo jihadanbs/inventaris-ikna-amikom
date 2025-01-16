@@ -26,7 +26,13 @@
     <link href="<?= base_url('assets/admin/css/icons.min.css') ?>" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="<?= base_url('assets/admin/css/app.min.css') ?>" id="app-style" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.ckeditor.com/4.22.1/full-all/ckeditor.js"></script>
+
+    <!-- CKEditor 5 -->
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.3.0/ckeditor5.css" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/43.3.0/ckeditor5.umd.js"></script>
+    <script src="<?= base_url('assets/admin/js/ckeditor5.js') ?>"></script>
+    <!-- CKEditor 4 -->
+    <!-- <script src="https://cdn.ckeditor.com/4.22.1/full-all/ckeditor.js"></script> -->
     <title><?= $title ?></title>
 
     <!-- SEO untuk Admin IKNAventory -->
