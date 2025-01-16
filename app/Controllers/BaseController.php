@@ -14,6 +14,7 @@ use App\Models\BarangBekasModel;
 use App\Models\FileFotoBarangModel;
 use App\Models\BarangRusakModel;
 use App\Models\BarangBaikModel;
+use App\Models\PinjamBarangModel;
 use App\Models\UserPeminjamModel;
 use App\Models\FaqModel;
 use App\Models\KategoriFaqModel;
@@ -95,6 +96,7 @@ abstract class BaseController extends Controller
     protected $m_file_foto_barang;
     protected $m_barang_rusak;
     protected $m_barang_baik;
+    protected $m_pinjam_barang;
     protected $m_user_peminjam;
     protected $m_cara;
     protected $m_faq;
@@ -142,6 +144,7 @@ abstract class BaseController extends Controller
         $this->m_file_foto_barang = new FileFotoBarangModel();
         $this->m_barang_rusak = new BarangRusakModel();
         $this->m_barang_baik = new BarangBaikModel();
+        $this->m_pinjam_barang = new PinjamBarangModel();
         $this->m_faq = new FaqModel();
         $this->m_user_peminjam = new UserPeminjamModel();
         $this->m_kategori_faq = new KategoriFaqModel();

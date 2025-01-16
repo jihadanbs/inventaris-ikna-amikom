@@ -2,8 +2,4 @@
 /writable/session/*
 /writable/logs/*
 app/Config/Email.php
-/public/admin/
-/public/assets/admin/
-/public/assets/js/
-/public/assets-admin/
 .env

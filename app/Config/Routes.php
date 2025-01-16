@@ -163,6 +163,18 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->DELETE('delete', 'BarangRusakController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
 
+    /*=================================== SETTING PINJAM BARANG ====================================*/
+    $routes->GET('setting-pinjam-barang', 'PinjamBarangController::index', ['namespace' => 'App\Controllers\Admin']);
+    $routes->GROUP('setting-pinjam-barang', static function ($routes) {
+        $routes->GET('tambah', 'PinjamBarangController::tambah', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('save', 'PinjamBarangController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('edit/(:segment)', 'PinjamBarangController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->PUT('update/(:num)', 'PinjamBarangController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('cek_data/(:segment)', 'PinjamBarangController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete2', 'PinjamBarangController::delete2', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete', 'PinjamBarangController::delete', ['namespace' => 'App\Controllers\Admin']);
+    });
+
     /*=================================== USER PEMINJAM ====================================*/
     $routes->GET('user_peminjam', 'UserPeminjamController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('user_peminjam', static function ($routes) {
