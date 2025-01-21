@@ -106,39 +106,46 @@ class Home extends BaseController
                 'nama_lengkap' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Nama lengkap harus diisi'
+                        'required' => 'Nama lengkap harus diisi !'
+                    ]
+                ],
+                'total_dipinjam' => [
+                    'rules' => 'required|numeric',
+                    'errors' => [
+                        'required' => 'Total pinjam harus diisi !',
+                        'numeric' => 'Total pinjam harus berupa angka !',
                     ]
                 ],
                 'pekerjaan' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Pekerjaan harus diisi'
+                        'required' => 'Pekerjaan harus diisi !'
                     ]
                 ],
                 'email' => [
                     'rules' => 'required|valid_email',
                     'errors' => [
-                        'required' => 'Email harus diisi',
-                        'valid_email' => 'Format email tidak valid'
+                        'required' => 'Email harus diisi !',
+                        'valid_email' => 'Format email tidak valid !'
                     ]
                 ],
                 'no_telepon' => [
                     'rules' => 'required|numeric',
                     'errors' => [
-                        'required' => 'No. Telepon harus diisi',
-                        'numeric' => 'No. Telepon harus berupa angka'
+                        'required' => 'No. Telepon harus diisi !',
+                        'numeric' => 'No. Telepon harus berupa angka !'
                     ]
                 ],
                 'alamat' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Alamat harus diisi'
+                        'required' => 'Alamat harus diisi !'
                     ]
                 ],
                 'kepentingan' => [
                     'rules' => 'required',
                     'errors' => [
-                        'required' => 'Kepentingan harus diisi'
+                        'required' => 'Kepentingan harus diisi !'
                     ]
                 ]
             ];
@@ -148,42 +155,59 @@ class Home extends BaseController
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
 
+            // Ambil data stok barang
+            $idBarang = $this->request->getPost('id_barang');
+            $stokBarang = $this->m_barang_baik->where('id_barang', $idBarang)->first();
+
+            if (!$stokBarang) {
+                return redirect()->back()->withInput()
+                    ->with('errors', ['id_barang' => 'Barang tidak ditemukan!']);
+            }
+
+            $jumlahTotalBaik = $stokBarang['jumlah_total_baik'];
+            $totalDipinjam = $this->request->getPost('total_dipinjam');
+
+            // Validasi jumlah barang yang dipinjam
+            if ($totalDipinjam > $jumlahTotalBaik) {
+                return redirect()->back()->withInput()
+                    ->with('errors', ['total_dipinjam' => 'Total barang yang dipinjam melebihi stok unit yang tersedia !']);
+            }
+
             // Jika validasi sukses, lanjutkan dengan proses data
             $data = [
-                'id_barang' => $this->request->getPost('id_barang'),
+                'id_barang' => $idBarang,
                 'nama_lengkap' => $this->request->getPost('nama_lengkap'),
                 'pekerjaan' => $this->request->getPost('pekerjaan'),
                 'email' => $this->request->getPost('email'),
                 'no_telepon' => $this->request->getPost('no_telepon'),
                 'alamat' => $this->request->getPost('alamat'),
                 'kepentingan' => $this->request->getPost('kepentingan'),
+                'total_dipinjam' => $totalDipinjam,
+                'kode_peminjaman' => $this->generateKodePeminjaman($this->request->getPost('no_telepon'), $this->request->getPost('nama_lengkap')),
+                'status' => 'pending',
+                'tanggal_pengajuan' => date('Y-m-d H:i:s')
             ];
 
-            // Generate kode peminjaman
-            $kodePeminjaman = $this->generateKodePeminjaman(
-                $data['no_telepon'],
-                $data['nama_lengkap']
-            );
-
-            // Tambah kode peminjaman dan status ke data
-            $data['kode_peminjaman'] = $kodePeminjaman;
-            $data['status'] = 'pending';
-            $data['tanggal_pengajuan'] = date('Y-m-d H:i:s');
-
-            // Insert data
+            // Insert data peminjaman
             if (!$this->m_user_peminjam->insert($data)) {
                 return redirect()->back()->withInput()
                     ->with('errors', $this->m_user_peminjam->errors());
             }
 
-            session()->setFlashdata('pesan', 'Pengajuan berhasil dikirim ! Kode peminjaman Anda: ' . $kodePeminjaman);
+            // Update jumlah stok barang
+            $this->m_barang_baik->update($idBarang, [
+                'jumlah_total_baik' => $jumlahTotalBaik - $totalDipinjam
+            ]);
+
+            session()->setFlashdata('pesan', 'Pengajuan berhasil dikirim! Kode peminjaman Anda: ' . $data['kode_peminjaman']);
             return redirect()->back();
         } catch (\Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e]);
             return redirect()->back()->withInput()
-                ->with('errors', ['system' => 'Terjadi kesalahan sistem. Silakan coba lagi.']);
+                ->with('errors', ['system' => 'Terjadi kesalahan sistem, Silakan coba lagi!']);
         }
     }
+
 
     // Sweatalert
     // public function ajukan()

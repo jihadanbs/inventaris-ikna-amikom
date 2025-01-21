@@ -66,7 +66,7 @@
                     <div class="color-selection mb-4">
                         <h6 class="mb-2">Tanggal masuk</h6>
                         <div class="btn-group" role="group">
-                            <?= date('d F Y', strtotime($tb_barang['tanggal_masuk'])) ?>
+                            <?= formatTanggalIndo($tb_barang['tanggal_masuk']) ?>
                         </div>
                     </div>
 
@@ -166,6 +166,16 @@
                         <?php if (session('errors.alamat')) : ?>
                             <div class="invalid-feedback">
                                 <?= session('errors.alamat') ?>
+                            </div>
+                        <?php endif ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="total_dipinjam">Jumlah Yang Ingin Dipinjam</label>
+                        <input type="number" class="form-control <?= session('errors.total_dipinjam') ? 'is-invalid' : '' ?>" name="total_dipinjam" id="total_dipinjam" value="<?= old('total_dipinjam') ?>">
+                        <?php if (session('errors.total_dipinjam')) : ?>
+                            <div class="invalid-feedback">
+                                <?= session('errors.total_dipinjam') ?>
                             </div>
                         <?php endif ?>
                     </div>

@@ -21,6 +21,10 @@ class TbUserPeminjam extends Migration
                 'constraint' => 11,
                 'unsigned' => TRUE
             ],
+            'total_dipinjam' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ],
             'nama_lengkap' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
