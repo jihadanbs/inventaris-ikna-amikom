@@ -1,8 +1,5 @@
 <?= $this->include('layouts/template') ?>
-
-
 <?= $this->include('layouts/navbar') ?>
-
 
 <section class="product-detail-section py-5">
     <div class="container">
@@ -11,9 +8,16 @@
             <div class="col-md-6">
                 <!-- Main Image -->
                 <div class="main-image-barang mb-3">
-                    <img src="<?= base_url('assets/images/tes2.jpg') ?>" id="main-product-image" class="img-fluid" style="width: 100%; height: auto;">
+                    <?php
+                    $photos = explode(", ", $tb_barang['path_file_foto_barang']);
+                    if (!empty($photos[0])) :
+                    ?>
+                        <img src="<?= base_url($photos[0]) ?>" id="main-product-image" class="img-fluid" style="width: 100%; height: auto;">
+                    <?php else: ?>
+                        <img src="<?= base_url('assets/images/default.jpg') ?>" id="main-product-image" class="img-fluid" style="width: 100%; height: auto;">
+                    <?php endif; ?>
                 </div>
-                
+
                 <!-- Thumbnail Images -->
                 <div class="thumbnail-images">
                     <div class="row">
@@ -22,21 +26,19 @@
                         </button>
                         <div class="col img-slide">
                             <div class="d-flex">
-                                <div class="col-3">
-                                    <img src="<?= base_url('assets/images/tes2.jpg') ?>" class="img-thumbnail product-thumbnail active" onclick="changeImage(this.src)">
-                                </div>
-                                <div class="col-3">
-                                    <img src="<?= base_url('assets/images/tes4.jpeg') ?>" class="img-thumbnail product-thumbnail" onclick="changeImage(this.src)">
-                                </div>
-                                <div class="col-3">
-                                    <img src="<?= base_url('assets/images/tes3.jpg') ?>" class="img-thumbnail product-thumbnail" onclick="changeImage(this.src)">
-                                </div>
-                                <div class="col-3">
-                                    <img src="<?= base_url('assets/images/tes.jpg') ?>" class="img-thumbnail product-thumbnail" onclick="changeImage(this.src)">
-                                </div>
-                                <div class="col-3">
-                                    <img src="<?= base_url('assets/images/tes3.jpg') ?>" class="img-thumbnail product-thumbnail" onclick="changeImage(this.src)">
-                                </div>
+                                <?php
+                                if (!empty($photos)):
+                                    foreach ($photos as $index => $photo):
+                                ?>
+                                        <div class="col-3">
+                                            <img src="<?= base_url($photo) ?>"
+                                                class="img-thumbnail product-thumbnail <?= ($index === 0) ? 'active' : '' ?>"
+                                                onclick="changeImage(this.src)">
+                                        </div>
+                                <?php
+                                    endforeach;
+                                endif;
+                                ?>
                             </div>
                         </div>
                         <button type="button" class="btn btn-nav btn-next">
@@ -50,28 +52,21 @@
             <div class="col-md-6">
                 <div class="product-details">
                     <!-- Nama Produk -->
-                    <h1 class="product-title h2 mb-3">nama barang</h1>
-                    
-                    <!-- Rating dan Jumlah Terjual -->
+                    <h1 class="product-title h2 mb-3"><?= $tb_barang['nama_barang'] ?></h1>
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <span class="badge badge-light city-badge"><?= $tb_barang['lokasi'] ?></span>
+                    <!-- Rating dan Jumlah Stok -->
                     <div class="rating-terjual mb-3">
                         <span class="badge badge-success">
-                            Stok tersedia : 12
+                            Stok tersedia : <?= $tb_barang['jumlah_total_baik'] ?? 0 ?>
                         </span>
                     </div>
 
-                    <!-- Pilihan Warna -->
+                    <!-- Tanggal Masuk -->
                     <div class="color-selection mb-4">
-                        <h6 class="mb-2">Tanggal masuk:</h6>
+                        <h6 class="mb-2">Tanggal masuk</h6>
                         <div class="btn-group" role="group">
-                           2 Januari 2025
-                        </div>
-                    </div>
-
-                    <!-- Pilihan Ukuran -->
-                    <div class="size-selection mb-4">
-                        <h6 class="mb-2">Tanggal keluar:</h6>
-                        <div class="btn-group" role="group">
-                        2 Januari 2025
+                            <?= date('d F Y', strtotime($tb_barang['tanggal_masuk'])) ?>
                         </div>
                     </div>
 
@@ -79,35 +74,37 @@
                     <div class="additional-info mb-4">
                         <div class="row">
                             <div class="col-4">
-                                <p class="mb-1">Kondisi:</p>
-                                <strong>Baik</strong>
+                                <p class="mb-1">Kondisi</p>
+                                <strong><?= $tb_barang['nama_kondisi'] ?></strong>
                             </div>
                             <div class="col-4">
-                                <p class="mb-1">Masa peminjaman:</p>
-                                <strong>1 Bulan</strong>
+                                <p class="mb-1">Masa peminjaman</p>
+                                <strong><?= $tb_barang['masa_pinjam'] ?? '5 Hari' ?> Hari</strong>
                             </div>
                             <div class="col-4">
-                                <p class="mb-1">Kategori:</p>
-                                <strong>Perlengkapan</strong>
+                                <p class="mb-1">Kategori</p>
+                                <strong><?= $tb_barang['nama_kategori'] ?></strong>
                             </div>
                         </div>
                     </div>
 
                     <!-- Deskripsi -->
                     <div class="product-description mb-4">
-                        <h6 class="mb-2">Deskripsi:</h6>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam ex sapiente officiis, laudantium reiciendis exercitationem rem cumque necessitatibus? Natus, odit!</p>
+                        <h6 class="mb-2">Deskripsi</h6>
+                        <p><?= $tb_barang['deskripsi'] ?></p>
                     </div>
+
+                    <?= $this->include('alert/alert'); ?>
 
                     <!-- Tombol Ajukan Peminjaman -->
                     <div class="action-buttons">
-                    <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#peminjamanModal">Ajukan Peminjaman</button>
-                     </div>
+                        <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#peminjamanModal">Ajukan Peminjaman</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
-
 
 <!-- MODAL FORM AJUKIAN PEMINJAMAN -->
 <div class="modal modal-form-peminjaman fade" id="peminjamanModal" tabindex="-1" aria-labelledby="peminjamanModalLabel" aria-hidden="true">
@@ -120,36 +117,74 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formPeminjaman">
+                <form id="formPengajuan" action="<?= base_url('ajukan') ?>" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <input type="hidden" name="id_barang" value="<?= $tb_barang['id_barang'] ?>">
+                    <?= csrf_field() ?>
                     <div class="form-group">
                         <label for="namaLengkap">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="namaLengkap" required>
+                        <input type="text" class="form-control <?= session('errors.nama_lengkap') ? 'is-invalid' : '' ?>" name="nama_lengkap" id="nama_lengkap" value="<?= old('nama_lengkap') ?>">
+                        <?php if (session('errors.nama_lengkap')) : ?>
+                            <div class="invalid-feedback">
+                                <?= session('errors.nama_lengkap') ?>
+                            </div>
+                        <?php endif ?>
                     </div>
+
                     <div class="form-group">
                         <label for="pekerjaan">Pekerjaan</label>
-                        <input type="text" class="form-control" id="pekerjaan" required>
+                        <input type="text" class="form-control <?= session('errors.pekerjaan') ? 'is-invalid' : '' ?>" name="pekerjaan" id="pekerjaan" value="<?= old('pekerjaan') ?>">
+                        <?php if (session('errors.pekerjaan')) : ?>
+                            <div class="invalid-feedback">
+                                <?= session('errors.pekerjaan') ?>
+                            </div>
+                        <?php endif ?>
                     </div>
+
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <input type="email" class="form-control <?= session('errors.email') ? 'is-invalid' : '' ?>" name="email" id="email" value="<?= old('email') ?>">
+                        <?php if (session('errors.email')) : ?>
+                            <div class="invalid-feedback">
+                                <?= session('errors.email') ?>
+                            </div>
+                        <?php endif ?>
                     </div>
+
                     <div class="form-group">
                         <label for="noTelepon">No. Telepon</label>
-                        <input type="tel" class="form-control" id="noTelepon" required>
+                        <input type="tel" class="form-control <?= session('errors.no_telepon') ? 'is-invalid' : '' ?>" name="no_telepon" id="no_telepon" value="<?= old('no_telepon') ?>">
+                        <?php if (session('errors.no_telepon')) : ?>
+                            <div class="invalid-feedback">
+                                <?= session('errors.no_telepon') ?>
+                            </div>
+                        <?php endif ?>
                     </div>
+
                     <div class="form-group">
                         <label for="alamat">Alamat</label>
-                        <textarea class="form-control" id="alamat" rows="3" required></textarea>
+                        <textarea class="form-control <?= session('errors.alamat') ? 'is-invalid' : '' ?>" name="alamat" id="alamat" rows="3"><?= old('alamat') ?></textarea>
+                        <?php if (session('errors.alamat')) : ?>
+                            <div class="invalid-feedback">
+                                <?= session('errors.alamat') ?>
+                            </div>
+                        <?php endif ?>
                     </div>
+
                     <div class="form-group">
                         <label for="kepentingan">Kepentingan</label>
-                        <textarea class="form-control" id="kepentingan" rows="3" required></textarea>
+                        <textarea class="form-control <?= session('errors.kepentingan') ? 'is-invalid' : '' ?>" name="kepentingan" id="kepentingan" rows="3"><?= old('kepentingan') ?></textarea>
+                        <?php if (session('errors.kepentingan')) : ?>
+                            <div class="invalid-feedback">
+                                <?= session('errors.kepentingan') ?>
+                            </div>
+                        <?php endif ?>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Kirim Pengajuan</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-primary" onclick="submitForm()">Kirim Pengajuan</button>
             </div>
         </div>
     </div>
@@ -160,67 +195,138 @@
     <?= $this->include('layouts/info') ?>
     <?= $this->include('layouts/footer') ?>
 </div>
-
 <!-- Scripts -->
 <?= $this->include('layouts/script') ?>
 
+<!-- <script>
+    $(document).ready(function() {
+        $('#formPengajuan').on('submit', function(e) {
+            e.preventDefault();
+
+            $('.is-invalid').removeClass('is-invalid');
+            $('.invalid-feedback').remove();
+
+            $.ajax({
+                url: $(this).attr('action'),
+                type: 'POST',
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    if (response.status === 'success') {
+                        // Menampilkan pesan Bootstrap alert
+                        $('body').prepend(`
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            ${response.pesan}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    `);
+
+                        // Sembunyikan modal dan hapus backdrop
+                        $('#peminjamanModal').modal('hide').on('hidden.bs.modal', function() {
+                            $('body').removeClass('modal-open');
+                            $('.modal-backdrop').remove();
+
+                            // SweetAlert loading effect
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Proses sedang berjalan...',
+                                text: 'Halaman akan dimuat ulang...',
+                                timer: 2000,
+                                timerProgressBar: true,
+                                showConfirmButton: false
+                            }).then(() => {
+                                location.reload();
+                            });
+                        });
+
+                    } else if (response.errors) {
+                        $.each(response.errors, function(field, message) {
+                            const inputField = $(`[name="${field}"]`);
+                            inputField.addClass('is-invalid');
+                            inputField.after(`<div class="invalid-feedback">${message}</div>`);
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: response.pesan || 'Terjadi kesalahan pada sistem',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                },
+
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'Terjadi kesalahan pada sistem. Silakan coba lagi.',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+        });
+    });
+</script> -->
+
 <script>
-// Fungsi untuk mengganti gambar utama
-function changeImage(src) {
-    document.getElementById('main-product-image').src = src;
-    
-    // Update active thumbnail
-    document.querySelectorAll('.product-thumbnail').forEach(thumb => {
-        thumb.classList.remove('active');
-        if(thumb.src === src) {
-            thumb.classList.add('active');
-        }
+    // Fungsi untuk mengganti gambar utama
+    function changeImage(src) {
+        document.getElementById('main-product-image').src = src;
+
+        // Update active thumbnail
+        document.querySelectorAll('.product-thumbnail').forEach(thumb => {
+            thumb.classList.remove('active');
+            if (thumb.src === src) {
+                thumb.classList.add('active');
+            }
+        });
+    }
+
+    // CODINGAN UNTUK ZOOM FOTO
+    document.getElementById('main-product-image').addEventListener('mousemove', function(e) {
+        const image = this;
+        const offsetX = e.offsetX;
+        const offsetY = e.offsetY;
+        const x = (offsetX / image.offsetWidth) * 100;
+        const y = (offsetY / image.offsetHeight) * 100;
+
+        image.style.transformOrigin = `${x}% ${y}%`;
     });
-}
 
-// KODINAGN UNTUK ZOOM FOTO
-document.getElementById('main-product-image').addEventListener('mousemove', function(e) {
-    const image = this;
-    const offsetX = e.offsetX;
-    const offsetY = e.offsetY;
-    const x = (offsetX / image.offsetWidth) * 100;
-    const y = (offsetY / image.offsetHeight) * 100;
-    
-    image.style.transformOrigin = `${x}% ${y}%`;
-});
-
-document.getElementById('main-product-image').addEventListener('mouseenter', function() {
-    this.style.transform = 'scale(1.5)';
-});
-
-document.getElementById('main-product-image').addEventListener('mouseleave', function() {
-    this.style.transform = 'scale(1)';
-});
-
-// Fungsi untuk mengganti gambar utama
-function changeImage(src) {
-    document.getElementById('main-product-image').src = src;
-    
-    // Update active thumbnail
-    document.querySelectorAll('.product-thumbnail').forEach(thumb => {
-        thumb.classList.remove('active');
-        if(thumb.src === src) {
-            thumb.classList.add('active');
-        }
+    document.getElementById('main-product-image').addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.5)';
     });
-}
 
-// Navigasi thumbnail
-const thumbnailContainer = document.querySelector('.thumbnail-images .col');
-const prevButton = document.querySelector('.btn-prev');
-const nextButton = document.querySelector('.btn-next');
+    document.getElementById('main-product-image').addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+    });
 
-prevButton.addEventListener('click', () => {
-    thumbnailContainer.scrollLeft -= 100;
-});
+    // Fungsi untuk mengganti gambar utama
+    function changeImage(src) {
+        document.getElementById('main-product-image').src = src;
 
-nextButton.addEventListener('click', () => {
-    thumbnailContainer.scrollLeft += 100;
-});
+        // Update active thumbnail
+        document.querySelectorAll('.product-thumbnail').forEach(thumb => {
+            thumb.classList.remove('active');
+            if (thumb.src === src) {
+                thumb.classList.add('active');
+            }
+        });
+    }
+
+    // Navigasi thumbnail
+    const thumbnailContainer = document.querySelector('.thumbnail-images .col');
+    const prevButton = document.querySelector('.btn-prev');
+    const nextButton = document.querySelector('.btn-next');
+
+    prevButton.addEventListener('click', () => {
+        thumbnailContainer.scrollLeft -= 100;
+    });
+
+    nextButton.addEventListener('click', () => {
+        thumbnailContainer.scrollLeft += 100;
+    });
 </script>
-

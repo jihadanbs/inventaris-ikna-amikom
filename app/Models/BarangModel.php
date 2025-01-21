@@ -93,7 +93,9 @@ class BarangModel extends Model
             tb_barang_rusak.jumlah_total_rusak, 
             tb_barang_rusak.keterangan_rusak, 
             tb_barang_baik.jumlah_total_baik, 
-            tb_barang_baik.keterangan_baik')
+            tb_barang_baik.keterangan_baik,
+            tb_setting_pinjam_barang.masa_pinjam,
+            tb_setting_pinjam_barang.lokasi')
             ->join('tb_galeri_barang', 'tb_barang.id_barang = tb_galeri_barang.id_barang', 'left')
             ->join('tb_file_foto_barang', 'tb_galeri_barang.id_file_foto_barang = tb_file_foto_barang.id_file_foto_barang', 'left')
             ->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang', 'left')
@@ -101,6 +103,7 @@ class BarangModel extends Model
             ->join('tb_barang_masuk', 'tb_barang_masuk.id_barang = tb_barang.id_barang', 'left')
             ->join('tb_barang_rusak', 'tb_barang.id_barang = tb_barang_rusak.id_barang', 'left')
             ->join('tb_barang_baik', 'tb_barang.id_barang = tb_barang_baik.id_barang', 'left')
+            ->join('tb_setting_pinjam_barang', 'tb_barang.id_barang = tb_setting_pinjam_barang.id_barang', 'left')
             ->where('tb_barang.slug', $slug)
             ->groupBy('tb_barang.slug')
             ->get()
