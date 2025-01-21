@@ -56,7 +56,7 @@ class TbUserPeminjam extends Migration
             'status' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-                'enum' => ['Belum diproses', 'ditolak', 'dipinjamkan', 'dikembalikan'],
+                'enum' => ['Diproses', 'Ditolak', 'Dipinjamkan', 'Dikembalikan'],
             ],
             'keterangan' => [
                 'type' => 'TEXT'

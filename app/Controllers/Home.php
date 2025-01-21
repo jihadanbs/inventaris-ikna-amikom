@@ -184,7 +184,7 @@ class Home extends BaseController
                 'kepentingan' => $this->request->getPost('kepentingan'),
                 'total_dipinjam' => $totalDipinjam,
                 'kode_peminjaman' => $this->generateKodePeminjaman($this->request->getPost('no_telepon'), $this->request->getPost('nama_lengkap')),
-                'status' => 'pending',
+                'status' => 'Diproses',
                 'tanggal_pengajuan' => date('Y-m-d H:i:s')
             ];
 

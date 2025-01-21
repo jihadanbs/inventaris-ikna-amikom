@@ -189,16 +189,16 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->DELETE('delete', 'BarangController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
 
-    /*=================================== PEMINJAMAN ====================================*/
-    $routes->GET('peminjaman', 'PeminjamanController::index', ['namespace' => 'App\Controllers\Admin']);
-    $routes->GROUP('peminjaman', static function ($routes) {
-        $routes->GET('tambah', 'PeminjamanController::tambah', ['namespace' => 'App\Controllers\Admin']);
-        $routes->POST('save', 'PeminjamanController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('edit/(:segment)', 'PeminjamanController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->PUT('update/(:num)', 'PeminjamanController::update/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('cek_data/(:segment)', 'PeminjamanController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete2', 'PeminjamanController::delete2', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete', 'PeminjamanController::delete', ['namespace' => 'App\Controllers\Admin']);
+    /*=================================== TRANSAKSI ====================================*/
+    $routes->GET('transaksi', 'TransaksiController::index', ['namespace' => 'App\Controllers\Admin']);
+    $routes->GROUP('transaksi', static function ($routes) {
+        $routes->GET('tambah', 'TransaksiController::tambah', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('save', 'TransaksiController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('edit/(:segment)', 'TransaksiController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->PUT('update/(:num)', 'TransaksiController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('cek_data/(:segment)', 'TransaksiController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete2', 'TransaksiController::delete2', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete', 'TransaksiController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== FOTO ====================================*/

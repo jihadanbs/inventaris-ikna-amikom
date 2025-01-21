@@ -202,7 +202,6 @@ class PinjamBarangController extends BaseController
         return redirect()->to('admin/setting-pinjam-barang')->with('pesan', 'Pengaturan peminjaman berhasil diubah !');
     }
 
-    // Controller: SettingPinjamBarangController.php
     public function updateStatusTampil()
     {
         if ($this->request->isAJAX()) {
@@ -214,8 +213,8 @@ class PinjamBarangController extends BaseController
             $isTampil = isset($json['is_tampil']) ? (int)$json['is_tampil'] : null;
 
             // Log for debugging
-            log_message('info', 'ID yang diterima: ' . $id);
-            log_message('info', 'is_tampil: ' . $isTampil);
+            // log_message('info', 'ID yang diterima: ' . $id);
+            // log_message('info', 'is_tampil: ' . $isTampil);
 
             // Validasi data
             if (!$id || $isTampil === null) {

@@ -131,9 +131,9 @@
                 </li>
 
                 <li>
-                    <a href="peminjaman">
+                    <a href="transaksi">
                         <i data-feather="shopping-bag"></i>
-                        <span data-key="t-dashboard">Peminjaman</span>
+                        <span data-key="t-dashboard">Transaksi Barang</span>
                     </a>
                 </li>
 
