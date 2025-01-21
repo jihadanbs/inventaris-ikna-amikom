@@ -172,6 +172,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->GET('edit/(:segment)', 'PinjamBarangController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'PinjamBarangController::update/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('cek-data/(:segment)', 'PinjamBarangController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('updateStatusTampil', 'PinjamBarangController::updateStatusTampil', ['namespace' => 'App\Controllers\Admin']);
         $routes->DELETE('delete2', 'PinjamBarangController::delete2', ['namespace' => 'App\Controllers\Admin']);
         $routes->DELETE('delete/(:num)', 'PinjamBarangController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });

@@ -115,12 +115,16 @@
                                             <td><?= $row['nama_kondisi']; ?></td>
                                             <td><?= $row['jumlah_total_baik']; ?> Unit</td>
                                             <td><?= $row['masa_pinjam']; ?> Hari</td>
-                                            <td>
-                                                <?php if ($row['is_tampil']) : ?>
-                                                    <span class="badge bg-success-subtle text-success">Ditampilkan</span>
-                                                <?php else : ?>
-                                                    <span class="badge bg-danger-subtle text-danger">Tidak Ditampilkan</span>
-                                                <?php endif; ?>
+                                            <td class="text-center">
+                                                <div class="d-flex align-items-center justify-content-center">
+                                                    <span class="badge <?= $row['is_tampil'] ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger' ?>">
+                                                        <?= $row['is_tampil'] ? 'Ditampilkan' : 'Tidak Ditampilkan' ?>
+                                                    </span>
+                                                    <input type="checkbox"
+                                                        class="form-check-input mx-2 status-checkbox"
+                                                        data-id="<?= $row['id_setting_pinjam_barang'] ?>"
+                                                        <?= $row['is_tampil'] ? 'checked' : '' ?>>
+                                                </div>
                                             </td>
                                             <td style="width: 155px">
                                                 <a href="<?= site_url('admin/setting-pinjam-barang/edit/' . $row['slug']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a>
@@ -132,6 +136,8 @@
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                            <input type="checkbox" class="form-check-input mx-2" id="selectAll">
+                            <small style="font-weight: bold;">(Select All)</small> <br>
                             <small class="form-text text-muted">
                                 <span style="color: red;">Note : Total Barang yang tampilkan berdasarkan kondisi barang yang layak digunakan</span>
                             </small>
@@ -146,6 +152,98 @@
     </div>
     <!-- END layout-wrapper -->
     <?= $this->include('admin/layouts/script2') ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectAllCheckbox = document.getElementById('selectAll');
+            const statusCheckboxes = document.querySelectorAll('.status-checkbox');
+
+            selectAllCheckbox.addEventListener('change', function() {
+                const isChecked = this.checked;
+                let updatePromises = [];
+
+                statusCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked !== isChecked) {
+                        checkbox.checked = isChecked;
+                        updatePromises.push(updateStatus(checkbox, isChecked));
+                    }
+                });
+
+                Promise.all(updatePromises)
+                    .then(() => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil',
+                            text: 'Semua status berhasil diperbarui',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Gagal memperbarui beberapa status'
+                        });
+                    });
+            });
+
+            statusCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    updateStatus(this, this.checked);
+                });
+            });
+
+            function updateStatus(checkbox, isChecked) {
+                const id = checkbox.dataset.id;
+                const csrfToken = document.querySelector('meta[name="X-CSRF-TOKEN"]')?.content;
+
+                return fetch('<?= site_url('admin/setting-pinjam-barang/updateStatusTampil') ?>', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        body: JSON.stringify({
+                            id: id,
+                            is_tampil: isChecked ? 1 : 0
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            const badge = checkbox.parentElement.querySelector('.badge');
+                            if (isChecked) {
+                                badge.className = 'badge bg-success-subtle text-success';
+                                badge.textContent = 'Ditampilkan';
+                            } else {
+                                badge.className = 'badge bg-danger-subtle text-danger';
+                                badge.textContent = 'Tidak Ditampilkan';
+                            }
+                        } else {
+                            checkbox.checked = !isChecked;
+                            throw new Error(data.message);
+                        }
+                    });
+            }
+
+            function updateSelectAllState() {
+                const allChecked = Array.from(statusCheckboxes).every(checkbox => checkbox.checked);
+                const someChecked = Array.from(statusCheckboxes).some(checkbox => checkbox.checked);
+
+                selectAllCheckbox.checked = allChecked;
+                selectAllCheckbox.indeterminate = someChecked && !allChecked;
+            }
+
+            statusCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateSelectAllState);
+            });
+
+            updateSelectAllState();
+        });
+    </script>
 
     <script>
         $(document).ready(function() {

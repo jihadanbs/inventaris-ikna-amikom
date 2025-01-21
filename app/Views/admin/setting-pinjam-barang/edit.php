@@ -76,12 +76,6 @@
                                                 </div>
                                             <?php endif ?>
                                         </div>
-
-                                        <?php if (session('errors.masa_pinjam')) : ?>
-                                            <div class="invalid-feedback">
-                                                <?= session('errors.masa_pinjam') ?>
-                                            </div>
-                                        <?php endif ?>
                                     </div>
                                     <!-- autofocus input edit langsung kebelakang kata -->
                                     <script>
