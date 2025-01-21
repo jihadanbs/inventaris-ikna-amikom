@@ -189,4 +189,13 @@ class Validation extends BaseConfig
 
         return true;
     }
+
+    public function check_no_telepon(string $no_telepon): bool
+    {
+        // Cek apakah nomor telepon diawali dengan "62"
+        if (substr($no_telepon, 0, 2) === '62') {
+            return false; // Tidak valid jika diawali dengan "62"
+        }
+        return true; // Valid
+    }
 }

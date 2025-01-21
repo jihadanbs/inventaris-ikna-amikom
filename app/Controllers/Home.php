@@ -130,10 +130,12 @@ class Home extends BaseController
                     ]
                 ],
                 'no_telepon' => [
-                    'rules' => 'required|numeric',
+                    'rules' => 'required|numeric|check_no_telepon',
                     'errors' => [
                         'required' => 'No. Telepon harus diisi !',
-                        'numeric' => 'No. Telepon harus berupa angka !'
+                        'numeric' => 'No. Telepon harus berupa angka !',
+                        'check_no_telepon' => 'No. Telepon tidak boleh diawali dengan "62", gunakan angka "0" sebagai pengganti !'
+
                     ]
                 ],
                 'alamat' => [

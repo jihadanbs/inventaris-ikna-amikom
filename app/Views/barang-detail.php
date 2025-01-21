@@ -153,6 +153,9 @@
                     <div class="form-group">
                         <label for="noTelepon">No. Telepon</label>
                         <input type="tel" class="form-control <?= session('errors.no_telepon') ? 'is-invalid' : '' ?>" name="no_telepon" id="no_telepon" value="<?= old('no_telepon') ?>">
+                        <small class="form-text text-muted">
+                            <span>Contoh : 081234567891 |<span style="color: red;"> jangan pakai 62</span></span>
+                        </small>
                         <?php if (session('errors.no_telepon')) : ?>
                             <div class="invalid-feedback">
                                 <?= session('errors.no_telepon') ?>
