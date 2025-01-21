@@ -49,12 +49,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Data Barang</h4>
+                        <h4 class="mb-sm-0 font-size-18">Data User Peminjam</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang') ?>">Barang IKNA</a></li>
-                                <li class="breadcrumb-item active">Data Barang</li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('admin/user_peminjam') ?>">User Peminjam</a></li>
+                                <li class="breadcrumb-item active">Data User Peminjam</li>
                             </ol>
                         </div>
 
@@ -85,43 +85,21 @@
                                 return $text;
                             }
                             ?>
-                            <table id="tableBarang" class="table table-bordered dt-responsive nowrap w-100">
-                                <?php if (session()->getFlashdata('pesan')) : ?>
-                                    <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
-                                        <?= session()->getFlashdata('pesan') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (session()->getFlashdata('gagal')) : ?>
-                                    <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Gagal</strong> -
-                                        <?= session()->getFlashdata('gagal') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if (session()->getFlashdata('warning')) : ?>
-                                    <div class="alert alert-warning alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-alert-outline align-middle me-3"></i><strong>Peringatan</strong> -
-                                        <?= session()->getFlashdata('warning') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-
-                                <div class="col-md-3 mb-3">
-                                    <a href=" <?= site_url('admin/barang/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
+                            <table id="tableBarangBaru" class="table table-bordered dt-responsive nowrap w-100">
+                                <?= $this->include('alert/alert'); ?>
+                                <!-- <div class="col-md-3 mb-3">
+                                    <a href=" <?= site_url('admin/barang_rusak/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
                                     </a>
-                                </div>
-
+                                </div> -->
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
                                         <th>Nama Lengkap</th>
+                                        <th>Pekerjaan</th>
                                         <th>Email</th>
-                                        <th>No Telepon</th>
-                                        <th>Barang Yang Dipinjam</th>
-                                        <th>Status</th>
+                                        <th>No. Telepon</th>
+                                        <th>Kode Peminjaman</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -130,14 +108,18 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($tb_user_peminjam as $row) : ?>
                                         <tr>
-                                            <td data-field="id_user_peminjam" style="width: 2px" scope="row"><?= $i++; ?></td>
-                                            <td data-field="nama_lengkap"><?= truncateText($row['nama_lengkap'], 70); ?></td>
-                                            <td data-field="email"><?= $row['email']; ?></td>
-                                            <td data-field="no_telepon"><?= $row['no_telepon']; ?></td>
-                                            <td data-field="nama_barang"><?= $row['nama_barang']; ?></td>
-                                            <td data-field="status"><?= $row['status']; ?></td>
+                                            <td style="width: 2px" scope="row"><?= $i++; ?></td>
+                                            <td><?= truncateText($row['nama_lengkap'], 70); ?></td>
+                                            <td><?= $row['pekerjaan']; ?></td>
+                                            <td><?= truncateText($row['email'], 70); ?></td>
+                                            <td><?= $row['no_telepon']; ?></td>
+                                            <td>
+                                                <a href="<?= site_url('admin/transaksi/cek_data/' . $row['nama_lengkap']) ?>" class="text-decoration-none">
+                                                    <?= $row['kode_peminjaman']; ?>
+                                                </a>
+                                            </td>
                                             <td style="width: 155px">
-                                                <a href="<?= site_url('admin/barang/cek_data/' . $row['slug']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
+                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . $row['nama_lengkap']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
                                                 </button>
@@ -145,7 +127,6 @@
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
-
                             </table>
 
                         </div>
@@ -162,7 +143,7 @@
 
     <script>
         $(document).ready(function() {
-            $("#tableBarang").DataTable({
+            $("#tableBarangBaru").DataTable({
                 "paging": true,
                 "responsive": true,
                 "lengthChange": true,
@@ -170,36 +151,36 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3]
                         }
                     },
                     'colvis'
                 ],
-            }).buttons().container().appendTo('#tableBarang_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#tableBarangBaru_wrapper .col-md-6:eq(0)');
         });
     </script>
 
@@ -208,7 +189,7 @@
         $(document).ready(function() {
             $('.sa-warning').click(function(e) {
                 e.preventDefault();
-                var id_barang = $(this).data('id');
+                var id_barang_masuk = $(this).data('id');
 
                 Swal.fire({
                     title: "Anda Yakin Ingin Menghapus?",
@@ -222,25 +203,25 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "POST",
-                            url: '<?= site_url('admin/barang/delete') ?>',
+                            url: '<?= site_url('admin/barang_rusak/delete') ?>',
                             data: {
-                                id_barang: id_barang,
+                                id_barang_masuk: id_barang_masuk,
                                 _method: 'DELETE'
                             },
                             dataType: 'json',
                             success: function(response) {
-                                if (response.status === 'success') {
+                                if (response.success) {
                                     Swal.fire({
                                         title: "Dihapus!",
-                                        text: response.message,
+                                        text: response.success,
                                         icon: "success"
                                     }).then(() => {
                                         location.reload();
                                     });
-                                } else if (response.status === 'error') {
+                                } else if (response.error) {
                                     Swal.fire({
                                         title: "Gagal!",
-                                        text: response.message,
+                                        text: response.error,
                                         icon: "error"
                                     });
                                 }
@@ -248,7 +229,7 @@
                             error: function(xhr, status, error) {
                                 Swal.fire({
                                     title: "Error",
-                                    text: "Terjadi kesalahan, Silakan coba lagi.",
+                                    text: "Terjadi kesalahan. Silakan coba lagi.",
                                     icon: "error"
                                 });
                             }
@@ -259,8 +240,6 @@
         });
     </script>
     <!-- HAPUS -->
-
-
     </body>
 
     </html>

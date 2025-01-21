@@ -53,7 +53,7 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang_baru') ?>">Transaksi Barang</a></li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('admin/transaksi') ?>">Transaksi Barang</a></li>
                                 <li class="breadcrumb-item active">Data Transaksi Barang</li>
                             </ol>
                         </div>
@@ -95,12 +95,13 @@
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
-                                        <th>Nama Barang</th>
+                                        <th>Nama Lengkap</th>
                                         <th>Nama Barang</th>
                                         <th>Kategori</th>
                                         <th>Tanggal Transaksi</th>
                                         <th>Total Barang</th>
                                         <th>Status</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
 
@@ -109,7 +110,11 @@
                                     <?php foreach ($tb_user_peminjam as $row) : ?>
                                         <tr>
                                             <td style="width: 2px" scope="row"><?= $i++; ?></td>
-                                            <td><?= truncateText($row['nama_lengkap'], 70); ?></td>
+                                            <td>
+                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . truncateText($row['nama_lengkap'], 70)) ?>" class="text-decoration-none">
+                                                    <?= $row['nama_lengkap']; ?>
+                                                </a>
+                                            </td>
                                             <td><?= truncateText($row['nama_barang'], 70); ?></td>
                                             <td><?= $row['nama_kategori']; ?></td>
                                             <td><?= formatTanggalIndo($row['tanggal_pengajuan']); ?></td>
@@ -126,6 +131,12 @@
                                                 <?php else : ?>
                                                     <span class="badge bg-secondary-subtle text-secondary">Tidak Diketahui</span>
                                                 <?php endif; ?>
+                                            </td>
+                                            <td style="width: 155px">
+                                                <a href="<?= site_url('admin/transaksi/cek_data/' . $row['nama_lengkap']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
+                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang'] ?>">
+                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                </button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
