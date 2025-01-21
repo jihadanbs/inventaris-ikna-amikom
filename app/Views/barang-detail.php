@@ -97,6 +97,14 @@
 
                     
 
+                    <?php if (session()->getFlashdata('whatsapp_link')) : ?>
+                        <script>
+                            if (confirm('Pengajuan berhasil ! Kirim notifikasi WhatsApp ?')) {
+                                window.location.href = '<?= session()->getFlashdata('whatsapp_link') ?>';
+                            }
+                        </script>
+                    <?php endif; ?>
+
                     <!-- Tombol Ajukan Peminjaman -->
                     <div class="action-buttons">
                         <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#peminjamanModal">Ajukan Peminjaman</button>
