@@ -17,7 +17,7 @@ class Users extends Seeder
                 'password' => password_hash('1234', PASSWORD_DEFAULT),
                 'status' => 'aktif',
                 'email' => 'alanflorensius390@gmail.com',
-                'no_telepon' => '081236656992',
+                'no_telepon' => '088215178312',
                 'file_profil' => ''
             ],
             [
