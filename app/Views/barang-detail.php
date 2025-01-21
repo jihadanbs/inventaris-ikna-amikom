@@ -4,6 +4,7 @@
 <section class="product-detail-section py-5">
     <div class="container">
         <div class="row">
+        <?= $this->include('alert/alert'); ?>
             <!-- Bagian Kiri - Foto Produk -->
             <div class="col-md-6">
                 <!-- Main Image -->
@@ -94,7 +95,7 @@
                         <p><?= $tb_barang['deskripsi'] ?></p>
                     </div>
 
-                    <?= $this->include('alert/alert'); ?>
+                    
 
                     <!-- Tombol Ajukan Peminjaman -->
                     <div class="action-buttons">
@@ -107,6 +108,7 @@
 </section>
 
 <!-- MODAL FORM AJUKIAN PEMINJAMAN -->
+
 <div class="modal modal-form-peminjaman fade" id="peminjamanModal" tabindex="-1" aria-labelledby="peminjamanModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -201,6 +203,7 @@
             </div>
         </div>
     </div>
+    
 </div>
 
 <!-- Footer -->
@@ -285,6 +288,12 @@
 </script> -->
 
 <script>
+     $(document).ready(function () {
+        <?php if (session()->getFlashdata('errors')) : ?>
+        $('#peminjamanModal').modal('show');
+        <?php endif; ?>
+    });
+
     // Fungsi untuk mengganti gambar utama
     function changeImage(src) {
         document.getElementById('main-product-image').src = src;

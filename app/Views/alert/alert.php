@@ -1,3 +1,16 @@
+<style>
+   .alert {
+        position: absolute;
+        padding: 20px;
+        width: 100%;
+        max-width: 90%; /* Responsif */
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        z-index: 9999;
+    }
+</style>
+
 <?php if (session()->getFlashdata('pesan')) : ?>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <i class="mdi mdi-check-all mr-2 align-middle"></i><strong>Sukses</strong> - 
