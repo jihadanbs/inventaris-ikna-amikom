@@ -205,8 +205,8 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     /*=================================== TRANSAKSI ====================================*/
     $routes->GET('transaksi', 'TransaksiController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('transaksi', static function ($routes) {
-        $routes->GET('tambah', 'TransaksiController::tambah', ['namespace' => 'App\Controllers\Admin']);
-        $routes->POST('save', 'TransaksiController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('dipinjamkan/(:segment)', 'TransaksiController::dipinjamkan/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('proses_dipinjamkan', 'TransaksiController::proses_dipinjamkan', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'TransaksiController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'TransaksiController::update/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('cek_data/(:segment)', 'TransaksiController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
