@@ -44,7 +44,7 @@
                             <?= $this->include('alert/alert'); ?>
                             <form action="<?= esc(site_url('admin/transaksi/proses_dipinjamkan/' . urlencode($tb_user_peminjam['id_user_peminjam'])), 'attr') ?>" method="post" enctype="multipart/form-data" id="validationForm" novalidate autocomplete="off">
                                 <?= csrf_field(); ?>
-                                <input type="hidden" name="_method" value="PUT">
+                                <input type="hidden" name="id_barang" value="<?= esc($tb_user_peminjam['id_barang'], 'attr'); ?>">
                                 <input type="hidden" name="nama_lengkap" value="<?= esc($tb_user_peminjam['nama_lengkap'], 'attr'); ?>">
                                 <input type="hidden" name="id_user_peminjam" value="<?= esc($tb_user_peminjam['id_user_peminjam'], 'attr'); ?>">
 
@@ -166,24 +166,47 @@
                                     </div>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label for="keterangan" class="col-form-label">Keterangan Keluar<span class="text-danger">*</span></label>
-                                    <textarea class="form-control custom-border <?= session('errors.keterangan') ? 'is-invalid' : ''; ?>" required name="keterangan" placeholder="Masukkan keterangan" id="keterangan" cols="30" rows="5" style="background-color: white;"><?php echo old('keterangan'); ?></textarea>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3 separator">
+                                        <label for="total_barang" class="col-form-label">Total Barang (Keluar)<span class="text-danger">*</span></label>
+                                        <div class="col-sm-12">
+                                            <input type="number" class="form-control <?= session('errors.total_barang') ? 'is-invalid' : ''; ?>" id="total_barang" name="total_barang" placeholder="Masukkan Jumlah Total Barang Kondisi Layak" style="background-color: white;" autofocus value="<?= old('total_barang'); ?>">
 
-                                    <?php if (session('errors.keterangan')) : ?>
-                                        <div class="invalid-feedback">
-                                            <?= session('errors.keterangan') ?>
+                                            <?php if (session('errors.total_barang')) : ?>
+                                                <div class="invalid-feedback">
+                                                    <?= session('errors.total_barang') ?>
+                                                </div>
+                                            <?php endif ?>
+                                            <small class="form-text text-muted">
+                                                <span style="color: red;">Note : Samakan dengan Jumlah Barang Yang Ingin Dipinjam</span>
+                                            </small>
                                         </div>
-                                    <?php endif ?>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="keterangan_keluar" class="col-form-label">Keterangan Keluar<span class="text-danger">*</span></label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control <?= session('errors.keterangan_keluar') ? 'is-invalid' : ''; ?>" id="keterangan_keluar" name="keterangan_keluar" placeholder="Masukkan Keterangan Masuk Barang" style="background-color: white;" autofocus value="<?= old('keterangan_keluar'); ?>">
+
+                                            <?php if (session('errors.keterangan_keluar')) : ?>
+                                                <div class="invalid-feedback">
+                                                    <?= session('errors.keterangan_keluar') ?>
+                                                </div>
+                                            <?php endif ?>
+                                            <small class="form-text text-muted">
+                                                <span style="color: blue;">Note : Boleh dikosongi</span>
+                                            </small>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="keterangan" class="col-form-label">Catatan Untuk Peminjam<span class="text-danger">*</span></label>
-                                    <textarea class="form-control custom-border <?= session('errors.keterangan') ? 'is-invalid' : ''; ?>" required name="keterangan" placeholder="Masukkan keterangan" id="keterangan" cols="30" rows="5" style="background-color: white;"><?php echo old('keterangan'); ?></textarea>
+                                    <label for="catatan_peminjaman" class="col-form-label">Catatan Untuk Peminjam<span class="text-danger">*</span></label>
+                                    <textarea class="form-control custom-border <?= session('errors.catatan_peminjaman') ? 'is-invalid' : ''; ?>" required name="catatan_peminjaman" placeholder="Masukkan Catatan Peminjaman" id="catatan_peminjaman" cols="30" rows="5" style="background-color: white;"><?php echo old('catatan_peminjaman'); ?></textarea>
 
-                                    <?php if (session('errors.keterangan')) : ?>
+                                    <?php if (session('errors.catatan_peminjaman')) : ?>
                                         <div class="invalid-feedback">
-                                            <?= session('errors.keterangan') ?>
+                                            <?= session('errors.catatan_peminjaman') ?>
                                         </div>
                                     <?php endif ?>
                                 </div>

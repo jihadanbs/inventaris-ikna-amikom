@@ -58,34 +58,28 @@ class TransaksiController extends BaseController
         return view('admin/transaksi/dipinjamkan', $data);
     }
 
-    public function proses_dipinjamkan()
+    public function proses_dipinjamkan($id_user_peminjam)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
-            return $this->checkSession(); // Redirect jika sesi tidak valid
+            return $this->checkSession();
         }
 
         $data = $this->request->getPost();
 
-        // Konversi nilai jumlah ke integer untuk mencegah error tipe data
-        $data['jumlah_total_baik'] = (int)($data['jumlah_total_baik'] ?? 0);
-        $data['jumlah_total_rusak'] = (int)($data['jumlah_total_rusak'] ?? 0);
-        $data['jumlah_total'] = (int)($data['jumlah_total'] ?? 0);
-
-        // Validasi jumlah baik dan rusak tidak melebihi atau kurang dari jumlah total
-        if (($data['jumlah_total_baik'] + $data['jumlah_total_rusak']) > $data['jumlah_total']) {
-            return redirect()->back()->withInput()->with('error', 'Jumlah barang layak dan rusak tidak boleh melebihi jumlah total barang yang dimasukkan!');
-        } else if (($data['jumlah_total_baik'] + $data['jumlah_total_rusak']) < $data['jumlah_total']) {
-            return redirect()->back()->withInput()->with('error', 'Total jumlah dari barang layak dan rusak (' . $data['jumlah_total_baik'] + $data['jumlah_total_rusak'] . ') kurang dari jumlah total barang yang dimasukkan (' . $data['jumlah_total'] . ') !');
-        }
-
         //validasi input 
         $rules = [
-            'keterangan' => [
+            'catatan_peminjaman' => [
                 'rules' => 'required|trim|min_length[5]',
                 'errors' => [
                     'required' => 'Kolom Catatan Tidak Boleh Kosong !',
                     'min_length' => 'Catatan tidak boleh kurang dari 5 karakter !',
+                ]
+            ],
+            'keterangan' => [
+                'rules' => 'max_length[255]',
+                'errors' => [
+                    'max_length' => 'Keterangan tidak boleh melebihi 255 karakter !',
                 ]
             ],
             'tanggal_keluar' => [
@@ -103,66 +97,62 @@ class TransaksiController extends BaseController
         ];
 
         if (!$this->validate($rules)) {
-            // Kirim kembali ke form dengan error validasi
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
-        // Simpan data ke tb_barang
-        $dataBarang = [
-            'keterangan' => $data['keterangan'],
-            'tanggal_dipinjamkan' => $data['tanggal_dipinjamkan'],
-        ];
+        // Ambil data user peminjam
+        $userPeminjam = $this->m_user_peminjam->find($id_user_peminjam);
+        if (!$userPeminjam) {
+            return redirect()->back()->with('error', 'Data peminjam tidak ditemukan!');
+        }
 
-        if ($this->m_barang->insert($dataBarang)) {
-            $idBarang = $this->m_barang->getInsertID();
+        // Mulai transaksi database
+        $this->db->transBegin();
 
-            $uploadFiles = uploadMultiple('path_file_foto_barang', 'dokumen/barang/');
-            if (empty($uploadFiles)) {
-                // Jika file tidak berhasil diunggah, tampilkan pesan error
-                session()->setFlashdata('error', 'File gagal diunggah. Silakan coba lagi !');
-                return redirect()->back()->withInput();
-            }
+        try {
+            // Update data di tb_user_peminjam
+            $dataUpdatePeminjam = [
+                'id_user_peminjam' => $id_user_peminjam,
+                'id_barang' => $userPeminjam['id_barang'],
+                'catatan_peminjaman' => $data['catatan_peminjaman'],
+                'tanggal_dipinjamkan' => $data['tanggal_dipinjamkan'],
+                'status' => 'Dipinjamkan',
+            ];
 
-            // Simpan data file yang diunggah ke tb_file_foto_barang dan relasinya ke tb_galeri
-            foreach ($uploadFiles as $filePath) {
-                $this->db->table('tb_file_foto_barang')->insert([
-                    'path_file_foto_barang' => $filePath,
-                ]);
-
-                // Dapatkan ID file foto yang baru saja disimpan
-                $idFileFotoBarang = $this->db->insertID();
-
-                // Relasikan file foto dengan foto yang sudah disimpan sebelumnya
-                $this->db->table('tb_galeri_barang')->insert([
-                    'id_barang' => $idBarang,
-                    'id_file_foto_barang' => $idFileFotoBarang,
-                ]);
+            if (!$this->m_user_peminjam->update($id_user_peminjam, $dataUpdatePeminjam)) {
+                throw new \Exception('Gagal mengupdate data peminjam');
             }
 
             // Simpan data ke tb_barang_keluar
-            $this->m_barang_baik->insert([
-                'id_barang' => $idBarang,
-                'jumlah_total_baik' => $data['jumlah_total_baik'],
-                'keterangan_baik' => $this->getKeteranganBaik($data['jumlah_total_baik'], $data['keterangan_baik'] ?? ''),
-            ]);
+            $dataBarangKeluar = [
+                'id_barang' => $userPeminjam['id_barang'],
+                'id_user_peminjam' => $id_user_peminjam,
+                'tanggal_keluar' => $data['tanggal_keluar'],
+                'total_barang' => $data['total_barang'],
+                'keterangan' => $this->getKeteranganKeluar($data['tanggal_keluar'], $data['keterangan'] ?? ''),
+            ];
 
-            // Simpan data ke tb_barang_rusak
-            $this->m_barang_rusak->insert([
-                'id_barang' => $idBarang,
-                'jumlah_total_rusak' => $data['jumlah_total_rusak'],
-                'keterangan_rusak' => $this->getKeteranganRusak($data['jumlah_total_rusak'], $data['keterangan_rusak'] ?? ''),
-            ]);
+            if (!$this->m_barang_keluar->insert($dataBarangKeluar)) {
+                throw new \Exception('Gagal menyimpan data barang keluar');
+            }
 
-            // Simpan data ke tb_barang_masuk
-            $this->m_barang_masuk->insert([
-                'id_barang' => $idBarang,
-                'tanggal_masuk' => $data['tanggal_masuk'],
-                'keterangan_masuk' => $this->getKeteranganMasuk($data['tanggal_masuk'], $data['keterangan_masuk'] ?? ''),
-            ]);
-
-            return redirect()->to('/admin/barang')->with('pesan', 'Barang berhasil ditambahkan !');
+            // Commit transaksi jika semua berhasil
+            $this->db->transCommit();
+            return redirect()->to('/admin/transaksi')->with('pesan', 'Barang berhasil dipinjamkan !');
+        } catch (\Exception $e) {
+            // Rollback transaksi jika terjadi error
+            $this->db->transRollback();
+            return redirect()->back()->with('error', 'Gagal meminjamkan barang: ' . $e->getMessage());
         }
+    }
 
-        return redirect()->back()->with('error', 'Gagal menambahkan barang !');
+    private function getKeteranganKeluar($tanggal, $keterangan)
+    {
+        if (empty(trim($keterangan))) {
+            // Format tanggal ke format Indonesia
+            $tanggal_formatted = date('d F Y', strtotime($tanggal));
+            return "Barang telah dipinjamkan pada tanggal " . $tanggal_formatted;
+        }
+        return $keterangan;
     }
 }

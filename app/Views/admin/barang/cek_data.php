@@ -311,6 +311,9 @@
                                 <a href="<?= esc(site_url('admin/barang'), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
                                     <i class="fas fa-arrow-left"></i> Kembali
                                 </a>
+                                <a href="<?= esc(site_url('admin/barang/tambah_stok/' . urlencode($tb_barang['slug'])), 'attr') ?>" class="btn btn-primary btn-md">
+                                    <i class="fas fa-plus"></i> Tambah Stok Barang
+                                </a>
                                 <a href="<?= esc(site_url('admin/barang/edit/' . urlencode($tb_barang['slug'])), 'attr') ?>" class="btn btn-warning btn-md edit">
                                     <i class="fas fa-pencil-alt"></i> Edit
                                 </a>

@@ -254,9 +254,9 @@
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
                                                 <strong>
-                                                    <?= !empty($tb_user_peminjam['keterangan']) ? truncateText($tb_user_peminjam['keterangan'], 100) : 'Belum ada Catatan lebih lanjut'; ?>
-                                                    <?php if (strlen(strip_tags($tb_user_peminjam['keterangan'] ?? '')) > 100) : ?>
-                                                        <a href="#" class="read-more-link" data-text="<?= htmlspecialchars(strip_tags($tb_user_peminjam['keterangan']), ENT_QUOTES, 'UTF-8') ?>">Read more..</a>
+                                                    <?= !empty($tb_user_peminjam['catatan_peminjaman']) ? truncateText($tb_user_peminjam['catatan_peminjaman'], 100) : 'Belum ada Catatan lebih lanjut'; ?>
+                                                    <?php if (strlen(strip_tags($tb_user_peminjam['catatan_peminjaman'] ?? '')) > 100) : ?>
+                                                        <a href="#" class="read-more-link" data-text="<?= htmlspecialchars(strip_tags($tb_user_peminjam['catatan_peminjaman']), ENT_QUOTES, 'UTF-8') ?>">Read more..</a>
                                                     <?php endif; ?>
                                                 </strong>
                                             </div>
