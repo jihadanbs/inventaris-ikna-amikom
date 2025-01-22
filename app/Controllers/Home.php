@@ -97,6 +97,11 @@ class Home extends BaseController
 
         return view('barang-detail', $data);
     }
+    public function cek_barang()
+    {
+       
+        return view('cek_barang');
+    }
 
 //     public function ajukan()
 //     {

@@ -1417,3 +1417,19 @@ display: none;
   border-top: 1px solid #dee2e6;
   padding: 1rem;
 }
+
+
+/* CEK BARANG */
+.btn-cek-barang{
+    width:350px;
+}
+
+.btn-cek-barang.btn-primary{
+  width:350px;
+  background-color:var(--biru-latar);
+}
+
+.btn-cek-barang.btn-primary:active {
+  background-color: var(--biru-latar) !important; 
+  
+}

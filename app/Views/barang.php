@@ -14,7 +14,6 @@
     <!-- about section -->
     <section class="barang_section">
         <div class="container">
-
             <div class="row d-flex justify-content-center mb-4">
                 <h2 class="p-2 mb-3" style="font-weight:700;">Barang IKNAVENTORY</h2>
                 <div class="d-flex justify-content-between align-items-center w-100">
