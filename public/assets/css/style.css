@@ -1419,17 +1419,25 @@ display: none;
 }
 
 
-/* CEK BARANG */
+/* HALAMAN CEK BARANG */
 .btn-cek-barang{
-    width:350px;
+    width:320px;
+    height:50px;
 }
 
 .btn-cek-barang.btn-primary{
-  width:350px;
+
   background-color:var(--biru-latar);
 }
 
 .btn-cek-barang.btn-primary:active {
   background-color: var(--biru-latar) !important; 
   
+}
+
+@media (max-width: 988px){
+  .btn-cek-barang{
+    width:100%;
+    height:50px;
+}
 }
