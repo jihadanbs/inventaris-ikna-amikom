@@ -4,7 +4,10 @@
 <section class="product-detail-section py-5">
     <div class="container">
         <div class="row">
+            <div class="row d-flex align-item-center">
             <?= $this->include('alert/frontalert'); ?>
+            </div>
+           
             <!-- Bagian Kiri - Foto Produk -->
             <div class="col-md-6">
                 <!-- Main Image -->
@@ -95,15 +98,33 @@
                         <p><?= $tb_barang['deskripsi'] ?></p>
                     </div>
 
-
-
                     <?php if (session()->getFlashdata('whatsapp_link')) : ?>
-                        <script>
-                            if (confirm('Pengajuan berhasil ! Dokumentasi melalui WhatsApp ?')) {
-                                window.location.href = '<?= session()->getFlashdata('whatsapp_link') ?>';
+                
+              
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        Swal.fire({
+                            title: 'Pengajuan Berhasil!',
+                            text: 'Apakah Anda ingin mendokumentasikan melalui WhatsApp?',
+                            icon: 'success',
+                            showCancelButton: true,
+                            confirmButtonText: 'Ya, Buka WhatsApp',
+                            cancelButtonText: 'Tidak',
+                            customClass: {
+                                confirmButton: 'btn btn-primary m-2',
+                                cancelButton: 'btn btn-danger m-2'
+                            },
+                            buttonsStyling: false
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Membuka link di tab baru
+                                window.open('<?= session()->getFlashdata('whatsapp_link') ?>', '_blank');
                             }
-                        </script>
-                    <?php endif; ?>
+                        });
+                    });
+                </script>
+            <?php endif; ?>
+
 
                     <!-- Tombol Ajukan Peminjaman -->
                     <div class="action-buttons">
@@ -222,6 +243,7 @@
 <!-- Scripts -->
 <?= $this->include('layouts/script') ?>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script>
     $(document).ready(function() {
         $('#formPengajuan').on('submit', function(e) {

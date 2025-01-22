@@ -1,14 +1,13 @@
 <style>
     .alert {
-        position: absolute;
-        padding: 20px;
-        width: 100%;
-        max-width: 90%;
-        /* Responsif */
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        z-index: 9999;
+    position: fixed;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999999;
+    width: 90%; 
+    max-width: 900px; 
+    padding: 20px; 
     }
 </style>
 
