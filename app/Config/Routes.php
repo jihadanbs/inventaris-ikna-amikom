@@ -93,6 +93,18 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->DELETE('delete', 'BarangController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
 
+    /*=================================== TAMBAH STOCK BARANG IKNA ====================================*/
+    $routes->GET('history_barang', 'HistoryBarangController::index', ['namespace' => 'App\Controllers\Admin']);
+    $routes->GROUP('history_barang', static function ($routes) {
+        $routes->GET('tambah', 'HistoryBarangController::tambah', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('save', 'HistoryBarangController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('edit/(:segment)', 'HistoryBarangController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->PUT('update/(:num)', 'HistoryBarangController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('cek_data/(:segment)', 'HistoryBarangController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete2', 'HistoryBarangController::delete2', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete', 'HistoryBarangController::delete', ['namespace' => 'App\Controllers\Admin']);
+    });
+
     /*=================================== BARANG MASUK ====================================*/
     $routes->GET('barang_masuk', 'BarangMasukController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang_masuk', static function ($routes) {

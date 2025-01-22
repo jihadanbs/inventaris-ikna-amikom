@@ -7,6 +7,7 @@ use App\Models\UserModel;
 use App\Models\KondisiBarangModel;
 use App\Models\KategoriBarangModel;
 use App\Models\BarangModel;
+use App\Models\HistoryBarangModel;
 use App\Models\BarangMasukModel;
 use App\Models\BarangKeluarModel;
 use App\Models\BarangBaruModel;
@@ -89,6 +90,7 @@ abstract class BaseController extends Controller
     protected $m_kondisi_barang;
     protected $m_kategori_barang;
     protected $m_barang;
+    protected $m_history_barang;
     protected $m_barang_masuk;
     protected $m_barang_keluar;
     protected $m_barang_baru;
@@ -137,6 +139,7 @@ abstract class BaseController extends Controller
         $this->m_kategori_barang = new KategoriBarangModel();
         $this->m_kondisi_barang = new KondisiBarangModel();
         $this->m_barang = new BarangModel();
+        $this->m_history_barang = new HistoryBarangModel();
         $this->m_barang_masuk = new BarangMasukModel();
         $this->m_barang_keluar = new BarangKeluarModel();
         $this->m_barang_baru = new BarangBaruModel();
