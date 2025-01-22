@@ -52,8 +52,10 @@ class UserPeminjamModel extends Model
         tb_barang.nama_barang, 
         tb_barang.slug, 
         tb_barang.jumlah_total,
-        tb_kategori_barang.nama_kategori, 
+        tb_kategori_barang.nama_kategori,
+        tb_barang.id_kategori_barang, 
         tb_kondisi_barang.nama_kondisi, 
+        tb_barang.id_kondisi_barang,
         tb_barang_baik.jumlah_total_baik, 
         tb_barang_masuk.tanggal_masuk
     ');

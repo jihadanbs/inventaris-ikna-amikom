@@ -12,7 +12,6 @@ class BarangRusakModel extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
 
-
     // index
     public function getAllSorted()
     {

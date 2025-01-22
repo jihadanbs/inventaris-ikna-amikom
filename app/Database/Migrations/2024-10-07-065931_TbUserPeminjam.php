@@ -58,7 +58,7 @@ class TbUserPeminjam extends Migration
                 'constraint' => 255,
                 'enum' => ['Diproses', 'Ditolak', 'Dipinjamkan', 'Dikembalikan'],
             ],
-            'keterangan' => [
+            'catatan_peminjaman' => [
                 'type' => 'TEXT'
             ],
             'tanggal_pengajuan' => [

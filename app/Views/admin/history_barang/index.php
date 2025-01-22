@@ -49,12 +49,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Data Barang Keluar</h4>
+                        <h4 class="mb-sm-0 font-size-18">Data History Barang</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang_keluar') ?>">Aktivitas</a></li>
-                                <li class="breadcrumb-item active">Data Barang Keluar</li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang') ?>">History Barang IKNA</a></li>
+                                <li class="breadcrumb-item active">Data History Barang</li>
                             </ol>
                         </div>
 
@@ -85,10 +85,10 @@
                                 return $text;
                             }
                             ?>
-                            <table id="tableBarangRusak" class="table table-bordered dt-responsive nowrap w-100">
+                            <table id="tableBarang" class="table table-bordered dt-responsive nowrap w-100">
                                 <?= $this->include('alert/alert'); ?>
                                 <div class="col-md-3 mb-3">
-                                    <a href=" <?= site_url('admin/barang_keluar/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
+                                    <a href=" <?= site_url('admin/barang/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
                                     </a>
                                 </div>
@@ -97,31 +97,36 @@
                                         <th>Nomor</th>
                                         <th>Nama Barang</th>
                                         <th>Kategori</th>
+                                        <th>Kondisi</th>
                                         <th>Total Barang</th>
-                                        <th>Keterangan</th>
+                                        <th>Tanggal Masuk</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <?php $i = 1; ?>
-                                    <?php foreach ($tb_barang_keluar as $row) : ?>
+                                    <?php foreach ($tb_history_barang as $row) : ?>
                                         <tr>
                                             <td style="width: 2px" scope="row"><?= $i++; ?></td>
                                             <td><?= truncateText($row['nama_barang'], 70); ?></td>
                                             <td><?= $row['nama_kategori']; ?></td>
-                                            <td><?= $row['total_barang']; ?> Unit</td>
-                                            <td><?= $row['keterangan']; ?></td>
-                                            <td style="width: 50px">
-                                                <a href="<?= site_url('admin/barang_keluar/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a>
-                                                <!-- <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_keluar'] ?>">
+                                            <td><?= $row['nama_kondisi']; ?></td>
+                                            <td><?= $row['jumlah_total']; ?> Unit</td>
+                                            <td><?= formatTanggalIndo($row['tanggal_masuk']); ?></td>
+                                            <td style="width: 155px">
+                                                <a href="<?= site_url('admin/barang/cek_data/' . $row['slug']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
+                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
-                                                </button> -->
+                                                </button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                            <small class="form-text text-muted">
+                                <span style="color: red;">Note : Menghapus dan mengubah data berarti menghapus dan mengubah juga relasi data tersebut yang ada di fitur : <br>1. Data barang masuk<br>2. Data Barang Kondisi Baik<br>3. Data Barang Kondisi Rusak</span>
+                            </small>
                         </div>
                     </div>
                 </div> <!-- end col -->
@@ -136,7 +141,7 @@
 
     <script>
         $(document).ready(function() {
-            $("#tableBarangRusak").DataTable({
+            $("#tableBarang").DataTable({
                 "paging": true,
                 "responsive": true,
                 "lengthChange": true,
@@ -144,36 +149,36 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     'colvis'
                 ],
-            }).buttons().container().appendTo('#tableBarangRusak_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#tableBarang_wrapper .col-md-6:eq(0)');
         });
     </script>
 
@@ -182,7 +187,7 @@
         $(document).ready(function() {
             $('.sa-warning').click(function(e) {
                 e.preventDefault();
-                var id_barang_rusak = $(this).data('id');
+                var id_barang = $(this).data('id');
 
                 Swal.fire({
                     title: "Anda Yakin Ingin Menghapus?",
@@ -196,25 +201,25 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "POST",
-                            url: '<?= site_url('admin/barang_rusak/delete') ?>',
+                            url: '<?= site_url('admin/barang/delete') ?>',
                             data: {
-                                id_barang_rusak: id_barang_rusak,
+                                id_barang: id_barang,
                                 _method: 'DELETE'
                             },
                             dataType: 'json',
                             success: function(response) {
-                                if (response.success) {
+                                if (response.status === 'success') {
                                     Swal.fire({
                                         title: "Dihapus!",
-                                        text: response.success,
+                                        text: response.message,
                                         icon: "success"
                                     }).then(() => {
                                         location.reload();
                                     });
-                                } else if (response.error) {
+                                } else if (response.status === 'error') {
                                     Swal.fire({
                                         title: "Gagal!",
-                                        text: response.error,
+                                        text: response.message,
                                         icon: "error"
                                     });
                                 }
@@ -222,7 +227,7 @@
                             error: function(xhr, status, error) {
                                 Swal.fire({
                                     title: "Error",
-                                    text: "Terjadi kesalahan. Silakan coba lagi.",
+                                    text: "Terjadi kesalahan, Silakan coba lagi.",
                                     icon: "error"
                                 });
                             }
@@ -233,6 +238,8 @@
         });
     </script>
     <!-- HAPUS -->
+
+
     </body>
 
     </html>
