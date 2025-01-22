@@ -58,6 +58,9 @@
 
                                     <div class="col-md-6 mb-3">
                                         <label for="id_kategori_barang" class="col-form-label">Kategori Barang<span class="text-danger">*</span></label>
+                                        <a href="<?= site_url('admin/kategori_barang'); ?>" class="btn rounded-pill">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
                                         <select class="form-select custom-border <?= session('errors.id_kategori_barang') ? 'is-invalid' : '' ?>" id="id_kategori_barang" name="id_kategori_barang" aria-label="Default select example" style="background-color: white;">
                                             <option value="" selected disabled>~ Silahkan Pilih Nama Kategori Barang ~</option>
                                             <!-- Populasi opsi dropdown dengan data dari controller -->
@@ -92,6 +95,9 @@
 
                                     <div class="col-md-6 mb-3">
                                         <label for="id_kondisi_barang" class="col-form-label">Kondisi Barang<span class="text-danger">*</span></label>
+                                        <a href="<?= site_url('admin/kondisi_barang'); ?>" class="btn rounded-pill">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
                                         <select class="form-select custom-border <?= session('errors.id_kondisi_barang') ? 'is-invalid' : '' ?>" id="id_kondisi_barang" name="id_kondisi_barang" aria-label="Default select example" style="background-color: white;">
                                             <option value="" selected disabled>~ Silahkan Pilih Kondisi Barang ~</option>
                                             <!-- Populasi opsi dropdown dengan data dari controller -->

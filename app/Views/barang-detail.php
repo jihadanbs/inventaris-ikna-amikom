@@ -4,7 +4,7 @@
 <section class="product-detail-section py-5">
     <div class="container">
         <div class="row">
-        <?= $this->include('alert/alert'); ?>
+            <?= $this->include('alert/frontalert'); ?>
             <!-- Bagian Kiri - Foto Produk -->
             <div class="col-md-6">
                 <!-- Main Image -->
@@ -95,7 +95,7 @@
                         <p><?= $tb_barang['deskripsi'] ?></p>
                     </div>
 
-                    
+
 
                     <?php if (session()->getFlashdata('whatsapp_link')) : ?>
                         <script>
@@ -211,7 +211,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <!-- Footer -->
@@ -296,9 +296,9 @@
 </script> -->
 
 <script>
-     $(document).ready(function () {
+    $(document).ready(function() {
         <?php if (session()->getFlashdata('errors')) : ?>
-        $('#peminjamanModal').modal('show');
+            $('#peminjamanModal').modal('show');
         <?php endif; ?>
     });
 
