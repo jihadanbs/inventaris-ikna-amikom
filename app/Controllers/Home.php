@@ -210,20 +210,21 @@ class Home extends BaseController
 
             // Siapkan pesan WhatsApp
             $message = "
-                *Yth. {$data['nama_lengkap']}*
+            
+*Yth. {$data['nama_lengkap']}*
 
-                Dokumentasi peminjaman barang dengan detail:
+Dokumentasi peminjaman barang dengan detail:
 
-                *Kode Peminjaman*: {$data['kode_peminjaman']}
-                *Total Dipinjam*: {$data['total_dipinjam']} unit
-                *Tanggal Pengajuan*: {$data['tanggal_pengajuan']}
-                *Kepentingan*: {$data['kepentingan']}
+*Kode Peminjaman*: {$data['kode_peminjaman']}
+*Total Dipinjam*: {$data['total_dipinjam']} unit
+*Tanggal Pengajuan*: {$data['tanggal_pengajuan']}
+*Kepentingan*: {$data['kepentingan']}
 
-                Silakan simpan kode peminjaman ini untuk keperluan cek data barang.
-                Kami akan segera memproses pengajuan Anda.
+Silakan simpan kode peminjaman ini untuk keperluan cek data barang.
+Kami akan segera memproses pengajuan Anda.
 
-                Terima kasih,
-                *IKNA AMIKOM YOGYAKARTA*
+Terima kasih,
+*IKNA AMIKOM YOGYAKARTA*
         ";
 
             // Encode pesan untuk URL
