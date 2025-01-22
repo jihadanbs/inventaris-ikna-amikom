@@ -98,7 +98,7 @@
                                                     </div>
                                                     <!-- Modal Body -->
                                                     <div class="modal-body">
-                                                        <form action="/admin/kategori/save" method="POST">
+                                                        <form action="<?= site_url('admin/kategori/save'); ?>" method="POST">
                                                             <?= csrf_field(); ?>
                                                             <div class="mb-3">
                                                                 <label for="nama_kategori" class="col-form-label">Nama Kategori :</label>

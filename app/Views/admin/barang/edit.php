@@ -83,6 +83,9 @@
 
                                     <div class="col-md-6 mb-3">
                                         <label for="id_kategori_barang" class="col-form-label">Kategori Barang<span class="text-danger">*</span></label>
+                                        <a href="<?= site_url('admin/kategori_barang'); ?>" class="btn rounded-pill">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
                                         <select class="form-select custom-border <?= ($validation->hasError('id_kategori_barang')) ? 'is-invalid' : ''; ?>" id="id_kategori_barang" name="id_kategori_barang" aria-label="Default select example" style="background-color: white;" required>
                                             <option value="" selected disabled>~ Silahkan Pilih Nama Kategori Barang ~</option>
                                             <?php foreach ($tb_kategori_barang as $value) : ?>
@@ -109,6 +112,9 @@
 
                                     <div class="col-md-6 mb-3">
                                         <label for="id_kondisi_barang" class="col-form-label">Kondisi Barang<span class="text-danger">*</span></label>
+                                        <a href="<?= site_url('admin/kondisi_barang'); ?>" class="btn rounded-pill">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
                                         <select class="form-select custom-border <?= ($validation->hasError('id_kondisi_barang')) ? 'is-invalid' : ''; ?>" id="id_kondisi_barang" name="id_kondisi_barang" aria-label="Default select example" style="background-color: white;" required>
                                             <option value="" selected disabled>~ Silahkan Pilih Nama Kondisi Barang ~</option>
                                             <?php foreach ($tb_kondisi_barang as $value) : ?>

@@ -99,7 +99,7 @@
 
                     <?php if (session()->getFlashdata('whatsapp_link')) : ?>
                         <script>
-                            if (confirm('Pengajuan berhasil ! Kirim notifikasi WhatsApp ?')) {
+                            if (confirm('Pengajuan berhasil ! Dokumentasi melalui WhatsApp ?')) {
                                 window.location.href = '<?= session()->getFlashdata('whatsapp_link') ?>';
                             }
                         </script>
