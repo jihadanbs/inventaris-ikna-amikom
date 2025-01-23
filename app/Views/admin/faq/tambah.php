@@ -42,6 +42,9 @@
                                 <?= csrf_field(); ?>
                                 <div class="mb-3">
                                     <label for="id_kategori_faq" class="col-form-label">Nama Kategori FAQ</label><span style="color: red;">*</span>
+                                    <a href="<?= site_url('admin/kategori_faq'); ?>" class="btn rounded-pill">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
                                     <select class="form-select custom-border <?= session('errors.id_kategori_faq') ? 'is-invalid' : ''; ?>" id=" id_kategori_faq" name="id_kategori_faq" aria-label="Default select example" style="background-color: white;" required>
                                         <option value="" selected disabled>~ Silahkan Pilih Nama Kategori FAQ ~</option>
                                         <!-- Populasi opsi dropdown dengan data dari controller -->
