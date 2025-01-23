@@ -263,7 +263,7 @@
                             <form action="<?= site_url('admin/profile/updateSandi/' . session('id_user')) ?>" method="post" enctype="multipart/form-data" id="validationForm" class="needs-validation" novalidate>
                                 <?= csrf_field(); ?>
                                 <div class="custom-form-group">
-                                    <label for="sandi_lama" class="custom-form-label">Kata Sandi</label>
+                                    <label for="sandi_lama" class="custom-form-label">Kata Sandi<span class="text-danger">*</span></label>
                                     <div class="custom-input-field">
                                         <input type="password" class="form-control <?= isset($validation) && $validation->getError('sandi_lama') ? 'is-invalid' : ''; ?>" id="sandi_lama" name="sandi_lama" placeholder="Kata sandi Sekarang" value="<?= old('sandi_lama', session('sandi_lama')); ?>">
                                         <i class="fas fa-lock password-toggle" onclick="togglePasswordVisibility('sandi_lama')"></i>
@@ -274,7 +274,7 @@
                                 </div>
 
                                 <div class="custom-form-group">
-                                    <label for="sandi_baru" class="custom-form-label">Kata Sandi Baru</label>
+                                    <label for="sandi_baru" class="custom-form-label">Kata Sandi Baru<span class="text-danger">*</span></label>
                                     <div class="custom-input-field">
                                         <input type="password" class="form-control <?= isset($validation) && $validation->getError('sandi_baru') ? 'is-invalid' : ''; ?>" id="sandi_baru" name="sandi_baru" placeholder="Kata sandi Baru" value="<?= old('sandi_baru', session('sandi_baru')); ?>">
                                         <i class="fas fa-lock password-toggle" onclick="togglePasswordVisibility('sandi_baru')"></i>
@@ -285,7 +285,7 @@
                                 </div>
 
                                 <div class="custom-form-group">
-                                    <label for="konfirmasi_sandi_baru" class="custom-form-label">Ketik Ulang Kata Sandi Baru</label>
+                                    <label for="konfirmasi_sandi_baru" class="custom-form-label">Ketik Ulang Kata Sandi Baru<span class="text-danger">*</span></label>
                                     <div class="custom-input-field">
                                         <input type="password" class="form-control <?= isset($validation) && $validation->getError('konfirmasi_sandi_baru') ? 'is-invalid' : ''; ?>" id="konfirmasi_sandi_baru" name="konfirmasi_sandi_baru" placeholder="Ketik ulang kata sandi baru" value="<?= old('konfirmasi_sandi_baru', session('konfirmasi_sandi_baru')); ?>">
                                         <i class="fas fa-lock password-toggle" onclick="togglePasswordVisibility('konfirmasi_sandi_baru')"></i>
