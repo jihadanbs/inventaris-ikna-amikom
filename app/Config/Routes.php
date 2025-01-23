@@ -17,6 +17,7 @@ $routes->GET('/barang', 'Home::barang', ['namespace' => 'App\Controllers']);
 $routes->GET('/barang-detail/(:segment)', 'Home::barangdetail/$1', ['namespace' => 'App\Controllers']);
 $routes->POST('/ajukan', 'Home::ajukan', ['namespace' => 'App\Controllers']);
 $routes->GET('/cek_barang', 'Home::cek_barang', ['namespace' => 'App\Controllers']);
+$routes->GET('/cek_resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
 $routes->POST('/cek_resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
 
 $routes->GET('/error404', 'Home::error', ['namespace' => 'App\Controllers']);

@@ -101,39 +101,27 @@ class Home extends BaseController
     }
     public function cek_barang()
     {
-
         return view('cek_barang');
     }
     public function cek_resi()
     {
-        $kode_peminjaman = $this->request->getPost('kode_peminjaman'); // Ambil input dari form
-        
+        $kode_peminjaman = $this->request->getPost('kode_peminjaman');
         if (!empty($kode_peminjaman)) {
-            $model = new UserPeminjamModel();
-            $result = $model->getByKodePeminjaman($kode_peminjaman); // Cari data berdasarkan kode
-            
-            // Jika data ditemukan
-            if ($result) {
-                return view('cek_barang', [
-                    'result' => $result,
-                    'searched' => true
-                ]);
-            } else {
-                // Data tidak ditemukan, tetap kirim result null
-                return view('cek_barang', [
-                    'result' => null,
-                    'searched' => true
-                ]);
-            }
+            $result = $this->m_user_peminjam->getByKodePeminjaman($kode_peminjaman);
+
+            return view('cek_barang', [
+                'result' => $result,
+                'searched' => true,
+                'kode_peminjaman' => $kode_peminjaman
+            ]);
         }
-    
-        // Jika kode resi tidak diisi, kembalikan halaman awal
+
         return view('cek_barang', [
             'result' => null,
-            'searched' => false
+            'searched' => true,
+            'kode_peminjaman' => null
         ]);
     }
-    
 
     public function ajukan()
     {
