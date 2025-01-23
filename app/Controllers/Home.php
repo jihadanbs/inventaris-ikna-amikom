@@ -255,7 +255,7 @@ Terima kasih,
 
             // Simpan link WhatsApp ke session untuk digunakan di view
             session()->setFlashdata('whatsapp_link', $whatsapp_link);
-            session()->setFlashdata('pesan', 'Pengajuan berhasil dikirim ! Kode peminjaman Anda: ' . $data['kode_peminjaman']);
+            session()->setFlashdata('pesan', 'Pengajuan berhasil dikirim! Kode peminjaman Anda: <strong style="color: black;">' . esc($data['kode_peminjaman']) . '</strong>');
 
             return redirect()->back();
         } catch (\Exception $e) {
