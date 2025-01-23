@@ -23,6 +23,13 @@ class BarangRusakController extends BaseController
         return view('admin/barang_rusak/index', $data);
     }
 
+    public function totalData()
+    {
+        $totalData = $this->m_barang_rusak->getTotalBarangRusak();
+        // Keluarkan total data sebagai JSON response
+        return $this->response->setJSON(['total' => $totalData]);
+    }
+
     public function tambah()
     {
         // Cek sesi pengguna

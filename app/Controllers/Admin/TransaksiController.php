@@ -155,4 +155,10 @@ class TransaksiController extends BaseController
         }
         return $keterangan;
     }
+
+    public function totalByStatus($status)
+    {
+        $total = $this->m_user_peminjam->getTotalByStatus($status);
+        return $this->response->setJSON(['total' => $total]);
+    }
 }

@@ -124,12 +124,12 @@ class UserPeminjamModel extends Model
         $builder->join('tb_file_foto_barang', 'tb_galeri_barang.id_file_foto_barang = tb_file_foto_barang.id_file_foto_barang', 'left');
         $builder->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang', 'left');
         $builder->join('tb_barang_masuk', 'tb_barang_masuk.id_barang = tb_barang.id_barang', 'left');
-    
+
         // Pastikan kode_peminjaman sesuai
         $builder->where('tb_user_peminjam.kode_peminjaman', $kode_peminjaman);
-    
+
         $query = $builder->get();
-    
+
         // Periksa apakah data ditemukan
         if ($query->getNumRows() > 0) {
             return $query->getRowArray(); // Kembalikan data jika ada
@@ -137,5 +137,12 @@ class UserPeminjamModel extends Model
             return null; // Data tidak ditemukan
         }
     }
-    
+
+    public function getTotalByStatus($status)
+    {
+        $query = $this->db->query('SELECT SUM(total_dipinjam) as total FROM ' . $this->table . ' WHERE status = ?', [$status]);
+        $result = $query->getRow();
+
+        return $result ? $result->total : 0;
+    }
 }

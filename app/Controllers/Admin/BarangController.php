@@ -704,4 +704,11 @@ class BarangController extends BaseController
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
+
+    public function totalData()
+    {
+        $totalData = $this->m_barang->getTotalBarang();
+        // Keluarkan total data sebagai JSON response
+        return $this->response->setJSON(['total' => $totalData]);
+    }
 }

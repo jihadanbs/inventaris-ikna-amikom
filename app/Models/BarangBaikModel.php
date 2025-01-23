@@ -112,4 +112,11 @@ class BarangBaikModel extends Model
             ->get()
             ->getRowArray();
     }
+
+    public function getTotalBarangBaik()
+    {
+        $query = $this->db->query('SELECT SUM(jumlah_total_baik) as total FROM ' . $this->table);
+        $result = $query->getRow();
+        return $result ? $result->total : 0;
+    }
 }

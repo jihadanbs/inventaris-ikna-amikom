@@ -109,4 +109,11 @@ class BarangModel extends Model
             ->get()
             ->getRowArray();
     }
+
+    public function getTotalBarang()
+    {
+        $query = $this->db->query('SELECT SUM(jumlah_total) as total FROM ' . $this->table);
+        $result = $query->getRow();
+        return $result ? $result->total : 0;
+    }
 }

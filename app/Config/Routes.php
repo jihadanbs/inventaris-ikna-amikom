@@ -86,6 +86,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     /*=================================== BARANG IKNA ====================================*/
     $routes->GET('barang', 'BarangController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang', static function ($routes) {
+        $routes->GET('totalData', 'BarangController::totalData', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('tambah', 'BarangController::tambah', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('save', 'BarangController::save', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'BarangController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
@@ -158,6 +159,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     /*=================================== BARANG KONDISI BAIK ====================================*/
     $routes->GET('barang_baik', 'BarangBaikController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang_baik', static function ($routes) {
+        $routes->GET('totalData', 'BarangBaikController::totalData', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('tambah', 'BarangBaikController::tambah', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('save', 'BarangBaikController::save', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'BarangBaikController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
@@ -170,6 +172,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     /*=================================== BARANG KONDISI RUSAK ====================================*/
     $routes->GET('barang_rusak', 'BarangRusakController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang_rusak', static function ($routes) {
+        $routes->GET('totalData', 'BarangRusakController::totalData', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('tambah', 'BarangRusakController::tambah', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('save', 'BarangRusakController::save', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'BarangRusakController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
@@ -195,6 +198,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     /*=================================== USER PEMINJAM ====================================*/
     $routes->GET('user_peminjam', 'UserPeminjamController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('user_peminjam', static function ($routes) {
+        $routes->GET('totalByStatus/(:any)', 'UserPeminjamController::totalByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('tambah', 'UserPeminjamController::tambah', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('save', 'UserPeminjamController::save', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'UserPeminjamController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
@@ -208,6 +212,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     $routes->GET('transaksi', 'TransaksiController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('transaksi', static function ($routes) {
         $routes->GET('dipinjamkan/(:segment)', 'TransaksiController::dipinjamkan/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('totalByStatus/(:any)', 'TransaksiController::totalByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('proses_dipinjamkan/(:segment)', 'TransaksiController::proses_dipinjamkan/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'TransaksiController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'TransaksiController::update/$1', ['namespace' => 'App\Controllers\Admin']);
