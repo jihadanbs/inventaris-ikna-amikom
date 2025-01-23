@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\UserPeminjamModel;
+
 class Home extends BaseController
 {
     public function index($page = 1)
@@ -101,6 +103,34 @@ class Home extends BaseController
     {
 
         return view('cek_barang');
+    }
+    public function cek_resi() {
+        $kode_peminjaman = $this->request->getPost('kode_peminjaman');
+        
+        if ($kode_peminjaman) {
+            $model = new UserPeminjamModel();
+            $result = $model->getByKodePeminjaman($kode_peminjaman);
+            
+            // Only show data if result is not null
+            if ($result) {
+                return view('cek_barang', [
+                    'result' => $result,
+                    'searched' => true
+                ]);
+            } else {
+                // Return view with null result when no data found
+                return view('cek_barang', [
+                    'result' => null,
+                    'searched' => true
+                ]);
+            }
+        }
+        
+        // Initial page load with no search
+        return view('cek_barang', [
+            'result' => null,
+            'searched' => false
+        ]);
     }
 
     public function ajukan()
