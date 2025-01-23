@@ -28,9 +28,7 @@
                 </div>
             </div>
 
-            <?php if (isset($result) && $searched): ?>
-    <?php if ($result): ?>
-        <!-- Show table only when data exists -->
+            <?php if (isset($searched) && $searched): ?>
         <div class="row my-4" id="resultTable">
             <div class="col-12">
                 <h2>Detail data barang</h2>
@@ -47,27 +45,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td><?= $result['nama_lengkap'] ?></td>
-                            <td><?= $result['nama_barang'] ?></td>
-                            <td><?= $result['nama_kategori'] ?></td>
-                            <td><?= $result['tanggal_pengajuan'] ?></td>
-                            <td><?= $result['total_dipinjam'] ?></td>
-                            <td><?= $result['status'] ?></td>
-                        </tr>
+                        <?php if ($result): ?>
+                            <!-- Jika data ditemukan -->
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><?= $result['nama_lengkap'] ?></td>
+                                <td><?= $result['nama_barang'] ?></td>
+                                <td><?= $result['nama_kategori'] ?></td>
+                                <td><?= $result['tanggal_pengajuan'] ?></td>
+                                <td><?= $result['total_dipinjam'] ?></td>
+                                <td><?= $result['status'] ?></td>
+                            </tr>
+                        <?php else: ?>
+                            <!-- Jika data tidak ditemukan -->
+                            <tr>
+                                <td colspan="7" class="text-center">Data dengan kode resi tersebut tidak ditemukan!</td>
+                            </tr>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
         </div>
-    <?php else: ?>
-        <!-- Only show alert when no data -->
-        <div class="alert alert-warning" role="alert">
-            <i class="fas fa-exclamation-triangle mr-2"></i>
-            Data dengan kode resi tersebut tidak ditemukan!
-        </div>
-    <?php endif; ?>
-<?php endif; ?>
+        <?php endif; ?>
+
         </div>
     </section>
 
@@ -79,18 +79,13 @@
     
     <script>
         document.getElementById('btnReset').addEventListener('click', function() {
-            // Reset input field
+            // resetinputan 
             document.querySelector('input[name="kode_peminjaman"]').value = '';
             
-            // Hide both result table and alert message
+            // sembunyikan tabel
             const resultTable = document.getElementById('resultTable');
-            const alertMessage = document.getElementById('alertMessage');
-            
             if (resultTable) {
                 resultTable.style.display = 'none';
-            }
-            if (alertMessage) {
-                alertMessage.style.display = 'none';
             }
         });
     </script>
