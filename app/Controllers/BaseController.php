@@ -25,8 +25,6 @@ use App\Models\FileFotoModel;
 use App\Models\FotoPengurusModel;
 use App\Models\GaleriKegiatanModel;
 use App\Models\PengunjungModel;
-use App\Models\LaporanModel;
-use App\Models\VidioModel;
 use App\Models\JabatanModel;
 use App\Models\WebOptionModel;
 
@@ -100,7 +98,6 @@ abstract class BaseController extends Controller
     protected $m_barang_baik;
     protected $m_pinjam_barang;
     protected $m_user_peminjam;
-    protected $m_cara;
     protected $m_faq;
     protected $m_kategori_faq;
     protected $m_feedback;
@@ -109,10 +106,7 @@ abstract class BaseController extends Controller
     protected $fotoPengurusModel;
     protected $galeriKegiatanModel;
     protected $m_pengunjung;
-    protected $m_laporan;
-    protected $m_vidio;
     protected $m_jabatan;
-    protected $m_sop;
     protected $m_web_option;
 
     // Protected Inisialisasi GmailSend
@@ -157,8 +151,6 @@ abstract class BaseController extends Controller
         $this->fotoPengurusModel = new FotoPengurusModel();
         $this->galeriKegiatanModel = new GaleriKegiatanModel();
         $this->m_pengunjung = new PengunjungModel();
-        $this->m_laporan = new LaporanModel();
-        $this->m_vidio = new VidioModel();
         $this->m_jabatan = new JabatanModel();
         $this->m_web_option = new WebOptionModel();
     }

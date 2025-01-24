@@ -28,10 +28,7 @@ class Home extends BaseController
 
     public function about()
     {
-
-
         $data = [];
-
 
         return view('about', $data);
     }
