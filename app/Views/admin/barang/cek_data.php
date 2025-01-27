@@ -147,6 +147,14 @@
                                             </div>
 
                                             <div class="col-md-2">
+                                                <label class="fw-bold text-black">Total Dipinjam</label>
+                                            </div>
+                                            <div class="col-auto">:</div>
+                                            <div class="col-md-8">
+                                                <p><?= esc($tb_barang['jumlah_dipinjam'] ?? '', 'html'); ?> Barang</p>
+                                            </div>
+
+                                            <div class="col-md-2">
                                                 <label class="fw-bold text-black">Tanggal Masuk</label>
                                             </div>
                                             <div class="col-auto">:</div>

@@ -225,6 +225,11 @@ class Home extends BaseController
                 'jumlah_total_baik' => $jumlahTotalBaik - $totalDipinjam
             ]);
 
+            // Update jumlah stok barang
+            $this->m_barang->update($idBarang, [
+                'jumlah_dipinjam' => $totalDipinjam
+            ]);
+
             // Siapkan pesan WhatsApp
             $message = "
             

@@ -4,6 +4,69 @@
         border-right: 1px solid #ccc;
         height: auto;
     }
+
+
+    .alert-info {
+        background-color: #f0f9ff;
+        border: 1px solid #bee5eb;
+        position: relative;
+    }
+
+    .icon-box {
+        width: 50px;
+        height: 50px;
+        background-color: #007bff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-size: 14px;
+    }
+
+    .icon-box span {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .background-animation {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 200%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.1) 75%);
+        z-index: 0;
+        animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+        0% {
+            transform: translateX(-100%);
+        }
+
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    .animate-info {
+        animation: fadeIn 1s ease-out;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>
 <!-- saya nonaktifkan agar side bar tidak dapat di klik sembarangan -->
 <div style="pointer-events: none;">
@@ -50,38 +113,61 @@
                                 <input type="hidden" name="path_file_foto_barang" value="<?= esc($tb_barang['path_file_foto_barang'], 'attr'); ?>">
 
                                 <div class="row">
-                                    <div class="col-md-6 mb-3 separator">
-                                        <label for="nama_barang" class="col-form-label">Nama Barang<span class="text-danger">*</span></label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control <?= session('errors.nama_barang') ? 'is-invalid' : ''; ?>" id="nama_barang" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_barang" value="<?= esc(old('nama_barang', $tb_barang['nama_barang']), 'attr'); ?>" autocomplete="off">
-
-                                            <?php if (session('errors.nama_barang')) : ?>
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.nama_barang') ?>
+                                    <div class="col-md-12 mb-3">
+                                        <div class="alert alert-info shadow-lg rounded-3 position-relative overflow-hidden animate-info">
+                                            <div class="d-flex align-items-center">
+                                                <div class="icon-box me-3 d-flex align-items-center justify-content-center">
+                                                    <span class="text-white fw-bold">INFO</span>
                                                 </div>
-                                            <?php endif ?>
+                                                <div>
+                                                    <h5 class="mb-1"><strong><span class="text-danger">*</span>INFORMASI STOCK <?= strtoupper(esc($tb_barang['nama_barang'])) ?> SAAT INI<span class="text-danger">*</span></strong></h5>
+                                                    <p class="mb-0">
+                                                        <strong>Total Barang :</strong> <span class="text-primary"><?= esc($tb_barang['jumlah_total']) ?> Barang <span style="color: black;">(HASIL DARI STOK TERSEDIA DITAMBAH DIPINJAM)</span></span><br>
+                                                        <strong>Dipinjam :</strong> <span class="text-danger"><?= esc($tb_barang['jumlah_dipinjam']) ?> Barang</span><br>
+                                                        <strong>Tersedia :</strong> <span class="text-success"><?= esc($tb_barang['jumlah_total'] - $tb_barang['jumlah_dipinjam']) ?> Barang </strong> <span style="color: black;">(GABUNGAN KONDISI BAIK DAN RUSAK)</span></span><br>
+                                                        <strong>Kondisi Baik/Layak :</strong> <span class="text-success"><?= esc($tb_barang['jumlah_total_baik']) ?> Barang</span><br>
+                                                        <strong>Kondisi Rusak :</strong> <span class="text-danger"><?= esc($tb_barang['jumlah_total_rusak']) ?> Barang</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="background-animation"></div>
                                         </div>
                                     </div>
-                                    <!-- autofocus input edit langsung kebelakang kata -->
-                                    <script>
-                                        window.addEventListener('DOMContentLoaded', function() {
-                                            var inputNamaBarang = document.getElementById('nama_barang');
+                                </div>
 
-                                            // Fungsi untuk mengatur fokus ke posisi akhir input
-                                            function setFocusToEnd(element) {
-                                                element.focus();
-                                                var val = element.value;
-                                                element.value = ''; // kosongkan nilai input
-                                                element.value = val; // isi kembali nilai input untuk memindahkan fokus ke posisi akhir
-                                            }
+                                <div class="mb-3">
+                                    <label for="nama_barang" class="col-form-label">Nama Barang<span class="text-danger">*</span></label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control <?= session('errors.nama_barang') ? 'is-invalid' : ''; ?>" id="nama_barang" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_barang" value="<?= esc(old('nama_barang', $tb_barang['nama_barang']), 'attr'); ?>" autocomplete="off">
 
-                                            // Panggil fungsi setFocusToEnd setelah DOM selesai dimuat
-                                            setFocusToEnd(inputNamaBarang);
-                                        });
-                                    </script>
-                                    <!-- end autofocus input edit langsung kebelakang kata -->
+                                        <?php if (session('errors.nama_barang')) : ?>
+                                            <div class="invalid-feedback">
+                                                <?= session('errors.nama_barang') ?>
+                                            </div>
+                                        <?php endif ?>
+                                    </div>
+                                </div>
+                                <!-- autofocus input edit langsung kebelakang kata -->
+                                <script>
+                                    window.addEventListener('DOMContentLoaded', function() {
+                                        var inputNamaBarang = document.getElementById('nama_barang');
 
-                                    <div class="col-md-6 mb-3">
+                                        // Fungsi untuk mengatur fokus ke posisi akhir input
+                                        function setFocusToEnd(element) {
+                                            element.focus();
+                                            var val = element.value;
+                                            element.value = ''; // kosongkan nilai input
+                                            element.value = val; // isi kembali nilai input untuk memindahkan fokus ke posisi akhir
+                                        }
+
+                                        // Panggil fungsi setFocusToEnd setelah DOM selesai dimuat
+                                        setFocusToEnd(inputNamaBarang);
+                                    });
+                                </script>
+                                <!-- end autofocus input edit langsung kebelakang kata -->
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3 separator">
                                         <label for="id_kategori_barang" class="col-form-label">Kategori Barang<span class="text-danger">*</span></label>
                                         <a href="<?= site_url('admin/kategori_barang'); ?>" class="btn rounded-pill">
                                             <i class="fa fa-plus"></i>
@@ -93,21 +179,6 @@
                                                 <option value="<?= $value['id_kategori_barang'] ?>" <?= $selected ?>><?= $value['nama_kategori'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-3 separator">
-                                        <label for="jumlah_total" class="col-form-label">Total Barang<span class="text-danger">*</span></label>
-                                        <div class="col-sm-12">
-                                            <input type="number" class="form-control <?= session('errors.jumlah_total') ? 'is-invalid' : ''; ?>" id="jumlah_total" style="background-color: white;" name="jumlah_total" placeholder="Masukkan Total Barang" value="<?= esc(old('jumlah_total', $tb_barang['jumlah_total']), 'attr'); ?>">
-
-                                            <?php if (session('errors.jumlah_total')) : ?>
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.jumlah_total') ?>
-                                                </div>
-                                            <?php endif ?>
-                                        </div>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
@@ -122,99 +193,6 @@
                                                 <option value="<?= $value['id_kondisi_barang'] ?>" <?= $selected ?>><?= $value['nama_kondisi'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-3 separator">
-                                        <label for="tanggal_masuk" class="col-form-label">Tanggal Masuk Barang<span class="text-danger">*</span></label>
-                                        <div class="col-sm-12">
-                                            <input type="date" class="form-control <?= session('errors.tanggal_masuk') ? 'is-invalid' : ''; ?>" id="tanggal_masuk" style="background-color: white;" name="tanggal_masuk" value="<?= esc(old('tanggal_masuk', $tb_barang['tanggal_masuk']), 'attr'); ?>">
-
-                                            <?php if (session('errors.tanggal_masuk')) : ?>
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.tanggal_masuk') ?>
-                                                </div>
-                                            <?php endif ?>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label for="keterangan_masuk" class="col-form-label">Keterangan Masuk<span class="text-danger">*</span></label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control <?= session('errors.keterangan_masuk') ? 'is-invalid' : ''; ?>" id="keterangan_masuk" name="keterangan_masuk" placeholder="Masukkan Keterangan Masuk Barang" style="background-color: white;" autofocus value="<?= old('keterangan_masuk'); ?>">
-
-                                            <?php if (session('errors.keterangan_masuk')) : ?>
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.keterangan_masuk') ?>
-                                                </div>
-                                            <?php endif ?>
-                                            <small class="form-text text-muted">
-                                                <span style="color: blue;"><span style="color: blue;">Note : Boleh dikosongi</span>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-3 separator">
-                                        <label for="jumlah_total_baik" class="col-form-label">Total Barang (Baik/Layak) :</label>
-                                        <div class="col-sm-12">
-                                            <input type="number" class="form-control <?= session('errors.jumlah_total_baik') ? 'is-invalid' : ''; ?>" id="jumlah_total_baik" name="jumlah_total_baik" placeholder="Masukkan Jumlah Total Barang Kondisi Layak" style="background-color: white;" autofocus value="<?= esc(old('jumlah_total_baik', $tb_barang['jumlah_total_baik']), 'attr'); ?>">
-
-                                            <?php if (session('errors.jumlah_total_baik')) : ?>
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.jumlah_total_baik') ?>
-                                                </div>
-                                            <?php endif ?>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label for="keterangan_baik" class="col-form-label">Keterangan Baik<span class="text-danger">*</span></label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control <?= session('errors.keterangan_baik') ? 'is-invalid' : ''; ?>" id="keterangan_baik" name="keterangan_baik" placeholder="Masukkan Keterangan Barang" style="background-color: white;" autofocus value="<?= old('keterangan_masuk'); ?>">
-
-                                            <?php if (session('errors.keterangan_baik')) : ?>
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.keterangan_baik') ?>
-                                                </div>
-                                            <?php endif ?>
-                                            <small class="form-text text-muted">
-                                                <span style="color: blue;"><span style="color: blue;">Note : Boleh dikosongi</span>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-3 separator">
-                                        <label for="jumlah_total_rusak" class="col-form-label">Total Barang (Rusak/Tidak Layak)<span class="text-danger">*</span></label>
-                                        <div class="col-sm-12">
-                                            <input type="number" class="form-control <?= session('errors.jumlah_total_rusak') ? 'is-invalid' : ''; ?>" id="jumlah_total_rusak" name="jumlah_total_rusak" placeholder="Masukkan Jumlah Total Barang Kondisi Rusak" style="background-color: white;" autofocus value="<?= esc(old('jumlah_total_rusak', $tb_barang['jumlah_total_rusak']), 'attr'); ?>">
-
-                                            <?php if (session('errors.jumlah_total_rusak')) : ?>
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.jumlah_total_rusak') ?>
-                                                </div>
-                                            <?php endif ?>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label for="keterangan_rusak" class="col-form-label">Keterangan Rusak<span class="text-danger">*</span></label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control <?= session('errors.keterangan_rusak') ? 'is-invalid' : ''; ?>" id="keterangan_rusak" name="keterangan_rusak" placeholder="Masukkan Keterangan Barang" style="background-color: white;" autofocus value="<?= old('keterangan_rusak'); ?>">
-
-                                            <?php if (session('errors.keterangan_rusak')) : ?>
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.keterangan_rusak') ?>
-                                                </div>
-                                            <?php endif ?>
-                                            <small class="form-text text-muted">
-                                                <span style="color: blue;"><span style="color: blue;">Note : Boleh dikosongi</span>
-                                            </small>
-                                        </div>
                                     </div>
                                 </div>
 

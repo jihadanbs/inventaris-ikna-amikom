@@ -50,6 +50,9 @@ class BarangController extends BaseController
 
         $data = $this->request->getPost();
 
+        $jumlahBaik = $data['jumlah_total_baik'] ?? 0;
+        $jumlahRusak = $data['jumlah_total_rusak'] ?? 0;
+
         // Konversi nilai jumlah ke integer untuk mencegah error tipe data
         $data['jumlah_total_baik'] = (int)($data['jumlah_total_baik'] ?? 0);
         $data['jumlah_total_rusak'] = (int)($data['jumlah_total_rusak'] ?? 0);
@@ -118,21 +121,27 @@ class BarangController extends BaseController
                 ]
             ],
             'jumlah_total' => [
-                'rules' => 'required',
+                'rules' => 'required|numeric|greater_than_equal_to[0]',
                 'errors' => [
-                    'required' => 'Silahkan Masukkan Jumlah Total dari Barang Tersebut !'
+                    'required' => 'Silahkan Masukkan Jumlah Total dari Barang Tersebut !',
+                    'numeric' => 'Jumlah harus berupa angka !',
+                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
                 ]
             ],
             'jumlah_total_baik' => [
-                'rules' => 'required',
+                'rules' => 'required|numeric|greater_than_equal_to[0]',
                 'errors' => [
-                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Layak !'
+                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Layak !',
+                    'numeric' => 'Jumlah harus berupa angka !',
+                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
                 ]
             ],
             'jumlah_total_rusak' => [
-                'rules' => 'required',
+                'rules' => 'required|numeric|greater_than_equal_to[0]',
                 'errors' => [
-                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Rusak !'
+                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Rusak !',
+                    'numeric' => 'Jumlah harus berupa angka !',
+                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
                 ]
             ],
             'path_file_foto_barang' => [
@@ -204,7 +213,7 @@ class BarangController extends BaseController
             $this->m_barang_masuk->insert([
                 'id_barang' => $idBarang,
                 'tanggal_masuk' => $data['tanggal_masuk'],
-                'keterangan_masuk' => $this->getKeteranganMasuk($data['tanggal_masuk'], $data['keterangan_masuk'] ?? ''),
+                'keterangan_masuk' => $this->getKeteranganMasuk($data['tanggal_masuk'], $data['keterangan_masuk'] ?? '', $jumlahBaik, $jumlahRusak),
             ]);
 
             return redirect()->to('/admin/barang')->with('pesan', 'Barang berhasil ditambahkan !');
@@ -233,14 +242,224 @@ class BarangController extends BaseController
         return $keterangan;
     }
 
-    private function getKeteranganMasuk($tanggal, $keterangan)
+    private function getKeteranganMasuk($tanggal, $keterangan, $jumlahBaik, $jumlahRusak)
     {
         if (empty(trim($keterangan))) {
             // Format tanggal ke format Indonesia
             $tanggal_formatted = date('d F Y', strtotime($tanggal));
-            return "Barang telah masuk ke dalam inventaris pada tanggal " . $tanggal_formatted;
+
+            $keteranganJumlah = [];
+            if ($jumlahBaik > 0) {
+                $keteranganJumlah[] = "$jumlahBaik barang dalam kondisi baik";
+            }
+            if ($jumlahRusak > 0) {
+                $keteranganJumlah[] = "$jumlahRusak barang dalam kondisi rusak";
+            }
+
+            $detailJumlah = implode(' dan ', $keteranganJumlah);
+
+            return "Penambahan " . $detailJumlah . " ke dalam inventaris pada tanggal " . $tanggal_formatted;
         }
         return $keterangan;
+    }
+
+    private function getKeteranganStokMasuk($tanggal, $keterangan, $jumlahBaik, $jumlahRusak)
+    {
+        if (empty(trim($keterangan))) {
+            // Format tanggal ke format Indonesia
+            $tanggal_formatted = date('d F Y', strtotime($tanggal));
+
+            $keteranganJumlah = [];
+            if ($jumlahBaik > 0) {
+                $keteranganJumlah[] = "$jumlahBaik barang dalam kondisi baik";
+            }
+            if ($jumlahRusak > 0) {
+                $keteranganJumlah[] = "$jumlahRusak barang dalam kondisi rusak";
+            }
+
+            $detailJumlah = implode(' dan ', $keteranganJumlah);
+
+            return "Penambahan Stok " . $detailJumlah . " ke dalam inventaris pada tanggal " . $tanggal_formatted;
+        }
+        return $keterangan;
+    }
+
+
+    public function tambahStok($slug)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession(); // Redirect jika sesi tidak valid
+        }
+
+        // Menyiapkan data untuk tampilan
+        $data = array_merge([
+            'title' => 'Admin | Halaman Tambah Stok Barang',
+            'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
+            'tb_barang' => $this->m_barang->getBarangBySlug($slug),
+            'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
+            'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
+        ]);
+
+        return view('admin/barang/tambah_stok', $data);
+    }
+
+    public function saveStok($id_barang)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
+
+        $rules = [
+            'tanggal_masuk' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Tanggal Masuk Barang !'
+                ]
+            ],
+            'jumlah_total_baik' => [
+                'rules' => 'required|numeric|greater_than_equal_to[0]',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Layak !',
+                    'numeric' => 'Jumlah harus berupa angka !',
+                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
+                ]
+            ],
+            'jumlah_total_rusak' => [
+                'rules' => 'required|numeric|greater_than_equal_to[0]',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Rusak !',
+                    'numeric' => 'Jumlah harus berupa angka !',
+                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
+                ]
+            ]
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $data = $this->request->getPost();
+
+        // Pastikan nilai numerik
+        $totalBarangBaik = (int)$data['jumlah_total_baik'];
+        $totalBarangRusak = (int)$data['jumlah_total_rusak'];
+        $totalBaru = $totalBarangBaik + $totalBarangRusak;
+
+        if ($totalBaru <= 0) {
+            return redirect()->back()->with('error', 'Total barang harus lebih dari 0');
+        }
+
+        $this->db->transStart();
+        try {
+            $barangLama = $this->m_barang->find($id_barang);
+
+            if ($barangLama) {
+                $stokTersedia = $barangLama['jumlah_total'] - $barangLama['jumlah_dipinjam'];
+
+                // Mengambil data barang baik dan rusak saat ini
+                $barangBaik = $this->m_barang_baik->where('id_barang', $id_barang)->first();
+                $barangRusak = $this->m_barang_rusak->where('id_barang', $id_barang)->first();
+
+                // Update jumlah total
+                $jumlahBaik = ($barangBaik ? $barangBaik['jumlah_total_baik'] : 0) + $totalBarangBaik;
+                $jumlahRusak = ($barangRusak ? $barangRusak['jumlah_total_rusak'] : 0) + $totalBarangRusak;
+
+                if ($stokTersedia > 0) {
+                    // Update item yang sudah ada
+                    $updateData = [
+                        'jumlah_total' => $barangLama['jumlah_total'] + $totalBaru,
+                        'id_kondisi_barang' => $data['id_kondisi_barang'],
+                        'tanggal_masuk' => $data['tanggal_masuk']
+                    ];
+
+                    $this->m_barang->update($id_barang, $updateData);
+                    $newItemId = $id_barang;
+                } else {
+                    // Membuat item baru
+                    $insertData = [
+                        'nama_barang' => $barangLama['nama_barang'],
+                        'id_kategori_barang' => $data['id_kategori_barang'],
+                        'jumlah_total' => $totalBaru,
+                        'jumlah_dipinjam' => 0,
+                        'id_kondisi_barang' => $data['id_kondisi_barang'],
+                        'tanggal_masuk' => $data['tanggal_masuk'],
+                        'slug' => $barangLama['slug']
+                    ];
+
+                    $newItemId = $this->m_barang->insert($insertData);
+                }
+
+                // Update atau insert barang baik
+                if ($barangBaik) {
+                    $this->m_barang_baik->where('id_barang', $id_barang)->set([
+                        'jumlah_total_baik' => $jumlahBaik,
+                        'keterangan_baik' => $this->getKeteranganBaik($data['jumlah_total_baik'], $data['keterangan_baik'] ?? '')
+                    ])->update();
+                } else {
+                    $this->m_barang_baik->insert([
+                        'id_barang' => $id_barang,
+                        'jumlah_total_baik' => $jumlahBaik,
+                        'keterangan_baik' => $this->getKeteranganBaik($data['jumlah_total_baik'], $data['keterangan_baik'] ?? '')
+                    ]);
+                }
+
+
+                // Update atau insert barang rusak
+                if ($barangRusak) {
+                    $this->m_barang_rusak->where('id_barang', $id_barang)->set([
+                        'jumlah_total_rusak' => $jumlahRusak,
+                        'keterangan_rusak' => $this->getKeteranganRusak($data['jumlah_total_rusak'], $data['keterangan_rusak'] ?? '')
+                    ])->update();
+                } else {
+                    $this->m_barang_rusak->insert([
+                        'id_barang' => $id_barang,
+                        'jumlah_total_rusak' => $jumlahRusak,
+                        'keterangan_rusak' => $this->getKeteranganRusak($data['jumlah_total_rusak'], $data['keterangan_rusak'] ?? '')
+                    ]);
+                }
+
+                // Simpan data ke tb barang masuk
+                $this->m_barang_masuk->insert([
+                    'id_barang' => $id_barang,
+                    'tanggal_masuk' => $data['tanggal_masuk'],
+                    'keterangan_masuk' => $this->getKeteranganStokMasuk($data['tanggal_masuk'], $data['keterangan_masuk'] ?? '', $totalBarangBaik,  $totalBarangRusak),
+                ]);
+
+                // Rekam riwayat untuk barang dengan kondisi baik
+                if ($totalBarangBaik > 0) {
+                    $this->m_history_barang->insert([
+                        'id_barang' => $newItemId,
+                        'jumlah_masuk' => $totalBarangBaik,
+                        'created_by' => session()->get('id_user')
+                    ]);
+                }
+
+                // Rekam riwayat barang yang rusak
+                if ($totalBarangRusak > 0) {
+                    $this->m_history_barang->insert([
+                        'id_barang' => $newItemId,
+                        'jumlah_masuk' => $totalBarangRusak,
+                        'created_by' => session()->get('id_user') // Ambil ID user dari session
+                    ]);
+                }
+            } else {
+                throw new \Exception('Data barang tidak ditemukan');
+            }
+
+            $this->db->transComplete();
+
+            if ($this->db->transStatus() === false) {
+                throw new \Exception('Transaksi database gagal');
+            }
+
+            return redirect()->to('/admin/barang')->with('pesan', 'Stok barang berhasil ditambahkan !');
+        } catch (\Exception $e) {
+            $this->db->transRollback();
+            log_message('error', 'Error in saveStok: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Gagal menambah stok: ' . $e->getMessage());
+        }
     }
 
     public function delete()
@@ -404,7 +623,7 @@ class BarangController extends BaseController
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
-            return $this->checkSession(); // Redirect jika sesi tidak valid
+            return $this->checkSession();
         }
 
         $data = $this->request->getPost();
@@ -414,100 +633,100 @@ class BarangController extends BaseController
             return redirect()->back()->with('error', 'Data barang tidak ditemukan !');
         }
 
-        // Konversi nilai jumlah ke integer untuk mencegah error tipe data
-        $data['jumlah_total_baik'] = (int)($data['jumlah_total_baik'] ?? 0);
-        $data['jumlah_total_rusak'] = (int)($data['jumlah_total_rusak'] ?? 0);
-        $data['jumlah_total'] = (int)($data['jumlah_total'] ?? 0);
+        // // Konversi nilai jumlah ke integer untuk mencegah error tipe data
+        // $data['jumlah_total_baik'] = (int)($data['jumlah_total_baik'] ?? 0);
+        // $data['jumlah_total_rusak'] = (int)($data['jumlah_total_rusak'] ?? 0);
+        // $data['jumlah_total'] = (int)($data['jumlah_total'] ?? 0);
 
-        // Konversi nilai existing ke integer untuk perbandingan yang akurat
-        $existingBarang['jumlah_total'] = (int)$existingBarang['jumlah_total'];
+        // // Konversi nilai existing ke integer untuk perbandingan yang akurat
+        // $existingBarang['jumlah_total'] = (int)$existingBarang['jumlah_total'];
 
-        // Get existing related data
-        $existingBarangBaik = $this->m_barang_baik->where('id_barang', $id_barang)->first();
-        $existingBarangRusak = $this->m_barang_rusak->where('id_barang', $id_barang)->first();
-        $existingBarangMasuk = $this->m_barang_masuk->where('id_barang', $id_barang)->first();
+        // // Get existing related data
+        // $existingBarangBaik = $this->m_barang_baik->where('id_barang', $id_barang)->first();
+        // $existingBarangRusak = $this->m_barang_rusak->where('id_barang', $id_barang)->first();
+        // $existingBarangMasuk = $this->m_barang_masuk->where('id_barang', $id_barang)->first();
 
-        // Konversi nilai existing related data ke integer
-        $existingBarangBaik['jumlah_total_baik'] = (int)$existingBarangBaik['jumlah_total_baik'];
-        $existingBarangRusak['jumlah_total_rusak'] = (int)$existingBarangRusak['jumlah_total_rusak'];
+        // // Konversi nilai existing related data ke integer
+        // $existingBarangBaik['jumlah_total_baik'] = (int)$existingBarangBaik['jumlah_total_baik'];
+        // $existingBarangRusak['jumlah_total_rusak'] = (int)$existingBarangRusak['jumlah_total_rusak'];
 
         $changes = [];
 
-        // Compare main table changes dengan strict comparison (===)
+        // Bandingkan perubahan tabel utama dengan perbandingan ketat (===)
         if ($existingBarang['nama_barang'] !== trim($data['nama_barang'])) {
-            $changes[] = 'nama barang';
+            $changes[] = 'Nama Barang';
         }
         if ((int)$existingBarang['id_kategori_barang'] !== (int)$data['id_kategori_barang']) {
-            $changes[] = 'kategori barang';
+            $changes[] = 'Kategori Barang';
         }
         if ((int)$existingBarang['id_kondisi_barang'] !== (int)$data['id_kondisi_barang']) {
-            $changes[] = 'kondisi barang';
+            $changes[] = 'Kondisi Barang';
         }
-        if ($existingBarang['jumlah_total'] !== $data['jumlah_total']) {
-            $changes[] = 'jumlah total';
-        }
+        // if ($existingBarang['jumlah_total'] !== $data['jumlah_total']) {
+        //     $changes[] = 'jumlah total';
+        // }
         if ($existingBarang['deskripsi'] !== trim($data['deskripsi'])) {
-            $changes[] = 'deskripsi';
+            $changes[] = 'Deskripsi';
         }
 
-        // Cek perubahan jumlah_total_baik dan keterangan_baik
-        if ($existingBarangBaik['jumlah_total_baik'] !== $data['jumlah_total_baik']) {
-            $changes[] = 'jumlah barang baik';
-        } else {
-            // Bandingkan keterangan yang akan dihasilkan oleh getter
-            $oldKetBaik = $this->getKeteranganBaik($existingBarangBaik['jumlah_total_baik'], $existingBarangBaik['keterangan_baik']);
-            $newKetBaik = $this->getKeteranganBaik($data['jumlah_total_baik'], $data['keterangan_baik'] ?? '');
-            if ($oldKetBaik !== $newKetBaik) {
-                $changes[] = 'keterangan baik';
-            }
-        }
+        // // Cek perubahan jumlah_total_baik dan keterangan_baik
+        // if ($existingBarangBaik['jumlah_total_baik'] !== $data['jumlah_total_baik']) {
+        //     $changes[] = 'jumlah barang baik';
+        // } else {
+        //     // Bandingkan keterangan yang akan dihasilkan oleh getter
+        //     $oldKetBaik = $this->getKeteranganBaik($existingBarangBaik['jumlah_total_baik'], $existingBarangBaik['keterangan_baik']);
+        //     $newKetBaik = $this->getKeteranganBaik($data['jumlah_total_baik'], $data['keterangan_baik'] ?? '');
+        //     if ($oldKetBaik !== $newKetBaik) {
+        //         $changes[] = 'keterangan baik';
+        //     }
+        // }
 
-        // Cek perubahan jumlah_total_rusak dan keterangan_rusak
-        if ($existingBarangRusak['jumlah_total_rusak'] !== $data['jumlah_total_rusak']) {
-            $changes[] = 'jumlah barang rusak';
-        } else {
-            // Bandingkan keterangan yang akan dihasilkan oleh getter
-            $oldKetRusak = $this->getKeteranganRusak($existingBarangRusak['jumlah_total_rusak'], $existingBarangRusak['keterangan_rusak']);
-            $newKetRusak = $this->getKeteranganRusak($data['jumlah_total_rusak'], $data['keterangan_rusak'] ?? '');
-            if ($oldKetRusak !== $newKetRusak) {
-                $changes[] = 'keterangan rusak';
-            }
-        }
+        // // Cek perubahan jumlah_total_rusak dan keterangan_rusak
+        // if ($existingBarangRusak['jumlah_total_rusak'] !== $data['jumlah_total_rusak']) {
+        //     $changes[] = 'jumlah barang rusak';
+        // } else {
+        //     // Bandingkan keterangan yang akan dihasilkan oleh getter
+        //     $oldKetRusak = $this->getKeteranganRusak($existingBarangRusak['jumlah_total_rusak'], $existingBarangRusak['keterangan_rusak']);
+        //     $newKetRusak = $this->getKeteranganRusak($data['jumlah_total_rusak'], $data['keterangan_rusak'] ?? '');
+        //     if ($oldKetRusak !== $newKetRusak) {
+        //         $changes[] = 'keterangan rusak';
+        //     }
+        // }
 
-        // Cek perubahan tanggal_masuk dan keterangan_masuk
-        if ($existingBarangMasuk['tanggal_masuk'] !== $data['tanggal_masuk']) {
-            $changes[] = 'tanggal masuk';
-        } else {
-            // Bandingkan keterangan yang akan dihasilkan oleh getter
-            $oldKetMasuk = $this->getKeteranganMasuk($existingBarangMasuk['tanggal_masuk'], $existingBarangMasuk['keterangan_masuk']);
-            $newKetMasuk = $this->getKeteranganMasuk($data['tanggal_masuk'], $data['keterangan_masuk'] ?? '');
-            if ($oldKetMasuk !== $newKetMasuk) {
-                $changes[] = 'keterangan masuk';
-            }
-        }
+        // // Cek perubahan tanggal_masuk dan keterangan_masuk
+        // if ($existingBarangMasuk['tanggal_masuk'] !== $data['tanggal_masuk']) {
+        //     $changes[] = 'tanggal masuk';
+        // } else {
+        //     // Bandingkan keterangan yang akan dihasilkan oleh getter
+        //     $oldKetMasuk = $this->getKeteranganMasuk($existingBarangMasuk['tanggal_masuk'], $existingBarangMasuk['keterangan_masuk']);
+        //     $newKetMasuk = $this->getKeteranganMasuk($data['tanggal_masuk'], $data['keterangan_masuk'] ?? '');
+        //     if ($oldKetMasuk !== $newKetMasuk) {
+        //         $changes[] = 'keterangan masuk';
+        //     }
+        // }
 
-        // Check if files were uploaded
+        // Periksa apakah file telah diunggah
         $filesUploaded = $this->request->getFileMultiple('path_file_foto_barang');
         if ($filesUploaded && is_array($filesUploaded)) {
             foreach ($filesUploaded as $file) {
                 if ($file->isValid() && !$file->hasMoved()) {
-                    $changes[] = 'foto barang';
+                    $changes[] = 'Foto Barang';
                     break;
                 }
             }
         }
 
-        // If no changes detected, redirect back with message
+        // Jika tidak ada perubahan yang terdeteksi, arahkan kembali dengan pesan
         if (empty($changes)) {
             return redirect()->to('/admin/barang')->with('warning', 'Tidak ada data barang yang diubah !');
         }
 
-        // Validasi jumlah baik dan rusak tidak melebihi atau kurang dari jumlah total
-        if (($data['jumlah_total_baik'] + $data['jumlah_total_rusak']) > $data['jumlah_total']) {
-            return redirect()->back()->withInput()->with('error', 'Jumlah barang layak dan rusak tidak boleh melebihi jumlah total barang yang dimasukkan !');
-        } else if (($data['jumlah_total_baik'] + $data['jumlah_total_rusak']) < $data['jumlah_total']) {
-            return redirect()->back()->withInput()->with('error', 'Total jumlah dari barang layak dan rusak (' . $data['jumlah_total_baik'] + $data['jumlah_total_rusak'] . ') kurang dari jumlah total barang yang dimasukkan (' . $data['jumlah_total'] . ') !');
-        }
+        // // Validasi jumlah baik dan rusak tidak melebihi atau kurang dari jumlah total
+        // if (($data['jumlah_total_baik'] + $data['jumlah_total_rusak']) > $data['jumlah_total']) {
+        //     return redirect()->back()->withInput()->with('error', 'Jumlah barang layak dan rusak tidak boleh melebihi jumlah total barang yang dimasukkan !');
+        // } else if (($data['jumlah_total_baik'] + $data['jumlah_total_rusak']) < $data['jumlah_total']) {
+        //     return redirect()->back()->withInput()->with('error', 'Total jumlah dari barang layak dan rusak (' . $data['jumlah_total_baik'] + $data['jumlah_total_rusak'] . ') kurang dari jumlah total barang yang dimasukkan (' . $data['jumlah_total'] . ') !');
+        // }
 
         //validasi input 
         $rules = [
@@ -540,48 +759,48 @@ class BarangController extends BaseController
                     'max_length' => 'Deskripsi tidak boleh melebihi 255 karakter !',
                 ]
             ],
-            'tanggal_masuk' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Silahkan Masukkan Tanggal Masuk Barang !'
-                ]
-            ],
-            'keterangan_masuk' => [
-                'rules' => 'max_length[255]',
-                'errors' => [
-                    'max_length' => 'Keterangan tidak boleh melebihi 255 karakter !',
-                ]
-            ],
-            'keterangan_baik' => [
-                'rules' => 'max_length[255]',
-                'errors' => [
-                    'max_length' => 'Keterangan tidak boleh melebihi 255 karakter !',
-                ]
-            ],
-            'keterangan_rusak' => [
-                'rules' => 'max_length[255]',
-                'errors' => [
-                    'max_length' => 'Keterangan tidak boleh melebihi 255 karakter !',
-                ]
-            ],
-            'jumlah_total' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Silahkan Masukkan Jumlah Total dari Barang Tersebut !'
-                ]
-            ],
-            'jumlah_total_baik' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Layak !'
-                ]
-            ],
-            'jumlah_total_rusak' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Rusak !'
-                ]
-            ],
+            // 'tanggal_masuk' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Silahkan Masukkan Tanggal Masuk Barang !'
+            //     ]
+            // ],
+            // 'keterangan_masuk' => [
+            //     'rules' => 'max_length[255]',
+            //     'errors' => [
+            //         'max_length' => 'Keterangan tidak boleh melebihi 255 karakter !',
+            //     ]
+            // ],
+            // 'keterangan_baik' => [
+            //     'rules' => 'max_length[255]',
+            //     'errors' => [
+            //         'max_length' => 'Keterangan tidak boleh melebihi 255 karakter !',
+            //     ]
+            // ],
+            // 'keterangan_rusak' => [
+            //     'rules' => 'max_length[255]',
+            //     'errors' => [
+            //         'max_length' => 'Keterangan tidak boleh melebihi 255 karakter !',
+            //     ]
+            // ],
+            // 'jumlah_total' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Silahkan Masukkan Jumlah Total dari Barang Tersebut !'
+            //     ]
+            // ],
+            // 'jumlah_total_baik' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Layak !'
+            //     ]
+            // ],
+            // 'jumlah_total_rusak' => [
+            //     'rules' => 'required',
+            //     'errors' => [
+            //         'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Rusak !'
+            //     ]
+            // ],
         ];
 
         // Cek file upload dengan cara yang lebih aman
@@ -622,7 +841,7 @@ class BarangController extends BaseController
             'nama_barang' => $data['nama_barang'],
             'id_kategori_barang' => $data['id_kategori_barang'],
             'id_kondisi_barang' => $data['id_kondisi_barang'],
-            'jumlah_total' => $data['jumlah_total'],
+            // 'jumlah_total' => $data['jumlah_total'],
             'deskripsi' => $data['deskripsi'],
             'slug' => url_title($data['nama_barang'], '-', true)
         ];
@@ -673,32 +892,32 @@ class BarangController extends BaseController
                 $dataToUpdate['path_file_foto_barang'] = $data['old_path_file_foto_barang'];
             }
 
-            // Update tabel barang_baik
-            $this->m_barang_baik->where('id_barang', $id_barang)->set([
-                'jumlah_total_baik' => $data['jumlah_total_baik'],
-                'keterangan_baik' => $this->getKeteranganBaik($data['jumlah_total_baik'], $data['keterangan_baik'] ?? '')
-            ])->update();
+            // // Update tabel barang_baik
+            // $this->m_barang_baik->where('id_barang', $id_barang)->set([
+            //     'jumlah_total_baik' => $data['jumlah_total_baik'],
+            //     'keterangan_baik' => $this->getKeteranganBaik($data['jumlah_total_baik'], $data['keterangan_baik'] ?? '')
+            // ])->update();
 
-            // Update tabel barang_rusak
-            $this->m_barang_rusak->where('id_barang', $id_barang)->set([
-                'jumlah_total_rusak' => $data['jumlah_total_rusak'],
-                'keterangan_rusak' => $this->getKeteranganRusak($data['jumlah_total_rusak'], $data['keterangan_rusak'] ?? '')
-            ])->update();
+            // // Update tabel barang_rusak
+            // $this->m_barang_rusak->where('id_barang', $id_barang)->set([
+            //     'jumlah_total_rusak' => $data['jumlah_total_rusak'],
+            //     'keterangan_rusak' => $this->getKeteranganRusak($data['jumlah_total_rusak'], $data['keterangan_rusak'] ?? '')
+            // ])->update();
 
-            // Update tabel barang_masuk
-            $this->m_barang_masuk->where('id_barang', $id_barang)->set([
-                'tanggal_masuk' => $data['tanggal_masuk'],
-                'keterangan_masuk' => $this->getKeteranganMasuk($data['tanggal_masuk'], $data['keterangan_masuk'] ?? '')
-            ])->update();
+            // // Update tabel barang_masuk
+            // $this->m_barang_masuk->where('id_barang', $id_barang)->set([
+            //     'tanggal_masuk' => $data['tanggal_masuk'],
+            //     'keterangan_masuk' => $this->getKeteranganMasuk($data['tanggal_masuk'], $data['keterangan_masuk'] ?? '')
+            // ])->update();
 
             $this->db->transComplete();
 
             if ($this->db->transStatus() === false) {
-                return redirect()->back()->with('error', 'Gagal mengubah data barang!');
+                return redirect()->back()->with('error', 'Gagal mengubah data barang !');
             }
 
             $changedFields = implode(', ', $changes);
-            return redirect()->to('/admin/barang')->with('pesan', 'Data Barang Berhasil Diubah! Perubahan pada: ' . $changedFields);
+            return redirect()->to('/admin/barang')->with('pesan', 'Data Barang Berhasil Diubah! Perubahan pada: <strong>' . $changedFields . '</strong>');
         } catch (\Exception $e) {
             $this->db->transRollback();
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());

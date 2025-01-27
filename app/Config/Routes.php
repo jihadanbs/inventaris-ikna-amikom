@@ -86,6 +86,8 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     /*=================================== BARANG IKNA ====================================*/
     $routes->GET('barang', 'BarangController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang', static function ($routes) {
+        $routes->POST('saveStok/(:num)', 'BarangController::saveStok/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('tambah_stok/(:segment)', 'BarangController::tambahStok/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('totalData', 'BarangController::totalData', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('tambah', 'BarangController::tambah', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('save', 'BarangController::save', ['namespace' => 'App\Controllers\Admin']);
