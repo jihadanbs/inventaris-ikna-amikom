@@ -120,8 +120,8 @@
                                             <td><?= formatTanggalIndo($row['tanggal_pengajuan']); ?></td>
                                             <td><?= $row['total_dipinjam']; ?> Unit</td>
                                             <td class="text-center">
-                                                <?php if ($row['status'] === 'Diproses') : ?>
-                                                    <span class="badge bg-primary-subtle text-primary">Diproses</span>
+                                                <?php if ($row['status'] === 'Belum Diproses') : ?>
+                                                    <span class="badge bg-primary-subtle text-primary">Belum Diproses</span>
                                                 <?php elseif ($row['status'] === 'Ditolak') : ?>
                                                     <span class="badge bg-danger-subtle text-danger">Ditolak</span>
                                                 <?php elseif ($row['status'] === 'Dipinjamkan') : ?>
