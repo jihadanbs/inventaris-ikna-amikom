@@ -53,7 +53,8 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang_masuk') ?>">Barang IKNA</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Aktivitas Barang</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Barang Masuk</a></li>
                                 <li class="breadcrumb-item active">Data Barang Masuk</li>
                             </ol>
                         </div>

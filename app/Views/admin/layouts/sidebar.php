@@ -107,8 +107,8 @@
                         <span data-key="t-components">Aktivitas Barang</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="barang_masuk" data-key="t-apps">Data Barang Masuk</a></li>
-                        <li><a href="barang_keluar" data-key="t-apps">Data Barang Keluar</a></li>
+                        <li><a href="barang_masuk" data-key="t-apps">Barang Masuk</a></li>
+                        <li><a href="barang_keluar" data-key="t-apps">Barang Keluar</a></li>
                     </ul>
                 </li>
 
