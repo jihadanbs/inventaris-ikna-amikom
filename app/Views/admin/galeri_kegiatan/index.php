@@ -137,7 +137,7 @@
                                             <td style="width: 155px">
                                                 <a href="<?= site_url('admin/galeri-kegiatan/cek_data/' . $row['judul_kegiatan']); ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id_kegiatan="<?= $row['id_kegiatan'] ?>">
-                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                    <i class="fas fa-trash-alt"></i> Hapus
                                                 </button>
                                             </td>
                                         </tr>

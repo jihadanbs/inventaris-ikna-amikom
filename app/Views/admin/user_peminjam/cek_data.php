@@ -298,11 +298,8 @@
                                 <a href="<?= esc(site_url('admin/user_peminjam'), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
                                     <i class="fas fa-arrow-left"></i> Kembali
                                 </a>
-                                <a href="<?= esc(site_url('admin/user_peminjam/edit/' . urlencode($tb_user_peminjam['slug'])), 'attr') ?>" class="btn btn-warning btn-md edit">
-                                    <i class="fas fa-pencil-alt"></i> Edit
-                                </a>
                                 <button type="button" class="btn btn-danger btn-md ml-3 waves-effect waves-light sa-warning" data-id="<?= $tb_user_peminjam['id_user_peminjam'] ?>">
-                                    <i class="fas fa-trash-alt"></i> Delete
+                                    <i class="fas fa-trash-alt"></i> Hapus
                                 </button>
                             </div>
                         </div>

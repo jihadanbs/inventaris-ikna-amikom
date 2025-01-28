@@ -71,14 +71,14 @@
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="editBarangModalLabel">Edit Data Barang Baik</h5>
+                                            <h5 class="modal-title" id="editBarangModalLabel">Ubah Data Barang Baik</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <form id="editBarangForm">
                                             <div class="modal-body">
                                                 <input type="hidden" id="id_barang_baik" name="id_barang_baik">
                                                 <div class="mb-3">
-                                                    <label for="jumlah_total_baik" class="form-label">Jumlah Total Baik<span class="text-danger">*</span></label>
+                                                    <label for="jumlah_total_baik" class="form-label">Jumlah Total Kondisi Baik/Layak<span class="text-danger">*</span></label>
                                                     <input type="number" style="background-color: white;" class="form-control" id="jumlah_total_baik" name="jumlah_total_baik" required>
                                                 </div>
                                                 <div class="mb-3">
@@ -87,8 +87,8 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Tutup</button>
+                                                <button type="submit" class="btn btn-warning btn-md edit"><i class="fas fa-save"></i> Simpan Perubahan Data</button>
                                             </div>
                                         </form>
                                     </div>
@@ -135,7 +135,7 @@
                                             <td><?= $row['jumlah_total_baik']; ?> Unit</td>
                                             <td><?= $row['keterangan_baik']; ?></td>
                                             <td>
-                                                <button type="button" class="btn btn-warning btn-sm view" onclick="editBarang(<?= $row['id_barang_baik'] ?>, <?= $row['jumlah_total_baik'] ?>, '<?= $row['keterangan_baik'] ?>')"><i class="fas fa-edit"></i> Edit</button>
+                                                <button type="button" class="btn btn-warning btn-sm view" onclick="editBarang(<?= $row['id_barang_baik'] ?>, <?= $row['jumlah_total_baik'] ?>, '<?= $row['keterangan_baik'] ?>')"><i class="fas fa-edit"></i> Ubah</button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -164,31 +164,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     'colvis'
@@ -212,13 +212,12 @@
             const formData = new FormData(this);
             const id = formData.get('id_barang_baik');
 
-            // Convert FormData to JSON object
             const data = {
                 jumlah_total_baik: formData.get('jumlah_total_baik'),
                 keterangan_baik: formData.get('keterangan_baik')
             };
 
-            fetch(`<?= base_url('admin/barang_baik/update') ?>/${id}`, {
+            fetch(`<?= site_url('admin/barang_baik/update') ?>/${id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -230,7 +229,6 @@
                 .then(data => {
                     if (data.success) {
                         bootstrap.Modal.getInstance(document.getElementById('editBarangModal')).hide();
-                        // Refresh the table or update the specific row
                         location.reload();
                     } else {
                         alert(data.message);

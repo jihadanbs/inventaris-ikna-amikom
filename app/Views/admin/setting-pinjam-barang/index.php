@@ -127,9 +127,9 @@
                                                 </div>
                                             </td>
                                             <td style="width: 155px">
-                                                <a href="<?= site_url('admin/setting-pinjam-barang/edit/' . $row['slug']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a>
+                                                <a href="<?= site_url('admin/setting-pinjam-barang/edit/' . $row['slug']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Ubah</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_setting_pinjam_barang'] ?>">
-                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                    <i class="fas fa-trash-alt"></i> Hapus
                                                 </button>
                                             </td>
                                         </tr>

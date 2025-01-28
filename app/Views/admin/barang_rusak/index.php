@@ -67,6 +67,33 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="modal fade" id="editBarangModal" tabindex="-1" aria-labelledby="editBarangModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editBarangModalLabel">Ubah Data Barang Rusak</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form id="editBarangForm">
+                                            <div class="modal-body">
+                                                <input type="hidden" id="id_barang_rusak" name="id_barang_rusak">
+                                                <div class="mb-3">
+                                                    <label for="jumlah_total_rusak" class="form-label">Jumlah Total Kondisi Rusak<span class="text-danger">*</span></label>
+                                                    <input type="number" style="background-color: white;" class="form-control" id="jumlah_total_rusak" name="jumlah_total_rusak" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="keterangan_rusak" class="form-label">Keterangan<span class="text-danger">*</span></label>
+                                                    <textarea class="form-control" style="background-color: white;" id="keterangan_rusak" name="keterangan_rusak" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Tutup</button>
+                                                <button type="submit" class="btn btn-warning btn-md edit"><i class="fas fa-save"></i> Simpan Perubahan Data</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <?php
                             function truncateText($text, $maxLength)
                             {
@@ -87,11 +114,7 @@
                             ?>
                             <table id="tableBarangRusak" class="table table-bordered dt-responsive nowrap w-100">
                                 <?= $this->include('alert/alert'); ?>
-                                <!-- <div class="col-md-3 mb-3">
-                                    <a href=" <?= site_url('admin/barang_rusak/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
-                                        <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
-                                    </a>
-                                </div> -->
+
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
@@ -113,10 +136,7 @@
                                             <td><?= $row['jumlah_total_rusak']; ?> Unit</td>
                                             <td><?= $row['keterangan_rusak']; ?></td>
                                             <td style="width: 50px">
-                                                <a href="<?= site_url('admin/barang_rusak/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a>
-                                                <!-- <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_rusak'] ?>">
-                                                    <i class="fas fa-trash-alt"></i> Delete
-                                                </button> -->
+                                                <button type="button" class="btn btn-warning btn-sm view" onclick="editBarang(<?= $row['id_barang_rusak'] ?>, <?= $row['jumlah_total_rusak'] ?>, '<?= $row['keterangan_rusak'] ?>')"><i class="fas fa-edit"></i> Ubah</button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -145,31 +165,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     'colvis'
@@ -178,62 +198,49 @@
         });
     </script>
 
-    <!-- HAPUS -->
     <script>
-        $(document).ready(function() {
-            $('.sa-warning').click(function(e) {
-                e.preventDefault();
-                var id_barang_rusak = $(this).data('id');
+        function editBarang(id, jumlah, keterangan) {
+            document.getElementById('id_barang_rusak').value = id;
+            document.getElementById('jumlah_total_rusak').value = jumlah;
+            document.getElementById('keterangan_rusak').value = keterangan;
 
-                Swal.fire({
-                    title: "Anda Yakin Ingin Menghapus?",
-                    text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#28527A",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, Hapus!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: "POST",
-                            url: '<?= site_url('admin/barang_rusak/delete') ?>',
-                            data: {
-                                id_barang_rusak: id_barang_rusak,
-                                _method: 'DELETE'
-                            },
-                            dataType: 'json',
-                            success: function(response) {
-                                if (response.success) {
-                                    Swal.fire({
-                                        title: "Dihapus!",
-                                        text: response.success,
-                                        icon: "success"
-                                    }).then(() => {
-                                        location.reload();
-                                    });
-                                } else if (response.error) {
-                                    Swal.fire({
-                                        title: "Gagal!",
-                                        text: response.error,
-                                        icon: "error"
-                                    });
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                Swal.fire({
-                                    title: "Error",
-                                    text: "Terjadi kesalahan. Silakan coba lagi.",
-                                    icon: "error"
-                                });
-                            }
-                        });
+            new bootstrap.Modal(document.getElementById('editBarangModal')).show();
+        }
+
+        document.getElementById('editBarangForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const id = formData.get('id_barang_rusak');
+
+            const data = {
+                jumlah_total_rusak: formData.get('jumlah_total_rusak'),
+                keterangan_rusak: formData.get('keterangan_rusak')
+            };
+
+            fetch(`<?= site_url('admin/barang_rusak/update') ?>/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        bootstrap.Modal.getInstance(document.getElementById('editBarangModal')).hide();
+                        location.reload();
+                    } else {
+                        alert(data.message);
                     }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan saat memperbarui data');
                 });
-            });
         });
     </script>
-    <!-- HAPUS -->
     </body>
 
     </html>

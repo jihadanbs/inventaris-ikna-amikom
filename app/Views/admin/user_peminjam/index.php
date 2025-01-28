@@ -87,11 +87,6 @@
                             ?>
                             <table id="tableBarangBaru" class="table table-bordered dt-responsive nowrap w-100">
                                 <?= $this->include('alert/alert'); ?>
-                                <!-- <div class="col-md-3 mb-3">
-                                    <a href=" <?= site_url('admin/barang_rusak/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
-                                        <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
-                                    </a>
-                                </div> -->
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
@@ -121,7 +116,7 @@
                                             <td style="width: 155px">
                                                 <a href="<?= site_url('admin/user_peminjam/cek_data/' . $row['nama_lengkap']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang'] ?>">
-                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                    <i class="fas fa-trash-alt"></i> Hapus
                                                 </button>
                                             </td>
                                         </tr>
@@ -151,31 +146,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     'colvis'
@@ -203,7 +198,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "POST",
-                            url: '<?= site_url('admin/barang_rusak/delete') ?>',
+                            url: '<?= site_url('admin/user_peminjam/delete') ?>',
                             data: {
                                 id_barang_masuk: id_barang_masuk,
                                 _method: 'DELETE'

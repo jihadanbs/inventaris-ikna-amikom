@@ -114,7 +114,7 @@
                                             <td style="width: 155px">
                                                 <a href="<?= site_url('admin/faq/cek_data/' . $row->slug); ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row->id_faq ?>">
-                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                    <i class="fas fa-trash-alt"></i> Hapus
                                                 </button>
                                             </td>
                                         </tr>

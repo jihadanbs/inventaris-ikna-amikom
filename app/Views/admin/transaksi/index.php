@@ -135,7 +135,7 @@
                                             <td style="width: 155px">
                                                 <a href="<?= site_url('admin/transaksi/cek_data/' . $row['nama_lengkap']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang'] ?>">
-                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                    <i class="fas fa-trash-alt"></i> Hapus
                                                 </button>
                                             </td>
                                         </tr>
@@ -165,31 +165,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     'colvis'

@@ -234,9 +234,9 @@
 
                                 <div class="modal-footer">
                                     <a href="<?= site_url('admin/barang') ?>" class="btn btn-secondary btn-md ml-3">
-                                        <i class="fas fa-arrow-left"></i> Batal
+                                        <i class="fas fa-times"></i> Batal
                                     </a>
-                                    <button type="submit" class="btn btn-primary" style="background-color: #28527A; color:white; margin-left: 10px;">Tambah</button>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #28527A; color:white; margin-left: 10px;"><i class="fas fa-plus"></i> Tambah Data</button>
                                 </div>
 
                             </form>
