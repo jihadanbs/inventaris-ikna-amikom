@@ -5,6 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+// Route halaman fRONT END
 $routes->GET('/', 'Home::index', ['namespace' => 'App\Controllers']);
 $routes->GET('/about', 'Home::about', ['namespace' => 'App\Controllers']);
 $routes->GET('/service/(:num)', 'Home::service/$1', ['namespace' => 'App\Controllers']);
