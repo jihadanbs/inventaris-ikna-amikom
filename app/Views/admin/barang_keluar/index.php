@@ -101,7 +101,7 @@
                                         <th>Total Barang</th>
                                         <th>Tanggal Keluar</th>
                                         <th>Keterangan</th>
-                                        <th>Aksi</th>
+                                        <!-- <th>Aksi</th> -->
                                     </tr>
                                 </thead>
 
@@ -115,12 +115,12 @@
                                             <td><?= $row['total_barang']; ?> Unit</td>
                                             <td><?= formatTanggalIndo($row['tanggal_keluar']); ?></td>
                                             <td><?= $row['keterangan']; ?></td>
-                                            <td style="width: 50px">
-                                                <!-- <a href="<?= site_url('admin/barang_keluar/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a> -->
-                                                <!-- <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_keluar'] ?>">
+                                            <!-- <td style="width: 50px">
+                                                <a href="<?= site_url('admin/barang_keluar/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a>
+                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_keluar'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
-                                                </button> -->
-                                            </td>
+                                                </button>
+                                            </td> -->
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
