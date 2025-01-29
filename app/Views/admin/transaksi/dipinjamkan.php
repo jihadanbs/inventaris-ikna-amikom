@@ -45,6 +45,7 @@
                             <form action="<?= esc(site_url('admin/transaksi/proses_dipinjamkan/' . urlencode($tb_user_peminjam['id_user_peminjam'])), 'attr') ?>" method="post" enctype="multipart/form-data" id="validationForm" novalidate autocomplete="off">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="id_barang" value="<?= esc($tb_user_peminjam['id_barang'], 'attr'); ?>">
+                                <input type="hidden" name="slug" value="<?= esc($tb_user_peminjam['slug'], 'attr'); ?>">
                                 <input type="hidden" name="nama_lengkap" value="<?= esc($tb_user_peminjam['nama_lengkap'], 'attr'); ?>">
                                 <input type="hidden" name="total_dipinjam" value="<?= esc($tb_user_peminjam['total_dipinjam'], 'attr'); ?>">
                                 <input type="hidden" name="id_user_peminjam" value="<?= esc($tb_user_peminjam['id_user_peminjam'], 'attr'); ?>">
@@ -232,7 +233,7 @@
 
                                 <div class="form-group mb-4 mt-4">
                                     <div class="d-grid gap-2 d-md-flex justify-content-end">
-                                        <a href="<?= esc(site_url('admin/transaksi/cek_data/' . urlencode($tb_user_peminjam['nama_lengkap'])), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
+                                        <a href="<?= esc(site_url('admin/transaksi/cek_data/' . urlencode($tb_user_peminjam['slug'])), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
                                             <i class="fas fa-times"></i> Batal Meminjamkan
                                         </a>
                                         <button type="submit" class="btn btn-warning"><i class="fas fa-save"></i> Simpan Data Peminjaman</button>

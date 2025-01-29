@@ -194,8 +194,8 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->GET('edit/(:segment)', 'UserPeminjamController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'UserPeminjamController::update/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('cek_data/(:segment)', 'UserPeminjamController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete2', 'UserPeminjamController::delete2', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete', 'UserPeminjamController::delete', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete2/(num)', 'UserPeminjamController::delete2/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete/(:num)', 'UserPeminjamController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== TRANSAKSI ====================================*/

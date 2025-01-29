@@ -23,7 +23,7 @@ class TransaksiController extends BaseController
         return view('admin/transaksi/index', $data);
     }
 
-    public function cek_data($nama_lengkap)
+    public function cek_data($slug)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -33,7 +33,7 @@ class TransaksiController extends BaseController
         // Menyiapkan data untuk tampilan
         $data = array_merge([
             'title' => 'Admin | Halaman Cek Data Transaksi Barang',
-            'tb_user_peminjam' => $this->m_user_peminjam->getByNamaLengkap($nama_lengkap),
+            'tb_user_peminjam' => $this->m_user_peminjam->getNamaLengkapBySlug($slug),
         ]);
 
         return view('admin/transaksi/cek_data', $data);
@@ -41,7 +41,7 @@ class TransaksiController extends BaseController
 
 
     // Dipinjamkan
-    public function dipinjamkan($nama_lengkap)
+    public function dipinjamkan($slug)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -52,7 +52,7 @@ class TransaksiController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Transaksi Barang Dipinjamkan',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-            'tb_user_peminjam' => $this->m_user_peminjam->getByNamaLengkap($nama_lengkap),
+            'tb_user_peminjam' => $this->m_user_peminjam->getNamaLengkapBySlug($slug),
             'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
             'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
         ]);
@@ -204,7 +204,7 @@ class TransaksiController extends BaseController
     // End Dipinjamkan
 
     // DITOLAK
-    public function ditolak($nama_lengkap)
+    public function ditolak($slug)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -215,7 +215,7 @@ class TransaksiController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Transaksi Barang Ditolak',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-            'tb_user_peminjam' => $this->m_user_peminjam->getByNamaLengkap($nama_lengkap),
+            'tb_user_peminjam' => $this->m_user_peminjam->getNamaLengkapBySlug($slug),
             'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
             'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
         ]);
@@ -325,7 +325,7 @@ class TransaksiController extends BaseController
     // END DITOLAK
 
     // DIKEMBALIKAN
-    public function dikembalikan($nama_lengkap)
+    public function dikembalikan($slug)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -336,7 +336,7 @@ class TransaksiController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Transaksi Barang Dikembalikan',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-            'tb_user_peminjam' => $this->m_user_peminjam->getByNamaLengkap($nama_lengkap),
+            'tb_user_peminjam' => $this->m_user_peminjam->getNamaLengkapBySlug($slug),
             'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
             'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
         ]);

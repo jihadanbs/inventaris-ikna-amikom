@@ -321,14 +321,19 @@
                     url: "<?= site_url('admin/barang/totalData'); ?>",
                     type: "GET",
                     success: function(responseInformasi) {
-                        // Hitung total gabungan
-                        var total = parseInt(responseInformasi.total);
-                        // Update nilai total pada elemen dengan id "totalCounter1"
-                        $("#totalCounter").attr("data-target", total);
-                        $("#totalCounter").text(total);
+                        var total = parseInt(responseInformasi.total) || 0; // Tambahkan fallback ke 0
+                        if (!isNaN(total)) {
+                            $("#totalCounter").attr("data-target", total);
+                            $("#totalCounter").text(total);
+                        } else {
+                            $("#totalCounter").attr("data-target", 0);
+                            $("#totalCounter").text(0);
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.error("Error:", error);
+                        $("#totalCounter").attr("data-target", 0);
+                        $("#totalCounter").text(0);
                     }
                 });
             }
@@ -344,12 +349,19 @@
                     url: "<?= site_url('admin/barang_baik/totalData'); ?>",
                     type: "GET",
                     success: function(responseInformasi) {
-                        var total = parseInt(responseInformasi.total);
-                        $("#totalCounter5").attr("data-target", total);
-                        $("#totalCounter5").text(total);
+                        var total = parseInt(responseInformasi.total) || 0;
+                        if (!isNaN(total)) {
+                            $("#totalCounter5").attr("data-target", total);
+                            $("#totalCounter5").text(total);
+                        } else {
+                            $("#totalCounter5").attr("data-target", 0);
+                            $("#totalCounter5").text(0);
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.error("Error:", error);
+                        $("#totalCounter5").attr("data-target", 0);
+                        $("#totalCounter5").text(0);
                     }
                 });
             }
@@ -365,12 +377,19 @@
                     url: "<?= site_url('admin/barang_rusak/totalData'); ?>",
                     type: "GET",
                     success: function(responseInformasi) {
-                        var total = parseInt(responseInformasi.total);
-                        $("#totalCounter6").attr("data-target", total);
-                        $("#totalCounter6").text(total);
+                        var total = parseInt(responseInformasi.total) || 0;
+                        if (!isNaN(total)) {
+                            $("#totalCounter6").attr("data-target", total);
+                            $("#totalCounter6").text(total);
+                        } else {
+                            $("#totalCounter6").attr("data-target", 0);
+                            $("#totalCounter6").text(0);
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.error("Error:", error);
+                        $("#totalCounter6").attr("data-target", 0);
+                        $("#totalCounter6").text(0);
                     }
                 });
             }

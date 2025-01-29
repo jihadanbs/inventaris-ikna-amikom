@@ -263,7 +263,7 @@ class PinjamBarangController extends BaseController
         if (!$setting) {
             return $this->response->setJSON([
                 'status' => 'error',
-                'message' => 'Pengaturan peminjaman tidak ditemukan'
+                'message' => 'Pengaturan peminjaman tidak ditemukan !'
             ]);
         }
 
@@ -271,7 +271,26 @@ class PinjamBarangController extends BaseController
 
         return $this->response->setJSON([
             'status' => 'success',
-            'message' => 'Pengaturan peminjaman berhasil dihapus'
+            'message' => 'Pengaturan peminjaman berhasil dihapus !'
+        ]);
+    }
+
+    public function delete2($id)
+    {
+        $setting = $this->m_pinjam_barang->find($id);
+
+        if (!$setting) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Pengaturan peminjaman tidak ditemukan !'
+            ]);
+        }
+
+        $this->m_pinjam_barang->delete($id);
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'Pengaturan peminjaman berhasil dihapus !'
         ]);
     }
 }

@@ -1,36 +1,9 @@
 <?= $this->include('admin/layouts/script') ?>
 
 <style>
-    /* CSS untuk input field saat tidak diedit */
-    input[type="text"].input-readonly {
-        background-color: #f0f0f0 !important;
-        border: 1px solid #ccc !important;
-    }
-
-    /* CSS untuk input field saat diedit */
-    input[type="text"]:not(.input-readonly) {
-        background-color: white !important;
-        border: 1px solid white;
-    }
-
-    input[type="text"].form-control {
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        padding: 8px;
-    }
-
-    .btn-success.save {
-        background-color: green !important;
-        border-color: green !important;
-    }
-
-    .btn-success.save:focus {
-        box-shadow: none !important;
-    }
-
-    .custom-border {
-        border: 1px solid #ced4da;
-        border-radius: 5px;
+    .btn.disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
     }
 </style>
 
@@ -128,10 +101,15 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td style="width: 155px">
-                                                <a href="<?= site_url('admin/transaksi/cek_data/' . $row['nama_lengkap']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang'] ?>">
+                                                <a href="<?= site_url('admin/transaksi/cek_data/' . $row['slug']) ?>" class="btn btn-info btn-sm view">
+                                                    <i class="fa fa-eye"></i> Cek
+                                                </a>
+
+                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . $row['slug']) ?>"
+                                                    class="btn btn-danger btn-sm waves-effect waves-light sa-warning"
+                                                    <?= ($row['status'] != 'Dikembalikan' && $row['status'] != 'Ditolak') ? 'onclick="return false;" style="pointer-events: none; opacity: 0.5;"' : '' ?>>
                                                     <i class="fas fa-trash-alt"></i> Hapus
-                                                </button>
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -150,7 +128,7 @@
     <!-- END layout-wrapper -->
     <?= $this->include('admin/layouts/script2') ?>
 
-    <!-- DIPINJAMKAN -->
+    <!-- ALERT WHATSAPP -->
     <?php if (session()->getFlashdata('whatsapp_link')) : ?>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
@@ -175,7 +153,7 @@
             });
         </script>
     <?php endif; ?>
-    <!-- END DIPINJAMKAN -->
+    <!-- END ALERT WHATSAPP -->
 
     <script>
         $(document).ready(function() {
@@ -219,63 +197,6 @@
             }).buttons().container().appendTo('#tableTransaksi_wrapper .col-md-6:eq(0)');
         });
     </script>
-
-    <!-- HAPUS -->
-    <script>
-        $(document).ready(function() {
-            $('.sa-warning').click(function(e) {
-                e.preventDefault();
-                var id_barang_masuk = $(this).data('id');
-
-                Swal.fire({
-                    title: "Anda Yakin Ingin Menghapus?",
-                    text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#28527A",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, Hapus!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: "POST",
-                            url: '<?= site_url('admin/barang_rusak/delete') ?>',
-                            data: {
-                                id_barang_masuk: id_barang_masuk,
-                                _method: 'DELETE'
-                            },
-                            dataType: 'json',
-                            success: function(response) {
-                                if (response.success) {
-                                    Swal.fire({
-                                        title: "Dihapus!",
-                                        text: response.success,
-                                        icon: "success"
-                                    }).then(() => {
-                                        location.reload();
-                                    });
-                                } else if (response.error) {
-                                    Swal.fire({
-                                        title: "Gagal!",
-                                        text: response.error,
-                                        icon: "error"
-                                    });
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                Swal.fire({
-                                    title: "Error",
-                                    text: "Terjadi kesalahan. Silakan coba lagi.",
-                                    icon: "error"
-                                });
-                            }
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-    <!-- HAPUS -->
     </body>
 
     </html>

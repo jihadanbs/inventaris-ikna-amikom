@@ -203,6 +203,7 @@ class Home extends BaseController
             $data = [
                 'id_barang' => $idBarang,
                 'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+                'slug' => url_title($this->request->getPost('nama_lengkap'), '-', true),
                 'pekerjaan' => $this->request->getPost('pekerjaan'),
                 'email' => $this->request->getPost('email'),
                 'no_telepon' => $no_telepon,

@@ -298,8 +298,12 @@
                                 <a href="<?= esc(site_url('admin/user_peminjam'), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
                                     <i class="fas fa-arrow-left"></i> Kembali
                                 </a>
-                                <button type="button" class="btn btn-danger btn-md ml-3 waves-effect waves-light sa-warning" data-id="<?= $tb_user_peminjam['id_user_peminjam'] ?>">
-                                    <i class="fas fa-trash-alt"></i> Hapus
+
+                                <button type="button"
+                                    class="btn btn-danger btn-md ml-3 waves-effect waves-light sa-warning"
+                                    data-id="<?= $tb_user_peminjam['id_user_peminjam'] ?>"
+                                    <?= ($tb_user_peminjam['status'] != 'Dikembalikan' && $tb_user_peminjam['status'] != 'Ditolak') ? 'disabled' : '' ?>>
+                                    <i class="fas fa-trash-alt"></i> Hapus Data Peminjam
                                 </button>
                             </div>
                         </div>
@@ -322,63 +326,63 @@
     });
 </script>
 
-<!-- HAPUS -->
 <script>
-    $(document).ready(function() {
-        $('.sa-warning').click(function(e) {
-            e.preventDefault();
-            var id_barang = $(this).data('id');
+    $('.sa-warning').click(function(e) {
+        if ($(this).hasClass('disabled')) {
+            return false;
+        }
 
-            Swal.fire({
-                title: "Anda Yakin Ingin Menghapus?",
-                text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#28527A",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ya, Hapus!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: "POST",
-                        url: "<?= site_url('admin/barang/delete2') ?>",
-                        data: {
-                            id_barang: id_barang,
-                            _method: 'DELETE'
-                        },
-                        dataType: 'json',
-                        success: function(response) {
-                            if (response.status === 'success') {
-                                Swal.fire({
-                                    title: "Dihapus!",
-                                    text: response.message,
-                                    icon: "success"
-                                }).then(() => {
-                                    // Redirect ke halaman /admin/barang setelah sukses menghapus
-                                    window.location.href = '<?= site_url('admin/barang') ?>';
-                                });
-                            } else if (response.status === 'error') {
-                                Swal.fire({
-                                    title: "Gagal!",
-                                    text: response.message,
-                                    icon: "error"
-                                });
-                            }
-                        },
-                        error: function(xhr, status, error) {
+        e.preventDefault();
+        var id_user_peminjam = $(this).data('id');
+
+        // console.log('ID yang dikirim:', id_user_peminjam); // Debugging ID
+
+        Swal.fire({
+            title: "Anda Yakin Ingin Menghapus?",
+            text: "Data yang sudah dihapus tidak bisa dikembalikan!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#28527A",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Hapus!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: '<?= site_url('admin/user_peminjam/delete') ?>/' + id_user_peminjam,
+                    data: {
+                        _method: 'DELETE'
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status === 'success') {
                             Swal.fire({
-                                title: "Error",
-                                text: "Terjadi kesalahan. Silakan coba lagi.",
+                                title: "Dihapus!",
+                                text: response.message,
+                                icon: "success"
+                            }).then(() => {
+                                window.location.href = '<?= site_url('admin/transaksi') ?>';
+                            });
+                        } else if (response.status === 'error') {
+                            Swal.fire({
+                                title: "Gagal!",
+                                text: response.message,
                                 icon: "error"
                             });
                         }
-                    });
-                }
-            });
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            title: "Error",
+                            text: "Terjadi kesalahan, Silakan coba lagi.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
         });
     });
 </script>
-<!-- HAPUS -->
 </body>
 
 </html>

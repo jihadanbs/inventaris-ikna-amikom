@@ -379,20 +379,16 @@
                                 <a href="<?= site_url('admin/transaksi'); ?>" class="btn btn-secondary btn-md ml-3">
                                     <i class="fas fa-arrow-left"></i> Kembali
                                 </a>
-                                <a href="<?= site_url('admin/transaksi/ditolak/' . $tb_user_peminjam['nama_lengkap']); ?>" class="btn btn-danger btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dipinjamkan' || $tb_user_peminjam['status'] == 'Dikembalikan' ? 'disabled' : '' ?>">
+                                <a href="<?= site_url('admin/transaksi/ditolak/' . $tb_user_peminjam['slug']); ?>" class="btn btn-danger btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dipinjamkan' || $tb_user_peminjam['status'] == 'Dikembalikan' ? 'disabled' : '' ?>">
                                     <i class="fas fa-times"></i> Ditolak
                                 </a>
-                                <a href="<?= site_url('admin/transaksi/dipinjamkan/' . $tb_user_peminjam['nama_lengkap']); ?>" class="btn btn-warning btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Dikembalikan' || $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dipinjamkan' ? 'disabled' : '' ?>">
+                                <a href="<?= site_url('admin/transaksi/dipinjamkan/' . $tb_user_peminjam['slug']); ?>" class="btn btn-warning btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Dikembalikan' || $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dipinjamkan' ? 'disabled' : '' ?>">
                                     <i class="fas fa-hourglass-half"></i> Dipinjamkan
                                 </a>
-                                <a href="<?= site_url('admin/transaksi/dikembalikan/' . $tb_user_peminjam['nama_lengkap']); ?>" class="btn btn-success btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Belum Diproses' || $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dikembalikan' ? 'disabled' : '' ?>">
+                                <a href="<?= site_url('admin/transaksi/dikembalikan/' . $tb_user_peminjam['slug']); ?>" class="btn btn-success btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Belum Diproses' || $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dikembalikan' ? 'disabled' : '' ?>">
                                     <i class="fas fa-check"></i> Dikembalikan
                                 </a>
                             </div>
-
-                            <button type="button" class="btn btn-danger btn-md ml-3 waves-effect waves-light sa-warning" data-id="<?= $tb_user_peminjam['id_user_peminjam'] ?>">
-                                <i class="fas fa-trash-alt"></i> Hapus
-                            </button>
                         </div>
 
                     </div>

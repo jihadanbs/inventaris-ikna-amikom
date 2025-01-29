@@ -22,7 +22,7 @@ class UserPeminjamController extends BaseController
         return view('admin/user_peminjam/index', $data);
     }
 
-    public function cek_data($nama_lengkap)
+    public function cek_data($slug)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -32,9 +32,28 @@ class UserPeminjamController extends BaseController
         // Menyiapkan data untuk tampilan
         $data = array_merge([
             'title' => 'Admin | Halaman Cek Data User Peminjam',
-            'tb_user_peminjam' => $this->m_user_peminjam->getByNamaLengkap($nama_lengkap),
+            'tb_user_peminjam' => $this->m_user_peminjam->getNamaLengkapBySlug($slug),
         ]);
 
         return view('admin/user_peminjam/cek_data', $data);
+    }
+
+    public function delete($id)
+    {
+        $userPeminjam = $this->m_user_peminjam->find($id);
+
+        if (!$userPeminjam) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'User peminjam tidak ditemukan !'
+            ]);
+        }
+
+        $this->m_user_peminjam->delete($id);
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'User Peminjam berhasil dihapus !'
+        ]);
     }
 }
