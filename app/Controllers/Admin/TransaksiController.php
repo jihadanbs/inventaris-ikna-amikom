@@ -168,6 +168,7 @@ class TransaksiController extends BaseController
                 . "Status: *Dipinjamkan*\n"
                 . "Total Dipinjam: *{$userPeminjam['total_dipinjam']} unit*\n"
                 . "Tanggal Pengajuan: *" . formatTanggalIndo($userPeminjam['tanggal_pengajuan']) . "*\n"
+                . "Tanggal Dipinjamkan: *" . formatTanggalIndo($data['tanggal_dipinjamkan']) . "*\n"
                 . "Tanggal Perkiraan Kembali: *" . formatTanggalIndo($data['tanggal_perkiraan_dikembalikan']) . "*\n\n"
                 . "📌 *Catatan Peminjaman*\n"
                 . "{$data['catatan_peminjaman']}\n\n"
@@ -299,7 +300,7 @@ class TransaksiController extends BaseController
                 . "Kode Peminjaman: *{$userPeminjam['kode_peminjaman']}*\n"
                 . "Status: *Ditolak*\n"
                 . "Total Dipinjam: *{$userPeminjam['total_dipinjam']} unit*\n"
-                . "Tanggal Pengajuan: *" . formatTanggalIndo($userPeminjam['tanggal_pengajuan']) . "*\n"
+                . "Tanggal Pengajuan: *" . formatTanggalIndo($userPeminjam['tanggal_pengajuan']) . "*\n\n"
                 . "📌 *Catatan Penolakan*\n"
                 . "{$data['catatan_peminjaman']}\n\n"
                 . "Harap Menggunakan Kode Peminjaman Untuk Mengecek Status Peminjaman Anda, Terima kasih. 🙏";
@@ -340,7 +341,7 @@ class TransaksiController extends BaseController
             'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
         ]);
 
-        return view('admin/transaksi/ditolak', $data);
+        return view('admin/transaksi/dikembalikan', $data);
     }
 
     public function proses_dikembalikan($id_user_peminjam)
@@ -361,6 +362,28 @@ class TransaksiController extends BaseController
                     'min_length' => 'Catatan tidak boleh kurang dari 5 karakter !',
                 ]
             ],
+            'jumlah_total_baik' => [
+                'rules' => 'required|numeric|greater_than_equal_to[0]',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Layak !',
+                    'numeric' => 'Jumlah harus berupa angka !',
+                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
+                ]
+            ],
+            'jumlah_total_rusak' => [
+                'rules' => 'required|numeric|greater_than_equal_to[0]',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Rusak !',
+                    'numeric' => 'Jumlah harus berupa angka !',
+                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
+                ]
+            ],
+            'tanggal_dikembalikan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Tanggal Dikembalikan Barang !'
+                ]
+            ],
         ];
 
         if (!$this->validate($rules)) {
@@ -376,31 +399,49 @@ class TransaksiController extends BaseController
         // Ambil data stok barang
         $idBarang = $this->request->getPost('id_barang');
         $stokBarang = $this->m_barang_baik->where('id_barang', $idBarang)->first();
+        $stokBarangRusak = $this->m_barang_rusak->where('id_barang', $idBarang)->first();
 
-        if (!$stokBarang) {
+        if (!$stokBarang || !$stokBarangRusak) {
             return redirect()->back()->withInput()
-                ->with('errors', ['id_barang' => 'Barang tidak ditemukan!']);
+                ->with('error', 'Data barang tidak ditemukan!');
         }
 
-        $jumlahTotalBaik = $stokBarang['jumlah_total_baik'];
-        $totalDipinjam = $this->request->getPost('total_dipinjam');
+        // Validasi total barang yang dikembalikan
+        $jumlahDikembalikanBaik = (int)$data['jumlah_total_baik'];
+        $jumlahDikembalikanRusak = (int)$data['jumlah_total_rusak'];
+        $totalDipinjam = (int)$this->request->getPost('total_dipinjam');
+
+        if (($jumlahDikembalikanBaik + $jumlahDikembalikanRusak) !== $totalDipinjam) {
+            return redirect()->back()->withInput()
+                ->with('error', 'Total barang yang dikembalikan harus sama dengan total yang dipinjam!');
+        }
 
         // Mulai transaksi database
         $this->db->transBegin();
 
         try {
+            // Update stok barang baik
+            $newStokBaik = $stokBarang['jumlah_total_baik'] + $jumlahDikembalikanBaik;
+            if (!$this->m_barang_baik->update($idBarang, ['jumlah_total_baik' => $newStokBaik])) {
+                throw new \Exception('Gagal mengupdate stok barang baik');
+            }
+
+            // Update stok barang rusak
+            $newStokRusak = $stokBarangRusak['jumlah_total_rusak'] + $jumlahDikembalikanRusak;
+            if (!$this->m_barang_rusak->update($idBarang, ['jumlah_total_rusak' => $newStokRusak])) {
+                throw new \Exception('Gagal mengupdate stok barang rusak');
+            }
+
             // Update data di tb_user_peminjam
             $dataUpdatePeminjam = [
                 'id_user_peminjam' => $id_user_peminjam,
                 'id_barang' => $userPeminjam['id_barang'],
                 'catatan_peminjaman' => $data['catatan_peminjaman'],
-                'status' => 'Ditolak',
+                'tanggal_dikembalikan' => $data['tanggal_dikembalikan'],
+                'jumlah_dikembalikan_baik' => $jumlahDikembalikanBaik,
+                'jumlah_dikembalikan_rusak' => $jumlahDikembalikanRusak,
+                'status' => 'Dikembalikan',
             ];
-
-            // Update jumlah stok barang
-            $this->m_barang_baik->update($idBarang, [
-                'jumlah_total_baik' => $jumlahTotalBaik + $totalDipinjam
-            ]);
 
             if (!$this->m_user_peminjam->update($id_user_peminjam, $dataUpdatePeminjam)) {
                 throw new \Exception('Gagal mengupdate data peminjam');
@@ -418,10 +459,15 @@ class TransaksiController extends BaseController
                 . "No. Telepon: *{$userPeminjam['no_telepon']}*\n\n"
                 . "📦 *Detail Peminjaman*\n"
                 . "Kode Peminjaman: *{$userPeminjam['kode_peminjaman']}*\n"
-                . "Status: *Ditolak*\n"
+                . "Status: *Dikembalikan*\n"
                 . "Total Dipinjam: *{$userPeminjam['total_dipinjam']} unit*\n"
+                . "Kondisi Baik: *{$jumlahDikembalikanBaik} unit*\n"
+                . "Kondisi Rusak: *{$jumlahDikembalikanRusak} unit*\n"
                 . "Tanggal Pengajuan: *" . formatTanggalIndo($userPeminjam['tanggal_pengajuan']) . "*\n"
-                . "📌 *Catatan Penolakan*\n"
+                . "Tanggal Dipinjamkan: *" . formatTanggalIndo($userPeminjam['tanggal_dipinjamkan']) . "*\n"
+                . "Tanggal Perkiraan Kembali: *" . formatTanggalIndo($userPeminjam['tanggal_perkiraan_dikembalikan']) . "*\n"
+                . "Tanggal Dikembalikan: *" . formatTanggalIndo($data['tanggal_dikembalikan']) . "*\n\n"
+                . "📌 *Catatan Pengembalian*\n"
                 . "{$data['catatan_peminjaman']}\n\n"
                 . "Harap Menggunakan Kode Peminjaman Untuk Mengecek Status Peminjaman Anda, Terima kasih. 🙏";
 
@@ -433,20 +479,49 @@ class TransaksiController extends BaseController
 
             // Set flash data untuk WhatsApp link dan pesan sukses
             session()->setFlashdata('whatsapp_link', $waUrl);
-            session()->setFlashdata('pesan', 'Transaksi Barang Berhasil Disimpan !');
+            session()->setFlashdata('pesan', 'Transaksi Pengembalian Barang Berhasil Disimpan !');
 
             return redirect()->to('/admin/transaksi');
         } catch (\Exception $e) {
             // Rollback transaksi jika terjadi error
             $this->db->transRollback();
-            return redirect()->back()->with('error', 'Gagal meminjamkan barang: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Gagal mengembalikan barang: ' . $e->getMessage());
         }
     }
     // END DIKEMBALIKAN
 
     public function totalByStatus($status)
     {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
+
         $total = $this->m_user_peminjam->getTotalByStatus($status);
         return $this->response->setJSON(['total' => $total]);
+    }
+
+    public function totalUserByStatus($status)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
+
+        try {
+            $total = $this->m_user_peminjam
+                ->where('status', $status)
+                ->countAllResults();
+
+            return $this->response->setJSON([
+                'success' => true,
+                'total' => $total
+            ]);
+        } catch (\Exception $e) {
+            return $this->response->setJSON([
+                'success' => false,
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ]);
+        }
     }
 }

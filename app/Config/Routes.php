@@ -201,6 +201,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     /*=================================== TRANSAKSI ====================================*/
     $routes->GET('transaksi', 'TransaksiController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('transaksi', static function ($routes) {
+        $routes->GET('totalUserByStatus/(:any)', 'TransaksiController::totalUserByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('totalByStatus/(:any)', 'TransaksiController::totalByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('proses_dikembalikan/(:segment)', 'TransaksiController::proses_dikembalikan/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('dikembalikan/(:segment)', 'TransaksiController::dikembalikan/$1', ['namespace' => 'App\Controllers\Admin']);

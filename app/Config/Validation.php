@@ -223,4 +223,13 @@ class Validation extends BaseConfig
         // Membandingkan total_barang dengan total_dipinjam
         return (int)$str === (int)$row['total_dipinjam'];
     }
+
+    public function validate_total_pengembalian(string $str, string $fields, array $data): bool
+    {
+        $jumlah_total_baik = intval($data['jumlah_total_baik']);
+        $jumlah_total_rusak = intval($data['jumlah_total_rusak']);
+        $total_dipinjam = intval($data['total_dipinjam']);
+
+        return ($jumlah_total_baik + $jumlah_total_rusak) === $total_dipinjam;
+    }
 }

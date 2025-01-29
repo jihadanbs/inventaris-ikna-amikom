@@ -289,7 +289,7 @@
                                     </div>
                                 </div>
                                 <div class="text-nowrap mt-3">
-                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Barang Dikembalikan</span>
+                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Peminjam Sudah Mengembalikan</span>
                                 </div>
                             </div><!-- end card body -->
                         </div><!-- end card -->
@@ -392,7 +392,7 @@
                 updateCounter("Dipinjamkan", "dipinjamkanCounter");
 
                 // Update count for "Dikembalikan"
-                updateCounter("Dikembalikan", "dikembalikanCounter");
+                // updateCounter("Dikembalikan", "dikembalikanCounter");
             }
 
             function updateCounter(status, counterId) {
@@ -410,6 +410,55 @@
                             $("#" + counterId).text(total);
                         } else {
                             console.error("Response total is not a number:", response);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            updateCounts();
+
+            function updateCounts() {
+                // Update untuk semua status
+                let statuses = [{
+                    //     status: "Belum Diproses",
+                    //     id: "belumDiprosesCounter"
+                    // },
+                    // {
+                    //     status: "Ditolak",
+                    //     id: "ditolakCounter"
+                    // },
+                    // {
+                    //     status: "Dipinjamkan",
+                    //     id: "dipinjamkanCounter"
+                    // },
+                    // {
+                    status: "Dikembalikan",
+                    id: "dikembalikanCounter"
+                }];
+
+                statuses.forEach(function(item) {
+                    updateCounter(item.status, item.id);
+                });
+            }
+
+            function updateCounter(status, counterId) {
+                $.ajax({
+                    url: "<?= site_url('admin/transaksi/totalUserByStatus/'); ?>" + status,
+                    type: "GET",
+                    success: function(response) {
+                        if (response.success) {
+                            $("#" + counterId)
+                                .attr("data-target", response.total)
+                                .text(response.total);
+                        } else {
+                            console.error("Error:", response.message);
                         }
                     },
                     error: function(xhr, status, error) {
