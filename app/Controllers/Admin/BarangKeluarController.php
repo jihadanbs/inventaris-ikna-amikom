@@ -55,7 +55,7 @@ class BarangKeluarController extends BaseController
         // Mengambil barang saat ini
         $barang = $this->m_barang->where('id_barang', $id_barang)->get()->getRowArray();
         if (!$barang) {
-            return redirect()->back()->with('errors', 'Data barang tidak ditemukan !');
+            return redirect()->back()->with('error', 'Data barang tidak ditemukan !');
         }
 
         // Get jumlah barang baik
