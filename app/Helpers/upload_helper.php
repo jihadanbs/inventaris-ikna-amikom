@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\InformasiPublikModel;
-
 if (!function_exists('uploadFile')) {
     function uploadFile($inputName, $destinationPath)
     {
@@ -312,13 +310,6 @@ if (!function_exists('uploadFile')) {
 
         $newFilePath = 'file_upload/' . $destinationPath . $randomName;
         return $newFilePath;
-    }
-
-    function title_exists(string $str, string &$fields, array $data): bool
-    {
-        $model = new InformasiPublikModel();
-
-        return $model->isTitleExists($data['id_lembaga'], $data['id_kategori_informasi'], $data['id_jenis'], $str) === null;
     }
 }
 /* 

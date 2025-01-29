@@ -70,7 +70,7 @@
                                     <i class="fas fa-arrow-left"></i> Kembali
                                 </a>
                                 <a href="<?= site_url('admin/faq/edit/' . $tb_faq['slug']); ?>" class="btn btn-warning btn-md edit">
-                                    <i class="fas fa-pencil-alt"></i> Edit
+                                    <i class="fas fa-edit"></i> Ubah Data
                                 </a>
                             </div>
                         </div>

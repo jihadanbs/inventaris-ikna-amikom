@@ -45,7 +45,7 @@ class KondisiBarangController extends BaseController
 
             if ($existing_data) {
                 // Jika nama_dinas sudah ada dalam database, kirim pesan error
-                return $this->response->setStatusCode(400)->setJSON(['error' => 'Nama Kondisi Barang sudah ada dalam database !']);
+                return $this->response->setStatusCode(400)->setJSON(['error' => 'Nama kondisi barang sudah ada dalam penyimpanan database !']);
             }
 
             // Simpan data ke dalam database
@@ -102,7 +102,7 @@ class KondisiBarangController extends BaseController
             $existingData = $this->m_kondisi_barang->where('nama_kondisi', $nama_kondisi)->first();
             if ($existingData) {
                 // Jika nama dinas sudah ada di database, kirimkan pesan kesalahan
-                return $this->response->setJSON(['success' => false, 'message' => 'Nama Kondisi Barang sudah ada dalam database !']);
+                return $this->response->setJSON(['success' => false, 'message' => 'Nama kondisi barang sudah ada dalam penyimpanan database !']);
             }
         }
 

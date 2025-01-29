@@ -20,6 +20,11 @@ class TbHistoryStokBarang extends Migration
                 'constraint' => 11,
                 'unsigned' => true,
             ],
+            // 'id_kondisi_barang' => [
+            //     'type' => 'INT',
+            //     'constraint' => 11,
+            //     'unsigned' => TRUE
+            // ],
             // 'tanggal_masuk' => [
             //     'type' => 'DATE',
             // ],
@@ -47,6 +52,7 @@ class TbHistoryStokBarang extends Migration
 
         $this->forge->addKey('id_history', true);
         $this->forge->addForeignKey('id_barang', 'tb_barang', 'id_barang', 'CASCADE', 'CASCADE');
+        // $this->forge->addForeignKey('id_kondisi_barang', 'tb_kondisi_barang', 'id_kondisi_barang', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('created_by', 'tb_user', 'id_user', 'SET NULL', 'CASCADE');
         $this->forge->createTable('tb_history_stock_barang');
     }

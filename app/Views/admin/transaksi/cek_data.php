@@ -162,8 +162,8 @@
                                                 <p>
                                                     <?php
                                                     // Menampilkan badge berdasarkan status
-                                                    if ($tb_user_peminjam['status'] === 'Diproses') : ?>
-                                                        <span class="badge bg-primary-subtle text-primary fs-6">Diproses</span>
+                                                    if ($tb_user_peminjam['status'] === 'Belum Diproses') : ?>
+                                                        <span class="badge bg-primary-subtle text-primary fs-6">Belum Diproses</span>
                                                     <?php elseif ($tb_user_peminjam['status'] === 'Ditolak') : ?>
                                                         <span class="badge bg-danger-subtle text-danger fs-6">Ditolak</span>
                                                     <?php elseif ($tb_user_peminjam['status'] === 'Dipinjamkan') : ?>
@@ -196,7 +196,7 @@
                                                 <?php if (empty($tb_user_peminjam['tanggal_dipinjamkan'])): ?>
                                                     <span class="badge bg-warning text-dark fs-6">Belum ada data</span>
                                                 <?php else: ?>
-                                                    <p><?= esc($tb_user_peminjam['tanggal_dipinjamkan'], 'html'); ?></p>
+                                                    <p><?= formatTanggalIndo($tb_user_peminjam['tanggal_dipinjamkan'], 'html'); ?></p>
                                                 <?php endif; ?>
                                             </div>
 
@@ -208,7 +208,7 @@
                                                 <?php if (empty($tb_user_peminjam['tanggal_perkiraan_dikembalikan'])): ?>
                                                     <span class="badge bg-warning text-dark fs-6">Belum ada data</span>
                                                 <?php else: ?>
-                                                    <p><?= esc($tb_user_peminjam['tanggal_perkiraan_dikembalikan'], 'html'); ?></p>
+                                                    <p><?= formatTanggalIndo($tb_user_peminjam['tanggal_perkiraan_dikembalikan'], 'html'); ?></p>
                                                 <?php endif; ?>
                                             </div>
 
@@ -220,7 +220,7 @@
                                                 <?php if (empty($tb_user_peminjam['tanggal_dikembalikan'])): ?>
                                                     <span class="badge bg-warning text-dark fs-6">Belum ada data</span>
                                                 <?php else: ?>
-                                                    <p><?= esc($tb_user_peminjam['tanggal_dikembalikan'], 'html'); ?></p>
+                                                    <p><?= formatTanggalIndo($tb_user_peminjam['tanggal_dikembalikan'], 'html'); ?></p>
                                                 <?php endif; ?>
                                             </div>
 
@@ -376,23 +376,19 @@
 
                         <div class="form-group mb-4 mt-4 d-flex justify-content-between align-items-center no-print">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                                <a href="/admin/transaksi" class="btn btn-secondary btn-md ml-3">
+                                <a href="<?= site_url('admin/transaksi'); ?>" class="btn btn-secondary btn-md ml-3">
                                     <i class="fas fa-arrow-left"></i> Kembali
                                 </a>
-                                <a href="/admin/transaksi/ditolak/<?= $tb_user_peminjam['id_user_peminjam'] ?>" class="btn btn-danger btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dipinjamkan' || $tb_user_peminjam['status'] == 'Dikembalikan' ? 'disabled' : '' ?>">
+                                <a href="<?= site_url('admin/transaksi/ditolak/' . $tb_user_peminjam['slug']); ?>" class="btn btn-danger btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dipinjamkan' || $tb_user_peminjam['status'] == 'Dikembalikan' ? 'disabled' : '' ?>">
                                     <i class="fas fa-times"></i> Ditolak
                                 </a>
-                                <a href="/admin/transaksi/dipinjamkan/<?= $tb_user_peminjam['nama_lengkap'] ?>" class="btn btn-warning btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Dikembalikan' || $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dipinjamkan' ? 'disabled' : '' ?>">
+                                <a href="<?= site_url('admin/transaksi/dipinjamkan/' . $tb_user_peminjam['slug']); ?>" class="btn btn-warning btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Dikembalikan' || $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dipinjamkan' ? 'disabled' : '' ?>">
                                     <i class="fas fa-hourglass-half"></i> Dipinjamkan
                                 </a>
-                                <a href="/admin/transaksi/diberikan/<?= $tb_user_peminjam['id_user_peminjam'] ?>" class="btn btn-success btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Diproses' || $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dikembalikan' ? 'disabled' : '' ?>">
+                                <a href="<?= site_url('admin/transaksi/dikembalikan/' . $tb_user_peminjam['slug']); ?>" class="btn btn-success btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Belum Diproses' || $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dikembalikan' ? 'disabled' : '' ?>">
                                     <i class="fas fa-check"></i> Dikembalikan
                                 </a>
                             </div>
-
-                            <button type="button" class="btn btn-danger btn-md ml-3 waves-effect waves-light sa-warning" data-id="<?= $tb_user_peminjam['id_user_peminjam'] ?>">
-                                <i class="fas fa-trash-alt"></i> Delete
-                            </button>
                         </div>
 
                     </div>

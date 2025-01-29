@@ -97,7 +97,7 @@
                             <div class="row align-items-center">
                                 <div class="col-md-9">
                                     <h2 class="greeting-title mb-2">Selamat Datang Di Halaman Admin IKNA AMIKOM</h2>
-                                    <p class="greeting-message">"Setiap Langkah Kecil Membawa Kita Lebih Dekat Pada Tujuan Besar! &#128521"</p>
+                                    <p class="greeting-message">"TUHAN adalah kekuatan umat-Nya dan benteng keselamatan bagi orang yang diurapi-Nya !" Mazmur 28:8</p>
                                 </div>
                                 <div class="col-md-3 text-end">
                                     <img src="<?= base_url('assets/img/ikna.png') ?>" alt="Welcome" class="img-fluid">
@@ -133,7 +133,6 @@
                                 </div>
                                 <div class="text-nowrap mt-4">
                                     <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Jumlah Semua Barang</span>
-                                    <!-- <span class="ms-0 text-muted font-size-16 d-block text-truncate" style="color: #f4d160 !important;">Permohonan Informasi</span> -->
                                 </div>
                             </div><!-- end card body -->
                         </div><!-- end card -->
@@ -154,105 +153,7 @@
                                     <div class="col-6">
                                         <span class="text-muted mb-3 lh-1 d-block"></span>
                                         <h4 class="mb-3">
-                                            <span class="counter-value ms-3" id="belumProsesCounter" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
-                                        </h4>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <i class="fas fa-hourglass-start fa-4x text-muted" style="color: #f4d160 !important;"></i>
-                                    </div>
-                                </div>
-                                <div class="text-nowrap mt-3">
-                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Permohonan Belum Diproses</span>
-                                    <!-- <span class="ms-0 text-muted font-size-16 d-block text-truncate" style="color: #f4d160 !important;">Permohonan Informasi</span> -->
-                                </div>
-                            </div><!-- end card body -->
-                        </div><!-- end card -->
-                    </div><!-- end col -->
-
-                    <div class="col-xl-3 col-md-6">
-                        <!-- card -->
-                        <div class="card card-h-100" style="background-color: #28527a;">
-                            <div style="background-color: #28527a;"></div>
-                            <ul class="bg-bubbles">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                            <!-- card body -->
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-6">
-                                        <span class="text-muted mb-3 lh-1 d-block"></span>
-                                        <h4 class="mb-3">
-                                            <span class="counter-value ms-3" id="diberikanCounter" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
-                                        </h4>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <i class="fas fa-check-circle fa-4x text-muted" style="color: #f4d160 !important;"></i>
-                                    </div>
-                                </div>
-                                <div class="text-nowrap mt-3">
-                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;"> Permohonan Diberikan</span>
-                                    <!-- <span class="ms-0 text-muted font-size-16 d-block text-truncate" style="color: #f4d160 !important;">Permohonan Informasi</span> -->
-                                </div>
-                            </div><!-- end card body -->
-                        </div><!-- end card -->
-                    </div><!-- end col -->
-
-                    <div class="col-xl-3 col-md-6">
-                        <!-- card -->
-                        <div class="card card-h-100" style="background-color: #28527a;">
-                            <div style="background-color: #28527a;"></div>
-                            <ul class="bg-bubbles">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                            <!-- card body -->
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-6">
-                                        <span class="text-muted mb-3 lh-1 d-block"></span>
-                                        <h4 class="mb-3">
-                                            <span class="counter-value ms-3" id="ditolakCounter" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
-                                        </h4>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <i class="fas fa-times-circle fa-4x text-muted" style="color: #f4d160 !important;"></i>
-                                    </div>
-                                </div>
-                                <div class="text-nowrap mt-3">
-                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;"> Permohonan Ditolak</span>
-                                    <!-- <span class="ms-0 text-muted font-size-16 d-block text-truncate" style="color: #f4d160 !important;">Permohonan Informasi</span> -->
-                                </div>
-                            </div><!-- end card body -->
-                        </div><!-- end card -->
-                    </div><!-- end col -->
-
-                    <div class="col-xl-3 col-md-6">
-                        <!-- card -->
-                        <div class="card card-h-100" style="background-color: #28527a;">
-                            <div style="background-color: #28527a;"></div>
-                            <ul class="bg-bubbles">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                            <!-- card body -->
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-6">
-                                        <span class="text-muted mb-3 lh-1 d-block"></span>
-                                        <h4 class="mb-3">
-                                            <span class="counter-value ms-3" id="totalCounter1" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
+                                            <span class="counter-value ms-3" id="totalCounter5" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
                                         </h4>
                                     </div>
 
@@ -283,7 +184,7 @@
                                     <div class="col-6">
                                         <span class="text-muted mb-3 lh-1 d-block"></span>
                                         <h4 class="mb-3">
-                                            <span class="counter-value ms-3" id="totalCounter1" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
+                                            <span class="counter-value ms-3" id="totalCounter6" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
                                         </h4>
                                     </div>
 
@@ -293,7 +194,102 @@
                                 </div>
                                 <div class="text-nowrap mt-3">
                                     <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Jumlah Barang Kondisi Rusak</span>
+                                </div>
+                            </div><!-- end card body -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+
+                    <div class="col-xl-3 col-md-6">
+                        <!-- card -->
+                        <div class="card card-h-100" style="background-color: #28527a;">
+                            <div style="background-color: #28527a;"></div>
+                            <ul class="bg-bubbles">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-6">
+                                        <span class="text-muted mb-3 lh-1 d-block"></span>
+                                        <h4 class="mb-3">
+                                            <span class="counter-value ms-3" id="belumDiprosesCounter" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
+                                        </h4>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <i class="fas fa-shopping-basket fa-4x text-muted" style="color: #f4d160 !important;"></i>
+                                    </div>
+                                </div>
+                                <div class="text-nowrap mt-3">
+                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Barang Belum Diproses</span>
                                     <!-- <span class="ms-0 text-muted font-size-16 d-block text-truncate" style="color: #f4d160 !important;">Permohonan Informasi</span> -->
+                                </div>
+                            </div><!-- end card body -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+
+                    <div class="col-xl-3 col-md-6">
+                        <!-- card -->
+                        <div class="card card-h-100" style="background-color: #28527a;">
+                            <div style="background-color: #28527a;"></div>
+                            <ul class="bg-bubbles">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-6">
+                                        <span class="text-muted mb-3 lh-1 d-block"></span>
+                                        <h4 class="mb-3">
+                                            <span class="counter-value ms-3" id="dipinjamkanCounter" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
+                                        </h4>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <i class="fas fa-truck fa-4x text-muted" style="color: #f4d160 !important;"></i>
+                                    </div>
+                                </div>
+                                <div class="text-nowrap mt-3">
+                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Barang Dipinjamkan</span>
+                                </div>
+                            </div><!-- end card body -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+
+                    <div class="col-xl-3 col-md-6">
+                        <!-- card -->
+                        <div class="card card-h-100" style="background-color: #28527a;">
+                            <div style="background-color: #28527a;"></div>
+                            <ul class="bg-bubbles">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <!-- card body -->
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-6">
+                                        <span class="text-muted mb-3 lh-1 d-block"></span>
+                                        <h4 class="mb-3">
+                                            <span class="counter-value ms-3" id="dikembalikanCounter" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
+                                        </h4>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <i class="fas fa-check-circle fa-4x text-muted" style="color: #f4d160 !important;"></i>
+                                    </div>
+                                </div>
+                                <div class="text-nowrap mt-3">
+                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Peminjam Sudah Mengembalikan</span>
                                 </div>
                             </div><!-- end card body -->
                         </div><!-- end card -->
@@ -315,29 +311,125 @@
     <!-- END layout-wrapper -->
 
     <?= $this->include('admin/layouts/script2') ?>
-    <!-- <script>
+
+    <script>
         $(document).ready(function() {
             updateTotal();
 
             function updateTotal() {
                 $.ajax({
-                    url: "/admin/permohonan/totalData", // URL untuk total permohonan informasi
+                    url: "<?= site_url('admin/barang/totalData'); ?>",
                     type: "GET",
-                    success: function(responsePemohon) {
-                        $.ajax({
-                            url: "/admin/keberatan/totalData", // URL untuk total permohonan keberatan
-                            type: "GET",
-                            success: function(responseKeberatan) {
-                                // Hitung total gabungan
-                                var total = parseInt(responsePemohon.total) + parseInt(responseKeberatan.total);
-                                // Update nilai total pada elemen dengan id "totalCounter"
-                                $("#totalCounter").attr("data-target", total);
-                                $("#totalCounter").text(total);
-                            },
-                            error: function(xhr, status, error) {
-                                console.error("Error:", error);
-                            }
-                        });
+                    success: function(responseInformasi) {
+                        var total = parseInt(responseInformasi.total) || 0; // Tambahkan fallback ke 0
+                        if (!isNaN(total)) {
+                            $("#totalCounter").attr("data-target", total);
+                            $("#totalCounter").text(total);
+                        } else {
+                            $("#totalCounter").attr("data-target", 0);
+                            $("#totalCounter").text(0);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                        $("#totalCounter").attr("data-target", 0);
+                        $("#totalCounter").text(0);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            updateTotal();
+
+            function updateTotal() {
+                $.ajax({
+                    url: "<?= site_url('admin/barang_baik/totalData'); ?>",
+                    type: "GET",
+                    success: function(responseInformasi) {
+                        var total = parseInt(responseInformasi.total) || 0;
+                        if (!isNaN(total)) {
+                            $("#totalCounter5").attr("data-target", total);
+                            $("#totalCounter5").text(total);
+                        } else {
+                            $("#totalCounter5").attr("data-target", 0);
+                            $("#totalCounter5").text(0);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                        $("#totalCounter5").attr("data-target", 0);
+                        $("#totalCounter5").text(0);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            updateTotal();
+
+            function updateTotal() {
+                $.ajax({
+                    url: "<?= site_url('admin/barang_rusak/totalData'); ?>",
+                    type: "GET",
+                    success: function(responseInformasi) {
+                        var total = parseInt(responseInformasi.total) || 0;
+                        if (!isNaN(total)) {
+                            $("#totalCounter6").attr("data-target", total);
+                            $("#totalCounter6").text(total);
+                        } else {
+                            $("#totalCounter6").attr("data-target", 0);
+                            $("#totalCounter6").text(0);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                        $("#totalCounter6").attr("data-target", 0);
+                        $("#totalCounter6").text(0);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            updateCounts();
+
+            function updateCounts() {
+                // Update count for "Belum Diproses"
+                updateCounter("Belum Diproses", "belumDiprosesCounter");
+
+                // Update count for "Ditolak"
+                updateCounter("Ditolak", "ditolakCounter");
+
+                // Update count for "Dipinjamkan"
+                updateCounter("Dipinjamkan", "dipinjamkanCounter");
+
+                // Update count for "Dikembalikan"
+                // updateCounter("Dikembalikan", "dikembalikanCounter");
+            }
+
+            function updateCounter(status, counterId) {
+                // Satu permintaan AJAX per status
+                $.ajax({
+                    url: "<?= site_url('admin/transaksi/totalByStatus/'); ?>" + status,
+                    type: "GET",
+                    success: function(response) {
+                        // Pastikan response total valid
+                        var total = parseInt(response.total);
+
+                        if (!isNaN(total)) {
+                            // Update nilai pada elemen dengan id sesuai counterId
+                            $("#" + counterId).attr("data-target", total);
+                            $("#" + counterId).text(total);
+                        } else {
+                            console.error("Response total is not a number:", response);
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.error("Error:", error);
@@ -352,41 +444,41 @@
             updateCounts();
 
             function updateCounts() {
-                // Update count for "Belum diproses"
-                updateCounter("Belum diproses", "belumProsesCounter");
+                // Update untuk semua status
+                let statuses = [{
+                    //     status: "Belum Diproses",
+                    //     id: "belumDiprosesCounter"
+                    // },
+                    // {
+                    //     status: "Ditolak",
+                    //     id: "ditolakCounter"
+                    // },
+                    // {
+                    //     status: "Dipinjamkan",
+                    //     id: "dipinjamkanCounter"
+                    // },
+                    // {
+                    status: "Dikembalikan",
+                    id: "dikembalikanCounter"
+                }];
 
-                // Update count for "Diproses"
-                updateCounter("Diproses", "diprosesCounter");
-
-                // Update count for "Permohonan diberikan"
-                updateCounter("Diberikan", "diberikanCounter");
-
-                // Update count for "Permohonan ditolak"
-                updateCounter("Ditolak", "ditolakCounter");
+                statuses.forEach(function(item) {
+                    updateCounter(item.status, item.id);
+                });
             }
 
             function updateCounter(status, counterId) {
-                // Ajax request untuk tb_pemohon
                 $.ajax({
-                    url: "/admin/permohonan/totalByStatus/" + status,
+                    url: "<?= site_url('admin/transaksi/totalUserByStatus/'); ?>" + status,
                     type: "GET",
-                    success: function(responsePemohon) {
-                        // Ajax request untuk tb_keberatan
-                        $.ajax({
-                            url: "/admin/keberatan/totalByStatus/" + status,
-                            type: "GET",
-                            success: function(responseKeberatan) {
-                                // Menghitung total gabungan dari kedua response
-                                var total = parseInt(responsePemohon.total) + parseInt(responseKeberatan.total);
-
-                                // Update nilai pada elemen dengan id sesuai counterId
-                                $("#" + counterId).attr("data-target", total);
-                                $("#" + counterId).text(total);
-                            },
-                            error: function(xhr, status, error) {
-                                console.error("Error:", error);
-                            }
-                        });
+                    success: function(response) {
+                        if (response.success) {
+                            $("#" + counterId)
+                                .attr("data-target", response.total)
+                                .text(response.total);
+                        } else {
+                            console.error("Error:", response.message);
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.error("Error:", error);
@@ -395,31 +487,6 @@
             }
         });
     </script>
-
-    <script>
-        $(document).ready(function() {
-            updateTotal();
-
-            function updateTotal() {
-                $.ajax({
-                    url: "/admin/informasi_publik/totalData", // URL untuk total permohonan informasi
-                    type: "GET",
-                    success: function(responseInformasi) {
-                        // Hitung total gabungan
-                        var total = parseInt(responseInformasi.total);
-                        // Update nilai total pada elemen dengan id "totalCounter1"
-                        $("#totalCounter1").attr("data-target", total);
-                        $("#totalCounter1").text(total);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error:", error);
-                    }
-                });
-            }
-        });
-    </script> -->
-
-
 </body>
 
 </html>

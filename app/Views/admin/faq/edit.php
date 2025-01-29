@@ -47,9 +47,22 @@
                                         <?= csrf_field(); ?>
 
                                         <div class="mb-3">
+                                            <label for="id_kategori_faq" class="col-form-label">Nama Kategori FAQ</label><span style="color: red;">*</span>
+                                            <a href="<?= site_url('admin/kategori_faq'); ?>" class="btn rounded-pill">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
+                                            <select class="form-select custom-border <?= ($validation->hasError('id_kategori_faq')) ? 'is-invalid' : ''; ?>" id="id_kategori_faq" name="id_kategori_faq" aria-label="Default select example" style="background-color: white;" required>
+                                                <option value="" selected disabled>~ Silahkan Pilih Nama Kategori FAQ ~</option>
+                                                <?php foreach ($tb_kategori_faq as $value) : ?>
+                                                    <?php $selected = ($value['id_kategori_faq'] == old('id_kategori_faq', $tb_faq['id_kategori_faq'])) ? 'selected' : ''; ?>
+                                                    <option value="<?= $value['id_kategori_faq'] ?>" <?= $selected ?>><?= $value['nama_kategori'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
                                             <label for="pertanyaan" class="col-form-label">Pertanyaan</label><span style="color: red;">*</span>
-                                            <textarea class="form-control <?= session('errors.pertanyaan') ? 'is-invalid' : ''; ?>" name="pertanyaan" style="background-color: white" id="pertanyaan"><?= old('pertanyaan', $tb_faq['pertanyaan']); ?>
-                                    </textarea>
+                                            <textarea class="form-control <?= session('errors.pertanyaan') ? 'is-invalid' : ''; ?>" name="pertanyaan" style="background-color: white" id="pertanyaan"><?= old('pertanyaan', $tb_faq['pertanyaan']); ?></textarea>
                                             <?php if (session('errors.pertanyaan')) : ?>
                                                 <div class="invalid-feedback">
                                                     <?= session('errors.pertanyaan') ?>
@@ -90,10 +103,10 @@
 
                                         <div class="form-group mb-4 mt-4">
                                             <div class="d-grid gap-2 d-md-flex justify-content-end">
-                                                <a href="/admin/faq/cek_data/<?= $tb_faq['id_faq'] ?>" class="btn btn-secondary btn-md ml-3">
-                                                    <i class="fas fa-arrow-left"></i> Kembali
+                                                <a href="<?= site_url('admin/faq/cek_data/' .  $tb_faq['slug']); ?>" class="btn btn-secondary btn-md ml-3">
+                                                    <i class="fas fa-times"></i> Batal Ubah
                                                 </a>
-                                                <button type="submit" class="btn btn-primary ">Ubah Data</button>
+                                                <button type="submit" class="btn btn-warning btn-md edit"><i class="fas fa-save"></i> Simpan Perubahan Data</button>
                                             </div>
                                         </div>
 

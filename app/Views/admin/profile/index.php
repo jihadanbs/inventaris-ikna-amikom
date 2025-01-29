@@ -192,7 +192,7 @@
                                 <?= csrf_field(); ?>
 
                                 <div class="mb-3">
-                                    <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
+                                    <label for="nama_lengkap" class="form-label">Nama Lengkap<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control <?= isset($validation) && $validation->hasError('nama_lengkap') ? 'is-invalid' : ''; ?>" placeholder="Masukkan Nama Lengkap Anda" style="background-color: white;" id="nama_lengkap" name="nama_lengkap" value="<?= old('nama_lengkap', session('nama_lengkap')); ?>">
                                     <div class="invalid-feedback">
                                         <?= isset($validation) ? $validation->getError('nama_lengkap') : ''; ?>
@@ -200,7 +200,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="username" class="form-label">Username</label>
+                                    <label for="username" class="form-label">Username<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control <?= isset($validation) && $validation->hasError('username') ? 'is-invalid' : ''; ?>" placeholder="Masukkan Username Anda" style="background-color: white;" id="username" name="username" value="<?= old('username', session('username')); ?>">
                                     <div class="invalid-feedback">
                                         <?= isset($validation) ? $validation->getError('username') : ''; ?>
@@ -208,7 +208,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
+                                    <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
                                     <input type="email" class="form-control <?= isset($validation) && $validation->hasError('email') ? 'is-invalid' : ''; ?>" placeholder="Masukkan Alamat Email Aktif Anda" style="background-color: white;" id="email" name="email" value="<?= old('email', session('email')); ?>">
                                     <div class="invalid-feedback">
                                         <?= isset($validation) ? $validation->getError('email') : ''; ?>
@@ -216,7 +216,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="id_jabatan" class="col-form-label">Jabatan :</label>
+                                    <label for="id_jabatan" class="col-form-label">Jabatan<span class="text-danger">*</span></label>
                                     <select class="form-select custom-border" id="id_jabatan" name="id_jabatan" aria-label="Default select example" style="background-color: #C7C8CC;" required disabled>
                                         <option value="" selected disabled>Silahkan Pilih Jabatan Anda --</option>
                                         <?php foreach ($tb_jabatan as $value) : ?>
@@ -234,7 +234,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="no_telepon" class="form-label">Nomor Telepon</label>
+                                    <label for="no_telepon" class="form-label">Nomor Telepon<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control <?= isset($validation) && $validation->hasError('no_telepon') ? 'is-invalid' : ''; ?>" placeholder="Masukkan Nomor Telpon / Whatsapp Anda" style="background-color: white;" id="no_telepon" name="no_telepon" value="<?= old('no_telepon', session('no_telepon')); ?>">
                                     <div class="invalid-feedback">
                                         <?= isset($validation) ? $validation->getError('no_telepon') : ''; ?>
@@ -262,14 +262,14 @@
                                 ?>
 
                                 <div class="mb-3">
-                                    <label for="password_last_reset" class="col-form-label">Terakhir Update Password :</label>
+                                    <label for="password_last_reset" class="col-form-label">Terakhir Update Password<span class="text-danger">*</span></label>
                                     <div class="col-sm-12">
                                         <input disabled type="text" placeholder="Belum melakukan update password &#129300;" class="form-control" id="password_last_reset" name="password_last_reset" style="background-color: #C7C8CC;" value="<?= $formattedLastReset; ?>">
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password_expiry" class="col-form-label">Password Berlaku Sampai :</label>
+                                    <label for="password_expiry" class="col-form-label">Password Berlaku Sampai<span class="text-danger">*</span></label>
                                     <div class="col-sm-12">
                                         <input disabled type="text" class="form-control" id="password_expiry" name="password_expiry" style="background-color: #C7C8CC;" value="<?= $expiryDate; ?>">
                                     </div>
@@ -290,7 +290,7 @@
                                 ?>
 
                                 <div class="mb-3">
-                                    <label for="terakhir_login" class="col-form-label">Waktu Terakhir Login Sebelumnya :</label>
+                                    <label for="terakhir_login" class="col-form-label">Waktu Terakhir Login Sebelumnya<span class="text-danger">*</span></label>
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" id="terakhir_login" name="terakhir_login" style="background-color: #C7C8CC;" value="<?= $formattedDate; ?>" disabled>
                                     </div>
@@ -298,7 +298,7 @@
                                 <!-- End Function -->
 
                                 <div class="mb-3">
-                                    <label for="file_profil" class="form-label">Foto Profile :</label>
+                                    <label for="file_profil" class="form-label">Foto Profile<span class="text-danger">*</span></label>
                                     <div class="mb-2">
                                         <?php if (session()->has('file_profil') && !empty(session('file_profil'))) : ?>
                                             <img src="<?= base_url(session('file_profil')); ?>" alt="Profile Photo" id="profilePhotoPreview" style="max-width: 150px;">

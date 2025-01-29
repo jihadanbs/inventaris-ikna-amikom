@@ -116,8 +116,8 @@
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
                                         <th>Foto</th>
-                                        <th>Nama</th>
-                                        <th>Posisi</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>Posisi Menjabat</th>
                                         <th>Divisi</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -135,9 +135,9 @@
                                             <td><?= $row['posisi']; ?></td>
                                             <td><?= $row['divisi']; ?></td>
                                             <td style="width: 155px">
-                                                <a href="<?= site_url('admin/foto-pengurus/edit/' . $row['nama']); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
+                                                <a href="<?= site_url('admin/foto-pengurus/edit/' . $row['nama']); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Ubah</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id'] ?>">
-                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                    <i class="fas fa-trash-alt"></i> Hapus
                                                 </button>
                                             </td>
                                         </tr>
@@ -222,7 +222,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "POST",
-                            url: "<?= site_url('/admin/foto-pengurus/delete') ?>",
+                            url: "<?= site_url('admin/foto-pengurus/delete') ?>",
                             data: {
                                 id: id
                             },

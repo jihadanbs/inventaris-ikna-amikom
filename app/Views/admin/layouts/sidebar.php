@@ -107,8 +107,8 @@
                         <span data-key="t-components">Aktivitas Barang</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="barang_masuk" data-key="t-apps">Data Barang Masuk</a></li>
-                        <li><a href="barang_keluar" data-key="t-apps">Data Barang Keluar</a></li>
+                        <li><a href="barang_masuk" data-key="t-apps">Barang Masuk</a></li>
+                        <li><a href="barang_keluar" data-key="t-apps">Barang Keluar</a></li>
                     </ul>
                 </li>
 
@@ -158,12 +158,12 @@
                     </a>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="web_option">
                         <i data-feather="settings"></i>
                         <span data-key="t-dashboard">Web Option</span>
                     </a>
-                </li>
+                </li> -->
 
                 <li class="menu-title mt-2" data-key="t-components">Data Master</li>
 
@@ -178,7 +178,7 @@
                     </ul>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i data-feather="user"></i>
                         <span data-key="t-components">Master Anggota</span>
@@ -186,7 +186,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="kategori_anggota" data-key="t-apps">Kategori Anggota</a></li>
                     </ul>
-                </li>
+                </li> -->
 
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">

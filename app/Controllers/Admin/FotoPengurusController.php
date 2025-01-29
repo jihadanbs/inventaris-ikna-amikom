@@ -52,30 +52,30 @@ class FotoPengurusController extends BaseController
                 'rules' => 'required|min_length[3]|max_length[255]',
                 'errors' => [
                     'required' => 'Nama pengurus wajib diisi !',
-                    'min_length' => 'Nama pengurus minimal 3 karakter !',
-                    'max_length' => 'Nama pengurus maksimal 255 karakter !',
+                    'min_length' => 'Nama Pengurus Minimal 3 Karakter !',
+                    'max_length' => 'Nama Pengurus Maksimal 255 Karakter !',
                 ],
             ],
             'foto' => [
                 'rules' => 'uploaded[foto]|max_size[foto,5048]|is_image[foto]',
                 'errors' => [
-                    'uploaded' => 'Foto wajib diunggah !',
-                    'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB !',
-                    'is_image' => 'File harus berupa gambar (JPEG, PNG, dll) !',
+                    'uploaded' => 'Foto Wajib Diunggah !',
+                    'max_size' => 'Ukuran Foto Tidak Boleh Lebih Dari 2MB !',
+                    'is_image' => 'File Harus Berupa Gambar (JPEG, PNG, dll) !',
                 ],
             ],
             'posisi' => [
                 'rules' => 'required|min_length[3]|max_length[255]',
                 'errors' => [
-                    'required' => 'Posisi wajib diisi !',
-                    'min_length' => 'Posisi minimal 3 karakter !',
-                    'max_length' => 'Posisi maksimal 255 karakter !',
+                    'required' => 'Posisi Wajib Diisi !',
+                    'min_length' => 'Posisi Minimal 3 Karakter !',
+                    'max_length' => 'Posisi Maksimal 255 Karakter !',
                 ],
             ],
             'divisi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Divisi wajib dipilih !',
+                    'required' => 'Divisi Wajib Dipilih !',
                 ],
             ],
         ];
@@ -144,23 +144,23 @@ class FotoPengurusController extends BaseController
             'nama' => [
                 'rules' => 'required|min_length[3]|max_length[255]',
                 'errors' => [
-                    'required' => 'Nama pengurus wajib diisi !',
-                    'min_length' => 'Nama pengurus minimal 3 karakter !',
-                    'max_length' => 'Nama pengurus maksimal 255 karakter !'
+                    'required' => 'Nama Pengurus Wajib Diisi !',
+                    'min_length' => 'Nama Pengurus Minimal 3 Karakter !',
+                    'max_length' => 'Nama Pengurus Maksimal 255 Karakter !'
                 ]
             ],
             'posisi' => [
                 'rules' => 'required|min_length[3]|max_length[255]',
                 'errors' => [
-                    'required' => 'Posisi wajib diisi !',
-                    'min_length' => 'Posisi minimal 3 karakter !',
-                    'max_length' => 'Posisi maksimal 255 karakter !'
+                    'required' => 'Posisi Wajib Diisi !',
+                    'min_length' => 'Posisi Minimal 3 Karakter !',
+                    'max_length' => 'Posisi Maksimal 255 Karakter !'
                 ]
             ],
             'divisi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Divisi wajib dipilih !'
+                    'required' => 'Divisi Wajib Dipilih !'
                 ]
             ]
         ];
@@ -171,9 +171,9 @@ class FotoPengurusController extends BaseController
             $rules['foto'] = [
                 'rules' => 'max_size[foto,5048]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png]',
                 'errors' => [
-                    'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB !',
-                    'is_image' => 'File harus berupa gambar !',
-                    'mime_in' => 'File harus berupa gambar (JPG, JPEG, atau PNG) !'
+                    'max_size' => 'Ukuran Foto Tidak Boleh Lebih Dari 2MB !',
+                    'is_image' => 'File Harus Berupa Gambar !',
+                    'mime_in' => 'File Harus Berupa Gambar (JPG, JPEG, atau PNG) !'
                 ]
             ];
         }

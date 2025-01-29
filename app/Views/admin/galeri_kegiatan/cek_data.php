@@ -34,7 +34,7 @@
                             <h4 class="mb-sm-0 font-size-18">Formulir Cek Data Galeri Kegiatan</h4>
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Galeri Kegiatan</a></li>
+                                    <li class="breadcrumb-item"><a href="<?= site_url('admin/galeri-kegiatan') ?>">Galeri Kegiatan</a></li>
                                     <li class="breadcrumb-item active">Formulir Cek Galeri Kegiatan</li>
                                 </ol>
                             </div>
@@ -162,7 +162,7 @@
                                     <i class="fas fa-arrow-left"></i> Kembali
                                 </a>
                                 <a href="<?= site_url('admin/galeri-kegiatan/edit/' . $value['judul_kegiatan']); ?>" class="btn btn-warning btn-md edit">
-                                    <i class="fas fa-pencil-alt"></i> Edit
+                                    <i class="fas fa-edit"></i> Ubah Data
                                 </a>
                             </div>
                         </div>

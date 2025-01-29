@@ -53,7 +53,8 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang_keluar') ?>">Aktivitas</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Aktivitas Barang</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Barang Keluar</a></li>
                                 <li class="breadcrumb-item active">Data Barang Keluar</li>
                             </ol>
                         </div>
@@ -98,8 +99,9 @@
                                         <th>Nama Barang</th>
                                         <th>Kategori</th>
                                         <th>Total Barang</th>
+                                        <th>Tanggal Keluar</th>
                                         <th>Keterangan</th>
-                                        <th>Aksi</th>
+                                        <!-- <th>Aksi</th> -->
                                     </tr>
                                 </thead>
 
@@ -111,13 +113,14 @@
                                             <td><?= truncateText($row['nama_barang'], 70); ?></td>
                                             <td><?= $row['nama_kategori']; ?></td>
                                             <td><?= $row['total_barang']; ?> Unit</td>
+                                            <td><?= formatTanggalIndo($row['tanggal_keluar']); ?></td>
                                             <td><?= $row['keterangan']; ?></td>
-                                            <td style="width: 50px">
+                                            <!-- <td style="width: 50px">
                                                 <a href="<?= site_url('admin/barang_keluar/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a>
-                                                <!-- <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_keluar'] ?>">
+                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_keluar'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Delete
-                                                </button> -->
-                                            </td>
+                                                </button>
+                                            </td> -->
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -144,31 +147,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     'colvis'

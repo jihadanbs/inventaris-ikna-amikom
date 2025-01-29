@@ -51,28 +51,28 @@ class GaleriKegiatanController extends BaseController
             'judul_kegiatan' => [
                 'rules' => 'required|min_length[3]|max_length[255]',
                 'errors' => [
-                    'required' => 'Judul Kegiatan harus diisi !',
-                    'max_length' => 'Judul Kegiatan maksimal 255 karakter !',
+                    'required' => 'Judul Kegiatan Harus Diisi !',
+                    'max_length' => 'Judul Kegiatan Maksimal 255 Karakter !',
                 ],
             ],
             'foto_kegiatan' => [
                 'rules' => 'uploaded[foto_kegiatan]|max_size[foto_kegiatan,2048]|is_image[foto_kegiatan]',
                 'errors' => [
-                    'uploaded' => 'Foto Kegiatan wajib diunggah !',
-                    'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB !',
-                    'is_image' => 'File harus berupa gambar (JPEG, PNG, dll) !',
+                    'uploaded' => 'Foto Kegiatan Wajib Diunggah !',
+                    'max_size' => 'Ukuran Foto Tidak Boleh Lebih Dari 2MB !',
+                    'is_image' => 'File Harus Berupa Gambar (JPEG, PNG, dll) !',
                 ],
             ],
             'tanggal_foto' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Tanggal Kegiatan harus diisi !',
+                    'required' => 'Tanggal Kegiatan Harus Diisi !',
                 ],
             ],
             'deskripsi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Deskripsi Kegiatan harus diisi !',
+                    'required' => 'Deskripsi Kegiatan Harus Diisi !',
                 ],
             ],
         ];
@@ -155,20 +155,20 @@ class GaleriKegiatanController extends BaseController
             'judul_kegiatan' => [
                 'rules' => 'required|min_length[3]|max_length[255]',
                 'errors' => [
-                    'required' => 'Judul Kegiatan harus diisi !',
-                    'max_length' => 'Judul Kegiatan maksimal 255 karakter !',
+                    'required' => 'Judul Kegiatan Harus Diisi !',
+                    'max_length' => 'Judul Kegiatan Maksimal 255 Karakter !',
                 ],
             ],
             'tanggal_foto' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Tanggal Kegiatan harus diisi !',
+                    'required' => 'Tanggal Kegiatan Harus Diisi !',
                 ],
             ],
             'deskripsi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Deskripsi Kegiatan harus diisi !',
+                    'required' => 'Deskripsi Kegiatan Harus Diisi !',
                 ],
             ],
         ];
@@ -179,9 +179,9 @@ class GaleriKegiatanController extends BaseController
             $rules['foto_kegiatan'] = [
                 'rules' => 'max_size[foto_kegiatan,2048]|is_image[foto_kegiatan]|mime_in[foto_kegiatan,image/jpg,image/jpeg,image/png]',
                 'errors' => [
-                    'max_size' => 'Ukuran foto tidak boleh lebih dari 2MB !',
-                    'is_image' => 'File harus berupa gambar !',
-                    'mime_in' => 'File harus berupa gambar (JPG, JPEG, atau PNG) !'
+                    'max_size' => 'Ukuran Foto Tidak Boleh Lebih Dari 2MB !',
+                    'is_image' => 'File Harus Berupa Gambar !',
+                    'mime_in' => 'File Harus Berupa Gambar (JPG, JPEG, atau PNG) !'
                 ]
             ];
         }
