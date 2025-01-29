@@ -201,9 +201,13 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     /*=================================== TRANSAKSI ====================================*/
     $routes->GET('transaksi', 'TransaksiController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('transaksi', static function ($routes) {
-        $routes->GET('dipinjamkan/(:segment)', 'TransaksiController::dipinjamkan/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('totalByStatus/(:any)', 'TransaksiController::totalByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('proses_dikembalikan/(:segment)', 'TransaksiController::proses_dikembalikan/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('dikembalikan/(:segment)', 'TransaksiController::dikembalikan/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('proses_ditolak/(:segment)', 'TransaksiController::proses_ditolak/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('ditolak/(:segment)', 'TransaksiController::ditolak/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('proses_dipinjamkan/(:segment)', 'TransaksiController::proses_dipinjamkan/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('dipinjamkan/(:segment)', 'TransaksiController::dipinjamkan/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'TransaksiController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'TransaksiController::update/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('cek_data/(:segment)', 'TransaksiController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);

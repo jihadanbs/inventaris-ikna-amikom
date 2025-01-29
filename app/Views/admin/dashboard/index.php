@@ -223,7 +223,7 @@
                                     </div>
                                 </div>
                                 <div class="text-nowrap mt-3">
-                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Barang Diproses</span>
+                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Barang Belum Diproses</span>
                                     <!-- <span class="ms-0 text-muted font-size-16 d-block text-truncate" style="color: #f4d160 !important;">Permohonan Informasi</span> -->
                                 </div>
                             </div><!-- end card body -->

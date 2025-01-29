@@ -39,6 +39,8 @@ class TransaksiController extends BaseController
         return view('admin/transaksi/cek_data', $data);
     }
 
+
+    // Dipinjamkan
     public function dipinjamkan($nama_lengkap)
     {
         // Cek sesi pengguna
@@ -48,7 +50,7 @@ class TransaksiController extends BaseController
 
         // Menyiapkan data untuk tampilan
         $data = array_merge([
-            'title' => 'Admin | Halaman Dipinjamkan Transaksi Barang',
+            'title' => 'Admin | Halaman Transaksi Barang Dipinjamkan',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
             'tb_user_peminjam' => $this->m_user_peminjam->getByNamaLengkap($nama_lengkap),
             'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
@@ -58,7 +60,6 @@ class TransaksiController extends BaseController
         return view('admin/transaksi/dipinjamkan', $data);
     }
 
-    // Dipinjamkan
     public function proses_dipinjamkan($id_user_peminjam)
     {
         // Cek sesi pengguna
@@ -180,7 +181,7 @@ class TransaksiController extends BaseController
 
             // Set flash data untuk WhatsApp link dan pesan sukses
             session()->setFlashdata('whatsapp_link', $waUrl);
-            session()->setFlashdata('pesan', 'Peminjaman Barang Berhasil Dikirimkan !');
+            session()->setFlashdata('pesan', 'Transaksi Barang Berhasil Disimpan !');
 
             return redirect()->to('/admin/transaksi');
         } catch (\Exception $e) {
@@ -200,6 +201,248 @@ class TransaksiController extends BaseController
         return $keterangan;
     }
     // End Dipinjamkan
+
+    // DITOLAK
+    public function ditolak($nama_lengkap)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession(); // Redirect jika sesi tidak valid
+        }
+
+        // Menyiapkan data untuk tampilan
+        $data = array_merge([
+            'title' => 'Admin | Halaman Transaksi Barang Ditolak',
+            'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
+            'tb_user_peminjam' => $this->m_user_peminjam->getByNamaLengkap($nama_lengkap),
+            'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
+            'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
+        ]);
+
+        return view('admin/transaksi/ditolak', $data);
+    }
+
+    public function proses_ditolak($id_user_peminjam)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
+
+        $data = $this->request->getPost();
+
+        //validasi input 
+        $rules = [
+            'catatan_peminjaman' => [
+                'rules' => 'required|trim|min_length[5]',
+                'errors' => [
+                    'required' => 'Kolom Catatan Tidak Boleh Kosong !',
+                    'min_length' => 'Catatan tidak boleh kurang dari 5 karakter !',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        // Ambil data user peminjam
+        $userPeminjam = $this->m_user_peminjam->find($id_user_peminjam);
+        if (!$userPeminjam) {
+            return redirect()->back()->with('error', 'Data peminjam tidak ditemukan!');
+        }
+
+        // Ambil data stok barang
+        $idBarang = $this->request->getPost('id_barang');
+        $stokBarang = $this->m_barang_baik->where('id_barang', $idBarang)->first();
+
+        if (!$stokBarang) {
+            return redirect()->back()->withInput()
+                ->with('errors', ['id_barang' => 'Barang tidak ditemukan!']);
+        }
+
+        $jumlahTotalBaik = $stokBarang['jumlah_total_baik'];
+        $totalDipinjam = $this->request->getPost('total_dipinjam');
+
+        // Mulai transaksi database
+        $this->db->transBegin();
+
+        try {
+            // Update data di tb_user_peminjam
+            $dataUpdatePeminjam = [
+                'id_user_peminjam' => $id_user_peminjam,
+                'id_barang' => $userPeminjam['id_barang'],
+                'catatan_peminjaman' => $data['catatan_peminjaman'],
+                'status' => 'Ditolak',
+            ];
+
+            // Update jumlah stok barang
+            $this->m_barang_baik->update($idBarang, [
+                'jumlah_total_baik' => $jumlahTotalBaik + $totalDipinjam
+            ]);
+
+            if (!$this->m_user_peminjam->update($id_user_peminjam, $dataUpdatePeminjam)) {
+                throw new \Exception('Gagal mengupdate data peminjam');
+            }
+
+            // Commit transaksi jika semua berhasil
+            $this->db->transCommit();
+
+            $message = "✨ *INFORMASI PEMINJAMAN BARANG* ✨\n\n"
+                . "Halo *{$userPeminjam['nama_lengkap']}*,\n"
+                . "Berikut detail peminjaman Anda:\n\n"
+                . "📝 *Detail Peminjam*\n"
+                . "Nama: *{$userPeminjam['nama_lengkap']}*\n"
+                . "Pekerjaan: *{$userPeminjam['pekerjaan']}*\n"
+                . "No. Telepon: *{$userPeminjam['no_telepon']}*\n\n"
+                . "📦 *Detail Peminjaman*\n"
+                . "Kode Peminjaman: *{$userPeminjam['kode_peminjaman']}*\n"
+                . "Status: *Ditolak*\n"
+                . "Total Dipinjam: *{$userPeminjam['total_dipinjam']} unit*\n"
+                . "Tanggal Pengajuan: *" . formatTanggalIndo($userPeminjam['tanggal_pengajuan']) . "*\n"
+                . "📌 *Catatan Penolakan*\n"
+                . "{$data['catatan_peminjaman']}\n\n"
+                . "Harap Menggunakan Kode Peminjaman Untuk Mengecek Status Peminjaman Anda, Terima kasih. 🙏";
+
+            $phone = preg_replace('/[^0-9]/', '', $userPeminjam['no_telepon']);
+            if (substr($phone, 0, 1) === '0') {
+                $phone = '62' . substr($phone, 1);
+            }
+            $waUrl = 'https://api.whatsapp.com/send?phone=' . $phone . '&text=' . urlencode($message);
+
+            // Set flash data untuk WhatsApp link dan pesan sukses
+            session()->setFlashdata('whatsapp_link', $waUrl);
+            session()->setFlashdata('pesan', 'Transaksi Barang Berhasil Disimpan !');
+
+            return redirect()->to('/admin/transaksi');
+        } catch (\Exception $e) {
+            // Rollback transaksi jika terjadi error
+            $this->db->transRollback();
+            return redirect()->back()->with('error', 'Gagal meminjamkan barang: ' . $e->getMessage());
+        }
+    }
+    // END DITOLAK
+
+    // DIKEMBALIKAN
+    public function dikembalikan($nama_lengkap)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession(); // Redirect jika sesi tidak valid
+        }
+
+        // Menyiapkan data untuk tampilan
+        $data = array_merge([
+            'title' => 'Admin | Halaman Transaksi Barang Dikembalikan',
+            'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
+            'tb_user_peminjam' => $this->m_user_peminjam->getByNamaLengkap($nama_lengkap),
+            'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
+            'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
+        ]);
+
+        return view('admin/transaksi/ditolak', $data);
+    }
+
+    public function proses_dikembalikan($id_user_peminjam)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
+
+        $data = $this->request->getPost();
+
+        //validasi input 
+        $rules = [
+            'catatan_peminjaman' => [
+                'rules' => 'required|trim|min_length[5]',
+                'errors' => [
+                    'required' => 'Kolom Catatan Tidak Boleh Kosong !',
+                    'min_length' => 'Catatan tidak boleh kurang dari 5 karakter !',
+                ]
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        // Ambil data user peminjam
+        $userPeminjam = $this->m_user_peminjam->find($id_user_peminjam);
+        if (!$userPeminjam) {
+            return redirect()->back()->with('error', 'Data peminjam tidak ditemukan!');
+        }
+
+        // Ambil data stok barang
+        $idBarang = $this->request->getPost('id_barang');
+        $stokBarang = $this->m_barang_baik->where('id_barang', $idBarang)->first();
+
+        if (!$stokBarang) {
+            return redirect()->back()->withInput()
+                ->with('errors', ['id_barang' => 'Barang tidak ditemukan!']);
+        }
+
+        $jumlahTotalBaik = $stokBarang['jumlah_total_baik'];
+        $totalDipinjam = $this->request->getPost('total_dipinjam');
+
+        // Mulai transaksi database
+        $this->db->transBegin();
+
+        try {
+            // Update data di tb_user_peminjam
+            $dataUpdatePeminjam = [
+                'id_user_peminjam' => $id_user_peminjam,
+                'id_barang' => $userPeminjam['id_barang'],
+                'catatan_peminjaman' => $data['catatan_peminjaman'],
+                'status' => 'Ditolak',
+            ];
+
+            // Update jumlah stok barang
+            $this->m_barang_baik->update($idBarang, [
+                'jumlah_total_baik' => $jumlahTotalBaik + $totalDipinjam
+            ]);
+
+            if (!$this->m_user_peminjam->update($id_user_peminjam, $dataUpdatePeminjam)) {
+                throw new \Exception('Gagal mengupdate data peminjam');
+            }
+
+            // Commit transaksi jika semua berhasil
+            $this->db->transCommit();
+
+            $message = "✨ *INFORMASI PEMINJAMAN BARANG* ✨\n\n"
+                . "Halo *{$userPeminjam['nama_lengkap']}*,\n"
+                . "Berikut detail peminjaman Anda:\n\n"
+                . "📝 *Detail Peminjam*\n"
+                . "Nama: *{$userPeminjam['nama_lengkap']}*\n"
+                . "Pekerjaan: *{$userPeminjam['pekerjaan']}*\n"
+                . "No. Telepon: *{$userPeminjam['no_telepon']}*\n\n"
+                . "📦 *Detail Peminjaman*\n"
+                . "Kode Peminjaman: *{$userPeminjam['kode_peminjaman']}*\n"
+                . "Status: *Ditolak*\n"
+                . "Total Dipinjam: *{$userPeminjam['total_dipinjam']} unit*\n"
+                . "Tanggal Pengajuan: *" . formatTanggalIndo($userPeminjam['tanggal_pengajuan']) . "*\n"
+                . "📌 *Catatan Penolakan*\n"
+                . "{$data['catatan_peminjaman']}\n\n"
+                . "Harap Menggunakan Kode Peminjaman Untuk Mengecek Status Peminjaman Anda, Terima kasih. 🙏";
+
+            $phone = preg_replace('/[^0-9]/', '', $userPeminjam['no_telepon']);
+            if (substr($phone, 0, 1) === '0') {
+                $phone = '62' . substr($phone, 1);
+            }
+            $waUrl = 'https://api.whatsapp.com/send?phone=' . $phone . '&text=' . urlencode($message);
+
+            // Set flash data untuk WhatsApp link dan pesan sukses
+            session()->setFlashdata('whatsapp_link', $waUrl);
+            session()->setFlashdata('pesan', 'Transaksi Barang Berhasil Disimpan !');
+
+            return redirect()->to('/admin/transaksi');
+        } catch (\Exception $e) {
+            // Rollback transaksi jika terjadi error
+            $this->db->transRollback();
+            return redirect()->back()->with('error', 'Gagal meminjamkan barang: ' . $e->getMessage());
+        }
+    }
+    // END DIKEMBALIKAN
 
     public function totalByStatus($status)
     {
