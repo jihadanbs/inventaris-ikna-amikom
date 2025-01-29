@@ -126,7 +126,9 @@
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-
+                            <small class="form-text text-muted">
+                                <span style="color: red;">Note : Menghapus data user peminjam berarti menghapus juga data transaksi peminjam yang ada di fitur transaksi</span>
+                            </small>
                         </div>
                     </div>
                 </div> <!-- end col -->
