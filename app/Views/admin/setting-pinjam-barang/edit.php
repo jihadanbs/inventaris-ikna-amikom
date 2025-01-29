@@ -136,9 +136,9 @@
                                 <div class="form-group mb-4 mt-4">
                                     <div class="d-grid gap-2 d-md-flex justify-content-end">
                                         <a href="<?= site_url('admin/setting-pinjam-barang') ?>" class="btn btn-secondary btn-md ml-3">
-                                            <i class="fas fa-arrow-left"></i> Batal
+                                            <i class="fas fa-times"></i> Batal Ubah
                                         </a>
-                                        <button type="submit" class="btn btn-primary" style="background-color: #28527A; color: white;">Ubah Data</button>
+                                        <button type="submit" class="btn btn-warning btn-md edit"><i class="fas fa-save"></i> Simpan Perubahan Data</button>
                                     </div>
                                 </div>
                             </form>

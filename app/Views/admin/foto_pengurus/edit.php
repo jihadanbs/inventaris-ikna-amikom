@@ -47,7 +47,7 @@
                                 <div class="row">
                                     <!-- Nama -->
                                     <div class="col-md-6 mb-3 separator">
-                                        <label for="nama" class="col-form-label">Nama<span style="color: red;">*</span></label>
+                                        <label for="nama" class="col-form-label">Nama Lengkap<span style="color: red;">*</span></label>
                                         <input type="text" style="background-color: #fff;" placeholder="Masukkan Nama Pengurus" class="form-control <?= session('errors.nama') ? 'is-invalid' : '' ?>"
                                             id="nama" name="nama" value="<?= old('nama', $pengurus['nama']); ?>">
                                         <?php if (session('errors.nama')) : ?>
@@ -84,7 +84,7 @@
 
                                 <!-- Posisi -->
                                 <div class="mb-3">
-                                    <label for="posisi" class="col-form-label">Posisi<span style="color: red;">*</span></label>
+                                    <label for="posisi" class="col-form-label">Posisi Menjabat<span style="color: red;">*</span></label>
                                     <input type="text" style="background-color: #fff;" placeholder="Masukkan Posisi Pengurus" class="form-control <?= session('errors.posisi') ? 'is-invalid' : '' ?>"
                                         id="posisi" name="posisi" value="<?= old('posisi', $pengurus['posisi']); ?>">
                                     <?php if (session('errors.posisi')) : ?>
@@ -126,10 +126,13 @@
                                     }
                                 </script>
 
-                                <!-- Tombol Submit -->
-                                <div class="modal-footer">
-                                    <a href="<?= site_url('admin/foto-pengurus'); ?>" class="btn btn-secondary me-3"><i class="fas fa-arrow-left"> Batal</i></a>
-                                    <button type="submit" class="btn btn-primary" style="background-color: #28527A;">Simpan Perubahan</button>
+                                <div class="form-group mb-4 mt-4">
+                                    <div class="d-grid gap-2 d-md-flex justify-content-end">
+                                        <a href="<?= esc(site_url('admin/foto-pengurus'), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
+                                            <i class="fas fa-times"></i> Batal Ubah
+                                        </a>
+                                        <button type="submit" class="btn btn-warning btn-md edit"><i class="fas fa-save"></i> Simpan Perubahan Data</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>

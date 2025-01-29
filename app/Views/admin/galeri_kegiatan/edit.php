@@ -107,8 +107,8 @@
 
                                 <div class="form-group mt-4">
                                     <div class="d-grid gap-2 d-md-flex justify-content-end">
-                                        <a href="<?= site_url('admin/galeri-kegiatan/cek_data/' . $kegiatan['judul_kegiatan']); ?>" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali</a>
-                                        <button type="submit" class="btn btn-primary">Ubah Data</button>
+                                        <a href="<?= site_url('admin/galeri-kegiatan/cek_data/' . $kegiatan['judul_kegiatan']); ?>" class="btn btn-secondary"><i class="fas fa-times"></i> Batal Ubah</a>
+                                        <button type="submit" class="btn btn-warning btn-md edit"><i class="fas fa-save"></i> Simpan Perubahan Data</button>
                                     </div>
                                 </div>
                             </form>

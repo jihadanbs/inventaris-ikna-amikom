@@ -203,6 +203,7 @@ class Home extends BaseController
             $data = [
                 'id_barang' => $idBarang,
                 'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+                'slug' => url_title($this->request->getPost('nama_lengkap'), '-', true),
                 'pekerjaan' => $this->request->getPost('pekerjaan'),
                 'email' => $this->request->getPost('email'),
                 'no_telepon' => $no_telepon,
@@ -210,7 +211,7 @@ class Home extends BaseController
                 'kepentingan' => $this->request->getPost('kepentingan'),
                 'total_dipinjam' => $totalDipinjam,
                 'kode_peminjaman' => $this->generateKodePeminjaman($no_telepon, $this->request->getPost('nama_lengkap')),
-                'status' => 'Diproses',
+                'status' => 'Belum Diproses',
                 'tanggal_pengajuan' => date('Y-m-d H:i:s')
             ];
 
@@ -223,6 +224,11 @@ class Home extends BaseController
             // Update jumlah stok barang
             $this->m_barang_baik->update($idBarang, [
                 'jumlah_total_baik' => $jumlahTotalBaik - $totalDipinjam
+            ]);
+
+            // Update jumlah stok barang
+            $this->m_barang->update($idBarang, [
+                'jumlah_dipinjam' => $totalDipinjam
             ]);
 
             // Siapkan pesan WhatsApp

@@ -105,8 +105,8 @@
                                 </script>
 
                                 <div class="modal-footer">
-                                    <a href="<?= site_url('admin/galeri-kegiatan'); ?>" class="btn btn-secondary me-3">Batal</a>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                    <a href="<?= site_url('admin/galeri-kegiatan'); ?>" class="btn btn-secondary btn-md ml-3"><i class="fas fa-times"></i> Batal</a>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #28527A; color:white; margin-left: 10px;"><i class="fas fa-plus"></i> Tambah Data</button>
                                 </div>
                             </form>
                         </div>

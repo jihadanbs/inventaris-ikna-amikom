@@ -1,8 +1,8 @@
+<!-- Component yang dapat digunakan berulang kali pada halaman lain yerdapat pada folder Layout-->
 <?= $this->include('layouts/template') ?>
 
 
 <body>
-
     <div class="hero_area">
         <?= $this->include('layouts/navbar') ?>
         <!-- slider section -->

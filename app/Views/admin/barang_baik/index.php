@@ -53,7 +53,8 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang_baik') ?>">Barang IKNA</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Kondisi Barang</a></li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Barang Kondisi Baik</a></li>
                                 <li class="breadcrumb-item active">Data Barang Baik</li>
                             </ol>
                         </div>
@@ -67,6 +68,33 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                            <div class="modal fade" id="editBarangModal" tabindex="-1" aria-labelledby="editBarangModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editBarangModalLabel">Ubah Data Barang Baik</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form id="editBarangForm">
+                                            <div class="modal-body">
+                                                <input type="hidden" id="id_barang_baik" name="id_barang_baik">
+                                                <div class="mb-3">
+                                                    <label for="jumlah_total_baik" class="form-label">Jumlah Total Kondisi Baik/Layak<span class="text-danger">*</span></label>
+                                                    <input type="number" style="background-color: white;" class="form-control" id="jumlah_total_baik" name="jumlah_total_baik" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="keterangan_baik" class="form-label">Keterangan<span class="text-danger">*</span></label>
+                                                    <textarea class="form-control" style="background-color: white;" id="keterangan_baik" name="keterangan_baik" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Tutup</button>
+                                                <button type="submit" class="btn btn-warning btn-md edit"><i class="fas fa-save"></i> Simpan Perubahan Data</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <?php
                             function truncateText($text, $maxLength)
                             {
@@ -87,11 +115,6 @@
                             ?>
                             <table id="tableBarangBaik" class="table table-bordered dt-responsive nowrap w-100">
                                 <?= $this->include('alert/alert'); ?>
-                                <!-- <div class="col-md-3 mb-3">
-                                    <a href=" <?= site_url('admin/barang_rusak/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
-                                        <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
-                                    </a>
-                                </div> -->
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
@@ -112,11 +135,8 @@
                                             <td><?= $row['nama_kategori']; ?></td>
                                             <td><?= $row['jumlah_total_baik']; ?> Unit</td>
                                             <td><?= $row['keterangan_baik']; ?></td>
-                                            <td style="width: 50px">
-                                                <a href="<?= site_url('admin/barang_rusak/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a>
-                                                <!-- <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_baik'] ?>">
-                                                    <i class="fas fa-trash-alt"></i> Delete
-                                                </button> -->
+                                            <td>
+                                                <button type="button" class="btn btn-warning btn-sm view" onclick="editBarang(<?= $row['id_barang_baik'] ?>, <?= $row['jumlah_total_baik'] ?>, '<?= $row['keterangan_baik'] ?>')"><i class="fas fa-edit"></i> Ubah</button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -145,31 +165,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         }
                     },
                     'colvis'
@@ -178,62 +198,50 @@
         });
     </script>
 
-    <!-- HAPUS -->
     <script>
-        $(document).ready(function() {
-            $('.sa-warning').click(function(e) {
-                e.preventDefault();
-                var id_barang_baik = $(this).data('id');
+        function editBarang(id, jumlah, keterangan) {
+            document.getElementById('id_barang_baik').value = id;
+            document.getElementById('jumlah_total_baik').value = jumlah;
+            document.getElementById('keterangan_baik').value = keterangan;
 
-                Swal.fire({
-                    title: "Anda Yakin Ingin Menghapus?",
-                    text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#28527A",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, Hapus!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: "POST",
-                            url: '<?= site_url('admin/barang_rusak/delete') ?>',
-                            data: {
-                                id_barang_baik: id_barang_baik,
-                                _method: 'DELETE'
-                            },
-                            dataType: 'json',
-                            success: function(response) {
-                                if (response.success) {
-                                    Swal.fire({
-                                        title: "Dihapus!",
-                                        text: response.success,
-                                        icon: "success"
-                                    }).then(() => {
-                                        location.reload();
-                                    });
-                                } else if (response.error) {
-                                    Swal.fire({
-                                        title: "Gagal!",
-                                        text: response.error,
-                                        icon: "error"
-                                    });
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                Swal.fire({
-                                    title: "Error",
-                                    text: "Terjadi kesalahan. Silakan coba lagi.",
-                                    icon: "error"
-                                });
-                            }
-                        });
+            new bootstrap.Modal(document.getElementById('editBarangModal')).show();
+        }
+
+        document.getElementById('editBarangForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const id = formData.get('id_barang_baik');
+
+            const data = {
+                jumlah_total_baik: formData.get('jumlah_total_baik'),
+                keterangan_baik: formData.get('keterangan_baik')
+            };
+
+            fetch(`<?= site_url('admin/barang_baik/update') ?>/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        bootstrap.Modal.getInstance(document.getElementById('editBarangModal')).hide();
+                        location.reload();
+                    } else {
+                        alert(data.message);
                     }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Terjadi kesalahan saat memperbarui data');
                 });
-            });
         });
     </script>
-    <!-- HAPUS -->
+
     </body>
 
     </html>

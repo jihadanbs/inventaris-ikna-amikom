@@ -87,11 +87,6 @@
                             ?>
                             <table id="tableBarangBaru" class="table table-bordered dt-responsive nowrap w-100">
                                 <?= $this->include('alert/alert'); ?>
-                                <!-- <div class="col-md-3 mb-3">
-                                    <a href=" <?= site_url('admin/barang_rusak/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
-                                        <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
-                                    </a>
-                                </div> -->
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
@@ -119,16 +114,21 @@
                                                 </a>
                                             </td>
                                             <td style="width: 155px">
-                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . $row['nama_lengkap']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang'] ?>">
-                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . $row['slug']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
+                                                <button type="button"
+                                                    class="btn btn-danger btn-sm waves-effect waves-light sa-warning"
+                                                    data-id="<?= $row['id_user_peminjam'] ?>"
+                                                    <?= ($row['status'] != 'Dikembalikan' && $row['status'] != 'Ditolak') ? 'disabled' : '' ?>>
+                                                    <i class="fas fa-trash-alt"></i> Hapus
                                                 </button>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
-
+                            <small class="form-text text-muted">
+                                <span style="color: red;">Note : Menghapus data user peminjam berarti menghapus juga data transaksi peminjam yang ada di fitur transaksi</span>
+                            </small>
                         </div>
                     </div>
                 </div> <!-- end col -->
@@ -151,31 +151,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     'colvis'
@@ -186,56 +186,59 @@
 
     <!-- HAPUS -->
     <script>
-        $(document).ready(function() {
-            $('.sa-warning').click(function(e) {
-                e.preventDefault();
-                var id_barang_masuk = $(this).data('id');
+        $('.sa-warning').click(function(e) {
+            if ($(this).hasClass('disabled')) {
+                return false;
+            }
 
-                Swal.fire({
-                    title: "Anda Yakin Ingin Menghapus?",
-                    text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#28527A",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Ya, Hapus!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            type: "POST",
-                            url: '<?= site_url('admin/barang_rusak/delete') ?>',
-                            data: {
-                                id_barang_masuk: id_barang_masuk,
-                                _method: 'DELETE'
-                            },
-                            dataType: 'json',
-                            success: function(response) {
-                                if (response.success) {
-                                    Swal.fire({
-                                        title: "Dihapus!",
-                                        text: response.success,
-                                        icon: "success"
-                                    }).then(() => {
-                                        location.reload();
-                                    });
-                                } else if (response.error) {
-                                    Swal.fire({
-                                        title: "Gagal!",
-                                        text: response.error,
-                                        icon: "error"
-                                    });
-                                }
-                            },
-                            error: function(xhr, status, error) {
+            e.preventDefault();
+            var id_user_peminjam = $(this).data('id');
+
+            // console.log('ID yang dikirim:', id_user_peminjam); // Debugging ID
+
+            Swal.fire({
+                title: "Anda Yakin Ingin Menghapus?",
+                text: "Data yang sudah dihapus tidak bisa dikembalikan!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#28527A",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Hapus!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: '<?= site_url('admin/user_peminjam/delete') ?>/' + id_user_peminjam,
+                        data: {
+                            _method: 'DELETE'
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.status === 'success') {
                                 Swal.fire({
-                                    title: "Error",
-                                    text: "Terjadi kesalahan. Silakan coba lagi.",
+                                    title: "Dihapus!",
+                                    text: response.message,
+                                    icon: "success"
+                                }).then(() => {
+                                    location.reload();
+                                });
+                            } else if (response.status === 'error') {
+                                Swal.fire({
+                                    title: "Gagal!",
+                                    text: response.message,
                                     icon: "error"
                                 });
                             }
-                        });
-                    }
-                });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: "Error",
+                                text: "Terjadi kesalahan, Silakan coba lagi.",
+                                icon: "error"
+                            });
+                        }
+                    });
+                }
             });
         });
     </script>

@@ -97,7 +97,7 @@
                             <div class="row align-items-center">
                                 <div class="col-md-9">
                                     <h2 class="greeting-title mb-2">Selamat Datang Di Halaman Admin IKNA AMIKOM</h2>
-                                    <p class="greeting-message">"Setiap Langkah Kecil Membawa Kita Lebih Dekat Pada Tujuan Besar! &#128521"</p>
+                                    <p class="greeting-message">"TUHAN adalah kekuatan umat-Nya dan benteng keselamatan bagi orang yang diurapi-Nya !" Mazmur 28:8</p>
                                 </div>
                                 <div class="col-md-3 text-end">
                                     <img src="<?= base_url('assets/img/ikna.png') ?>" alt="Welcome" class="img-fluid">
@@ -214,7 +214,7 @@
                                     <div class="col-6">
                                         <span class="text-muted mb-3 lh-1 d-block"></span>
                                         <h4 class="mb-3">
-                                            <span class="counter-value ms-3" id="diprosesCounter" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
+                                            <span class="counter-value ms-3" id="belumDiprosesCounter" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
                                         </h4>
                                     </div>
 
@@ -223,7 +223,7 @@
                                     </div>
                                 </div>
                                 <div class="text-nowrap mt-3">
-                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Barang Diproses</span>
+                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Barang Belum Diproses</span>
                                     <!-- <span class="ms-0 text-muted font-size-16 d-block text-truncate" style="color: #f4d160 !important;">Permohonan Informasi</span> -->
                                 </div>
                             </div><!-- end card body -->
@@ -289,7 +289,7 @@
                                     </div>
                                 </div>
                                 <div class="text-nowrap mt-3">
-                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Barang Dikembalikan</span>
+                                    <span class="ms-0 text-muted d-block text-truncate fw-bold" style="color: #f4d160 !important; font-size: 16px;">Peminjam Sudah Mengembalikan</span>
                                 </div>
                             </div><!-- end card body -->
                         </div><!-- end card -->
@@ -321,14 +321,19 @@
                     url: "<?= site_url('admin/barang/totalData'); ?>",
                     type: "GET",
                     success: function(responseInformasi) {
-                        // Hitung total gabungan
-                        var total = parseInt(responseInformasi.total);
-                        // Update nilai total pada elemen dengan id "totalCounter1"
-                        $("#totalCounter").attr("data-target", total);
-                        $("#totalCounter").text(total);
+                        var total = parseInt(responseInformasi.total) || 0; // Tambahkan fallback ke 0
+                        if (!isNaN(total)) {
+                            $("#totalCounter").attr("data-target", total);
+                            $("#totalCounter").text(total);
+                        } else {
+                            $("#totalCounter").attr("data-target", 0);
+                            $("#totalCounter").text(0);
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.error("Error:", error);
+                        $("#totalCounter").attr("data-target", 0);
+                        $("#totalCounter").text(0);
                     }
                 });
             }
@@ -344,12 +349,19 @@
                     url: "<?= site_url('admin/barang_baik/totalData'); ?>",
                     type: "GET",
                     success: function(responseInformasi) {
-                        var total = parseInt(responseInformasi.total);
-                        $("#totalCounter5").attr("data-target", total);
-                        $("#totalCounter5").text(total);
+                        var total = parseInt(responseInformasi.total) || 0;
+                        if (!isNaN(total)) {
+                            $("#totalCounter5").attr("data-target", total);
+                            $("#totalCounter5").text(total);
+                        } else {
+                            $("#totalCounter5").attr("data-target", 0);
+                            $("#totalCounter5").text(0);
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.error("Error:", error);
+                        $("#totalCounter5").attr("data-target", 0);
+                        $("#totalCounter5").text(0);
                     }
                 });
             }
@@ -365,12 +377,19 @@
                     url: "<?= site_url('admin/barang_rusak/totalData'); ?>",
                     type: "GET",
                     success: function(responseInformasi) {
-                        var total = parseInt(responseInformasi.total);
-                        $("#totalCounter6").attr("data-target", total);
-                        $("#totalCounter6").text(total);
+                        var total = parseInt(responseInformasi.total) || 0;
+                        if (!isNaN(total)) {
+                            $("#totalCounter6").attr("data-target", total);
+                            $("#totalCounter6").text(total);
+                        } else {
+                            $("#totalCounter6").attr("data-target", 0);
+                            $("#totalCounter6").text(0);
+                        }
                     },
                     error: function(xhr, status, error) {
                         console.error("Error:", error);
+                        $("#totalCounter6").attr("data-target", 0);
+                        $("#totalCounter6").text(0);
                     }
                 });
             }
@@ -382,8 +401,8 @@
             updateCounts();
 
             function updateCounts() {
-                // Update count for "Diproses"
-                updateCounter("Diproses", "diprosesCounter");
+                // Update count for "Belum Diproses"
+                updateCounter("Belum Diproses", "belumDiprosesCounter");
 
                 // Update count for "Ditolak"
                 updateCounter("Ditolak", "ditolakCounter");
@@ -392,7 +411,7 @@
                 updateCounter("Dipinjamkan", "dipinjamkanCounter");
 
                 // Update count for "Dikembalikan"
-                updateCounter("Dikembalikan", "dikembalikanCounter");
+                // updateCounter("Dikembalikan", "dikembalikanCounter");
             }
 
             function updateCounter(status, counterId) {
@@ -410,6 +429,55 @@
                             $("#" + counterId).text(total);
                         } else {
                             console.error("Response total is not a number:", response);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            updateCounts();
+
+            function updateCounts() {
+                // Update untuk semua status
+                let statuses = [{
+                    //     status: "Belum Diproses",
+                    //     id: "belumDiprosesCounter"
+                    // },
+                    // {
+                    //     status: "Ditolak",
+                    //     id: "ditolakCounter"
+                    // },
+                    // {
+                    //     status: "Dipinjamkan",
+                    //     id: "dipinjamkanCounter"
+                    // },
+                    // {
+                    status: "Dikembalikan",
+                    id: "dikembalikanCounter"
+                }];
+
+                statuses.forEach(function(item) {
+                    updateCounter(item.status, item.id);
+                });
+            }
+
+            function updateCounter(status, counterId) {
+                $.ajax({
+                    url: "<?= site_url('admin/transaksi/totalUserByStatus/'); ?>" + status,
+                    type: "GET",
+                    success: function(response) {
+                        if (response.success) {
+                            $("#" + counterId)
+                                .attr("data-target", response.total)
+                                .text(response.total);
+                        } else {
+                            console.error("Error:", response.message);
                         }
                     },
                     error: function(xhr, status, error) {

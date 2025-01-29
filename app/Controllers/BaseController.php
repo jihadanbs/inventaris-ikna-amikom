@@ -127,6 +127,7 @@ abstract class BaseController extends Controller
         // Helper
         helper("upload_helper");
         helper("date_helper");
+        helper("whatsapp_helper");
 
         // Inisialisasi Models
         $this->m_user = new UserModel();

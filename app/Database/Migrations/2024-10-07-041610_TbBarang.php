@@ -41,6 +41,10 @@ class TbBarang extends Migration
                 'type' => 'INT',
                 'constraint' => 11,
             ],
+            'jumlah_dipinjam' => [
+                'type' => 'INT',
+                'constraint' => 11,
+            ],
             // 'tanggal_masuk' => [
             //     'type' => 'DATE',
             //     'null' => TRUE,

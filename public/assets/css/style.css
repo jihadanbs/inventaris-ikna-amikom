@@ -209,7 +209,8 @@ a:focus {
 .quote_btn-container {
   padding: 6px 15px;
   margin: 10px 15px;
-  background-color: var(--biru-latar);
+ background-color: var(--biru-latar);
+  color:yellow;
   border-radius: 5px; 
   text-align: center; /* Memastikan teks di tengah */
   transition: background-color 0.3s ease; /* Animasi perubahan warna */
@@ -225,10 +226,14 @@ a:focus {
   color: #ddd;
 }
 
+.quote_btn-container a:hover{
+  color:var(--biru-latar);
+}
+
 .quote_btn-container:hover {
-  background-color: var(--kuning-secondary); /* Warna biru saat hover */
+  background-color: var(--kuning-secondary); 
   border: 1px solid white;
- 
+  color:var(--biru-latar);
 }
 
 

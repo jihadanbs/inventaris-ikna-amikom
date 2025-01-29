@@ -5,6 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
+// Route halaman fRONT END
 $routes->GET('/', 'Home::index', ['namespace' => 'App\Controllers']);
 $routes->GET('/about', 'Home::about', ['namespace' => 'App\Controllers']);
 $routes->GET('/service/(:num)', 'Home::service/$1', ['namespace' => 'App\Controllers']);
@@ -86,6 +87,8 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     /*=================================== BARANG IKNA ====================================*/
     $routes->GET('barang', 'BarangController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang', static function ($routes) {
+        $routes->POST('saveStok/(:num)', 'BarangController::saveStok/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('tambah_stok/(:segment)', 'BarangController::tambahStok/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('totalData', 'BarangController::totalData', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('tambah', 'BarangController::tambah', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('save', 'BarangController::save', ['namespace' => 'App\Controllers\Admin']);
@@ -160,26 +163,14 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     $routes->GET('barang_baik', 'BarangBaikController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang_baik', static function ($routes) {
         $routes->GET('totalData', 'BarangBaikController::totalData', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('tambah', 'BarangBaikController::tambah', ['namespace' => 'App\Controllers\Admin']);
-        $routes->POST('save', 'BarangBaikController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('edit/(:segment)', 'BarangBaikController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'BarangBaikController::update/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('cek_data/(:segment)', 'BarangBaikController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete2', 'BarangBaikController::delete2', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete', 'BarangBaikController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== BARANG KONDISI RUSAK ====================================*/
     $routes->GET('barang_rusak', 'BarangRusakController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang_rusak', static function ($routes) {
         $routes->GET('totalData', 'BarangRusakController::totalData', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('tambah', 'BarangRusakController::tambah', ['namespace' => 'App\Controllers\Admin']);
-        $routes->POST('save', 'BarangRusakController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('edit/(:segment)', 'BarangRusakController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'BarangRusakController::update/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('cek_data/(:segment)', 'BarangRusakController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete2', 'BarangRusakController::delete2', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete', 'BarangRusakController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== SETTING PINJAM BARANG ====================================*/
@@ -204,16 +195,21 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->GET('edit/(:segment)', 'UserPeminjamController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'UserPeminjamController::update/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('cek_data/(:segment)', 'UserPeminjamController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete2', 'UserPeminjamController::delete2', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete', 'UserPeminjamController::delete', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete2/(num)', 'UserPeminjamController::delete2/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete/(:num)', 'UserPeminjamController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== TRANSAKSI ====================================*/
     $routes->GET('transaksi', 'TransaksiController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('transaksi', static function ($routes) {
-        $routes->GET('dipinjamkan/(:segment)', 'TransaksiController::dipinjamkan/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('totalUserByStatus/(:any)', 'TransaksiController::totalUserByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('totalByStatus/(:any)', 'TransaksiController::totalByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('proses_dikembalikan/(:segment)', 'TransaksiController::proses_dikembalikan/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('dikembalikan/(:segment)', 'TransaksiController::dikembalikan/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('proses_ditolak/(:segment)', 'TransaksiController::proses_ditolak/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('ditolak/(:segment)', 'TransaksiController::ditolak/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('proses_dipinjamkan/(:segment)', 'TransaksiController::proses_dipinjamkan/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('dipinjamkan/(:segment)', 'TransaksiController::dipinjamkan/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'TransaksiController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'TransaksiController::update/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('cek_data/(:segment)', 'TransaksiController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
@@ -240,7 +236,6 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->POST('save', 'FotoPengurusController::save', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'FotoPengurusController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'FotoPengurusController::update/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('cek_data/(:segment)', 'FotoPengurusController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('delete', 'FotoPengurusController::delete', ['namespace' => 'App\Controllers\Admin']);
     });
 

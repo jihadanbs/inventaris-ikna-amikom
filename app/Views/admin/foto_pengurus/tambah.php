@@ -45,7 +45,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3 separator">
-                                        <label for="nama" class="col-form-label">Nama<span style="color: red;">*</span></label>
+                                        <label for="nama" class="col-form-label">Nama Lengkap<span style="color: red;">*</span></label>
                                         <input type="text" style="background-color: #fff;" placeholder="Masukkan Nama Pengurus" class="form-control <?= session('errors.nama') ? 'is-invalid' : '' ?>" id="nama" name="nama" value="<?= old('nama') ?>">
                                         <?php if (session('errors.nama')) : ?>
                                             <div class="invalid-feedback">
@@ -80,7 +80,7 @@
 
                                 <!-- Posisi -->
                                 <div class="mb-3">
-                                    <label for="posisi" class="col-form-label">Posisi<span style="color: red;">*</span></label>
+                                    <label for="posisi" class="col-form-label">Posisi Menjabat<span style="color: red;">*</span></label>
                                     <input type="text" style="background-color: #fff;" placeholder="Masukkan Posisi Pengurus" class="form-control <?= session('errors.posisi') ? 'is-invalid' : '' ?>"
                                         id="posisi" name="posisi" value="<?= old('posisi') ?>">
                                     <?php if (session('errors.posisi')) : ?>
@@ -122,9 +122,9 @@
                                 <!-- Tombol Submit -->
                                 <div class="modal-footer">
                                     <a href="<?= site_url('admin/foto-pengurus'); ?>" class="btn btn-secondary btn-md ml-3">
-                                        <i class="fas fa-arrow-left"></i> Batal
+                                        <i class="fas fa-times"></i> Batal
                                     </a>
-                                    <button type="submit" class="btn btn-primary" style="background-color: #28527A; color:white; margin-left: 10px;">Tambah</button>
+                                    <button type="submit" class="btn btn-primary" style="background-color: #28527A; color:white; margin-left: 10px;"><i class="fas fa-plus"></i> Tambah Data</button>
                                 </div>
                             </form>
                         </div>

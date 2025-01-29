@@ -64,6 +64,7 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master Barang</a></li>
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Kategori Barang</a></li>
                                     <li class="breadcrumb-item active">Data Nama Kategori Barang</li>
                                 </ol>
@@ -101,16 +102,16 @@
                                                         <form action="<?= site_url('admin/kategori/save'); ?>" method="POST">
                                                             <?= csrf_field(); ?>
                                                             <div class="mb-3">
-                                                                <label for="nama_kategori" class="col-form-label">Nama Kategori :</label>
+                                                                <label for="nama_kategori" class="col-form-label">Nama Kategori<span style="color: red;">*</span></label>
                                                                 <input class="form-control" id="nama_kategori" name="nama_kategori" cols="30" rows="10" style="background-color: white;" placeholder="Masukkan Nama Kategori" autofocus autocomplete="off"></input>
                                                                 <!-- Menambahka div untuk menampilkan pesan validasi -->
                                                                 <div id="nama_kategoriValidation" class="text-danger"></div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <!-- Menambahkan ID ke tombol "Batal" -->
-                                                                <button type="button" id="batalButton" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                                <button type="button" id="batalButton" class="btn btn-secondary btn-md ml-3" data-bs-dismiss="modal"><i class="fas fa-times"></i> Batal</button>
                                                                 <!-- Menambahkan ID ke tombol "Tambah" -->
-                                                                <button type="submit" id="tambahButton" class="btn btn-primary" style="background-color: #28527A; color:white;">Tambah</button>
+                                                                <button type="submit" id="tambahButton" class="btn btn-primary" style="background-color: #28527A; color:white;"><i class="fas fa-plus"></i> Tambah Data</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -135,16 +136,16 @@
                                                 </td>
                                                 <td style="width: 150px">
                                                     <button type="button" class="btn btn-warning btn-sm edit waves-effect waves-light" data-id="<?= $row['id_kategori_barang']; ?>" title="Edit">
-                                                        <i class="fas fa-pencil-alt"></i> <span class="btn-text">Edit</span>
+                                                        <i class="fas fa-edit"></i> <span class="btn-text"> Ubah</span>
                                                     </button>
                                                     <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_kategori_barang']; ?>">
-                                                        <i class="fas fa-trash-alt"></i> <span class="btn-text">Delete</span>
+                                                        <i class="fas fa-trash-alt"></i> <span class="btn-text"> Hapus</span>
                                                     </button>
-                                                    <button type="button" class="btn btn-success btn-sm save waves-effect waves-light d-none" data-id="<?= $row['id_kategori_barang']; ?>">
-                                                        <i class="fas fa-save"></i> <span class="btn-text">Simpan</span>
+                                                    <button type="button" class="btn btn-primary btn-sm save waves-effect waves-light d-none" data-id="<?= $row['id_kategori_barang']; ?>">
+                                                        <i class="fas fa-save"></i> <span class="btn-text"> Simpan</span>
                                                     </button>
                                                     <button type="button" class="btn btn-secondary btn-sm cancel waves-effect waves-light d-none" data-id="<?= $row['id_kategori_barang']; ?>">
-                                                        <i class="fas fa-times"></i> <span class="btn-text">Batal</span>
+                                                        <i class="fas fa-times"></i> <span class="btn-text"> Batal</span>
                                                     </button>
                                                 </td>
 
@@ -322,7 +323,7 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Oops...',
-                                    text: response.message ? response.message : 'Nama kategori Barang sudah ada dalam database!'
+                                    text: response.message ? response.message : 'Nama kategori Barang sudah ada dalam penyimpanan database!'
                                 });
                             }
                         },
@@ -416,7 +417,7 @@
                 // Kirim data ke server menggunakan AJAX
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo site_url('/admin/kategori_barang/save'); ?>",
+                    url: "<?php echo site_url('admin/kategori_barang/save'); ?>",
                     data: {
                         nama_kategori: $('#nama_kategori').val()
                     },
@@ -448,7 +449,7 @@
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'Nama Kategori sudah ada dalam database !'
+                            text: 'Nama kategori sudah ada dalam database !'
                         });
                         // Reset nilai input nama)kategori
                         $('#nama_kategori').val('');

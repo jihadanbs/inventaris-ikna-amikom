@@ -147,6 +147,14 @@
                                             </div>
 
                                             <div class="col-md-2">
+                                                <label class="fw-bold text-black">Total Dipinjam</label>
+                                            </div>
+                                            <div class="col-auto">:</div>
+                                            <div class="col-md-8">
+                                                <p><?= esc($tb_barang['jumlah_dipinjam'] ?? '', 'html'); ?> Barang</p>
+                                            </div>
+
+                                            <div class="col-md-2">
                                                 <label class="fw-bold text-black">Tanggal Masuk</label>
                                             </div>
                                             <div class="col-auto">:</div>
@@ -315,10 +323,10 @@
                                     <i class="fas fa-plus"></i> Tambah Stok Barang
                                 </a>
                                 <a href="<?= esc(site_url('admin/barang/edit/' . urlencode($tb_barang['slug'])), 'attr') ?>" class="btn btn-warning btn-md edit">
-                                    <i class="fas fa-pencil-alt"></i> Edit
+                                    <i class="fas fa-edit"></i> Ubah Data
                                 </a>
                                 <button type="button" class="btn btn-danger btn-md ml-3 waves-effect waves-light sa-warning" data-id="<?= $tb_barang['id_barang'] ?>">
-                                    <i class="fas fa-trash-alt"></i> Delete
+                                    <i class="fas fa-trash-alt"></i> Hapus
                                 </button>
                             </div>
                         </div>

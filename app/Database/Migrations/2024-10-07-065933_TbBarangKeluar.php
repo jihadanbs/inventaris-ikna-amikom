@@ -24,7 +24,8 @@ class TbBarangKeluar extends Migration
             'id_user_peminjam' => [
                 'type' => 'INT',
                 'constraint' => 11,
-                'unsigned' => TRUE
+                'unsigned' => TRUE,
+                'null' => TRUE
             ],
             'tanggal_keluar' => [
                 'type' => 'DATE',
