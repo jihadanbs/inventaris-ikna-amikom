@@ -99,6 +99,7 @@
                                         <th>Nama Barang</th>
                                         <th>Kategori</th>
                                         <th>Total Barang</th>
+                                        <th>Tanggal Keluar</th>
                                         <th>Keterangan</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -112,6 +113,7 @@
                                             <td><?= truncateText($row['nama_barang'], 70); ?></td>
                                             <td><?= $row['nama_kategori']; ?></td>
                                             <td><?= $row['total_barang']; ?> Unit</td>
+                                            <td><?= formatTanggalIndo($row['tanggal_keluar']); ?></td>
                                             <td><?= $row['keterangan']; ?></td>
                                             <td style="width: 50px">
                                                 <a href="<?= site_url('admin/barang_keluar/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a>
@@ -145,31 +147,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     'colvis'

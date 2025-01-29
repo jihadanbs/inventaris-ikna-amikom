@@ -58,6 +58,7 @@ class TransaksiController extends BaseController
         return view('admin/transaksi/dipinjamkan', $data);
     }
 
+    // Dipinjamkan
     public function proses_dipinjamkan($id_user_peminjam)
     {
         // Cek sesi pengguna
@@ -94,6 +95,20 @@ class TransaksiController extends BaseController
                     'required' => 'Silahkan Masukkan Tanggal Dipinjamkan Barang !'
                 ]
             ],
+            'total_barang' => [
+                'rules' => 'required|greater_than_equal_to[0]|check_total_dipinjam[tb_user_peminjam,' . $id_user_peminjam . ']',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Jumlah Barang Yang Keluar !',
+                    'greater_than_equal_to' => 'Jumlah Barang Yang Keluar Tidak Boleh Negatif !',
+                    'check_total_dipinjam' => 'Jumlah Barang Yang Keluar Tidak Sesuai Dengan Jumlah Barang Yang Dipinjam !',
+                ]
+            ],
+            'tanggal_perkiraan_dikembalikan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Tanggal Perkiraan Barang Dikembalikan !'
+                ]
+            ],
         ];
 
         if (!$this->validate($rules)) {
@@ -116,6 +131,7 @@ class TransaksiController extends BaseController
                 'id_barang' => $userPeminjam['id_barang'],
                 'catatan_peminjaman' => $data['catatan_peminjaman'],
                 'tanggal_dipinjamkan' => $data['tanggal_dipinjamkan'],
+                'tanggal_perkiraan_dikembalikan' => $data['tanggal_perkiraan_dikembalikan'],
                 'status' => 'Dipinjamkan',
             ];
 
@@ -129,7 +145,7 @@ class TransaksiController extends BaseController
                 'id_user_peminjam' => $id_user_peminjam,
                 'tanggal_keluar' => $data['tanggal_keluar'],
                 'total_barang' => $data['total_barang'],
-                'keterangan' => $this->getKeteranganKeluar($data['tanggal_keluar'], $data['keterangan'] ?? ''),
+                'keterangan' => $this->getKeteranganKeluarDipinjam($data['tanggal_keluar'], $userPeminjam['nama_lengkap'], $data['total_barang'], $data['keterangan'] ?? ''),
             ];
 
             if (!$this->m_barang_keluar->insert($dataBarangKeluar)) {
@@ -138,7 +154,35 @@ class TransaksiController extends BaseController
 
             // Commit transaksi jika semua berhasil
             $this->db->transCommit();
-            return redirect()->to('/admin/transaksi')->with('pesan', 'Barang berhasil dipinjamkan !');
+
+            $message = "✨ *INFORMASI PEMINJAMAN BARANG* ✨\n\n"
+                . "Halo *{$userPeminjam['nama_lengkap']}*,\n"
+                . "Berikut detail peminjaman Anda:\n\n"
+                . "📝 *Detail Peminjam*\n"
+                . "Nama: *{$userPeminjam['nama_lengkap']}*\n"
+                . "Pekerjaan: *{$userPeminjam['pekerjaan']}*\n"
+                . "No. Telepon: *{$userPeminjam['no_telepon']}*\n\n"
+                . "📦 *Detail Peminjaman*\n"
+                . "Kode Peminjaman: *{$userPeminjam['kode_peminjaman']}*\n"
+                . "Status: *Dipinjamkan*\n"
+                . "Total Dipinjam: *{$userPeminjam['total_dipinjam']} unit*\n"
+                . "Tanggal Pengajuan: *" . formatTanggalIndo($userPeminjam['tanggal_pengajuan']) . "*\n"
+                . "Tanggal Perkiraan Kembali: *" . formatTanggalIndo($data['tanggal_perkiraan_dikembalikan']) . "*\n\n"
+                . "📌 *Catatan Peminjaman*\n"
+                . "{$data['catatan_peminjaman']}\n\n"
+                . "Harap Menggunakan Kode Peminjaman Untuk Mengecek Status Peminjaman Anda, Terima kasih. 🙏";
+
+            $phone = preg_replace('/[^0-9]/', '', $userPeminjam['no_telepon']);
+            if (substr($phone, 0, 1) === '0') {
+                $phone = '62' . substr($phone, 1);
+            }
+            $waUrl = 'https://api.whatsapp.com/send?phone=' . $phone . '&text=' . urlencode($message);
+
+            // Set flash data untuk WhatsApp link dan pesan sukses
+            session()->setFlashdata('whatsapp_link', $waUrl);
+            session()->setFlashdata('pesan', 'Peminjaman Barang Berhasil Dikirimkan !');
+
+            return redirect()->to('/admin/transaksi');
         } catch (\Exception $e) {
             // Rollback transaksi jika terjadi error
             $this->db->transRollback();
@@ -146,15 +190,16 @@ class TransaksiController extends BaseController
         }
     }
 
-    private function getKeteranganKeluar($tanggal, $keterangan)
+    private function getKeteranganKeluarDipinjam($tanggal, $nama_peminjam, $total_dipinjam, $keterangan)
     {
         if (empty(trim($keterangan))) {
             // Format tanggal ke format Indonesia
             $tanggal_formatted = date('d F Y', strtotime($tanggal));
-            return "Barang telah dipinjamkan pada tanggal " . $tanggal_formatted;
+            return "Barang sebanyak {$total_dipinjam} unit telah dipinjamkan kepada {$nama_peminjam} pada tanggal {$tanggal_formatted}";
         }
         return $keterangan;
     }
+    // End Dipinjamkan
 
     public function totalByStatus($status)
     {

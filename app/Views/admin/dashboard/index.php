@@ -97,7 +97,7 @@
                             <div class="row align-items-center">
                                 <div class="col-md-9">
                                     <h2 class="greeting-title mb-2">Selamat Datang Di Halaman Admin IKNA AMIKOM</h2>
-                                    <p class="greeting-message">"Setiap Langkah Kecil Membawa Kita Lebih Dekat Pada Tujuan Besar! &#128521"</p>
+                                    <p class="greeting-message">"TUHAN adalah kekuatan umat-Nya dan benteng keselamatan bagi orang yang diurapi-Nya !" Mazmur 28:8</p>
                                 </div>
                                 <div class="col-md-3 text-end">
                                     <img src="<?= base_url('assets/img/ikna.png') ?>" alt="Welcome" class="img-fluid">
@@ -214,7 +214,7 @@
                                     <div class="col-6">
                                         <span class="text-muted mb-3 lh-1 d-block"></span>
                                         <h4 class="mb-3">
-                                            <span class="counter-value ms-3" id="diprosesCounter" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
+                                            <span class="counter-value ms-3" id="belumDiprosesCounter" data-target="0" style="color: #f4d160; font-size: 32px;">0</span>
                                         </h4>
                                     </div>
 
@@ -382,8 +382,8 @@
             updateCounts();
 
             function updateCounts() {
-                // Update count for "Diproses"
-                updateCounter("Diproses", "diprosesCounter");
+                // Update count for "Belum Diproses"
+                updateCounter("Belum Diproses", "belumDiprosesCounter");
 
                 // Update count for "Ditolak"
                 updateCounter("Ditolak", "ditolakCounter");

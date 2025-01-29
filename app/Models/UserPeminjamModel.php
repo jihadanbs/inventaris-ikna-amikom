@@ -8,7 +8,7 @@ class UserPeminjamModel extends Model
 {
     protected $table = 'tb_user_peminjam';
     protected $primaryKey = 'id_user_peminjam';
-    protected $allowedFields = ['id_barang', 'total_dipinjam', 'nama_lengkap', 'pekerjaan', 'email', 'no_telepon', 'alamat', 'kepentingan', 'kode_peminjaman', 'status', 'keterangan', 'tanggal_pengajuan', 'tanggal_dipinjamkan', 'tanggal_diperkirakan_dikembalikan', 'tanggal_dikembalikan'];
+    protected $allowedFields = ['id_barang', 'total_dipinjam', 'nama_lengkap', 'pekerjaan', 'email', 'no_telepon', 'alamat', 'kepentingan', 'kode_peminjaman', 'status', 'keterangan', 'tanggal_pengajuan', 'tanggal_dipinjamkan', 'tanggal_perkiraan_dikembalikan', 'tanggal_dikembalikan', 'catatan_peminjaman'];
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
 

@@ -85,13 +85,8 @@
                                 return $text;
                             }
                             ?>
-                            <table id="tableBarangBaru" class="table table-bordered dt-responsive nowrap w-100">
+                            <table id="tableTransaksi" class="table table-bordered dt-responsive nowrap w-100">
                                 <?= $this->include('alert/alert'); ?>
-                                <!-- <div class="col-md-3 mb-3">
-                                    <a href=" <?= site_url('admin/barang_rusak/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
-                                        <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
-                                    </a>
-                                </div> -->
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
@@ -155,9 +150,36 @@
     <!-- END layout-wrapper -->
     <?= $this->include('admin/layouts/script2') ?>
 
+    <!-- DIPINJAMKAN -->
+    <?php if (session()->getFlashdata('whatsapp_link')) : ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: 'Data Berhasil Disimpan!',
+                    text: 'Apakah Anda ingin mengirimkan melalui WhatsApp?',
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Buka WhatsApp',
+                    cancelButtonText: 'Tidak',
+                    customClass: {
+                        confirmButton: 'btn btn-primary m-2',
+                        cancelButton: 'btn btn-danger m-2'
+                    },
+                    buttonsStyling: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Membuka link di tab baru
+                        window.open('<?= session()->getFlashdata('whatsapp_link') ?>', '_blank');
+                    }
+                });
+            });
+        </script>
+    <?php endif; ?>
+    <!-- END DIPINJAMKAN -->
+
     <script>
         $(document).ready(function() {
-            $("#tableBarangBaru").DataTable({
+            $("#tableTransaksi").DataTable({
                 "paging": true,
                 "responsive": true,
                 "lengthChange": true,
@@ -194,7 +216,7 @@
                     },
                     'colvis'
                 ],
-            }).buttons().container().appendTo('#tableBarangBaru_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#tableTransaksi_wrapper .col-md-6:eq(0)');
         });
     </script>
 

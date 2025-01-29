@@ -5,9 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="row d-flex align-item-center">
-            <?= $this->include('alert/frontalert'); ?>
+                <?= $this->include('alert/frontalert'); ?>
             </div>
-           
+
             <!-- Bagian Kiri - Foto Produk -->
             <div class="col-md-6">
                 <!-- Main Image -->
@@ -99,32 +99,29 @@
                     </div>
 
                     <?php if (session()->getFlashdata('whatsapp_link')) : ?>
-                
-              
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-                        Swal.fire({
-                            title: 'Pengajuan Berhasil!',
-                            text: 'Apakah Anda ingin mendokumentasikan melalui WhatsApp?',
-                            icon: 'success',
-                            showCancelButton: true,
-                            confirmButtonText: 'Ya, Buka WhatsApp',
-                            cancelButtonText: 'Tidak',
-                            customClass: {
-                                confirmButton: 'btn btn-primary m-2',
-                                cancelButton: 'btn btn-danger m-2'
-                            },
-                            buttonsStyling: false
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                // Membuka link di tab baru
-                                window.open('<?= session()->getFlashdata('whatsapp_link') ?>', '_blank');
-                            }
-                        });
-                    });
-                </script>
-            <?php endif; ?>
-
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                Swal.fire({
+                                    title: 'Pengajuan Berhasil!',
+                                    text: 'Apakah Anda ingin mendokumentasikan melalui WhatsApp?',
+                                    icon: 'success',
+                                    showCancelButton: true,
+                                    confirmButtonText: 'Ya, Buka WhatsApp',
+                                    cancelButtonText: 'Tidak',
+                                    customClass: {
+                                        confirmButton: 'btn btn-primary m-2',
+                                        cancelButton: 'btn btn-danger m-2'
+                                    },
+                                    buttonsStyling: false
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        // Membuka link di tab baru
+                                        window.open('<?= session()->getFlashdata('whatsapp_link') ?>', '_blank');
+                                    }
+                                });
+                            });
+                        </script>
+                    <?php endif; ?>
 
                     <!-- Tombol Ajukan Peminjaman -->
                     <div class="action-buttons">

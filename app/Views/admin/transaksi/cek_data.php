@@ -196,7 +196,7 @@
                                                 <?php if (empty($tb_user_peminjam['tanggal_dipinjamkan'])): ?>
                                                     <span class="badge bg-warning text-dark fs-6">Belum ada data</span>
                                                 <?php else: ?>
-                                                    <p><?= esc($tb_user_peminjam['tanggal_dipinjamkan'], 'html'); ?></p>
+                                                    <p><?= formatTanggalIndo($tb_user_peminjam['tanggal_dipinjamkan'], 'html'); ?></p>
                                                 <?php endif; ?>
                                             </div>
 
@@ -208,7 +208,7 @@
                                                 <?php if (empty($tb_user_peminjam['tanggal_perkiraan_dikembalikan'])): ?>
                                                     <span class="badge bg-warning text-dark fs-6">Belum ada data</span>
                                                 <?php else: ?>
-                                                    <p><?= esc($tb_user_peminjam['tanggal_perkiraan_dikembalikan'], 'html'); ?></p>
+                                                    <p><?= formatTanggalIndo($tb_user_peminjam['tanggal_perkiraan_dikembalikan'], 'html'); ?></p>
                                                 <?php endif; ?>
                                             </div>
 
@@ -220,7 +220,7 @@
                                                 <?php if (empty($tb_user_peminjam['tanggal_dikembalikan'])): ?>
                                                     <span class="badge bg-warning text-dark fs-6">Belum ada data</span>
                                                 <?php else: ?>
-                                                    <p><?= esc($tb_user_peminjam['tanggal_dikembalikan'], 'html'); ?></p>
+                                                    <p><?= formatTanggalIndo($tb_user_peminjam['tanggal_dikembalikan'], 'html'); ?></p>
                                                 <?php endif; ?>
                                             </div>
 

@@ -198,4 +198,29 @@ class Validation extends BaseConfig
         }
         return true; // Valid
     }
+
+    public function check_total_dipinjam(string $str, string $fields, array $data): bool
+    {
+        // Memecah parameter yang dikirim
+        $params = explode(',', $fields);
+
+        // Mengambil nama tabel dan field
+        $table = array_shift($params);
+        $id_user_field = array_shift($params);
+
+        // Membuat query builder
+        $builder = db_connect()->table($table);
+
+        // Mengambil data dari database
+        $row = $builder->where('id_user_peminjam', $id_user_field)
+            ->get()
+            ->getRowArray();
+
+        if (!$row) {
+            return false;
+        }
+
+        // Membandingkan total_barang dengan total_dipinjam
+        return (int)$str === (int)$row['total_dipinjam'];
+    }
 }
