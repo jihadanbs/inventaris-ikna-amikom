@@ -14,6 +14,8 @@
                 <span class="s-2"> </span>
                 <span class="s-3"> </span>
             </button>
+
+            <!-- NAVBAR -->
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
                     <ul class="navbar-nav ">
@@ -35,13 +37,13 @@
                         <li class="nav-item <?= (uri_string() == 'cek_barang' || uri_string() == 'cek_resi') ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('cek_barang') ?>">Cek Barang</a>
                         </li>
-
                     </ul>
                 </div>
-                <div class="quote_btn-container ">
+                <div class="quote_btn-container">
                 <a href="<?= site_url('/authentication/login') ?>" target="_blank" rel="noopener noreferrer">Login</a>
                 </div>
             </div>
+            <!-- END NAVBAR -->
         </nav>
     </div>
 </header>
