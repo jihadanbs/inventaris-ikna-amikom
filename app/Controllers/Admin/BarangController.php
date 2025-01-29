@@ -164,7 +164,7 @@ class BarangController extends BaseController
             'id_kategori_barang' => $data['id_kategori_barang'],
             'id_kondisi_barang' => $data['id_kondisi_barang'],
             'nama_barang' => $data['nama_barang'],
-            'slug' => url_title($data['nama_barang'], '-', true),
+            'slug' => $this->generateUniqueBarangSlug($data['nama_barang']),
             'deskripsi' => $data['deskripsi'],
             'jumlah_total' => $data['jumlah_total'],
         ];
@@ -843,7 +843,7 @@ class BarangController extends BaseController
             'id_kondisi_barang' => $data['id_kondisi_barang'],
             // 'jumlah_total' => $data['jumlah_total'],
             'deskripsi' => $data['deskripsi'],
-            'slug' => url_title($data['nama_barang'], '-', true)
+            'slug' => $this->generateUniqueBarangSlug($data['nama_barang']),
         ];
 
         // Start transaction
@@ -929,5 +929,22 @@ class BarangController extends BaseController
         $totalData = $this->m_barang->getTotalBarang();
         // Keluarkan total data sebagai JSON response
         return $this->response->setJSON(['total' => $totalData]);
+    }
+
+    private function generateUniqueBarangSlug($nama_barang)
+    {
+        // Buat slug dasar dari nama barang
+        $baseSlug = url_title($nama_barang, '-', true);
+        $slug = $baseSlug;
+        $counter = 1;
+
+        // Cek apakah slug sudah ada di database
+        while ($this->m_barang->where('slug', $slug)->first()) {
+            // Jika ada, tambahkan counter
+            $slug = $baseSlug . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
     }
 }

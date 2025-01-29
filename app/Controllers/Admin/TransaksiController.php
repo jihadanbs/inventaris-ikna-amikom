@@ -256,13 +256,16 @@ class TransaksiController extends BaseController
         // Ambil data stok barang
         $idBarang = $this->request->getPost('id_barang');
         $stokBarang = $this->m_barang_baik->where('id_barang', $idBarang)->first();
+        $jumlahDipinjam = $this->m_barang->where('id_barang', $idBarang)->first();
 
         if (!$stokBarang) {
             return redirect()->back()->withInput()
                 ->with('errors', ['id_barang' => 'Barang tidak ditemukan!']);
         }
 
+
         $jumlahTotalBaik = $stokBarang['jumlah_total_baik'];
+        $jumlahBarangDipinjam = $jumlahDipinjam['jumlah_dipinjam'];
         $totalDipinjam = $this->request->getPost('total_dipinjam');
 
         // Mulai transaksi database
@@ -280,6 +283,10 @@ class TransaksiController extends BaseController
             // Update jumlah stok barang
             $this->m_barang_baik->update($idBarang, [
                 'jumlah_total_baik' => $jumlahTotalBaik + $totalDipinjam
+            ]);
+
+            $this->m_barang->update($idBarang, [
+                'jumlah_dipinjam' => $jumlahBarangDipinjam - $totalDipinjam
             ]);
 
             if (!$this->m_user_peminjam->update($id_user_peminjam, $dataUpdatePeminjam)) {
@@ -413,7 +420,7 @@ class TransaksiController extends BaseController
 
         if (($jumlahDikembalikanBaik + $jumlahDikembalikanRusak) !== $totalDipinjam) {
             return redirect()->back()->withInput()
-                ->with('error', 'Total barang yang dikembalikan harus sama dengan total yang dipinjam!');
+                ->with('error', 'Total barang yang dikembalikan harus sama dengan total yang dipinjam !');
         }
 
         // Mulai transaksi database
@@ -430,6 +437,16 @@ class TransaksiController extends BaseController
             $newStokRusak = $stokBarangRusak['jumlah_total_rusak'] + $jumlahDikembalikanRusak;
             if (!$this->m_barang_rusak->update($idBarang, ['jumlah_total_rusak' => $newStokRusak])) {
                 throw new \Exception('Gagal mengupdate stok barang rusak');
+            }
+
+            // Ambil dan update jumlah_dipinjam di tb_barang
+            $currentBorrow = $this->m_barang->where('id_barang', $idBarang)->first();
+            $existingBorrowed = $currentBorrow['jumlah_dipinjam'];
+
+            if (!$this->m_barang->update($idBarang, [
+                'jumlah_dipinjam' => $existingBorrowed - $totalDipinjam
+            ])) {
+                throw new \Exception('Gagal mengupdate jumlah dipinjam');
             }
 
             // Update data di tb_user_peminjam

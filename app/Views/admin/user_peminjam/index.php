@@ -109,7 +109,7 @@
                                             <td><?= truncateText($row['email'], 70); ?></td>
                                             <td><?= $row['no_telepon']; ?></td>
                                             <td>
-                                                <a href="<?= site_url('admin/transaksi/cek_data/' . $row['nama_lengkap']) ?>" class="text-decoration-none">
+                                                <a href="<?= site_url('admin/transaksi/cek_data/' . $row['slug']) ?>" class="text-decoration-none">
                                                     <?= $row['kode_peminjaman']; ?>
                                                 </a>
                                             </td>
