@@ -1,33 +1,7 @@
 <?= $this->include('admin/layouts/script') ?>
 
 <style>
-    /* CSS untuk input field saat tidak diedit */
-    input[type="text"].input-readonly {
-        background-color: #f0f0f0 !important;
-        border: 1px solid #ccc !important;
-    }
-
-    /* CSS untuk input field saat diedit */
-    input[type="text"]:not(.input-readonly) {
-        background-color: white !important;
-        border: 1px solid white;
-    }
-
-    input[type="text"].form-control {
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        padding: 8px;
-    }
-
-    .btn-success.save {
-        background-color: green !important;
-        border-color: green !important;
-    }
-
-    .btn-success.save:focus {
-        box-shadow: none !important;
-    }
-
+    /* CSS yang sudah ada */
     .custom-border {
         border: 1px solid #ced4da;
         border-radius: 5px;
@@ -54,8 +28,54 @@
         margin-left: auto;
         margin-right: auto;
     }
-</style>
 
+    /* CSS baru untuk gambar kegiatan */
+    .activity-img {
+        width: 180px;
+        height: auto;
+        border-radius: 6px;
+        transition: transform 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .activity-img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Styling untuk modal */
+    .modal-content {
+        background-color: #fff;
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+        border-bottom: 1px solid #dee2e6;
+        padding: 1rem 1.5rem;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+        background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    .modal-body img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Animasi modal */
+    .modal.fade .modal-dialog {
+        transition: transform 0.3s ease-out;
+    }
+
+    .modal.show .modal-dialog {
+        transform: none;
+    }
+</style>
 
 <?= $this->include('admin/layouts/navbar') ?>
 <?= $this->include('admin/layouts/sidebar') ?>
@@ -94,21 +114,7 @@
                         <div class="card-body">
 
                             <table id="example1" class="table table-bordered dt-responsive nowrap w-100">
-                                <?php if (session()->getFlashdata('pesan')) : ?>
-                                    <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
-                                        <?= session()->getFlashdata('pesan') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if (session()->getFlashdata('gagal')) : ?>
-                                    <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Gagal</strong> -
-                                        <?= session()->getFlashdata('gagal') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
+                                <?= $this->include('alert/alert'); ?>
                                 <div class="col-md-3 mb-3">
                                     <a href="/admin/galeri-kegiatan/tambah" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
@@ -129,9 +135,28 @@
                                     <?php foreach ($kegiatan as $row) : ?>
                                         <tr>
                                             <td style="width: 10px" scope="row"><?= $i++; ?></td>
-                                            <td>
-                                                <img src="<?= base_url($row['foto_kegiatan']); ?>" alt="Foto Kegiatan" style="width: 180px; height: auto;">
+                                            <!-- Tampilan gambar yang bisa diklik -->
+                                            <td class="text-center">
+                                                <img src="<?= base_url($row['foto_kegiatan']); ?>" class="activity-img" alt="Foto Kegiatan" data-bs-toggle="modal" data-bs-target="#activityImageModal" style="cursor: pointer;">
                                             </td>
+
+                                            <!-- Modal untuk zoom gambar -->
+                                            <div class="modal fade" id="activityImageModal" tabindex="-1" aria-labelledby="activityImageModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="activityImageModalLabel">DETAIL FOTO KEGIATAN "<?= $row['judul_kegiatan']; ?>"</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            <img src="<?= base_url($row['foto_kegiatan']); ?>"
+                                                                class="img-fluid"
+                                                                alt="Foto Kegiatan Detail"
+                                                                style="max-height: 80vh;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <td><?= $row['judul_kegiatan']; ?></td>
                                             <td><?= formatTanggalIndo($row['tanggal_foto']); ?></td>
                                             <td style="width: 155px">
