@@ -85,7 +85,7 @@ class UserPeminjamModel extends Model
         $builder = $this->db->table('tb_user_peminjam');
         $builder->select('
         tb_user_peminjam.*, 
-        GROUP_CONCAT(tb_file_foto_barang.path_file_foto_barang SEPARATOR ", ") as path_file_foto_barang,
+        GROUP_CONCAT(DISTINCT tb_file_foto_barang.path_file_foto_barang SEPARATOR ", ") as path_file_foto_barang,
         tb_barang.nama_barang, 
         tb_barang.jumlah_total,
         tb_kategori_barang.nama_kategori,
