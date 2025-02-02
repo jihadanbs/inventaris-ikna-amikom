@@ -256,13 +256,16 @@ class TransaksiController extends BaseController
         // Ambil data stok barang
         $idBarang = $this->request->getPost('id_barang');
         $stokBarang = $this->m_barang_baik->where('id_barang', $idBarang)->first();
+        $jumlahDipinjam = $this->m_barang->where('id_barang', $idBarang)->first();
 
         if (!$stokBarang) {
             return redirect()->back()->withInput()
                 ->with('errors', ['id_barang' => 'Barang tidak ditemukan!']);
         }
 
+
         $jumlahTotalBaik = $stokBarang['jumlah_total_baik'];
+        $jumlahBarangDipinjam = $jumlahDipinjam['jumlah_dipinjam'];
         $totalDipinjam = $this->request->getPost('total_dipinjam');
 
         // Mulai transaksi database
@@ -282,8 +285,23 @@ class TransaksiController extends BaseController
                 'jumlah_total_baik' => $jumlahTotalBaik + $totalDipinjam
             ]);
 
+            $this->m_barang->update($idBarang, [
+                'jumlah_dipinjam' => $jumlahBarangDipinjam - $totalDipinjam
+            ]);
+
             if (!$this->m_user_peminjam->update($id_user_peminjam, $dataUpdatePeminjam)) {
                 throw new \Exception('Gagal mengupdate data peminjam');
+            }
+
+            // Simpan data ke tb_barang_masuk
+            $dataBarangMasuk = [
+                'id_barang' => $userPeminjam['id_barang'],
+                'tanggal_masuk' => date('Y-m-d'),
+                'keterangan_masuk' => $this->getKeteranganMasukDitolak(date('Y-m-d'), $userPeminjam['total_dipinjam'], $userPeminjam['nama_lengkap']),
+            ];
+
+            if (!$this->m_barang_masuk->insert($dataBarangMasuk)) {
+                throw new \Exception('Gagal menyimpan data barang masuk');
             }
 
             // Commit transaksi jika semua berhasil
@@ -321,6 +339,16 @@ class TransaksiController extends BaseController
             $this->db->transRollback();
             return redirect()->back()->with('error', 'Gagal meminjamkan barang: ' . $e->getMessage());
         }
+    }
+
+    private function getKeteranganMasukDitolak($tanggal_masuk, $total_dipinjam, $nama_lengkap)
+    {
+        return sprintf(
+            "Penambahan stok sebanyak %d unit dari transaksi peminjaman atas nama %s yang ditolak pada tanggal %s",
+            $total_dipinjam,
+            $nama_lengkap,
+            formatTanggalIndo($tanggal_masuk)
+        );
     }
     // END DITOLAK
 
@@ -413,7 +441,7 @@ class TransaksiController extends BaseController
 
         if (($jumlahDikembalikanBaik + $jumlahDikembalikanRusak) !== $totalDipinjam) {
             return redirect()->back()->withInput()
-                ->with('error', 'Total barang yang dikembalikan harus sama dengan total yang dipinjam!');
+                ->with('error', 'Total barang yang dikembalikan harus sama dengan total yang dipinjam !');
         }
 
         // Mulai transaksi database
@@ -430,6 +458,27 @@ class TransaksiController extends BaseController
             $newStokRusak = $stokBarangRusak['jumlah_total_rusak'] + $jumlahDikembalikanRusak;
             if (!$this->m_barang_rusak->update($idBarang, ['jumlah_total_rusak' => $newStokRusak])) {
                 throw new \Exception('Gagal mengupdate stok barang rusak');
+            }
+
+            // Ambil dan update jumlah_dipinjam di tb_barang
+            $currentBorrow = $this->m_barang->where('id_barang', $idBarang)->first();
+            $existingBorrowed = $currentBorrow['jumlah_dipinjam'];
+
+            if (!$this->m_barang->update($idBarang, [
+                'jumlah_dipinjam' => $existingBorrowed - $totalDipinjam
+            ])) {
+                throw new \Exception('Gagal mengupdate jumlah dipinjam');
+            }
+
+            // Simpan data ke tb_barang_masuk
+            $dataBarangMasuk = [
+                'id_barang' => $userPeminjam['id_barang'],
+                'tanggal_masuk' => date('Y-m-d'),
+                'keterangan_masuk' => $this->getKeteranganMasukDikembalikan(date('Y-m-d'), $userPeminjam['total_dipinjam'], $userPeminjam['nama_lengkap']),
+            ];
+
+            if (!$this->m_barang_masuk->insert($dataBarangMasuk)) {
+                throw new \Exception('Gagal menyimpan data barang masuk');
             }
 
             // Update data di tb_user_peminjam
@@ -487,6 +536,16 @@ class TransaksiController extends BaseController
             $this->db->transRollback();
             return redirect()->back()->with('error', 'Gagal mengembalikan barang: ' . $e->getMessage());
         }
+    }
+
+    private function getKeteranganMasukDikembalikan($tanggal_masuk, $total_dipinjam, $nama_lengkap)
+    {
+        return sprintf(
+            "Penambahan stok sebanyak %d unit dari transaksi peminjaman atas nama %s yang dikembalikan pada tanggal %s",
+            $total_dipinjam,
+            $nama_lengkap,
+            formatTanggalIndo($tanggal_masuk)
+        );
     }
     // END DIKEMBALIKAN
 

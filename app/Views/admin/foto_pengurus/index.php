@@ -1,58 +1,45 @@
 <?= $this->include('admin/layouts/script') ?>
 
 <style>
-    /* CSS untuk input field saat tidak diedit */
-    input[type="text"].input-readonly {
-        background-color: #f0f0f0 !important;
-        border: 1px solid #ccc !important;
-    }
-
-    /* CSS untuk input field saat diedit */
-    input[type="text"]:not(.input-readonly) {
-        background-color: white !important;
-        border: 1px solid white;
-    }
-
-    input[type="text"].form-control {
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        padding: 8px;
-    }
-
-    .btn-success.save {
-        background-color: green !important;
-        border-color: green !important;
-    }
-
-    .btn-success.save:focus {
-        box-shadow: none !important;
-    }
-
-    .custom-border {
-        border: 1px solid #ced4da;
-        border-radius: 5px;
-    }
-
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        width: 20px;
-        height: 20px;
-        background-color: black;
-        background-size: 100%, 100%;
-    }
-
-    .carousel-control-prev,
-    .carousel-control-next {
-        background-color: transparent;
-        border: none;
-    }
-
+    /* CSS yang sudah ada */
     .carousel-img {
         max-width: 80px;
         max-height: 80px;
         display: block;
         margin-left: auto;
         margin-right: auto;
+        transition: transform 0.2s;
+        /* Animasi hover */
+    }
+
+    /* CSS baru untuk efek hover */
+    .carousel-img:hover {
+        transform: scale(1.05);
+        /* Sedikit membesar saat hover */
+    }
+
+    /* Styling untuk modal */
+    .modal-content {
+        background-color: #fff;
+        border-radius: 8px;
+    }
+
+    .modal-header {
+        border-bottom: 1px solid #dee2e6;
+        padding: 1rem;
+    }
+
+    .modal-body {
+        padding: 1rem;
+        background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    /* Memastikan gambar tidak terlalu besar dalam modal */
+    .modal-body img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 </style>
 
@@ -88,27 +75,12 @@
 
                 <div class="col-12">
                     <div class="card">
-
                         <div class="card-body">
 
                             <table id="example1" class="table table-bordered dt-responsive nowrap w-100">
-                                <?php if (session()->getFlashdata('pesan')) : ?>
-                                    <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
-                                        <?= session()->getFlashdata('pesan') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if (session()->getFlashdata('gagal')) : ?>
-                                    <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
-                                        <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Gagal</strong> -
-                                        <?= session()->getFlashdata('gagal') ?>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                <?php endif; ?>
+                                <?= $this->include('alert/alert'); ?>
                                 <div class="col-md-3 mb-3">
-                                    <a href="/admin/foto-pengurus/tambah" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
+                                    <a href="<?= site_url('admin/foto-pengurus/tambah'); ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
                                     </a>
                                 </div>
@@ -128,9 +100,26 @@
                                     <?php foreach ($pengurus as $row) : ?>
                                         <tr>
                                             <td style="width: 10px" scope="row"><?= $i++; ?></td>
-                                            <td>
-                                                <img src="<?= base_url($row['foto']) ?>" class="carousel-img" alt="Foto Pengurus">
+                                            <td class="text-center">
+                                                <img src="<?= base_url($row['foto']) ?>" class="carousel-img" alt="Foto Pengurus" data-bs-toggle="modal" data-bs-target="#imageModal" style="cursor: pointer;">
                                             </td>
+                                            <!-- Modal untuk menzoom gambar -->
+                                            <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="imageModalLabel">DETAIL FOTO "<?= $row['nama']; ?>"</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            <img src="<?= base_url($row['foto']) ?>"
+                                                                class="img-fluid"
+                                                                alt="Foto Pengurus Detail"
+                                                                style="max-height: 80vh;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <td><?= $row['nama']; ?></td>
                                             <td><?= $row['posisi']; ?></td>
                                             <td><?= $row['divisi']; ?></td>

@@ -15,7 +15,7 @@
                 <div class="col-12 mt-2">
                     <div class="input-group mb-3">
                         <form action="/cek_resi" method="post" id="formCekResi" class="w-100">
-                            <input name="kode_peminjaman" placeholder="Masukan Kode Peminjaman Anda" type="text" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="height: 50px;" maxlength="17" autocomplete="off">
+                            <input name="kode_peminjaman" placeholder="Masukan Kode Peminjaman Anda" type="text" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="height: 50px;" autocomplete="off">
                     </div>
                 </div>
                 <div class="col-12">

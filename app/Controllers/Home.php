@@ -203,7 +203,7 @@ class Home extends BaseController
             $data = [
                 'id_barang' => $idBarang,
                 'nama_lengkap' => $this->request->getPost('nama_lengkap'),
-                'slug' => url_title($this->request->getPost('nama_lengkap'), '-', true),
+                'slug' => $this->generateUniqueSlug($this->request->getPost('nama_lengkap')),
                 'pekerjaan' => $this->request->getPost('pekerjaan'),
                 'email' => $this->request->getPost('email'),
                 'no_telepon' => $no_telepon,
@@ -226,9 +226,13 @@ class Home extends BaseController
                 'jumlah_total_baik' => $jumlahTotalBaik - $totalDipinjam
             ]);
 
-            // Update jumlah stok barang
+            // Ambil data jumlah dipinjam yang sudah ada
+            $currentBorrow = $this->m_barang->where('id_barang', $idBarang)->first();
+            $existingBorrowed = $currentBorrow['jumlah_dipinjam'];
+
+            // Update jumlah dipinjam dengan menambahkan nilai yang sudah ada
             $this->m_barang->update($idBarang, [
-                'jumlah_dipinjam' => $totalDipinjam
+                'jumlah_dipinjam' => $existingBorrowed + $totalDipinjam
             ]);
 
             // Siapkan pesan WhatsApp
@@ -266,6 +270,24 @@ Terima kasih,
             return redirect()->back()->withInput()
                 ->with('errors', ['system' => 'Terjadi kesalahan sistem, Silakan coba lagi!']);
         }
+    }
+
+    // Fungsi untuk generate unique slug
+    private function generateUniqueSlug($nama_lengkap)
+    {
+        // Buat slug dasar
+        $baseSlug = url_title($nama_lengkap, '-', true);
+        $slug = $baseSlug;
+        $counter = 1;
+
+        // Cek apakah slug sudah ada di database
+        while ($this->m_user_peminjam->where('slug', $slug)->first()) {
+            // Jika ada, tambahkan timestamp atau counter
+            $slug = $baseSlug . '-' . time() . '-' . $counter;
+            $counter++;
+        }
+
+        return $slug;
     }
 
     // public function ajukan()
@@ -485,10 +507,22 @@ Terima kasih,
 
     private function generateKodePeminjaman($noTelepon, $namaLengkap)
     {
-        $phoneLast4 = substr($noTelepon, -4);
-        $nameFirst3 = strtoupper(substr($namaLengkap, 0, 3));
-        $timestamp = date('Ymd');
-        $random = str_pad(rand(0, 99), 2, '0', STR_PAD_LEFT);
-        return $nameFirst3 . $phoneLast4 . $timestamp . $random;
+        // Generate komponen-komponen kode
+        $timestamp = date('ymd'); // 240130 (6 digit)
+        $random = bin2hex(random_bytes(2)); // 4 karakter hex random
+        $phonePart = substr(sha1($noTelepon), 0, 3); // 3 karakter dari hash telefon
+        $namePart = substr(md5($namaLengkap), 0, 3); // 3 karakter dari hash nama
+
+        // Gabungkan dengan format yang kompleks (total 19 karakter)
+        $code = sprintf(
+            "PMJ%s%s%s%s",
+            $timestamp,      // 6 karakter
+            strtoupper($random), // 4 karakter
+            $phonePart,     // 3 karakter
+            $namePart       // 3 karakter
+        );
+
+        // Bagi menjadi 4 grup
+        return implode('-', str_split($code, 5));
     }
 }

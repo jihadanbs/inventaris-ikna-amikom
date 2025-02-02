@@ -79,7 +79,7 @@
                                         <tr>
                                             <td style="width: 2px" scope="row"><?= $i++; ?></td>
                                             <td>
-                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . truncateText($row['nama_lengkap'], 70)) ?>" class="text-decoration-none">
+                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . truncateText($row['slug'], 70)) ?>" class="text-decoration-none">
                                                     <?= $row['nama_lengkap']; ?>
                                                 </a>
                                             </td>

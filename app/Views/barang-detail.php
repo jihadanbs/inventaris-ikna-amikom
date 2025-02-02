@@ -68,7 +68,7 @@
 
                     <!-- Tanggal Masuk -->
                     <div class="color-selection mb-4">
-                        <h6 class="mb-2">Tanggal masuk</h6>
+                        <h6 class="mb-2">Tanggal Upload</h6>
                         <div class="btn-group" role="group">
                             <?= formatTanggalIndo($tb_barang['tanggal_masuk']) ?>
                         </div>
