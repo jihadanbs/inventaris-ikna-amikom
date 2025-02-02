@@ -68,6 +68,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                            <!-- Modal Edit Barang -->
                             <div class="modal fade" id="editBarangModal" tabindex="-1" aria-labelledby="editBarangModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -78,23 +79,29 @@
                                         <form id="editBarangForm">
                                             <div class="modal-body">
                                                 <input type="hidden" id="id_barang_baik" name="id_barang_baik">
+
                                                 <div class="mb-3">
-                                                    <label for="jumlah_total_baik" class="form-label">Jumlah Total Kondisi Baik/Layak<span class="text-danger">*</span></label>
-                                                    <input type="number" style="background-color: white;" class="form-control" id="jumlah_total_baik" name="jumlah_total_baik" required>
+                                                    <label for="jumlah_total_baik" class="form-label">Jumlah Total Kondisi Baik/Layak <span class="text-danger">*</span></label>
+                                                    <input type="number" class="form-control" id="jumlah_total_baik" name="jumlah_total_baik" required>
+                                                    <div class="invalid-feedback">Jumlah barang harus lebih dari 0.</div>
                                                 </div>
+
                                                 <div class="mb-3">
-                                                    <label for="keterangan_baik" class="form-label">Keterangan<span class="text-danger">*</span></label>
-                                                    <textarea class="form-control" style="background-color: white;" id="keterangan_baik" name="keterangan_baik" rows="3"></textarea>
+                                                    <label for="keterangan_baik" class="form-label">Keterangan <span class="text-danger">*</span></label>
+                                                    <textarea class="form-control" id="keterangan_baik" name="keterangan_baik" rows="3"></textarea>
+                                                    <div class="invalid-feedback">Keterangan tidak boleh kosong.</div>
                                                 </div>
                                             </div>
+
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-times"></i> Tutup</button>
-                                                <button type="submit" class="btn btn-warning btn-md edit"><i class="fas fa-save"></i> Simpan Perubahan Data</button>
+                                                <button type="submit" class="btn btn-warning"><i class="fas fa-save"></i> Simpan Perubahan</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
+
                             <?php
                             function truncateText($text, $maxLength)
                             {
@@ -196,51 +203,103 @@
                 ],
             }).buttons().container().appendTo('#tableBarangBaik_wrapper .col-md-6:eq(0)');
         });
-    </script>
 
-    <script>
         function editBarang(id, jumlah, keterangan) {
-            document.getElementById('id_barang_baik').value = id;
-            document.getElementById('jumlah_total_baik').value = jumlah;
-            document.getElementById('keterangan_baik').value = keterangan;
+    document.getElementById('id_barang_baik').value = id;
+    document.getElementById('jumlah_total_baik').value = jumlah;
+    document.getElementById('keterangan_baik').value = keterangan;
 
-            new bootstrap.Modal(document.getElementById('editBarangModal')).show();
+    // Buka modal setelah data diisi
+    new bootstrap.Modal(document.getElementById('editBarangModal')).show();
+}
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('editBarangForm');
+    const jumlahTotalInput = document.getElementById('jumlah_total_baik');
+    const keteranganInput = document.getElementById('keterangan_baik');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        let isValid = true;
+
+        // Reset error state
+        jumlahTotalInput.classList.remove('is-invalid');
+        keteranganInput.classList.remove('is-invalid');
+
+        // Validasi jumlah barang
+        if (!jumlahTotalInput.value || jumlahTotalInput.value <= 0) {
+            jumlahTotalInput.classList.add('is-invalid');
+            isValid = false;
         }
 
-        document.getElementById('editBarangForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Validasi keterangan
+        if (!keteranganInput.value.trim()) {
+            keteranganInput.classList.add('is-invalid');
+            isValid = false;
+        }
 
-            const formData = new FormData(this);
-            const id = formData.get('id_barang_baik');
+        if (!isValid) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Silakan periksa kembali inputan Anda!',
+            });
+            return;
+        }
 
-            const data = {
-                jumlah_total_baik: formData.get('jumlah_total_baik'),
-                keterangan_baik: formData.get('keterangan_baik')
-            };
+        const formData = new FormData(form);
+        const id = formData.get('id_barang_baik');
 
-            fetch(`<?= site_url('admin/barang_baik/update') ?>/${id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        bootstrap.Modal.getInstance(document.getElementById('editBarangModal')).hide();
-                        location.reload();
-                    } else {
-                        alert(data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Terjadi kesalahan saat memperbarui data');
+        const data = {
+            jumlah_total_baik: jumlahTotalInput.value,
+            keterangan_baik: keteranganInput.value
+        };
+
+        fetch(`<?= site_url('admin/barang_baik/update') ?>/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: 'Data barang telah diperbarui!',
+                   
+                    showConfirmButton:true
+                }).then(() => {
+                    bootstrap.Modal.getInstance(document.getElementById('editBarangModal')).hide();
+                    location.reload();
                 });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal',
+                    text: data.message
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Terjadi kesalahan',
+                text: 'Silakan coba lagi!'
+            });
+            console.error('Error:', error);
         });
+    });
+});
+
     </script>
+
+
 
     </body>
 
