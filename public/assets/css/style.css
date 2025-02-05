@@ -1255,10 +1255,16 @@ a:focus {
   height: 100%;
   cursor:pointer;
 }
+
+
 .product-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   color:blue;
+}
+
+.product-card .card-title{
+  font-weight:bold;
 }
 
 .product-card:hover .city-badge {
