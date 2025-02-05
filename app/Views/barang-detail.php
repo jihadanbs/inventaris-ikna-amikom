@@ -126,6 +126,7 @@
                     <!-- Tombol Ajukan Peminjaman -->
                     <div class="action-buttons">
                         <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#peminjamanModal">Ajukan Peminjaman</button>
+                        <button class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#peminjamanModal">Masukan keranjang</button>
                     </div>
                 </div>
             </div>

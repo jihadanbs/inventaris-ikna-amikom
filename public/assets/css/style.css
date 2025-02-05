@@ -1240,6 +1240,7 @@ a:focus {
 .category-tabs .nav-link:hover {
   /* background:rgb(0, 44, 188);  */
   background:var(--kuning-secondary); 
+
 }
 
 .category-tabs .nav-link.active {
@@ -1250,13 +1251,20 @@ a:focus {
 
 .product-card {
   transition: transform 0.2s;
+  color:black;
   height: 100%;
   cursor:pointer;
 }
 .product-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  color:blue;
 }
+
+.product-card:hover .city-badge {
+  color: blue !important;
+}
+
 .product-img {
   height: 200px;
   object-fit: contain;
@@ -1264,9 +1272,12 @@ a:focus {
 .category-badge {
   font-size: 0.8rem;
 }
+
 .city-badge {
   font-size: 0.75rem;
 }
+
+
 
 .pagination-barang .page-item:active .page-link {
   background:var(--biru-latar) !important;
