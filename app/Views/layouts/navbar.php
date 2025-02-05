@@ -22,18 +22,21 @@
                         <li class="nav-item <?= uri_string() == '' ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('/') ?>">Beranda</a>
                         </li>
-            
                         <li class="nav-item <?= uri_string() == 'galeri' ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('galeri') ?>">Galeri</a>
                         </li>
-                        <li class="nav-item <?= uri_string() == 'barang' ? 'active' : '' ?>">
+                        <li class="nav-item <?= (uri_string() == 'barang' || strpos(uri_string(), 'barang-detail') === 0) ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('barang') ?>">Barang</a>
                         </li>
+                        
                         <li class="nav-item <?= uri_string() == 'kontak' ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('kontak') ?>">Kontak Kami</a>
                         </li>
                         <li class="nav-item <?= (uri_string() == 'cek_barang' || uri_string() == 'cek_resi') ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('cek_barang') ?>">Cek Barang</a>
+                        </li>
+                        <li class="nav-item <?= uri_string() == 'keranjang_barang' ? 'active' : '' ?>">
+                            <a class="nav-link" href="<?= site_url('keranjang_barang') ?>">Keranjang</a>
                         </li>
                     </ul>
                 </div>
