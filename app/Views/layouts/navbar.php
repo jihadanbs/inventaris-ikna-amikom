@@ -22,9 +22,7 @@
                         <li class="nav-item <?= uri_string() == '' ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('/') ?>">Beranda</a>
                         </li>
-                        <li class="nav-item <?= uri_string() == 'about' ? 'active' : '' ?>">
-                            <a class="nav-link" href="<?= site_url('about') ?>">Tentang Kami</a>
-                        </li>
+            
                         <li class="nav-item <?= uri_string() == 'galeri' ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('galeri') ?>">Galeri</a>
                         </li>
