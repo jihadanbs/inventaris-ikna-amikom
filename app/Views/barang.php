@@ -67,10 +67,10 @@
                                                 <a href="/barang-detail/<?= $barang['slug'] ?>">
                                                     <div class="card product-card">
                                                         <img src="<?= base_url(explode(',', $barang['path_file_foto_barang'])[0]) ?>"
-                                                            class="card-img-top product-img p-2" alt="Product">
+                                                            class="card-img-top product-img px-2" alt="Product">
                                                         <div class="card-body">
-                                                            <h6 class="card-title"><?= $barang['nama_barang'] ?></h6>
-                                                            <span class="badge badge-warning category-badge mb-2"><?= $barang['nama_kategori'] ?></span>
+                                                            <h6 class="card-title "><?= $barang['nama_barang'] ?></h6>
+                                                            <span class="badge badge-warning category-badge mb-2 p-1"><?= $barang['nama_kategori'] ?></span>
                                                             <p class="card-text mb-1">Stok : <?= $barang['jumlah_total_baik'] ?> unit</p>
                                                             <p class="mb-0">Masa pinjam : <?= $barang['masa_pinjam'] ?> hari</p>
                                                             <i class="bi bi-geo-alt-fill"></i>

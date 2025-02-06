@@ -61,7 +61,7 @@
                     <span class="badge badge-light city-badge"><?= $tb_barang['lokasi'] ?></span>
                     <!-- Rating dan Jumlah Stok -->
                     <div class="rating-terjual mb-3">
-                        <span class="badge badge-success">
+                        <span class="badge badge-warning">
                             Stok tersedia : <?= $tb_barang['jumlah_total_baik'] ?? 0 ?>
                         </span>
                     </div>
@@ -126,6 +126,7 @@
                     <!-- Tombol Ajukan Peminjaman -->
                     <div class="action-buttons">
                         <button class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#peminjamanModal">Ajukan Peminjaman</button>
+                        <button class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#">Masukan keranjang</button>
                     </div>
                 </div>
             </div>

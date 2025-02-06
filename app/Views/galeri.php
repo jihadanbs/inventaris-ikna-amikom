@@ -6,7 +6,7 @@
         <?= $this->include('layouts/navbar') ?>
     </div>
 
-    <!-- service section -->
+    <!-- Galeri section -->
     <section class="service_section layout_padding">
         <div class="container-fluid">
             <div class="heading_container">
@@ -96,7 +96,7 @@
         <?php endforeach; ?>
     <?php endif; ?>
 
-    <!-- end service section -->
+    <!-- end galeri section -->
     <div class="footer_bg">
 
         <?= $this->include('layouts/info') ?>
