@@ -1,0 +1,82 @@
+
+/* Responsif untuk Mobile (Lebar Maksimum 768px) */
+@media (max-width: 780px) {
+
+    .product-row-info{
+        display: none !important;
+    }
+
+    .keranjang .category-section {
+        padding: 8px;
+        border-radius: 6px;
+    }
+
+    .keranjang .product-row {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .keranjang .product-checkbox {
+        align-self: center;
+        margin-bottom: 8px;
+    }
+
+    .keranjang .product-image {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 8px;
+    }
+
+    .keranjang .product-info {
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .keranjang .barang-detail {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .keranjang .barang-detail-info {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .keranjang .quantity-control {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .keranjang .quantity-control button {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .keranjang .footer-section {
+        flex-direction: column;
+        padding: 10px;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .keranjang .footer-section button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 8px;
+        margin-top:8px;
+        font-size: 16px;
+    }
+
+    .product-checkbox-all{
+        display:none !important;
+    }
+}
