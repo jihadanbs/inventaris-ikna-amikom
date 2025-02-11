@@ -4,13 +4,13 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class TbUserPeminjam extends Migration
+class TbPeminjaman extends Migration
 {
     public function up()
     {
         // membuat database tb_user_peminjam
         $this->forge->addField([
-            'id_user_peminjam' => [
+            'id_peminjaman' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => TRUE,
@@ -25,29 +25,9 @@ class TbUserPeminjam extends Migration
                 'type' => 'INT',
                 'constraint' => 11,
             ],
-            'nama_lengkap' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-            ],
             'slug' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
-            ],
-            'pekerjaan' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255
-            ],
-            'email' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-            ],
-            'no_telepon' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => TRUE,
-            ],
-            'alamat' => [
-                'type' => 'TEXT',
             ],
             'kepentingan' => [
                 'type' => 'VARCHAR',
@@ -81,23 +61,33 @@ class TbUserPeminjam extends Migration
                 'type' => 'DATE',
                 'null' => TRUE,
             ],
+            'dokumen_jaminan' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => TRUE,
+            ],
+            'bukti_pengembalian' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => TRUE,
+            ],
             'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
         ]);
 
-        $this->forge->addKey('id_user_peminjam', TRUE);
+        $this->forge->addKey('id_peminjaman', TRUE);
 
         // membuat foreign key
         $this->forge->addForeignKey('id_barang', 'tb_barang', 'id_barang', 'CASCADE', 'CASCADE');
         // end foreign key
 
-        // membuat tabel tb_user_peminjam
-        $this->forge->createTable('tb_user_peminjam');
+        // membuat tabel tb_peminjaman
+        $this->forge->createTable('tb_peminjaman');
     }
 
     public function down()
     {
         // untuk menghapus (drop) tabel
-        $this->forge->dropTable('tb_user_peminjam');
+        $this->forge->dropTable('tb_peminjaman');
     }
 }

@@ -30,6 +30,13 @@ class TbUser extends Migration
                 'constraint' => 255,
                 'unique' => TRUE
             ],
+            'pekerjaan' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+            ],
+            'alamat' => [
+                'type' => 'TEXT',
+            ],
             'password' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,

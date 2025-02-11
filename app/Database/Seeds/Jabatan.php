@@ -13,6 +13,9 @@ class Jabatan extends Seeder
             [
                 'nama_jabatan' => 'Admin'
             ],
+            [
+                'nama_jabatan' => 'Peminjam'
+            ],
         ];
 
         $this->db->table('tb_jabatan')->insertBatch($data);

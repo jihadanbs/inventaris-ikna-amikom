@@ -160,10 +160,23 @@ abstract class BaseController extends Controller
     protected function checkSession()
     {
         if (!$this->session->has('islogin')) {
-            return redirect()->to('authentication/login')->with('gagal', 'Anda belum login');
+            return redirect()->to('authentication/login')->with('gagal', 'Anda belum login !');
         }
 
         if (session()->get('id_jabatan') != 1) {
+            return redirect()->to('authentication/login');
+        }
+
+        return true; // Jika sesi valid
+    }
+
+    protected function checkSessionPeminjam()
+    {
+        if (!$this->session->has('islogin')) {
+            return redirect()->to('authentication/login')->with('gagal', 'Anda belum login !');
+        }
+
+        if (session()->get('id_jabatan') != 2) {
             return redirect()->to('authentication/login');
         }
 

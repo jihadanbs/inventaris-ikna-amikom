@@ -130,6 +130,11 @@ class Home extends BaseController
 
     public function ajukan()
     {
+        // Cek sesi pengguna
+        if ($this->checkSessionPeminjam() !== true) {
+            return $this->checkSessionPeminjam(); // Redirect jika sesi tidak valid
+        }
+
         try {
             $rules = [
                 'nama_lengkap' => [

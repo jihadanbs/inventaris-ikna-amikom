@@ -5,7 +5,8 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-// Route halaman fRONT END
+
+// FRONTEND
 $routes->GET('/', 'Home::index', ['namespace' => 'App\Controllers']);
 $routes->GET('/about', 'Home::about', ['namespace' => 'App\Controllers']);
 $routes->GET('/service/(:num)', 'Home::service/$1', ['namespace' => 'App\Controllers']);
@@ -45,6 +46,8 @@ $routes->GET('/faq', 'FaqController::faq', ['namespace' => 'App\Controllers']);
 
 //AUTHENTICATION
 $routes->GROUP('authentication', function ($routes) {
+    $routes->GET('registrasi', 'Authentication::registrasi', ['namespace' => 'App\Controllers']);
+    $routes->POST('cekRegistrasi', 'Authentication::cekRegistrasi', ['namespace' => 'App\Controllers']);
     $routes->GET('login', 'Authentication::login', ['namespace' => 'App\Controllers']);
     $routes->POST('cekLogin', 'Authentication::cekLogin', ['namespace' => 'App\Controllers']);
     $routes->GET('logout', 'Authentication::logout', ['namespace' => 'App\Controllers']);
@@ -56,6 +59,12 @@ $routes->GROUP('authentication', function ($routes) {
 
 //ROLE
 $routes->GET('dashboard', 'RoleController::index');
+//ROLE PEMINJAM
+$routes->GROUP('peminjam', ['namespace' => 'App\Controllers\Peminjam'], function ($routes) {
+    /*=================================== DETAIL BARANG ====================================*/
+    $routes->GET('detail_barang/(:segment)', 'DetailBarangController::index/$1', ['namespace' => 'App\Controllers']);
+});
+
 //ROLE ADMIN
 $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($routes) {
     /*=================================== DASHBOARD ====================================*/

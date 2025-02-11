@@ -6,11 +6,117 @@ use App\Controllers\BaseController;
 
 class Authentication extends BaseController
 {
+    public function registrasi()
+    {
+        $data = [
+            'title' => 'Registrasi Akun Peminjam',
+            'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
+            'pesan' => session()->getFlashdata('pesan'),
+            'gagal' => session()->getFlashdata('gagal')
+        ];
+
+        return view('users/registrasi', $data);
+    }
+
+    public function cekRegistrasi()
+    {
+        // Log untuk debug
+        // log_message('debug', 'Data Registrasi: ' . print_r($this->request->getPost(), true));
+
+        // Validasi input 
+        $rules = [
+            'nama_lengkap' => [
+                'rules' => 'required|nama_check[tb_user,nama_lengkap]',
+                'errors' => [
+                    'required' => 'Masukkan Nama lengkap anda !',
+                    'nama_check' => 'Nama sudah terdaftar dalam sistem !'
+                ]
+            ],
+            'username' => [
+                'rules' => 'required|trim|max_length[10]|min_length[5]|username_check[tb_user,username]',
+                'errors' => [
+                    'required' => 'Kolom Username tidak boleh kosong !',
+                    'max_length' => 'Username tidak boleh melebihi 10 karakter !',
+                    'min_length' => 'Username tidak boleh kurang dari 5 karakter !',
+                    'username_check' => 'Username sudah dipakai oleh user lain !'
+                ]
+            ],
+            'pekerjaan' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Kolom Pekerjaan tidak boleh kosong !',
+                ]
+            ],
+            'alamat' => [
+                'rules' => 'required|trim',
+                'errors' => [
+                    'required' => 'Kolom Alamat tidak boleh kosong !',
+                ]
+            ],
+            'email' => [
+                'rules' => 'required|trim|valid_email|email_check[tb_user,email]',
+                'errors' => [
+                    'required' => 'Kolom Email tidak boleh kosong !',
+                    'valid_email' => 'Email tidak valid gunakan @ !',
+                    'email_check' => 'Email sudah terdaftar !'
+                ]
+            ],
+            'no_telepon' => [
+                'rules' => 'required|numeric|check_no_telepon',
+                'errors' => [
+                    'required' => 'No. Whatsapp tidak boleh kosong !',
+                    'numeric' => 'No. Whatsapp harus berupa angka !',
+                    'check_no_telepon' => 'No. Whatsapp tidak boleh diawali dengan "62", gunakan angka "0" sebagai pengganti !'
+                ]
+            ],
+            'password' => [
+                'rules' => 'required|min_length[8]',
+                'errors' => [
+                    'required' => 'Kolom Kata Sandi tidak boleh kosong !',
+                    'min_length' => 'Kata Sandi tidak boleh kurang dari 8 karakter !'
+                ]
+            ],
+            'konfirmasi_password' => [
+                'rules' => 'required|matches[password]',
+                'errors' => [
+                    'required' => 'Kolom Konfirmasi Kata Sandi tidak boleh kosong !',
+                    'matches' => 'Konfirmasi Kata Sandi tidak sesuai dengan Kata Sandi !'
+                ]
+            ],
+        ];
+
+        // Jalankan validasi
+        if (!$this->validate($rules)) {
+            session()->setFlashdata('validation', \Config\Services::validation()->getErrors());
+            return redirect()->back()->withInput();
+        }
+
+        $this->m_user->save([
+            'id_jabatan' => 2,
+            'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'username' => $this->request->getPost('username'),
+            'pekerjaan' => $this->request->getPost('pekerjaan'),
+            'alamat' => $this->request->getPost('alamat'),
+            'email' => $this->request->getPost('email'),
+            'no_telepon' => $this->request->getPost('no_telepon'),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
+            'konfirmasi_password' => $this->request->getPost('konfirmasi_password')
+        ]);
+
+        session()->setFlashdata('pesan', 'Anda berhasil melakukan registrasi !');
+
+        return redirect()->to('authentication/login');
+    }
+
     public function login()
     {
         // Jika pengguna sudah login, arahkan kembali dan beri pesan
         if ($this->session->has('islogin')) {
-            return redirect()->to('dashboard');
+            if ($this->session->get('id_jabatan') == 1) {
+                return redirect()->to('admin/dashboard');
+            } elseif ($this->session->get('id_jabatan') == 2) {
+                return redirect()->to('barang-detail');
+            }
         }
 
         $data = [
@@ -23,7 +129,7 @@ class Authentication extends BaseController
     public function cekLogin()
     {
         if ($this->session->has('islogin')) {
-            return redirect()->back()->with('pesan', 'Anda Sudah Login');
+            return redirect()->back()->with('pesan', 'Anda Sudah Login !');
         }
 
         $session = $this->session;
@@ -95,7 +201,7 @@ class Authentication extends BaseController
                             if ($user['id_jabatan'] == 1) {
                                 return redirect()->to('admin/dashboard');
                             } elseif ($user['id_jabatan'] == 2) {
-                                return redirect()->to('staff/dashboard');
+                                return redirect()->to('barang-detail');
                             }
                         } elseif ($user['status'] == 'tidak aktif') {
                             $session->setFlashdata('gagal', 'Akun anda dinonaktifkan');
@@ -115,7 +221,6 @@ class Authentication extends BaseController
         // setiap salah maka akan kembali kehalaman login dengan notifkasi gagal
         return redirect()->to('authentication/login')->withInput()->with('gagal', 'Silahkan Login Ulang !');
     }
-
 
     public function lupaPassword()
     {

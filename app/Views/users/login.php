@@ -53,47 +53,10 @@
                     <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
 
                     <h1 class="opacity">LOGIN</h1>
-                    <?php if (session()->getFlashdata('pesan')) : ?>
-                        <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
-                            <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
-                            <?= session()->getFlashdata('pesan') ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endif; ?>
-
-                    <?php if (session()->getFlashdata('success')) : ?>
-                        <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
-                            <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
-                            <?= session()->getFlashdata('success') ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endif; ?>
-                    <?php if (session()->getFlashdata('gagal')) : ?>
-                        <div class="alert alert-danger alert-border-left alert-dismissible fade show" role="alert">
-                            <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Gagal</strong> -
-                            <?= session()->getFlashdata('gagal') ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endif; ?>
-                    <?php if (session()->getFlashdata('error')) : ?>
-                        <div class="alert alert-warning alert-border-left alert-dismissible fade show" role="alert">
-                            <i class="mdi mdi-block-helper me-3 align-middle"></i><strong>Error</strong> -
-                            <?= session()->getFlashdata('error') ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php endif; ?>
-                    <?php if (isset($_COOKIE['logout_message'])) : ?>
-                        <div class="alert alert-success alert-border-left alert-dismissible fade show" role="alert">
-                            <i class="mdi mdi-check-all me-3 align-middle"></i><strong>Sukses</strong> -
-                            <?= $_COOKIE['logout_message']; ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <?php setcookie('logout_message', '', time() - 3600, "/"); // Hapus cookie setelah ditampilkan 
-                        ?>
-                    <?php endif; ?>
-
+                    <?= $this->include('alert/alert'); ?>
                     <?= form_open('authentication/cekLogin') ?>
                     <form action="#" method="POST" class="sign-in-form" autocomplete="off">
+                        <?= csrf_field(); ?>
                         <div class="custom-form-group opacity">
                             <label for="nama" class="custom-form-label">Nama Pengguna</label>
                             <div class="custom-input-field">
@@ -142,7 +105,7 @@
                     </script>
                     <!-- END PASSWORD TOGGLE -->
                     <div class="register-forget opacity">
-                        <!-- <a href="<?php echo site_url("authentication/lupaPassworD"); ?>" style="color: black; text-align:right; display: block;">Lupa kata sandi?</a> -->
+                        <a href="<?php echo site_url("authentication/registrasi"); ?>" style="color: black; text-align:right; display: block;">Daftar Akun Peminjam</a>
                         <a href="#" style="color: black; text-align:right; display: block;">Lupa kata sandi?</a>
                     </div>
                 </div>

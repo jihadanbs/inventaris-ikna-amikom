@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 class RoleController extends BaseController
 {
-    protected $session;
     public function index()
     {
         // Cek session
@@ -16,6 +15,8 @@ class RoleController extends BaseController
         switch (session()->get('id_jabatan')) {
             case 1:
                 return redirect()->to('admin/dashboard');
+            case 2:
+                return redirect()->to('barang-detail');
             default:
                 return redirect()->to('authentication/login')->with('gagal', 'Akses tidak diizinkan');
         }

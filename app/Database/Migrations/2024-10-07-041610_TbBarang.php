@@ -45,14 +45,6 @@ class TbBarang extends Migration
                 'type' => 'INT',
                 'constraint' => 11,
             ],
-            // 'tanggal_masuk' => [
-            //     'type' => 'DATE',
-            //     'null' => TRUE,
-            // ],
-            // 'tanggal_keluar' => [
-            //     'type' => 'DATE',
-            //     'null' => TRUE,
-            // ],
             'created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP',
             'updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
         ]);

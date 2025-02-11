@@ -7,8 +7,7 @@ use CodeIgniter\Validation\StrictRules\CreditCardRules;
 use CodeIgniter\Validation\StrictRules\FileRules;
 use CodeIgniter\Validation\StrictRules\FormatRules;
 use CodeIgniter\Validation\StrictRules\Rules;
-use App\Models\InformasiPublikModel;
-
+use App\Models\UserModel;
 
 class Validation extends BaseConfig
 {
@@ -45,6 +44,21 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+    public function username_check(string $str, string $fields, array $data): bool
+    {
+        $userModel = new UserModel();
+        $user = $userModel->where('username', $str)->first();
+
+        return $user === null;
+    }
+
+    public function email_check(string $str, string $fields, array $data): bool
+    {
+        $userModel = new UserModel();
+        $user = $userModel->where('email', $str)->first();
+
+        return $user === null;
+    }
 
     public function is_unique_nama_barang($str, string $fields, array $data): bool
     {

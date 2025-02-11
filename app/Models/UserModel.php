@@ -9,8 +9,7 @@ class UserModel extends Model
     protected $table = 'tb_user';
     protected $useTimestamps = true;
     protected $primaryKey = 'id_user';
-    // protected $primaryKey = 'id_user';
-    protected $allowedFields = ['nama_lengkap', 'username', 'id_jabatan', 'password', 'email', 'no_telepon', 'token', 'file_profil', 'terakhir_login'];
+    protected $allowedFields = ['nama_lengkap', 'username', 'id_jabatan', 'alamat', 'pekerjaan', 'password', 'email', 'no_telepon', 'token', 'file_profil', 'terakhir_login'];
 
     public function getAll()
     {

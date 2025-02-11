@@ -21,12 +21,6 @@ class TbBarangKeluar extends Migration
                 'constraint' => 11,
                 'unsigned' => TRUE
             ],
-            'id_user_peminjam' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => TRUE,
-                'null' => TRUE
-            ],
             'tanggal_keluar' => [
                 'type' => 'DATE',
                 'null' => TRUE,
@@ -49,7 +43,6 @@ class TbBarangKeluar extends Migration
 
         // membuat foreign key
         $this->forge->addForeignKey('id_barang', 'tb_barang', 'id_barang', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_user_peminjam', 'tb_user_peminjam', 'id_user_peminjam', 'CASCADE', 'CASCADE');
 
         // Membuat tabel tb_barang_keluar
         $this->forge->createTable('tb_barang_keluar');
