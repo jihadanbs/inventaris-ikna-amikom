@@ -126,6 +126,43 @@
     <?= $this->include('layouts/script') ?>
 
     <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const checkboxes = document.querySelectorAll(".product-checkbox");
+    const selectAllCheckbox = document.querySelector(".product-checkbox-all");
+    const totalSpan = document.querySelector(".footer-section span");
+
+    function updateTotal() {
+        let total = 0;
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                const quantity = parseInt(checkbox.closest(".product-row").querySelector(".quantity-control span").textContent);
+                total += quantity;
+            }
+        });
+        totalSpan.textContent = `Total : ${total} Barang`;
+    }
+
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", updateTotal);
+    });
+
+    selectAllCheckbox.addEventListener("change", function () {
+        const isChecked = this.checked;
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = isChecked;
+        });
+        updateTotal();
+    });
+
+    // Update jumlah saat tombol + atau - ditekan
+    document.querySelectorAll(".quantity-control button").forEach((button) => {
+        button.addEventListener("click", function () {
+            setTimeout(updateTotal, 100);
+        });
+    });
+});
+
         function updateQuantity(button, change) {
             const quantitySpan = button.parentElement.querySelector('span');
             let quantity = parseInt(quantitySpan.textContent);
