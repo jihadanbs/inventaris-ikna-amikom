@@ -32,7 +32,7 @@
         .form-container {
             width: 850px;
             max-width: 2300px;
-            overflow: hidden;
+            overflow: block;
         }
 
     .password-toggle {
@@ -103,7 +103,7 @@
         width: 100%;
         max-width: 100%;
         padding: 15px;
-        overflow: hidden;
+        overflow: block;
     }
 
     .flexbox-container {
@@ -125,7 +125,8 @@
     }
 
     .illustration {
-        display: none; 
+        display: absolute; 
+        top: 0%;
     }
 }
 
@@ -139,14 +140,14 @@
         <section class="container">
             <div class="login-container">
                 <div class="form-container">
+                    <div class="circle circle-one" style=" opacity: 0.5;"></div>
                     <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
                     
                     <h1 class="opacity">REGISTRASI AKUN</h1>
                     <?= $this->include('alert/alert'); ?>
                     <?= form_open('authentication/cekRegistrasi', ['class' => 'sign-in-form', 'autocomplete' => 'off']) ?>
                     <?= csrf_field(); ?>
-                    <div class="flexbox-container" style="z-index: -1000;">
-                        <div class="circle circle-one"></div>
+                    <div class="flexbox-container" >
                     <div class="flexbox-1">
                     <div class="custom-form-group opacity">
                         <label for="nama_lengkap" class="custom-form-label">Nama Lengkap</label>
