@@ -30,7 +30,7 @@
         }
 
         .form-container {
-            width: 850px;
+            width: 830px;
             max-width: 2300px;
             overflow: block;
         }
