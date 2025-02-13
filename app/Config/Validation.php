@@ -2,12 +2,12 @@
 
 namespace Config;
 
+use App\Models\UserModel;
 use CodeIgniter\Config\BaseConfig;
-use CodeIgniter\Validation\StrictRules\CreditCardRules;
+use CodeIgniter\Validation\StrictRules\Rules;
 use CodeIgniter\Validation\StrictRules\FileRules;
 use CodeIgniter\Validation\StrictRules\FormatRules;
-use CodeIgniter\Validation\StrictRules\Rules;
-use App\Models\UserModel;
+use CodeIgniter\Validation\StrictRules\CreditCardRules;
 
 class Validation extends BaseConfig
 {
@@ -246,4 +246,13 @@ class Validation extends BaseConfig
 
         return ($jumlah_total_baik + $jumlah_total_rusak) === $total_dipinjam;
     }
+
+    public function nama_check(string $str, string $fields, array $data): bool
+    {
+        $userModel = new UserModel();
+        $user = $userModel->where('nama_lengkap', $str)->first();
+    
+        return $user === null;
+    }
+    
 }
