@@ -93,7 +93,7 @@ class Home extends BaseController
     {
         $data = [];
 
-        return view('keranjang_barang', $data);
+        return view('keranjang-barang', $data);
     }
 
     public function barangdetail($slug)

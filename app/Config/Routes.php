@@ -21,7 +21,7 @@ $routes->POST('/ajukan', 'Home::ajukan', ['namespace' => 'App\Controllers']);
 $routes->GET('/cek_barang', 'Home::cek_barang', ['namespace' => 'App\Controllers']);
 $routes->GET('/cek_resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
 $routes->POST('/cek_resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
-$routes->GET('/keranjang_barang', 'Home::keranjang_barang', ['namespace' => 'App\Controllers']);
+$routes->GET('/keranjang-barang', 'Home::keranjang_barang', ['namespace' => 'App\Controllers']);
 
 $routes->GET('/error404', 'Home::error', ['namespace' => 'App\Controllers']);
 $routes->GET('/servererror', 'Home::servererror', ['namespace' => 'App\Controllers']);

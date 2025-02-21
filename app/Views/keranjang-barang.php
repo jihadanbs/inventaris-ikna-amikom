@@ -1,6 +1,7 @@
 <?= $this->include('layouts/template') ?>
 
 <link href="<?= base_url('assets/css/responsive-keranjang.css') ?>" rel="stylesheet" />
+
 <body class="sub_page">
 
     <div class="hero_area">
@@ -10,16 +11,15 @@
     <section class="keranjang" style="margin-top: 90px;">
         <div class="container my-4">
             <h2 class="mb-4" style="font-weight:700">Keranjang Barang</h2>
-            
+
             <div class="category-section">
-          
-            <div class="product-row product-row-info">
-                <div class="product-image-info">Foto</div>
+                <div class="product-row product-row-info">
+                    <div class="product-image-info">Foto</div>
                     <div class="product-info">Barang</div>
-                        <div class="barang-detail-info">
-                         <div>Stok</div>
-                         <div>Jumlah Tersedia</div>
-                         <div>Aksi</div>
+                    <div class="barang-detail-info">
+                        <div>Stok</div>
+                        <div>Jumlah Tersedia</div>
+                        <div>Aksi</div>
                     </div>
                 </div>
             </div>
@@ -136,7 +136,7 @@
             } else if (change === 1 && quantity < stock) {
                 quantity++;
             }
-            
+
             quantitySpan.textContent = quantity;
         }
 
@@ -147,4 +147,5 @@
         }
     </script>
 </body>
+
 </html>

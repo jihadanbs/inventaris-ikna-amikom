@@ -31,8 +31,8 @@
                         <li class="nav-item <?= (uri_string() == 'barang' || strpos(uri_string(), 'barang-detail') === 0) ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('barang') ?>">Barang</a>
                         </li>
-                        <li class="nav-item <?= uri_string() == 'keranjang_barang' ? 'active' : '' ?>">
-                            <a class="nav-link" href="<?= site_url('keranjang_barang') ?>">Keranjang</a>
+                        <li class="nav-item <?= uri_string() == 'keranjang-barang' ? 'active' : '' ?>">
+                            <a class="nav-link" href="<?= site_url('keranjang-barang') ?>">Keranjang</a>
                         </li>
                         <li class="nav-item <?= (uri_string() == 'cek_barang' || uri_string() == 'cek_resi') ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('cek_barang') ?>">Cek Barang</a>
