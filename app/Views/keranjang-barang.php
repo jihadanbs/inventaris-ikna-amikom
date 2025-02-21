@@ -126,6 +126,71 @@
     <?= $this->include('layouts/script') ?>
 
     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const selectAllCheckbox = document.querySelector(".product-checkbox-all");
+        const selectAllButton = document.querySelector(".footer-section .btn.btn-primary"); // Tombol "Pilih Semua"
+        const deleteButton = document.querySelector(".footer-section .btn.btn-danger"); // Tombol "Hapus"
+        const totalSpan = document.querySelector(".footer-section span");
+
+        function updateTotal() {
+            let total = 0;
+            document.querySelectorAll(".product-checkbox").forEach((checkbox) => {
+                if (checkbox.checked) {
+                    const quantity = parseInt(checkbox.closest(".product-row").querySelector(".quantity-control span").textContent);
+                    total += quantity;
+                }
+            });
+            totalSpan.textContent = `Total : ${total} Barang`;
+        }
+
+        // Event Listener untuk Checkbox "Pilih Semua"
+        selectAllCheckbox.addEventListener("change", function () {
+            const isChecked = this.checked;
+            document.querySelectorAll(".product-checkbox").forEach((checkbox) => {
+                checkbox.checked = isChecked;
+            });
+            updateTotal();
+        });
+
+        // Event Listener untuk Tombol "Pilih Semua"
+        selectAllButton.addEventListener("click", function () {
+            const checkboxes = document.querySelectorAll(".product-checkbox");
+            const allChecked = [...checkboxes].every((checkbox) => checkbox.checked);
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = !allChecked;
+            });
+            selectAllCheckbox.checked = !allChecked; // Sinkronisasi dengan checkbox utama
+            updateTotal();
+        });
+
+        // Event Listener untuk Checkbox Barang
+        document.addEventListener("change", function (event) {
+            if (event.target.classList.contains("product-checkbox")) {
+                const checkboxes = document.querySelectorAll(".product-checkbox");
+                selectAllCheckbox.checked = [...checkboxes].every((cb) => cb.checked);
+                updateTotal();
+            }
+        });
+
+       // Event Listener untuk Tombol "Hapus" (Uncheck semua checkbox)
+        deleteButton.addEventListener("click", function () {
+            document.querySelectorAll(".product-checkbox").forEach((checkbox) => {
+                checkbox.checked = false; 
+            });
+
+            selectAllCheckbox.checked = false; 
+            updateTotal(); 
+        });
+
+
+        // Update jumlah saat tombol + atau - ditekan
+        document.querySelectorAll(".quantity-control button").forEach((button) => {
+            button.addEventListener("click", function () {
+                setTimeout(updateTotal, 100);
+            });
+        });
+    });
+
         function updateQuantity(button, change) {
             const quantitySpan = button.parentElement.querySelector('span');
             let quantity = parseInt(quantitySpan.textContent);

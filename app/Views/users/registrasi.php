@@ -13,6 +13,28 @@
         font-family: "Poppins", sans-serif;
     }
 
+    .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .form-container {
+            width: 830px;
+            max-width: 2300px;
+            overflow: block;
+        }
+
     .password-toggle {
         position: absolute;
         top: 50%;
@@ -41,6 +63,75 @@
         margin-bottom: 5px;
         font-weight: 600;
     }
+
+
+    .flexbox-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; 
+    }
+
+    .flexbox-1, .flexbox-2 {
+        flex: 1 1 45%; 
+        min-width: 300px; 
+    }
+
+    .custom-input-field textarea {
+    width: 100%;
+    min-height: 55px;
+    max-height: 80px; 
+    height: auto; 
+    resize: vertical; 
+}
+
+
+    @media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 450px; 
+        margin: auto;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 15px;
+        overflow: block;
+    }
+
+    .flexbox-container {
+        flex-direction: column; 
+    }
+
+    .flexbox-1, .flexbox-2 {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .custom-form-group {
+        width: 100%;
+    }
+
+    .custom-input-field input,
+    .custom-input-field textarea {
+        width: 100%;
+    }
+
+    .illustration {
+        display: absolute; 
+        top: 0%;
+    }
+}
+
+
+
 </style>
 
 <body>
@@ -48,14 +139,16 @@
     <body>
         <section class="container">
             <div class="login-container">
-                <div class="circle circle-one"></div>
                 <div class="form-container">
+                    <div class="circle circle-one" style=" opacity: 0.5;"></div>
                     <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
-
+                    
                     <h1 class="opacity">REGISTRASI AKUN</h1>
                     <?= $this->include('alert/alert'); ?>
                     <?= form_open('authentication/cekRegistrasi', ['class' => 'sign-in-form', 'autocomplete' => 'off']) ?>
                     <?= csrf_field(); ?>
+                    <div class="flexbox-container" >
+                    <div class="flexbox-1">
                     <div class="custom-form-group opacity">
                         <label for="nama_lengkap" class="custom-form-label">Nama Lengkap</label>
                         <div class="custom-input-field">
@@ -120,7 +213,9 @@
                             </div>
                         <?php endif; ?>
                     </div><br>
+                    </div>
 
+                    <div class="flexbox-2">
                     <div class="custom-form-group opacity">
                         <label for="alamat" class="custom-form-label">Alamat</label>
                         <div class="custom-input-field">
@@ -181,9 +276,11 @@
                     <?= form_close() ?>
                     <div class="register-forget opacity">
                         <a href="<?php echo site_url("authentication/login"); ?>" style="color: black; text-align:right; display: block;">Kembali Kehalaman Login</a>
+                        <div class="circle circle-two"></div>
+                    </div>
+                    </div>
                     </div>
                 </div>
-                <div class="circle circle-two"></div>
             </div>
             <div class="theme-btn-container"></div>
         </section>
