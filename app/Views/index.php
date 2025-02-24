@@ -9,6 +9,9 @@
         <section class=" slider_section ">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
+                    <div class="row d-flex align-item-center">
+                        <?= $this->include('alert/frontalert'); ?>
+                    </div>
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row">
@@ -108,7 +111,7 @@
     <!-- Modal untuk setiap kegiatan -->
     <?php if (!empty($galeriKegiatan)) : ?>
         <?php foreach ($galeriKegiatan as $kegiatan) : ?>
-            <div class="modal fade" id="modal<?= $kegiatan['id_kegiatan'] ?>"tabindex="-1" role="dialog" aria-labelledby="modalLabel<?= $kegiatan['id_kegiatan'] ?>" aria-hidden="true">
+            <div class="modal fade" id="modal<?= $kegiatan['id_kegiatan'] ?>" tabindex="-1" role="dialog" aria-labelledby="modalLabel<?= $kegiatan['id_kegiatan'] ?>" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <!-- Modal Header -->

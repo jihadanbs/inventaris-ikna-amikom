@@ -124,11 +124,18 @@
                 </li>
 
                 <li>
-                    <a href="user_peminjam">
+                    <a href="user-peminjam">
                         <i data-feather="users"></i>
                         <span data-key="t-dashboard">User Peminjam</span>
                     </a>
                 </li>
+
+                <!-- <li>
+                    <a href="user_peminjam">
+                        <i data-feather="users"></i>
+                        <span data-key="t-dashboard">User Peminjam</span>
+                    </a>
+                </li> -->
 
                 <li>
                     <a href="transaksi">

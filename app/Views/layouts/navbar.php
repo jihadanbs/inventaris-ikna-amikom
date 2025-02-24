@@ -40,7 +40,17 @@
                     </ul>
                 </div>
                 <div class="quote_btn-container">
-                    <a href="<?= site_url('/authentication/login') ?>" target="_blank" rel="noopener noreferrer">Login</a>
+                    <?php if (session()->has('islogin')) : ?>
+                        <?php if (session()->get('id_jabatan') == 2) : ?>
+                            <!-- Jika id_jabatan = 2, hanya tampilkan tombol Logout -->
+                            <a href="<?= site_url('/authentication/logout') ?>" rel="noopener noreferrer">Logout</a>
+                        <?php else : ?>
+                            <a href="<?= site_url('/authentication/login') ?>" rel="noopener noreferrer">Dashboard</a>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <!-- Jika belum login, hanya tampilkan tombol Login -->
+                        <a href="<?= site_url('/authentication/login') ?>" rel="noopener noreferrer">Login</a>
+                    <?php endif; ?>
                 </div>
             </div>
             <!-- END NAVBAR -->

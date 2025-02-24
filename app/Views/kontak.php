@@ -7,6 +7,9 @@
 
     <!-- Start Kontak section -->
     <section class="kontak_section layout_padding">
+        <div class="row d-flex align-item-center">
+            <?= $this->include('alert/frontalert'); ?>
+        </div>
         <div class="container-fluid text-center">
             <!-- Judul -->
             <h2 class="mb-4">Hubungi Kami Melalui</h2>
@@ -76,8 +79,8 @@
                 </div>
             </div>
 
-                    <!-- FAQ Section -->
-                    <section class="bsb-faq-2 bg-light py-3 py-md-5 py-xl-8 text-left">
+            <!-- FAQ Section -->
+            <section class="bsb-faq-2 bg-light py-3 py-md-5 py-xl-8 text-left">
                 <div class="container">
                     <h2 class="m-5 text-center">Frequently Asked Questions (FAQ)</h2>
                     <div class="row gy-5 gy-lg-0">
@@ -128,18 +131,18 @@
     </div>
     <?= $this->include('layouts/script') ?>
     <script>
-    $(document).ready(function () {
-        let allFaqs = <?= json_encode($faqs) ?>; // Semua FAQ dari PHP
-        let displayedFaqs = 5; // Jumlah FAQ awal yang ditampilkan
-        let isExpanded = false; // Status toggle FAQ (default ditampilkan 5 FAQ)
+        $(document).ready(function() {
+            let allFaqs = <?= json_encode($faqs) ?>; // Semua FAQ dari PHP
+            let displayedFaqs = 5; // Jumlah FAQ awal yang ditampilkan
+            let isExpanded = false; // Status toggle FAQ (default ditampilkan 5 FAQ)
 
-        $(".tombol-lebih-lanjut-faq").click(function () {
-            let additionalFaqs = "";
+            $(".tombol-lebih-lanjut-faq").click(function() {
+                let additionalFaqs = "";
 
-            if (!isExpanded) {
-                // Menampilkan FAQ tambahan
-                for (let i = displayedFaqs; i < allFaqs.length; i++) {
-                    additionalFaqs += `
+                if (!isExpanded) {
+                    // Menampilkan FAQ tambahan
+                    for (let i = displayedFaqs; i < allFaqs.length; i++) {
+                        additionalFaqs += `
                     <div class="mb-4 shadow-md border-faq" id="faq${i}">
                         <div class="card-header" id="heading${i}">
                             <h2 class="mb-0">
@@ -154,22 +157,22 @@
                             </div>
                         </div>
                     </div>`;
+                    }
+                    // Tambahkan FAQ baru ke accordion
+                    $("#accordionExample").append(additionalFaqs);
+                    $(this).text("Lebih Sedikit"); // Ubah teks tombol
+                    isExpanded = true;
+                } else {
+                    // Menghapus FAQ tambahan
+                    for (let i = displayedFaqs; i < allFaqs.length; i++) {
+                        $(`#faq${i}`).remove(); // Hapus elemen FAQ tambahan
+                    }
+                    $(this).text("Lebih Lanjut"); // Ubah teks tombol kembali
+                    isExpanded = false;
                 }
-                // Tambahkan FAQ baru ke accordion
-                $("#accordionExample").append(additionalFaqs);
-                $(this).text("Lebih Sedikit"); // Ubah teks tombol
-                isExpanded = true;
-            } else {
-                // Menghapus FAQ tambahan
-                for (let i = displayedFaqs; i < allFaqs.length; i++) {
-                    $(`#faq${i}`).remove(); // Hapus elemen FAQ tambahan
-                }
-                $(this).text("Lebih Lanjut"); // Ubah teks tombol kembali
-                isExpanded = false;
-            }
+            });
         });
-    });
-</script>
+    </script>
 
 
 </body>

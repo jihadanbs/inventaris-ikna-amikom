@@ -7,6 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 // FRONTEND
+$routes->GET('/checkSessionPeminjam', 'Home::checkSessionPeminjam', ['namespace' => 'App\Controllers']);
 $routes->GET('/', 'Home::index', ['namespace' => 'App\Controllers']);
 $routes->GET('/about', 'Home::about', ['namespace' => 'App\Controllers']);
 $routes->GET('/service/(:num)', 'Home::service/$1', ['namespace' => 'App\Controllers']);
@@ -16,12 +17,20 @@ $routes->GET('/galeri', 'Home::galeri', ['namespace' => 'App\Controllers']);
 
 $routes->GET('/kontak', 'Home::kontak', ['namespace' => 'App\Controllers']);
 $routes->GET('/barang', 'Home::barang', ['namespace' => 'App\Controllers']);
-$routes->GET('/barang-detail/(:segment)', 'Home::barangdetail/$1', ['namespace' => 'App\Controllers']);
-$routes->POST('/ajukan', 'Home::ajukan', ['namespace' => 'App\Controllers']);
+// $routes->POST('/ajukan', 'Home::ajukan', ['namespace' => 'App\Controllers']);
 $routes->GET('/cek_barang', 'Home::cek_barang', ['namespace' => 'App\Controllers']);
 $routes->GET('/cek_resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
 $routes->POST('/cek_resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
+// $routes->POST('/ajukan', 'Home::ajukanPeminjaman', ['namespace' => 'App\Controllers']);
+// $routes->GET('/keranjang-barang', 'Home::keranjang_barang', ['namespace' => 'App\Controllers']);
+// $routes->post('checkout/hapus', 'Home::hapusItem');
+// $routes->post('checkout/proses', 'Home::prosesPeminjaman');
+$routes->GET('/barang-detail/(:segment)', 'Home::barangdetail/$1', ['namespace' => 'App\Controllers']);
 $routes->GET('/keranjang-barang', 'Home::keranjang_barang', ['namespace' => 'App\Controllers']);
+$routes->POST('/ajukan', 'Home::ajukanPeminjaman', ['namespace' => 'App\Controllers']);
+$routes->POST('/keranjang', 'Home::masukKeranjang', ['namespace' => 'App\Controllers']);
+$routes->POST('update-stok', 'Home::updateStok', ['namespace' => 'App\Controllers']);
+$routes->POST('updateStok/(:segment)', 'Home::updateStok/$1', ['namespace' => 'App\Controllers']);
 
 $routes->GET('/error404', 'Home::error', ['namespace' => 'App\Controllers']);
 $routes->GET('/servererror', 'Home::servererror', ['namespace' => 'App\Controllers']);
@@ -196,17 +205,30 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->DELETE('delete/(:num)', 'PinjamBarangController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
-    /*=================================== USER PEMINJAM ====================================*/
-    $routes->GET('user_peminjam', 'UserPeminjamController::index', ['namespace' => 'App\Controllers\Admin']);
-    $routes->GROUP('user_peminjam', static function ($routes) {
-        $routes->GET('totalByStatus/(:any)', 'UserPeminjamController::totalByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('tambah', 'UserPeminjamController::tambah', ['namespace' => 'App\Controllers\Admin']);
-        $routes->POST('save', 'UserPeminjamController::save', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('edit/(:segment)', 'UserPeminjamController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->PUT('update/(:num)', 'UserPeminjamController::update/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('cek_data/(:segment)', 'UserPeminjamController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete2/(num)', 'UserPeminjamController::delete2/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->DELETE('delete/(:num)', 'UserPeminjamController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
+    // /*=================================== USER PEMINJAM ====================================*/
+    // $routes->GET('user_peminjam', 'UserPeminjamController::index', ['namespace' => 'App\Controllers\Admin']);
+    // $routes->GROUP('user_peminjam', static function ($routes) {
+    //     $routes->GET('totalByStatus/(:any)', 'UserPeminjamController::totalByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
+    //     $routes->GET('tambah', 'UserPeminjamController::tambah', ['namespace' => 'App\Controllers\Admin']);
+    //     $routes->POST('save', 'UserPeminjamController::save', ['namespace' => 'App\Controllers\Admin']);
+    //     $routes->GET('edit/(:segment)', 'UserPeminjamController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
+    //     $routes->PUT('update/(:num)', 'UserPeminjamController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+    //     $routes->GET('cek_data/(:segment)', 'UserPeminjamController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+    //     $routes->DELETE('delete2/(num)', 'UserPeminjamController::delete2/$1', ['namespace' => 'App\Controllers\Admin']);
+    //     $routes->DELETE('delete/(:num)', 'UserPeminjamController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
+    // });
+
+    /*=================================== USER PEMINJAMAN ====================================*/
+    $routes->GET('user-peminjam', 'UserPeminjamanController::index', ['namespace' => 'App\Controllers\Admin']);
+    $routes->GROUP('user-peminjam', static function ($routes) {
+        $routes->GET('totalByStatus/(:any)', 'UserPeminjamanController::totalByStatus/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('tambah', 'UserPeminjamanController::tambah', ['namespace' => 'App\Controllers\Admin']);
+        $routes->POST('save', 'UserPeminjamanController::save', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('edit/(:segment)', 'UserPeminjamanController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->PUT('update/(:num)', 'UserPeminjamanController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('cek_data/(:segment)', 'UserPeminjamanController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete2/(num)', 'UserPeminjamanController::delete2/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->DELETE('delete/(:num)', 'UserPeminjamanController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
 
     /*=================================== TRANSAKSI ====================================*/

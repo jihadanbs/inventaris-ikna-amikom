@@ -116,4 +116,12 @@ class BarangModel extends Model
         $result = $query->getRow();
         return $result ? $result->total : 0;
     }
+
+    public function decrementStock($id_barang, $amount)
+    {
+        $barang = $this->db->table('tb_barang_baik');
+        $barang->set('jumlah_total_baik', 'jumlah_total_baik - ' . $amount, false);
+        $barang->where('id_barang', $id_barang);
+        $barang->update();
+    }
 }

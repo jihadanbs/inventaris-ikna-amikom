@@ -6,6 +6,8 @@ namespace App\Controllers;
 use App\Models\UserModel;
 use App\Models\KondisiBarangModel;
 use App\Models\KategoriBarangModel;
+use App\Models\TransaksiModel;
+use App\Models\PeminjamanBarangModel;
 use App\Models\BarangModel;
 use App\Models\HistoryBarangModel;
 use App\Models\BarangMasukModel;
@@ -87,6 +89,8 @@ abstract class BaseController extends Controller
     protected $m_user;
     protected $m_kondisi_barang;
     protected $m_kategori_barang;
+    protected $m_transaksi;
+    protected $m_peminjaman_barang;
     protected $m_barang;
     protected $m_history_barang;
     protected $m_barang_masuk;
@@ -133,6 +137,8 @@ abstract class BaseController extends Controller
         $this->m_user = new UserModel();
         $this->m_kategori_barang = new KategoriBarangModel();
         $this->m_kondisi_barang = new KondisiBarangModel();
+        $this->m_transaksi = new TransaksiModel();
+        $this->m_peminjaman_barang = new PeminjamanBarangModel();
         $this->m_barang = new BarangModel();
         $this->m_history_barang = new HistoryBarangModel();
         $this->m_barang_masuk = new BarangMasukModel();
@@ -172,12 +178,16 @@ abstract class BaseController extends Controller
 
     protected function checkSessionPeminjam()
     {
+        // Cek login terlebih dahulu
         if (!$this->session->has('islogin')) {
-            return redirect()->to('authentication/login')->with('gagal', 'Anda belum login !');
+            session()->setFlashdata('gagal', 'Anda belum login !');
+            return redirect()->to('authentication/login');
         }
 
+        // Cek id_jabatan jika sudah login
         if (session()->get('id_jabatan') != 2) {
-            return redirect()->to('authentication/login');
+            session()->setFlashdata('gagal', 'Anda tidak memiliki akses !');
+            return redirect()->back();
         }
 
         return true; // Jika sesi valid

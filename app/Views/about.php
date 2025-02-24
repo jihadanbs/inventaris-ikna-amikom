@@ -9,6 +9,9 @@
     <!-- about section -->
     <section class="about_section">
         <div class="container">
+            <div class="row d-flex align-item-center">
+                <?= $this->include('alert/frontalert'); ?>
+            </div>
             <div class="row">
                 <div class="col-md-6 ">
                     <div class="img-box">

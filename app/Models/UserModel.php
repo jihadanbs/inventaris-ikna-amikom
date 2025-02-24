@@ -11,6 +11,11 @@ class UserModel extends Model
     protected $primaryKey = 'id_user';
     protected $allowedFields = ['nama_lengkap', 'username', 'id_jabatan', 'alamat', 'pekerjaan', 'password', 'email', 'no_telepon', 'token', 'file_profil', 'terakhir_login'];
 
+    public function getUserByJabatan()
+    {
+        return $this->where('id_jabatan', 2)->findAll();
+    }
+
     public function getAll()
     {
         $builder = $this->db->table('tb_user');

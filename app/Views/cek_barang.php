@@ -24,7 +24,9 @@
                     <button type="button" class="btn-cek-barang btn btn-danger mt-lg-0 mt-2" id="btnReset">Reset</button>
                 </div>
             </div>
-            <?= $this->include('alert/alert'); ?>
+            <div class="row d-flex align-item-center">
+                <?= $this->include('alert/frontalert'); ?>
+            </div>
             <?php if (isset($searched) && $searched): ?>
                 <div class="row my-4" id="resultTable">
                     <div class="col-12">

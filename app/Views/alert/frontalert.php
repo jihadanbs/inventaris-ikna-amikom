@@ -1,13 +1,13 @@
 <style>
     .alert {
-    position: fixed;
-    top: 18%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 999999;
-    width: 90%; 
-    max-width: 900px; 
-    padding: 20px; 
+        position: fixed;
+        top: 18%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999999;
+        width: 90%;
+        max-width: 900px;
+        padding: 20px;
     }
 </style>
 

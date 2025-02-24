@@ -115,7 +115,16 @@ class Authentication extends BaseController
             if ($this->session->get('id_jabatan') == 1) {
                 return redirect()->to('admin/dashboard');
             } elseif ($this->session->get('id_jabatan') == 2) {
-                return redirect()->to('barang-detail');
+                // Cek apakah ada slug yang tersimpan (misal setelah klik barang sebelum login)
+                $slug = $this->session->get('slug');
+
+                // Jika ada slug yang tersimpan, redirect ke detail barang
+                if ($slug) {
+                    return redirect()->to('barang-detail/' . $slug);
+                } else {
+                    // Redirect ke halaman barang secara default
+                    return redirect()->to('barang');
+                }
             }
         }
 
@@ -201,7 +210,16 @@ class Authentication extends BaseController
                             if ($user['id_jabatan'] == 1) {
                                 return redirect()->to('admin/dashboard');
                             } elseif ($user['id_jabatan'] == 2) {
-                                return redirect()->to('barang-detail');
+                                // Cek apakah ada slug yang tersimpan (misal setelah klik barang sebelum login)
+                                $slug = $this->session->get('slug');
+
+                                // Jika ada slug yang tersimpan, redirect ke detail barang
+                                if ($slug) {
+                                    return redirect()->to('barang-detail/' . $slug);
+                                } else {
+                                    // Redirect ke halaman barang secara default
+                                    return redirect()->to('barang');
+                                }
                             }
                         } elseif ($user['status'] == 'tidak aktif') {
                             $session->setFlashdata('gagal', 'Akun anda dinonaktifkan');

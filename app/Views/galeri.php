@@ -8,6 +8,9 @@
 
     <!-- Galeri section -->
     <section class="service_section layout_padding">
+        <div class="row d-flex align-item-center">
+            <?= $this->include('alert/frontalert'); ?>
+        </div>
         <div class="container-fluid">
             <div class="heading_container">
                 <h2>Kegiatan IKNAventory</h2>

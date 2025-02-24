@@ -12,6 +12,14 @@ class BarangBaikModel extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
 
+    public function decrementStock($id_barang, $amount)
+    {
+        $barang = $this->db->table('tb_barang_baik');
+        $barang->set('jumlah_total_baik', 'jumlah_total_baik - ' . $amount, false);
+        $barang->where('id_barang', $id_barang);
+        $barang->update();
+    }
+
     public function getAllSorted()
     {
         $builder = $this->db->table('tb_barang_baik');
