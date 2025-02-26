@@ -51,165 +51,172 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const checkboxAll = document.querySelector('.product-checkbox-all');
-
-            const keranjang = JSON.parse(sessionStorage.getItem('keranjang') || '[]');
             const container = document.getElementById('items-container');
 
-            if (keranjang.length === 0) {
-                container.innerHTML = `
-            <div class="alert alert-warning text-center" style="margin-top: 20px;">
-                <h5>Masukkan barang pilihan anda !</h5>
-            </div>`;
-                return;
-            }
+            // Ambil data keranjang dari server berdasarkan id_user
+            fetch('/getKeranjang')
+                .then(response => response.json())
+                .then(result => {
+                    if (result.status === 'success') {
+                        const keranjang = result.data;
 
-            // Kelompokkan items berdasarkan nama_kategori
-            const itemsByCategory = keranjang.reduce((acc, item) => {
-                if (!acc[item.nama_kategori]) {
-                    acc[item.nama_kategori] = [];
-                }
-                acc[item.nama_kategori].push(item);
-                return acc;
-            }, {});
+                        if (keranjang.length === 0) {
+                            container.innerHTML = `
+                    <div class="alert alert-warning text-center" style="margin-top: 20px;">
+                        <h5>Masukkan barang pilihan anda !</h5>
+                    </div>`;
+                            return;
+                        }
 
-            // Render items berdasarkan nama_kategori
-            for (const [nama_kategori, items] of Object.entries(itemsByCategory)) {
-                const categorySection = document.createElement('div');
-                categorySection.className = 'category-section';
+                        // Kelompokkan items berdasarkan nama_kategori
+                        const itemsByCategory = keranjang.reduce((acc, item) => {
+                            if (!acc[item.nama_kategori]) {
+                                acc[item.nama_kategori] = [];
+                            }
+                            acc[item.nama_kategori].push(item);
+                            return acc;
+                        }, {});
 
-                // Tambah header nama_kategori
-                categorySection.innerHTML = `
-            <div class="category-header">${nama_kategori}</div>
-        `;
+                        // Render items berdasarkan nama_kategori
+                        for (const [nama_kategori, items] of Object.entries(itemsByCategory)) {
+                            const categorySection = document.createElement('div');
+                            categorySection.className = 'category-section';
 
-                // Render items dalam nama_kategori
-                items.forEach(barang => {
-                    let photoPath = '';
-                    if (barang.path_file_foto_barang) {
-                        const photos = barang.path_file_foto_barang.split(', ');
-                        photoPath = photos[0] || '<?= base_url("assets/img/404.gif") ?>';
-                    } else {
-                        photoPath = '<?= base_url("assets/img/404.gif") ?>';
-                    }
+                            // Tambah header nama_kategori
+                            categorySection.innerHTML = `
+                    <div class="category-header">${nama_kategori}</div>
+                    `;
 
-                    const itemHtml = `
-                <div class="product-row" data-id="${barang.id_barang}">
-                    <input type="checkbox" class="product-checkbox" ${barang.selected ? 'checked' : ''}>
-                    <img src="<?= base_url() ?>${photoPath}" 
-                         alt="Foto Barang" class="product-image">
-                    <div class="product-info">${barang.nama_barang}</div>
-                    <div class="barang-detail">
-                        <div class="product-details">${barang.jumlah_total_baik}</div>
-                        <div class="quantity-control">
-                            <button onclick="updateQuantity(this, -1, '${barang.id_barang}')">-</button>
-                            <span>${barang.total_dipinjam}</span>
-                            <button onclick="updateQuantity(this, 1, '${barang.id_barang}')">+</button>
+                            // Render items dalam nama_kategori
+                            items.forEach(barang => {
+                                let photoPath = '';
+                                if (barang.path_file_foto_barang) {
+                                    const photos = barang.path_file_foto_barang.split(', ');
+                                    photoPath = photos[0] || '/assets/img/404.gif';
+                                } else {
+                                    photoPath = '/assets/img/404.gif';
+                                }
+
+                                const itemHtml = `
+                        <div class="product-row" data-id="${barang.id_barang}" data-peminjaman-id="${barang.id_peminjaman}">
+                            <input type="checkbox" class="product-checkbox">
+                            <img src="${photoPath}" alt="Foto Barang" class="product-image">
+                            <div class="product-info">${barang.nama_barang}</div>
+                            <div class="barang-detail">
+                                <div class="product-details">${barang.jumlah_total_baik}</div>
+                                <div class="quantity-control">
+                                    <button onclick="updateQuantity(this, -1, '${barang.id_peminjaman}')">-</button>
+                                    <span>${barang.total_dipinjam}</span>
+                                    <button onclick="updateQuantity(this, 1, '${barang.id_peminjaman}')">+</button>
+                                </div>
+                                <button class="btn btn-danger btn-sm" onclick="confirmDelete('${barang.id_peminjaman}')">Hapus</button>
+                            </div>
                         </div>
-                        <button class="btn btn-danger btn-sm" onclick="confirmDelete('${barang.id_barang}')">Hapus</button>
-                    </div>
-                </div>
-            `;
-                    categorySection.insertAdjacentHTML('beforeend', itemHtml);
+                        `;
+                                categorySection.insertAdjacentHTML('beforeend', itemHtml);
+                            });
+
+                            container.appendChild(categorySection);
+                        }
+
+                        // Event listener untuk checkbox "pilih semua"
+                        checkboxAll.addEventListener('change', function() {
+                            const checkboxes = document.querySelectorAll('.product-checkbox:not(.product-checkbox-all)');
+                            checkboxes.forEach(checkbox => {
+                                checkbox.checked = this.checked;
+                            });
+                            updateTotal();
+                        });
+
+                        // Event listener untuk button "pilih semua"
+                        document.getElementById('pilihSemuaBtn').addEventListener('click', function() {
+                            checkboxAll.checked = !checkboxAll.checked;
+                            const checkboxes = document.querySelectorAll('.product-checkbox:not(.product-checkbox-all)');
+                            checkboxes.forEach(checkbox => {
+                                checkbox.checked = checkboxAll.checked;
+                            });
+                            updateTotal();
+                        });
+
+                        // Setelah semua checkbox dibuat
+                        document.querySelectorAll('.product-checkbox').forEach(checkbox => {
+                            checkbox.addEventListener('change', updateTotal);
+                        });
+
+                        updateTotal();
+                    } else {
+                        container.innerHTML = `
+                <div class="alert alert-danger text-center" style="margin-top: 20px;">
+                    <h5>Gagal memuat data keranjang !</h5>
+                </div>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    container.innerHTML = `
+            <div class="alert alert-danger text-center" style="margin-top: 20px;">
+                <h5>Terjadi kesalahan saat memuat data keranjang</h5>
+            </div>`;
                 });
 
-                container.appendChild(categorySection);
-            }
-
-            // Event listener untuk checkbox "pilih semua"
-            checkboxAll.addEventListener('change', function() {
-                const checkboxes = document.querySelectorAll('.product-checkbox:not(.product-checkbox-all)');
-                checkboxes.forEach(checkbox => {
-                    checkbox.checked = this.checked;
-                });
-                updateTotal();
+            // Delegation untuk menangani checkbox baru
+            document.addEventListener('click', function(event) {
+                if (event.target.classList.contains('product-checkbox')) {
+                    updateTotal();
+                }
             });
-
-            // Event listener untuk button "pilih semua"
-            document.getElementById('pilihSemuaBtn').addEventListener('click', function() {
-                checkboxAll.checked = !checkboxAll.checked;
-                const checkboxes = document.querySelectorAll('.product-checkbox:not(.product-checkbox-all)');
-                checkboxes.forEach(checkbox => {
-                    checkbox.checked = checkboxAll.checked;
-                });
-                updateTotal();
-            });
-
-            // Pindahkan event listener ke sini, setelah semua checkbox dibuat
-            document.querySelectorAll('.product-checkbox').forEach(checkbox => {
-                checkbox.addEventListener('change', updateTotal);
-            });
-
-            // Cek status checkbox
-            const checkboxStatus = localStorage.getItem('checkboxStatus');
-            if (checkboxStatus === 'checked') {
-                document.querySelectorAll('.product-checkbox').forEach(checkbox => {
-                    checkbox.checked = true;
-                });
-                localStorage.removeItem('checkboxStatus');
-            }
-
-            updateTotal();
-        });
-
-        // Delegation untuk menangani checkbox baru
-        document.addEventListener('click', function(event) {
-            if (event.target.classList.contains('product-checkbox')) {
-                updateTotal();
-            }
         });
 
         // Fungsi update quantity
-        function updateQuantity(button, change, idBarang) {
+        function updateQuantity(button, change, idPeminjaman) {
             const quantitySpan = button.parentElement.querySelector('span');
             const stockElement = button.parentElement.previousElementSibling;
             let quantity = parseInt(quantitySpan.textContent);
             let stock = parseInt(stockElement.textContent);
 
-            // Perubahan disini - memperbolehkan quantity bertambah sampai stock habis
+            // Memperbolehkan quantity bertambah sampai stock habis
             if ((change === -1 && quantity > 1) || (change === 1 && stock > 0)) {
-                if (change === -1) {
-                    quantity--;
-                    stock++;
-                } else {
-                    quantity++;
-                    stock--;
-                }
+                const newQuantity = change === -1 ? quantity - 1 : quantity + 1;
 
-                // Update tampilan
-                quantitySpan.textContent = quantity;
-                stockElement.textContent = stock;
-
-                // Update session storage
-                let keranjang = JSON.parse(sessionStorage.getItem('keranjang'));
-                const item = keranjang.find(item => item.id_barang === idBarang);
-                if (item) {
-                    item.total_dipinjam = quantity;
-                    item.jumlah_total_baik = stock;
-                    sessionStorage.setItem('keranjang', JSON.stringify(keranjang));
-                }
-
-                // Update database
-                fetch(`/updateStok/${idBarang}`, {
+                // Update via API
+                fetch(`/updateJumlahKeranjang/${idPeminjaman}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            stok: stock
+                            jumlah: newQuantity
                         })
                     })
                     .then(response => response.json())
                     .then(data => {
-                        if (!data.success) {
-                            Swal.fire('Error', 'Gagal mengupdate stok', 'error');
-                        }
-                    });
+                        if (data.status === 'success') {
+                            // Update tampilan jika sukses
+                            if (change === -1) {
+                                quantity--;
+                                stock++;
+                            } else {
+                                quantity++;
+                                stock--;
+                            }
 
-                updateTotal();
+                            // Update tampilan
+                            quantitySpan.textContent = quantity;
+                            stockElement.textContent = stock;
+
+                            updateTotal();
+                        } else {
+                            Swal.fire('Error', data.message || 'Gagal mengupdate jumlah', 'error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        Swal.fire('Error', 'Terjadi kesalahan saat update jumlah', 'error');
+                    });
             }
         }
 
-        function confirmDelete(idBarang) {
+        function confirmDelete(idPeminjaman) {
             Swal.fire({
                 title: 'Apakah Anda yakin?',
                 text: "Barang akan dihapus dari keranjang",
@@ -219,44 +226,28 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Ambil data keranjang
-                    let keranjang = JSON.parse(sessionStorage.getItem('keranjang'));
-                    const itemToDelete = keranjang.find(item => item.id_barang === idBarang);
+                    // Hapus melalui API
+                    fetch(`/hapusItemKeranjang/${idPeminjaman}`, {
+                            method: 'DELETE',
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                // Hapus element dari UI
+                                document.querySelector(`[data-peminjaman-id="${idPeminjaman}"]`).remove();
 
-                    if (itemToDelete) {
-                        // Hitung stok yang akan dikembalikan
-                        const stockToReturn = itemToDelete.total_dipinjam;
-                        const newStock = itemToDelete.jumlah_total_baik + stockToReturn;
+                                // Update total
+                                updateTotal();
 
-                        // Update stok di database
-                        fetch(`/updateStok/${idBarang}`, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({
-                                    stok: newStock
-                                })
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.success) {
-                                    // Hapus dari session storage
-                                    keranjang = keranjang.filter(item => item.id_barang !== idBarang);
-                                    sessionStorage.setItem('keranjang', JSON.stringify(keranjang));
-
-                                    // Hapus element dari UI
-                                    document.querySelector(`[data-id="${idBarang}"]`).remove();
-
-                                    // Update total
-                                    updateTotal();
-
-                                    Swal.fire('Terhapus!', 'Barang telah dihapus dari keranjang dan stok telah dikembalikan !', 'success');
-                                } else {
-                                    Swal.fire('Error', 'Gagal mengembalikan stok barang !', 'error');
-                                }
-                            });
-                    }
+                                Swal.fire('Terhapus!', 'Barang telah dihapus dari keranjang', 'success');
+                            } else {
+                                Swal.fire('Error', data.message || 'Gagal menghapus barang', 'error');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            Swal.fire('Error', 'Terjadi kesalahan saat menghapus barang', 'error');
+                        });
                 }
             });
         }
@@ -296,96 +287,84 @@
                 cancelButtonText: 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    let keranjang = JSON.parse(sessionStorage.getItem('keranjang'));
                     let successCount = 0;
                     let totalItems = selectedRows.length;
+                    let completedOperations = 0;
 
-                    // Buat array promises untuk menangani semua permintaan update stok
-                    const updatePromises = Array.from(selectedRows).map(checkbox => {
+                    // Untuk setiap item yang dipilih
+                    selectedRows.forEach(checkbox => {
                         const row = checkbox.closest('.product-row');
-                        const idBarang = row.dataset.id;
-                        const quantity = parseInt(row.querySelector('.quantity-control span').textContent);
-                        const currentStock = parseInt(row.querySelector('.product-details').textContent);
-                        const newStock = currentStock + quantity;
+                        const idPeminjaman = row.dataset.peminjamanId;
 
-                        return fetch(`/updateStok/${idBarang}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                stok: newStock
+                        // Hapus melalui API
+                        fetch(`/hapusItemKeranjang/${idPeminjaman}`, {
+                                method: 'DELETE',
                             })
-                        }).then(response => response.json());
-                    });
+                            .then(response => response.json())
+                            .then(data => {
+                                completedOperations++;
 
-                    // Jalankan semua update secara bersamaan
-                    Promise.all(updatePromises)
-                        .then(results => {
-                            // Hitung jumlah update yang berhasil
-                            successCount = results.filter(result => result.success).length;
-
-                            if (successCount === totalItems) {
-                                // Jika semua update berhasil, hapus item dari keranjang
-                                selectedRows.forEach(checkbox => {
-                                    const row = checkbox.closest('.product-row');
-                                    const idBarang = row.dataset.id;
-                                    keranjang = keranjang.filter(item => item.id_barang !== idBarang);
+                                if (data.status === 'success') {
+                                    successCount++;
                                     row.remove();
-                                });
+                                }
 
-                                sessionStorage.setItem('keranjang', JSON.stringify(keranjang));
-                                updateTotal();
+                                // Setelah semua operasi selesai
+                                if (completedOperations === totalItems) {
+                                    updateTotal();
 
-                                Swal.fire(
-                                    'Terhapus!',
-                                    'Semua barang telah dihapus dari keranjang dan stok telah dikembalikan !',
-                                    'success'
-                                );
-                            } else {
-                                Swal.fire(
-                                    'Peringatan!',
-                                    'Beberapa barang gagal diproses. Silakan coba lagi !',
-                                    'warning'
-                                );
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                            Swal.fire(
-                                'Error!',
-                                'Terjadi kesalahan saat memproses penghapusan !',
-                                'error'
-                            );
-                        });
+                                    if (successCount === totalItems) {
+                                        Swal.fire(
+                                            'Terhapus!',
+                                            'Semua barang telah dihapus dari keranjang',
+                                            'success'
+                                        );
+                                    } else {
+                                        Swal.fire(
+                                            'Peringatan!',
+                                            'Beberapa barang gagal dihapus. Silakan coba lagi!',
+                                            'warning'
+                                        );
+                                    }
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                completedOperations++;
+
+                                if (completedOperations === totalItems) {
+                                    updateTotal();
+                                    Swal.fire(
+                                        'Error!',
+                                        'Terjadi kesalahan saat menghapus barang',
+                                        'error'
+                                    );
+                                }
+                            });
+                    });
                 }
             });
         }
 
-        // Modifikasi fungsi pinjamSelected
+        // Fungsi peminjaman yang dipilih
         function pinjamSelected() {
-            const selectedItems = [];
-            document.querySelectorAll('.product-row').forEach(row => {
-                const checkbox = row.querySelector('.product-checkbox');
-                if (checkbox.checked) {
-                    const idBarang = row.dataset.id;
-                    const quantity = parseInt(row.querySelector('.quantity-control span').textContent);
-                    selectedItems.push({
-                        id_barang: idBarang,
-                        quantity: quantity
-                    });
-                }
+            const selectedRows = document.querySelectorAll('.product-checkbox:checked:not(.product-checkbox-all)');
+            if (selectedRows.length === 0) {
+                Swal.fire('Perhatian!', 'Pilih barang yang akan dipinjam terlebih dahulu!', 'warning');
+                return;
+            }
+
+            // Kumpulkan ID peminjaman yang dipilih
+            const selectedPeminjamanIds = Array.from(selectedRows).map(checkbox => {
+                const row = checkbox.closest('.product-row');
+                return row.dataset.peminjamanId;
             });
 
-            if (selectedItems.length > 0) {
-                // Simpan item yang dipilih ke session storage
-                sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+            // Simpan ke sessionStorage untuk digunakan di form peminjaman
+            sessionStorage.setItem('selectedPeminjamanIds', JSON.stringify(selectedPeminjamanIds));
 
-                // Tampilkan modal peminjaman
-                $('#peminjamanModal').modal('show');
-            } else {
-                Swal.fire('Perhatian!', 'Pilih barang yang akan dipinjam terlebih dahulu.', 'warning');
-            }
+            // Tampilkan modal peminjaman
+            $('#peminjamanModal').modal('show');
         }
     </script>
 </body>

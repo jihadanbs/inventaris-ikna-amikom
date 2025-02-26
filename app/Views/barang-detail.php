@@ -108,89 +108,80 @@
                         function ajukanPeminjaman() {
                             let data = {
                                 id_barang: '<?= $tb_barang['id_barang'] ?>',
-                                slug: '<?= $tb_barang['slug'] ?>',
-                                nama_barang: '<?= $tb_barang['nama_barang'] ?>',
-                                nama_kategori: '<?= $tb_barang['nama_kategori'] ?>',
-                                jumlah_total_baik: parseInt('<?= $tb_barang['jumlah_total_baik'] ?>') - 1, // Kurangi stok
-                                path_file_foto_barang: '<?= $tb_barang['path_file_foto_barang'] ?>',
-                                total_dipinjam: 1,
-                                selected: true // Set true agar checkbox tercentang
+                                slug: '<?= $tb_barang['slug'] ?>'
                             };
 
-                            // Update stok di database
-                            fetch(`/updateStok/${data.id_barang}`, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({
-                                    stok: data.jumlah_total_baik
+                            // Kirim ke server
+                            fetch('/ajukanPeminjaman', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(data)
                                 })
-                            });
-
-                            // Simpan ke session storage
-                            let keranjang = JSON.parse(sessionStorage.getItem('keranjang') || '[]');
-                            let existingItem = keranjang.find(item => item.id_barang === data.id_barang);
-
-                            if (existingItem) {
-                                existingItem.total_dipinjam += 1;
-                                existingItem.jumlah_total_baik -= 1;
-                                existingItem.selected = true;
-                            } else {
-                                keranjang.push(data);
-                            }
-
-                            sessionStorage.setItem('keranjang', JSON.stringify(keranjang));
-
-                            // Simpan status checkbox ke localStorage
-                            localStorage.setItem('checkboxStatus', 'checked');
-
-                            window.location.href = '<?= site_url('keranjang-barang') ?>';
+                                .then(response => response.json())
+                                .then(result => {
+                                    if (result.status === 'success') {
+                                        // Redirect ke halaman keranjang
+                                        window.location.href = '<?= site_url('keranjang-barang') ?>';
+                                    } else {
+                                        Swal.fire({
+                                            title: 'Gagal!',
+                                            text: result.message || 'Gagal menambahkan barang',
+                                            icon: 'error'
+                                        });
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'Terjadi kesalahan saat menambahkan barang',
+                                        icon: 'error'
+                                    });
+                                });
                         }
 
                         function masukKeranjang() {
                             let data = {
                                 id_barang: '<?= $tb_barang['id_barang'] ?>',
-                                slug: '<?= $tb_barang['slug'] ?>',
-                                nama_barang: '<?= $tb_barang['nama_barang'] ?>',
-                                nama_kategori: '<?= $tb_barang['nama_kategori'] ?>',
-                                jumlah_total_baik: parseInt('<?= $tb_barang['jumlah_total_baik'] ?>') - 1, // Kurangi stok
-                                path_file_foto_barang: '<?= $tb_barang['path_file_foto_barang'] ?>',
-                                total_dipinjam: 1,
-                                selected: false
+                                slug: '<?= $tb_barang['slug'] ?>'
                             };
 
-                            // Update stok di database
-                            fetch(`/updateStok/${data.id_barang}`, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({
-                                    stok: data.jumlah_total_baik
+                            // Kirim ke server
+                            fetch('/masukKeranjang', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(data)
                                 })
-                            });
-
-                            let keranjang = JSON.parse(sessionStorage.getItem('keranjang') || '[]');
-                            let existingItem = keranjang.find(item => item.id_barang === data.id_barang);
-
-                            if (existingItem) {
-                                existingItem.total_dipinjam += 1;
-                                existingItem.jumlah_total_baik -= 1;
-                            } else {
-                                keranjang.push(data);
-                            }
-
-                            sessionStorage.setItem('keranjang', JSON.stringify(keranjang));
-
-                            Swal.fire({
-                                title: 'Berhasil!',
-                                text: 'Barang telah ditambahkan ke keranjang',
-                                icon: 'success'
-                            });
+                                .then(response => response.json())
+                                .then(result => {
+                                    if (result.status === 'success') {
+                                        Swal.fire({
+                                            title: 'Berhasil!',
+                                            text: 'Barang telah ditambahkan ke keranjang',
+                                            icon: 'success'
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            title: 'Gagal!',
+                                            text: result.message || 'Gagal menambahkan barang ke keranjang',
+                                            icon: 'error'
+                                        });
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'Terjadi kesalahan saat menambahkan barang ke keranjang',
+                                        icon: 'error'
+                                    });
+                                });
                         }
                     </script>
-
                 </div>
             </div>
         </div>

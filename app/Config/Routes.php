@@ -17,21 +17,23 @@ $routes->GET('/galeri', 'Home::galeri', ['namespace' => 'App\Controllers']);
 
 $routes->GET('/kontak', 'Home::kontak', ['namespace' => 'App\Controllers']);
 $routes->GET('/barang', 'Home::barang', ['namespace' => 'App\Controllers']);
-// $routes->POST('/ajukan', 'Home::ajukan', ['namespace' => 'App\Controllers']);
 $routes->GET('/cek_barang', 'Home::cek_barang', ['namespace' => 'App\Controllers']);
 $routes->GET('/cek_resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
 $routes->POST('/cek_resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
 // $routes->POST('/ajukan', 'Home::ajukanPeminjaman', ['namespace' => 'App\Controllers']);
-// $routes->GET('/keranjang-barang', 'Home::keranjang_barang', ['namespace' => 'App\Controllers']);
-// $routes->post('checkout/hapus', 'Home::hapusItem');
-// $routes->post('checkout/proses', 'Home::prosesPeminjaman');
 $routes->GET('/barang-detail/(:segment)', 'Home::barangdetail/$1', ['namespace' => 'App\Controllers']);
 $routes->GET('/keranjang-barang', 'Home::keranjang_barang', ['namespace' => 'App\Controllers']);
 $routes->POST('/ajukan', 'Home::ajukanPeminjaman', ['namespace' => 'App\Controllers']);
 $routes->POST('/keranjang', 'Home::masukKeranjang', ['namespace' => 'App\Controllers']);
 $routes->POST('update-stok', 'Home::updateStok', ['namespace' => 'App\Controllers']);
-$routes->POST('updateStok/(:segment)', 'Home::updateStok/$1', ['namespace' => 'App\Controllers']);
-
+$routes->POST('updateKeranjang', 'Peminjaman::updateKeranjang', ['namespace' => 'App\Controllers']);
+$routes->POST('prosesPeminjaman', 'Peminjaman::prosesPeminjaman', ['namespace' => 'App\Controllers']);
+$routes->POST('ajukanPeminjaman', 'Home::ajukanPeminjaman', ['namespace' => 'App\Controllers']);
+$routes->POST('masukKeranjang', 'Home::masukKeranjang', ['namespace' => 'App\Controllers']);
+$routes->GET('getKeranjang', 'Home::getKeranjang', ['namespace' => 'App\Controllers']);
+$routes->DELETE('hapusItemKeranjang/(:num)', 'Home::hapusItemKeranjang/$1', ['namespace' => 'App\Controllers']);
+$routes->POST('updateJumlahKeranjang/(:num)', 'Home::updateJumlahKeranjang/$1', ['namespace' => 'App\Controllers']);
+$routes->POST('updateStok/(:num)', 'Home::updateStok/$1', ['namespace' => 'App\Controllers']);
 $routes->GET('/error404', 'Home::error', ['namespace' => 'App\Controllers']);
 $routes->GET('/servererror', 'Home::servererror', ['namespace' => 'App\Controllers']);
 

@@ -110,11 +110,50 @@ class Home extends BaseController
 
         $id_user = session()->get('id_user');
 
+        // Ambil data keranjang dari database berdasarkan id_user
+        $keranjang = $this->m_peminjaman_barang
+            ->join('tb_barang', 'tb_barang.id_barang = tb_peminjaman.id_barang')
+            ->join('tb_transaksi', 'tb_transaksi.id_peminjaman = tb_peminjaman.id_peminjaman')
+            ->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang')
+            ->where('tb_transaksi.id_user', $id_user)
+            ->where('tb_peminjaman.status', 'keranjang')
+            ->findAll();
+
         $data = [
-            'id_user' => $id_user
+            'id_user' => $id_user,
+            'keranjang' => $keranjang
         ];
 
         return view('keranjang-barang', $data);
+    }
+
+    public function getKeranjang()
+    {
+        // Cek sesi pengguna
+        if ($this->checkSessionPeminjam() !== true) {
+            return $this->checkSessionPeminjam(); // Redirect jika sesi tidak valid
+        }
+
+        $id_user = session()->get('id_user');
+
+        // Ambil data keranjang dari database
+        $keranjang = $this->m_peminjaman_barang
+            ->select('tb_peminjaman.id_peminjaman, GROUP_CONCAT(DISTINCT tb_file_foto_barang.path_file_foto_barang SEPARATOR ", ") as path_file_foto_barang, tb_peminjaman.id_barang, tb_peminjaman.total_dipinjam, tb_peminjaman.slug, tb_barang.nama_barang, tb_kategori_barang.nama_kategori, tb_barang_baik.jumlah_total_baik')
+            ->join('tb_barang', 'tb_barang.id_barang = tb_peminjaman.id_barang')
+            ->join('tb_galeri_barang', 'tb_barang.id_barang = tb_galeri_barang.id_barang', 'left')
+            ->join('tb_barang_baik', 'tb_barang.id_barang = tb_barang_baik.id_barang', 'left')
+            ->join('tb_transaksi', 'tb_transaksi.id_peminjaman = tb_peminjaman.id_peminjaman')
+            ->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang')
+            ->join('tb_file_foto_barang', 'tb_galeri_barang.id_file_foto_barang = tb_file_foto_barang.id_file_foto_barang', 'left')
+            ->where('tb_transaksi.id_user', $id_user)
+            ->where('tb_peminjaman.status', 'keranjang')
+            ->groupBy('tb_peminjaman.id_peminjaman')
+            ->findAll();
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'data' => $keranjang
+        ]);
     }
 
     public function ajukanPeminjaman()
@@ -127,17 +166,57 @@ class Home extends BaseController
         $json = $this->request->getJSON();
         $id_barang = $json->id_barang;
         $slug = $json->slug;
+        $id_user = session()->get('id_user');
 
-        // Buat data peminjaman baru
-        $dataPeminjaman = [
-            'id_barang' => $id_barang,
-            'total_dipinjam' => 1,
-            'slug' => $slug,
-            'status' => 'keranjang',
-            'tanggal_pengajuan' => date('Y-m-d H:i:s')
-        ];
+        // Cek stok barang baik
+        $barangBaik = $this->m_barang_baik->where('id_barang', $id_barang)->first();
+        if (!$barangBaik || $barangBaik['jumlah_total_baik'] <= 0) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Jumlah barang telah habis dipinjam'
+            ]);
+        }
 
-        $this->m_peminjaman_barang->insert($dataPeminjaman);
+        // Cek apakah barang sudah ada di keranjang user
+        $existing = $this->m_peminjaman_barang
+            ->join('tb_transaksi', 'tb_transaksi.id_peminjaman = tb_peminjaman.id_peminjaman')
+            ->where([
+                'tb_peminjaman.id_barang' => $id_barang,
+                'tb_peminjaman.status' => 'keranjang',
+                'tb_transaksi.id_user' => $id_user
+            ])
+            ->first();
+
+        if ($existing) {
+            $this->m_peminjaman_barang->update($existing['id_peminjaman'], [
+                'total_dipinjam' => $existing['total_dipinjam'] + 1
+            ]);
+        } else {
+            // Buat baru jika belum ada
+            $dataTransaksi = [
+                'id_barang' => $id_barang,
+                'total_dipinjam' => 1,
+                'slug' => $slug,
+                'status' => 'keranjang',
+                'tanggal_pengajuan' => date('Y-m-d H:i:s')
+            ];
+
+            // Insert ke tb_peminjaman dan dapatkan id_peminjaman
+            $id_peminjaman = $this->m_peminjaman_barang->insert($dataTransaksi);
+
+            // Simpan ke tb_transaksi untuk mengaitkan dengan id_user
+            $dataTransaksi = [
+                'id_user' => $id_user,
+                'id_peminjaman' => $id_peminjaman
+            ];
+
+            $this->m_transaksi->insert($dataTransaksi);
+        }
+
+        // Update stok jumlah barang baik
+        $this->m_barang_baik->where('id_barang', $id_barang)
+            ->set('jumlah_total_baik', 'jumlah_total_baik - 1', false)
+            ->update();
 
         // Update stok barang
         $this->m_barang->where('id_barang', $id_barang)
@@ -146,7 +225,7 @@ class Home extends BaseController
 
         return $this->response->setJSON([
             'status' => 'success',
-            'message' => 'Barang berhasil diajukan'
+            'message' => 'Barang berhasil ditambahkan ke keranjang'
         ]);
     }
 
@@ -161,22 +240,33 @@ class Home extends BaseController
         $json = $this->request->getJSON();
         $id_barang = $json->id_barang;
         $slug = $json->slug;
+        $id_user = session()->get('id_user');
 
-        // Cek apakah barang sudah ada di keranjang
+        // Cek stok barang baik
+        $barangBaik = $this->m_barang_baik->where('id_barang', $id_barang)->first();
+        if (!$barangBaik || $barangBaik['jumlah_total_baik'] <= 0) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Jumlah barang telah habis dipinjam'
+            ]);
+        }
+
+        // Cek apakah barang sudah ada di keranjang user
         $existing = $this->m_peminjaman_barang
+            ->join('tb_transaksi', 'tb_transaksi.id_peminjaman = tb_peminjaman.id_peminjaman')
             ->where([
-                'id_barang' => $id_barang,
-                'status' => 'keranjang'
+                'tb_peminjaman.id_barang' => $id_barang,
+                'tb_peminjaman.status' => 'keranjang',
+                'tb_transaksi.id_user' => $id_user
             ])
             ->first();
 
         if ($existing) {
-            // Update quantity
-            $this->m_peminjaman_barang->update($existing->id_peminjaman, [
-                'total_dipinjam' => $existing->total_dipinjam + 1
+            $this->m_peminjaman_barang->update($existing['id_peminjaman'], [
+                'total_dipinjam' => $existing['total_dipinjam'] + 1
             ]);
         } else {
-            // Buat baru
+            // Buat baru jika belum ada
             $dataPeminjaman = [
                 'id_barang' => $id_barang,
                 'total_dipinjam' => 1,
@@ -185,8 +275,22 @@ class Home extends BaseController
                 'tanggal_pengajuan' => date('Y-m-d H:i:s')
             ];
 
-            $this->m_peminjaman_barang->insert($dataPeminjaman);
+            // Insert ke tb_peminjaman dan dapatkan id_peminjaman
+            $id_peminjaman = $this->m_peminjaman_barang->insert($dataPeminjaman);
+
+            // Simpan ke tb_transaksi untuk mengaitkan dengan id_user
+            $dataTransaksi = [
+                'id_user' => $id_user,
+                'id_peminjaman' => $id_peminjaman
+            ];
+
+            $this->m_transaksi->insert($dataTransaksi);
         }
+
+        // Update stok jumlah barang baik
+        $this->m_barang_baik->where('id_barang', $id_barang)
+            ->set('jumlah_total_baik', 'jumlah_total_baik - 1', false)
+            ->update();
 
         // Update stok barang
         $this->m_barang->where('id_barang', $id_barang)
@@ -196,6 +300,119 @@ class Home extends BaseController
         return $this->response->setJSON([
             'status' => 'success',
             'message' => 'Barang telah ditambahkan ke keranjang'
+        ]);
+    }
+
+    public function hapusItemKeranjang($id_peminjaman)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSessionPeminjam() !== true) {
+            return $this->checkSessionPeminjam(); // Redirect jika sesi tidak valid
+        }
+
+        $id_user = session()->get('id_user');
+
+        // Ambil data peminjaman
+        $peminjaman = $this->m_peminjaman_barang
+            ->join('tb_transaksi', 'tb_transaksi.id_peminjaman = tb_peminjaman.id_peminjaman')
+            ->where('tb_peminjaman.id_peminjaman', $id_peminjaman)
+            ->where('tb_transaksi.id_user', $id_user)
+            ->first();
+
+        if (!$peminjaman) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Item tidak ditemukan'
+            ]);
+        }
+
+        // Kembalikan stok
+        $this->m_barang->where('id_barang', $peminjaman['id_barang'])
+            ->set('jumlah_dipinjam', 'jumlah_dipinjam - ' . $peminjaman['total_dipinjam'], false)
+            ->update();
+
+        // Update stok jumlah barang baik
+        $this->m_barang_baik->where('id_barang', $peminjaman['id_barang'])
+            ->set('jumlah_total_baik', 'jumlah_total_baik + ' . $peminjaman['total_dipinjam'], false)
+            ->update();
+
+        // Hapus dari tb_transaksi
+        $this->m_transaksi->where('id_peminjaman', $id_peminjaman)->delete();
+
+        // Hapus dari tb_peminjaman
+        $this->m_peminjaman_barang->delete($id_peminjaman);
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'Item berhasil dihapus dari keranjang'
+        ]);
+    }
+
+    public function updateJumlahKeranjang($id_peminjaman)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSessionPeminjam() !== true) {
+            return $this->checkSessionPeminjam(); // Redirect jika sesi tidak valid
+        }
+
+        $json = $this->request->getJSON();
+        $jumlah_baru = $json->jumlah;
+        $id_user = session()->get('id_user');
+
+        // Ambil data peminjaman
+        $peminjaman = $this->m_peminjaman_barang
+            ->join('tb_transaksi', 'tb_transaksi.id_peminjaman = tb_peminjaman.id_peminjaman')
+            ->where('tb_peminjaman.id_peminjaman', $id_peminjaman)
+            ->where('tb_transaksi.id_user', $id_user)
+            ->first();
+
+        if (!$peminjaman) {
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Item tidak ditemukan'
+            ]);
+        }
+
+        // Hitung perubahan jumlah
+        $selisih = $jumlah_baru - $peminjaman['total_dipinjam'];
+
+        // Update jumlah di peminjaman
+        $this->m_peminjaman_barang->update($id_peminjaman, [
+            'total_dipinjam' => $jumlah_baru
+        ]);
+
+        // Update stok barang
+        $this->m_barang->where('id_barang', $peminjaman['id_barang'])
+            ->set('jumlah_dipinjam', 'jumlah_dipinjam + ' . $selisih, false)
+            ->update();
+
+        // Update stok jumlah barang baik
+        $this->m_barang_baik->where('id_barang', $peminjaman['id_barang'])
+            ->set('jumlah_total_baik', 'jumlah_total_baik - ' . $selisih, false)
+            ->update();
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'message' => 'Jumlah berhasil diupdate'
+        ]);
+    }
+
+    public function updateStok($id_barang)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSessionPeminjam() !== true) {
+            return $this->checkSessionPeminjam(); // Redirect jika sesi tidak valid
+        }
+
+        $data = $this->request->getJSON();
+
+        $result = $this->m_barang_baik->where('id_barang', $id_barang)
+            ->set(['jumlah_total_baik' => $data->stok])
+            ->update();
+
+        return $this->response->setJSON([
+            'success' => $result,
+            'message' => $result ? 'Stok berhasil diupdate' : 'Gagal mengupdate stok'
         ]);
     }
 
@@ -465,24 +682,5 @@ Terima kasih,
 
         // Bagi menjadi 4 grup
         return implode('-', str_split($code, 5));
-    }
-
-    public function updateStok($id_barang)
-    {
-        // Cek sesi pengguna
-        if ($this->checkSessionPeminjam() !== true) {
-            return $this->checkSessionPeminjam(); // Redirect jika sesi tidak valid
-        }
-
-        $data = $this->request->getJSON();
-
-        $result = $this->m_barang_baik->where('id_barang', $id_barang)
-            ->set(['jumlah_total_baik' => $data->stok])
-            ->update();
-
-        return $this->response->setJSON([
-            'success' => $result,
-            'message' => $result ? 'Stok berhasil diupdate' : 'Gagal mengupdate stok'
-        ]);
     }
 }
