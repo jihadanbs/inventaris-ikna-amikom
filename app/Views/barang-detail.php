@@ -108,7 +108,7 @@
                         function ajukanPeminjaman() {
                             let data = {
                                 id_barang: '<?= $tb_barang['id_barang'] ?>',
-                                slug: '<?= $tb_barang['slug'] ?>'
+                                slug: '<?= $slugUserBarang ?>'
                             };
 
                             // Kirim ke server
@@ -145,7 +145,7 @@
                         function masukKeranjang() {
                             let data = {
                                 id_barang: '<?= $tb_barang['id_barang'] ?>',
-                                slug: '<?= $tb_barang['slug'] ?>'
+                                slug: '<?= $slugUserBarang ?>'
                             };
 
                             // Kirim ke server

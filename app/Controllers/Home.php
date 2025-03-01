@@ -88,19 +88,28 @@ class Home extends BaseController
 
     public function barangdetail($slug)
     {
-        // Simpan slug ke sesi kalau pengguna belum login
         if (!$this->session->has('islogin')) {
             $this->session->set('slug', $slug);
             return redirect()->to('authentication/login')->with('gagal', 'Anda belum login !');
         }
 
+        // Ambil data pengguna yang login
+        $id_user = $this->session->get('id_user');
+        $user = $this->m_user->getById($id_user);
+        $barang = $this->m_barang->getBarangBySlug($slug);
+
+        // Gabungkan nama lengkap dan slug barang
+        $slugUserBarang = url_title($user['nama_lengkap'] . '-' . $barang['slug'], '-', true);
+
         $data = [
-            'tb_barang' => $this->m_barang->getBarangBySlug($slug),
-            'tb_user' => $this->m_user->getAll()
+            'tb_barang' => $barang,
+            'tb_user' => $user,
+            'slugUserBarang' => $slugUserBarang
         ];
 
         return view('barang-detail', $data);
     }
+
 
     public function keranjang_barang()
     {

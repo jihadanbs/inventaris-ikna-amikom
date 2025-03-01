@@ -16,6 +16,16 @@ class UserModel extends Model
         return $this->where('id_jabatan', 2)->findAll();
     }
 
+    public function getById($id_user)
+    {
+        return $this->db->table('tb_user')
+            ->select('tb_user.*, tb_jabatan.nama_jabatan')
+            ->join('tb_jabatan', 'tb_jabatan.id_jabatan = tb_user.id_jabatan')
+            ->where('tb_user.id_user', $id_user)
+            ->get()
+            ->getRowArray();
+    }
+
     public function getAll()
     {
         $builder = $this->db->table('tb_user');
