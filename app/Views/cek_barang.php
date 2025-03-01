@@ -14,8 +14,8 @@
                 </div>
                 <div class="col-12 mt-2">
                     <div class="input-group mb-3">
-                        <form action="/cek_resi" method="post" id="formCekResi" class="w-100">
-                            <input name="kode_peminjaman" placeholder="Masukan Kode Peminjaman Anda" type="text" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="height: 50px;" autocomplete="off">
+                        <form action="<?= site_url('/cek-resi'); ?>" method="post" id="formCekResi" class="w-100">
+                            <input name="kode_peminjaman" maxlength="16" placeholder="Masukan Kode Peminjaman Anda" type="text" class="form-control border border-primary" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" style="height: 50px;" autocomplete="off">
                     </div>
                 </div>
                 <div class="col-12">
@@ -43,20 +43,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i = 1; ?>
                                 <?php if (!empty($result) && is_array($result)): ?>
-                                    <tr>
-                                        <td><?= !empty($result['nama_lengkap']) ? esc($result['nama_lengkap']) : '' ?></td>
-                                        <td><?= !empty($result['nama_barang']) ? esc($result['nama_barang']) : '' ?></td>
-                                        <td><?= !empty($result['nama_kategori']) ? esc($result['nama_kategori']) : '' ?></td>
-                                        <td><?= !empty($result['tanggal_pengajuan']) ? esc(formatTanggalIndo($result['tanggal_pengajuan'])) : 'Data Tidak Ditemukan !' ?></td>
-                                        <td><?= !empty($result['total_dipinjam']) ? esc($result['total_dipinjam']) . ' Unit' : '' ?>
-                                        </td>
-                                        <td><?= !empty($result['status']) ? esc($result['status']) : '' ?></td>
-                                    </tr>
+                                    <?php foreach ($result as $item): ?>
+                                        <tr>
+                                            <td><?= !empty($item['nama_lengkap']) ? esc($item['nama_lengkap']) : '' ?></td>
+                                            <td><?= !empty($item['nama_barang']) ? esc($item['nama_barang']) : '' ?></td>
+                                            <td><?= !empty($item['nama_kategori']) ? esc($item['nama_kategori']) : '' ?></td>
+                                            <td><?= !empty($item['tanggal_pengajuan']) ? esc(formatTanggalIndo($item['tanggal_pengajuan'])) : 'Data Tidak Ditemukan !' ?></td>
+                                            <td><?= !empty($item['total_dipinjam']) ? esc($item['total_dipinjam']) . ' Unit' : '' ?></td>
+                                            <td><?= !empty($item['status']) ? esc($item['status']) : '' ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 <?php else: ?>
                                     <tr>
-                                        <td colspan="7" class="text-center"><?= !empty($result) ? esc($result) : 'Data Tidak Ditemukan !' ?></td>
+                                        <td colspan="7" class="text-center">Data Tidak Ditemukan !</td>
                                     </tr>
                                 <?php endif; ?>
                             </tbody>
@@ -64,6 +64,7 @@
                     </div>
                 </div>
             <?php endif; ?>
+
         </div>
     </section>
 
@@ -86,5 +87,3 @@
         });
     </script>
 </body>
-
-</html>

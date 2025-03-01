@@ -482,7 +482,7 @@ class Home extends BaseController
     {
         $kode_peminjaman = $this->request->getPost('kode_peminjaman');
         if (!empty($kode_peminjaman)) {
-            $result = $this->m_user_peminjam->getByKodePeminjaman($kode_peminjaman);
+            $result = $this->m_peminjaman_barang->getKodePeminjaman($kode_peminjaman);
 
             return view('cek_barang', [
                 'result' => $result,

@@ -17,9 +17,9 @@ $routes->GET('/galeri', 'Home::galeri', ['namespace' => 'App\Controllers']);
 
 $routes->GET('/kontak', 'Home::kontak', ['namespace' => 'App\Controllers']);
 $routes->GET('/barang', 'Home::barang', ['namespace' => 'App\Controllers']);
-$routes->GET('/cek_barang', 'Home::cek_barang', ['namespace' => 'App\Controllers']);
-$routes->GET('/cek_resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
-$routes->POST('/cek_resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
+$routes->GET('/cek-barang', 'Home::cek_barang', ['namespace' => 'App\Controllers']);
+$routes->GET('/cek-resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
+$routes->POST('/cek-resi', 'Home::cek_resi', ['namespace' => 'App\Controllers']);
 $routes->GET('/barang-detail/(:segment)', 'Home::barangdetail/$1', ['namespace' => 'App\Controllers']);
 $routes->GET('/keranjang-barang', 'Home::keranjang_barang', ['namespace' => 'App\Controllers']);
 $routes->POST('/keranjang', 'Home::masukKeranjang', ['namespace' => 'App\Controllers']);

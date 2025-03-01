@@ -34,8 +34,8 @@
                         <li class="nav-item <?= uri_string() == 'keranjang-barang' ? 'active' : '' ?>">
                             <a class="nav-link" href="<?= site_url('keranjang-barang') ?>">Keranjang</a>
                         </li>
-                        <li class="nav-item <?= (uri_string() == 'cek_barang' || uri_string() == 'cek_resi') ? 'active' : '' ?>">
-                            <a class="nav-link" href="<?= site_url('cek_barang') ?>">Cek Barang</a>
+                        <li class="nav-item <?= (uri_string() == 'cek-barang' || uri_string() == 'cek-resi') ? 'active' : '' ?>">
+                            <a class="nav-link" href="<?= site_url('cek-barang') ?>">Cek Barang</a>
                         </li>
                     </ul>
                 </div>
