@@ -96,6 +96,7 @@ class Home extends BaseController
 
         $data = [
             'tb_barang' => $this->m_barang->getBarangBySlug($slug),
+            'tb_user' => $this->m_user->getAll()
         ];
 
         return view('barang-detail', $data);
@@ -488,7 +489,7 @@ class Home extends BaseController
         ]);
     }
 
-    public function ajukan()
+    public function ajukanPeminjamanBarang()
     {
         // Cek sesi pengguna
         if ($this->checkSessionPeminjam() !== true) {
@@ -497,52 +498,20 @@ class Home extends BaseController
 
         try {
             $rules = [
-                'nama_lengkap' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Nama lengkap harus diisi !'
-                    ]
-                ],
-                'total_dipinjam' => [
-                    'rules' => 'required|numeric',
-                    'errors' => [
-                        'required' => 'Total pinjam harus diisi !',
-                        'numeric' => 'Total pinjam harus berupa angka !',
-                    ]
-                ],
-                'pekerjaan' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Pekerjaan harus diisi !'
-                    ]
-                ],
-                'email' => [
-                    'rules' => 'required|valid_email',
-                    'errors' => [
-                        'required' => 'Email harus diisi !',
-                        'valid_email' => 'Format email tidak valid !'
-                    ]
-                ],
-                'no_telepon' => [
-                    'rules' => 'required|numeric|check_no_telepon',
-                    'errors' => [
-                        'required' => 'No. Telepon harus diisi !',
-                        'numeric' => 'No. Telepon harus berupa angka !',
-                        'check_no_telepon' => 'No. Telepon tidak boleh diawali dengan "62", gunakan angka "0" sebagai pengganti !'
-                    ]
-                ],
-                'alamat' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Alamat harus diisi !'
-                    ]
-                ],
                 'kepentingan' => [
                     'rules' => 'required',
                     'errors' => [
                         'required' => 'Kepentingan harus diisi !'
                     ]
-                ]
+                ],
+                'dokumen_jaminan' => [
+                    'rules' => 'uploaded[dokumen_jaminan]|max_size[dokumen_jaminan,2048]|is_image[dokumen_jaminan]',
+                    'errors' => [
+                        'uploaded' => 'Dokumen wajib diunggah !',
+                        'max_size' => 'Ukuran dokumen tidak boleh lebih dari 2MB !',
+                        'is_image' => 'File harus berupa gambar (JPG, JPEG, PNG, dll) !',
+                    ],
+                ],
             ];
 
             // Jalankan validasi
@@ -550,81 +519,94 @@ class Home extends BaseController
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
 
-            // Ambil data stok barang
-            $idBarang = $this->request->getPost('id_barang');
-            $stokBarang = $this->m_barang_baik->where('id_barang', $idBarang)->first();
+            // Ambil data dari form
+            $kepentingan = $this->request->getPost('kepentingan');
+            $id_user = session()->get('id_user');
 
-            if (!$stokBarang) {
-                return redirect()->back()->withInput()
-                    ->with('errors', ['id_barang' => 'Barang tidak ditemukan!']);
+            // Ambil id_peminjaman yang dipilih dari sessionStorage
+            $selectedIds = json_decode($this->request->getPost('selected_peminjaman_ids') ?? '[]');
+
+            if (empty($selectedIds)) {
+                return redirect()->back()->with('error', 'Tidak ada barang yang dipilih untuk dipinjam!');
             }
 
-            $jumlahTotalBaik = $stokBarang['jumlah_total_baik'];
-            $totalDipinjam = $this->request->getPost('total_dipinjam');
+            // Upload file dokumen jaminan
+            $dokumenJaminan = $this->request->getFile('dokumen_jaminan');
+            $namaFileDokumen = $dokumenJaminan->getRandomName();
+            $dokumenJaminan->move(ROOTPATH . 'public/uploads/dokumen_jaminan', $namaFileDokumen);
 
-            // Validasi jumlah barang yang dipinjam
-            if ($totalDipinjam > $jumlahTotalBaik) {
-                return redirect()->back()->withInput()
-                    ->with('errors', ['total_dipinjam' => 'Total barang yang dipinjam melebihi stok unit yang tersedia !']);
+            // Buat kode peminjaman unik
+            $kodePeminjaman = 'KP-' . time() . '-' . $id_user;
+
+            // Ambil data user
+            $userData = $this->m_user->find($id_user);
+
+            // Update semua peminjaman yang dipilih
+            $totalBarang = 0;
+            $barangDetails = [];
+
+            foreach ($selectedIds as $id_peminjaman) {
+                // Ambil data peminjaman
+                $peminjaman = $this->m_peminjaman_barang->find($id_peminjaman);
+
+                if ($peminjaman && $peminjaman['status'] === 'keranjang') {
+                    // Update data peminjaman
+                    $this->m_peminjaman_barang->update($id_peminjaman, [
+                        'kepentingan' => $kepentingan,
+                        'kode_peminjaman' => $kodePeminjaman,
+                        'status' => 'Belum Diproses',
+                        'tanggal_pengajuan' => date('Y-m-d H:i:s'),
+                        'dokumen_jaminan' => $namaFileDokumen
+                    ]);
+
+                    $totalBarang += $peminjaman['total_dipinjam'];
+
+                    // Ambil detail barang untuk pesan WhatsApp
+                    $barang = $this->m_barang->find($peminjaman['id_barang']);
+                    if ($barang) {
+                        $barangDetails[] = "- {$barang['nama_barang']} ({$peminjaman['total_dipinjam']} unit)";
+                    }
+                }
             }
 
             // Format nomor telepon
-            $no_telepon = $this->request->getPost('no_telepon');
-            $formatted_phone = preg_replace('/^0/', '62', preg_replace('/[^0-9]/', '', $no_telepon));
+            $phone = $userData['no_telepon'] ?? '';
+            $formatted_phone = preg_replace('/[^0-9]/', '', $phone);
 
-            // Jika validasi sukses, lanjutkan dengan proses data
-            $data = [
-                'id_barang' => $idBarang,
-                'nama_lengkap' => $this->request->getPost('nama_lengkap'),
-                'slug' => $this->generateUniqueSlug($this->request->getPost('nama_lengkap')),
-                'pekerjaan' => $this->request->getPost('pekerjaan'),
-                'email' => $this->request->getPost('email'),
-                'no_telepon' => $no_telepon,
-                'alamat' => $this->request->getPost('alamat'),
-                'kepentingan' => $this->request->getPost('kepentingan'),
-                'total_dipinjam' => $totalDipinjam,
-                'kode_peminjaman' => $this->generateKodePeminjaman($no_telepon, $this->request->getPost('nama_lengkap')),
-                'status' => 'Belum Diproses',
-                'tanggal_pengajuan' => date('Y-m-d H:i:s')
-            ];
-
-            // Insert data peminjaman
-            if (!$this->m_user_peminjam->insert($data)) {
-                return redirect()->back()->withInput()
-                    ->with('errors', $this->m_user_peminjam->errors());
+            // Awali dengan 62 jika dimulai dengan 0
+            if (substr($formatted_phone, 0, 1) === '0') {
+                $formatted_phone = '62' . substr($formatted_phone, 1);
             }
 
-            // Update jumlah stok barang
-            $this->m_barang_baik->update($idBarang, [
-                'jumlah_total_baik' => $jumlahTotalBaik - $totalDipinjam
-            ]);
-
-            // Ambil data jumlah dipinjam yang sudah ada
-            $currentBorrow = $this->m_barang->where('id_barang', $idBarang)->first();
-            $existingBorrowed = $currentBorrow['jumlah_dipinjam'];
-
-            // Update jumlah dipinjam dengan menambahkan nilai yang sudah ada
-            $this->m_barang->update($idBarang, [
-                'jumlah_dipinjam' => $existingBorrowed + $totalDipinjam
-            ]);
+            // Siapkan data untuk pesan WhatsApp
+            $data = [
+                'nama_lengkap' => $userData['nama_lengkap'] ?? 'Peminjam',
+                'kode_peminjaman' => $kodePeminjaman,
+                'total_dipinjam' => $totalBarang,
+                'tanggal_pengajuan' => date('d F Y H:i'),
+                'kepentingan' => $kepentingan
+            ];
 
             // Siapkan pesan WhatsApp
             $message = "
-            
-*Yth. {$data['nama_lengkap']}*
-
-Dokumentasi peminjaman barang dengan detail:
-
-*Kode Peminjaman*: {$data['kode_peminjaman']}
-*Total Dipinjam*: {$data['total_dipinjam']} unit
-*Tanggal Pengajuan*: {$data['tanggal_pengajuan']}
-*Kepentingan*: {$data['kepentingan']}
-
-Silakan simpan kode peminjaman ini untuk keperluan cek data barang.
-Kami akan segera memproses pengajuan Anda.
-
-Terima kasih,
-*IKNA AMIKOM YOGYAKARTA*
+        *Yth. {$data['nama_lengkap']}*
+        
+        Dokumentasi peminjaman barang dengan detail:
+        
+        *Kode Peminjaman*: {$data['kode_peminjaman']}
+        *Tanggal Pengajuan*: {$data['tanggal_pengajuan']}
+        *Kepentingan*: {$data['kepentingan']}
+        
+        *Daftar Barang Dipinjam*:
+        " . implode("\n", $barangDetails) . "
+        
+        *Total Barang*: {$data['total_dipinjam']} unit
+        
+        Silakan simpan kode peminjaman ini untuk keperluan cek data barang.
+        Kami akan segera memproses pengajuan Anda.
+        
+        Terima kasih,
+        *IKNA AMIKOM YOGYAKARTA*
         ";
 
             // Encode pesan untuk URL
@@ -635,13 +617,13 @@ Terima kasih,
 
             // Simpan link WhatsApp ke session untuk digunakan di view
             session()->setFlashdata('whatsapp_link', $whatsapp_link);
-            session()->setFlashdata('pesan', 'Pengajuan berhasil dikirim! Kode peminjaman Anda: <strong style="color: black;">' . esc($data['kode_peminjaman']) . '</strong>');
+            session()->setFlashdata('pesan', 'Pengajuan berhasil dikirim! Kode peminjaman Anda: <strong style="color: black;">' . esc($kodePeminjaman) . '</strong>');
 
             return redirect()->back();
         } catch (\Exception $e) {
             log_message('error', '[ERROR] {exception}', ['exception' => $e]);
             return redirect()->back()->withInput()
-                ->with('errors', ['system' => 'Terjadi kesalahan sistem, Silakan coba lagi!']);
+                ->with('errors', ['system' => 'Terjadi kesalahan sistem, Silakan coba lagi !']);
         }
     }
 

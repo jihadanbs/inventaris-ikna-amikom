@@ -42,6 +42,81 @@
         </div>
     </section>
 
+    <?php if (session()->getFlashdata('whatsapp_link')) : ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    title: 'Pengajuan Berhasil!',
+                    text: 'Apakah Anda ingin mendokumentasikan melalui WhatsApp?',
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Buka WhatsApp',
+                    cancelButtonText: 'Tidak',
+                    customClass: {
+                        confirmButton: 'btn btn-primary m-2',
+                        cancelButton: 'btn btn-danger m-2'
+                    },
+                    buttonsStyling: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Membuka link di tab baru
+                        window.open('<?= session()->getFlashdata('whatsapp_link') ?>', '_blank');
+                    }
+                });
+            });
+        </script>
+    <?php endif; ?>
+
+    <!-- MODAL FORM AJUKIAN PEMINJAMAN -->
+    <div class="modal modal-form-peminjaman fade" id="peminjamanModal" tabindex="-1" aria-labelledby="peminjamanModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title w-100 text-center" id="peminjamanModalLabel">Form Pengajuan Peminjaman</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formPengajuan" action="<?= site_url('ajukanPeminjamanBarang') ?>" method="post" enctype="multipart/form-data" autocomplete="off">
+                        <input type="hidden" name="selected_peminjaman_ids" id="selected_peminjaman_ids" value="">
+                        <?= csrf_field() ?>
+
+                        <div class="form-group">
+                            <label for="kepentingan">Kepentingan<span style="color: red;">*</span></label>
+                            <textarea class="form-control <?= session('errors.kepentingan') ? 'is-invalid' : '' ?>" name="kepentingan" id="kepentingan" rows="3"><?= old('kepentingan') ?></textarea>
+                            <?php if (session('errors.kepentingan')) : ?>
+                                <div class="invalid-feedback">
+                                    <?= session('errors.kepentingan') ?>
+                                </div>
+                            <?php endif ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dokumen_jaminan">Dokumen Jaminan<span style="color: red;">*</span></label>
+                            <input type="file" accept="image/*" class=" form-control <?= session('errors.dokumen_jaminan') ? 'is-invalid' : '' ?>" name="dokumen_jaminan" id="dokumen_jaminan" rows="3"><?= old('dokumen_jaminan') ?></input>
+                            <?php if (session('errors.dokumen_jaminan')) : ?>
+                                <div class="invalid-feedback">
+                                    <?= session('errors.dokumen_jaminan') ?>
+                                </div>
+                            <?php endif ?>
+                            <small class="form-text text-muted">
+                                <span>Berupa KTP atau Kartu Pelajar</span>
+                            </small>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary">Kirim Pengajuan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- END MODAL -->
+
+    </div>
+
     <div class="footer_bg">
         <?= $this->include('layouts/info') ?>
         <?= $this->include('layouts/footer') ?>
@@ -360,13 +435,11 @@
                 return row.dataset.peminjamanId;
             });
 
-            // Simpan ke sessionStorage untuk digunakan di form peminjaman
-            sessionStorage.setItem('selectedPeminjamanIds', JSON.stringify(selectedPeminjamanIds));
+            // Simpan ke input tersembunyi
+            document.getElementById('selected_peminjaman_ids').value = JSON.stringify(selectedPeminjamanIds);
 
             // Tampilkan modal peminjaman
             $('#peminjamanModal').modal('show');
         }
     </script>
 </body>
-
-</html>
