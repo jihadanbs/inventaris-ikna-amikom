@@ -539,11 +539,6 @@ class Home extends BaseController
                 return redirect()->back()->with('error', 'Tidak ada barang yang dipilih untuk dipinjam!');
             }
 
-            // Upload file dokumen jaminan
-            $dokumenJaminan = $this->request->getFile('dokumen_jaminan');
-            $namaFileDokumen = $dokumenJaminan->getRandomName();
-            $dokumenJaminan->move(ROOTPATH . 'public/uploads/dokumen_jaminan', $namaFileDokumen);
-
             // Buat kode peminjaman unik
             $kodePeminjaman = 'KP-' . time() . '-' . $id_user;
 
@@ -565,7 +560,7 @@ class Home extends BaseController
                         'kode_peminjaman' => $kodePeminjaman,
                         'status' => 'Belum Diproses',
                         'tanggal_pengajuan' => date('Y-m-d H:i:s'),
-                        'dokumen_jaminan' => $namaFileDokumen
+                        'dokumen_jaminan' => uploadFile('dokumen_jaminan', 'dokumen/dokumen-jaminan-peminjaman/')
                     ]);
 
                     $totalBarang += $peminjaman['total_dipinjam'];
