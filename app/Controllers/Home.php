@@ -539,11 +539,12 @@ class Home extends BaseController
                 return redirect()->back()->with('error', 'Tidak ada barang yang dipilih untuk dipinjam!');
             }
 
-            // Buat kode peminjaman unik
-            $kodePeminjaman = 'KP-' . time() . '-' . $id_user;
-
             // Ambil data user
             $userData = $this->m_user->find($id_user);
+            $namaLengkap = $userData['nama_lengkap'] ?? 'User';
+
+            // Buat kode peminjaman yang sangat unik (16 digit)
+            $kodePeminjaman = $this->generateUniqueCode($namaLengkap, $id_user);
 
             // Update semua peminjaman yang dipilih
             $totalBarang = 0;
@@ -584,7 +585,7 @@ class Home extends BaseController
 
             // Siapkan data untuk pesan WhatsApp
             $data = [
-                'nama_lengkap' => $userData['nama_lengkap'] ?? 'Peminjam',
+                'nama_lengkap' => $namaLengkap,
                 'kode_peminjaman' => $kodePeminjaman,
                 'total_dipinjam' => $totalBarang,
                 'tanggal_pengajuan' => date('d F Y H:i'),
@@ -593,25 +594,25 @@ class Home extends BaseController
 
             // Siapkan pesan WhatsApp
             $message = "
-        *Yth. {$data['nama_lengkap']}*
-        
-        Dokumentasi peminjaman barang dengan detail:
-        
-        *Kode Peminjaman*: {$data['kode_peminjaman']}
-        *Tanggal Pengajuan*: {$data['tanggal_pengajuan']}
-        *Kepentingan*: {$data['kepentingan']}
-        
-        *Daftar Barang Dipinjam*:
-        " . implode("\n", $barangDetails) . "
-        
-        *Total Barang*: {$data['total_dipinjam']} unit
-        
-        Silakan simpan kode peminjaman ini untuk keperluan cek data barang.
-        Kami akan segera memproses pengajuan Anda.
-        
-        Terima kasih,
-        *IKNA AMIKOM YOGYAKARTA*
-        ";
+*Yth. {$data['nama_lengkap']}*
+            
+Dokumentasi peminjaman barang dengan detail:
+            
+*Kode Peminjaman*: {$data['kode_peminjaman']}
+*Tanggal Pengajuan*: {$data['tanggal_pengajuan']}
+*Kepentingan*: {$data['kepentingan']}
+            
+*Daftar Barang Dipinjam*:
+" . implode("\n", $barangDetails) . "
+            
+*Total Barang*: {$data['total_dipinjam']} unit
+            
+Silakan simpan kode peminjaman ini untuk keperluan cek data barang.
+Kami akan segera memproses pengajuan Anda.
+            
+Terima kasih,
+*IKNA AMIKOM YOGYAKARTA*
+            ";
 
             // Encode pesan untuk URL
             $encoded_message = urlencode($message);
@@ -631,42 +632,29 @@ class Home extends BaseController
         }
     }
 
-    // Fungsi untuk generate unique slug
-    private function generateUniqueSlug($nama_lengkap)
+    private function generateUniqueCode($namaLengkap, $id_user)
     {
-        // Buat slug dasar
-        $baseSlug = url_title($nama_lengkap, '-', true);
-        $slug = $baseSlug;
-        $counter = 1;
-
-        // Cek apakah slug sudah ada di database
-        while ($this->m_user_peminjam->where('slug', $slug)->first()) {
-            // Jika ada, tambahkan timestamp atau counter
-            $slug = $baseSlug . '-' . time() . '-' . $counter;
-            $counter++;
+        // Ambil 2 huruf pertama dari nama (dikonversi ke uppercase)
+        $namaPrefiks = substr(strtoupper(preg_replace('/[^A-Za-z]/', '', $namaLengkap)), 0, 2);
+        if (empty($namaPrefiks)) {
+            $namaPrefiks = 'XX'; // Default jika nama tidak memiliki huruf
         }
 
-        return $slug;
-    }
+        // Ambil 4 digit dari timestamp (dalam detik)
+        $timeDigit = substr(time(), -4);
 
-    private function generateKodePeminjaman($noTelepon, $namaLengkap)
-    {
-        // Generate komponen-komponen kode
-        $timestamp = date('ymd'); // 240130 (6 digit)
-        $random = bin2hex(random_bytes(2)); // 4 karakter hex random
-        $phonePart = substr(sha1($noTelepon), 0, 3); // 3 karakter dari hash telefon
-        $namePart = substr(md5($namaLengkap), 0, 3); // 3 karakter dari hash nama
+        // Ambil 2 digit dari ID user
+        $userDigit = str_pad(substr($id_user, -2), 2, '0', STR_PAD_LEFT);
 
-        // Gabungkan dengan format yang kompleks (total 19 karakter)
-        $code = sprintf(
-            "PMJ%s%s%s%s",
-            $timestamp,      // 6 karakter
-            strtoupper($random), // 4 karakter
-            $phonePart,     // 3 karakter
-            $namePart       // 3 karakter
-        );
+        // Tambahkan 4 digit acak
+        $randomDigit = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
 
-        // Bagi menjadi 4 grup
-        return implode('-', str_split($code, 5));
+        // Tambahkan microtime untuk menambah keunikan (4 digit)
+        $microtime = str_pad(substr(microtime(true) * 10000, -4), 4, '0', STR_PAD_LEFT);
+
+        // Kode unik: 2 huruf nama + 4 digit waktu + 2 digit user ID + 4 digit acak + 4 digit microtime = 16 digit
+        $kodeUnik = $namaPrefiks . $timeDigit . $userDigit . $randomDigit . $microtime;
+
+        return $kodeUnik;
     }
 }
