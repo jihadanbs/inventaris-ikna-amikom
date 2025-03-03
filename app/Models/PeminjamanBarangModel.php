@@ -50,12 +50,14 @@ class PeminjamanBarangModel extends Model
             tb_user.nama_lengkap,
             tb_barang.id_barang,
             tb_barang.nama_barang,
-             tb_barang.slug as slug_barang,
+            tb_barang.slug as slug_barang,
             tb_barang.jumlah_total,
             tb_kategori_barang.nama_kategori,
             tb_kondisi_barang.nama_kondisi,
             tb_barang_baik.jumlah_total_baik,
-            tb_barang_masuk.tanggal_masuk
+            tb_barang_masuk.tanggal_masuk,
+            tb_barang.id_kategori_barang, 
+            tb_barang.id_kondisi_barang
         ');
 
         $builder->join('tb_transaksi', 'tb_transaksi.id_peminjaman = tb_peminjaman.id_peminjaman', 'left');

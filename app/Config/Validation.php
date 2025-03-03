@@ -226,7 +226,7 @@ class Validation extends BaseConfig
         $builder = db_connect()->table($table);
 
         // Mengambil data dari database
-        $row = $builder->where('id_user_peminjam', $id_user_field)
+        $row = $builder->where('id_peminjaman', $id_user_field)
             ->get()
             ->getRowArray();
 
@@ -251,8 +251,7 @@ class Validation extends BaseConfig
     {
         $userModel = new UserModel();
         $user = $userModel->where('nama_lengkap', $str)->first();
-    
+
         return $user === null;
     }
-    
 }

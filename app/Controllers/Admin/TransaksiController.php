@@ -47,13 +47,10 @@ class TransaksiController extends BaseController
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
 
-        // Ambil data detail peminjaman
-        $detail_peminjaman = $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman);
-
         // Menyiapkan data untuk tampilan
         $data = [
             'title' => 'Admin | Halaman Cek Data Transaksi Barang',
-            'detail_peminjaman' => $detail_peminjaman,
+            'detail_peminjaman' => $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman),
             'kode_peminjaman' => $kode_peminjaman,
         ];
 
@@ -61,7 +58,7 @@ class TransaksiController extends BaseController
     }
 
     // Dipinjamkan
-    public function dipinjamkan($slug)
+    public function dipinjamkan($kode_peminjaman)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -72,7 +69,7 @@ class TransaksiController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Transaksi Barang Dipinjamkan',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-            'tb_user_peminjam' => $this->m_user_peminjam->getNamaLengkapBySlug($slug),
+            'tb_peminjaman' => $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman),
             'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
             'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
         ]);
@@ -80,7 +77,7 @@ class TransaksiController extends BaseController
         return view('admin/transaksi/dipinjamkan', $data);
     }
 
-    public function proses_dipinjamkan($id_user_peminjam)
+    public function proses_dipinjamkan($id_peminjaman)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -117,7 +114,7 @@ class TransaksiController extends BaseController
                 ]
             ],
             'total_barang' => [
-                'rules' => 'required|greater_than_equal_to[0]|check_total_dipinjam[tb_user_peminjam,' . $id_user_peminjam . ']',
+                'rules' => 'required|greater_than_equal_to[0]|check_total_dipinjam[tb_user_peminjam,' . $id_peminjaman . ']',
                 'errors' => [
                     'required' => 'Silahkan Masukkan Jumlah Barang Yang Keluar !',
                     'greater_than_equal_to' => 'Jumlah Barang Yang Keluar Tidak Boleh Negatif !',
@@ -137,7 +134,7 @@ class TransaksiController extends BaseController
         }
 
         // Ambil data user peminjam
-        $userPeminjam = $this->m_user_peminjam->find($id_user_peminjam);
+        $userPeminjam = $this->m_peminjaman_barang->find($id_peminjaman);
         if (!$userPeminjam) {
             return redirect()->back()->with('error', 'Data peminjam tidak ditemukan!');
         }
@@ -148,7 +145,7 @@ class TransaksiController extends BaseController
         try {
             // Update data di tb_user_peminjam
             $dataUpdatePeminjam = [
-                'id_user_peminjam' => $id_user_peminjam,
+                'id_peminjaman' => $id_peminjaman,
                 'id_barang' => $userPeminjam['id_barang'],
                 'catatan_peminjaman' => $data['catatan_peminjaman'],
                 'tanggal_dipinjamkan' => $data['tanggal_dipinjamkan'],
@@ -156,14 +153,14 @@ class TransaksiController extends BaseController
                 'status' => 'Dipinjamkan',
             ];
 
-            if (!$this->m_user_peminjam->update($id_user_peminjam, $dataUpdatePeminjam)) {
+            if (!$this->m_peminjaman_barang->update($id_peminjaman, $dataUpdatePeminjam)) {
                 throw new \Exception('Gagal mengupdate data peminjam');
             }
 
             // Simpan data ke tb_barang_keluar
             $dataBarangKeluar = [
                 'id_barang' => $userPeminjam['id_barang'],
-                'id_user_peminjam' => $id_user_peminjam,
+                'id_peminjaman' => $id_peminjaman,
                 'tanggal_keluar' => $data['tanggal_keluar'],
                 'total_barang' => $data['total_barang'],
                 'keterangan' => $this->getKeteranganKeluarDipinjam($data['tanggal_keluar'], $userPeminjam['nama_lengkap'], $data['total_barang'], $data['keterangan'] ?? ''),
@@ -202,7 +199,7 @@ class TransaksiController extends BaseController
 
             // Set flash data untuk WhatsApp link dan pesan sukses
             session()->setFlashdata('whatsapp_link', $waUrl);
-            session()->setFlashdata('pesan', 'Transaksi Barang Berhasil Disimpan !');
+            session()->setFlashdata('pesan', 'Transaksi Barang Berhasil Dipinjamkan !');
 
             return redirect()->to('/admin/transaksi');
         } catch (\Exception $e) {
@@ -224,7 +221,7 @@ class TransaksiController extends BaseController
     // End Dipinjamkan
 
     // DITOLAK
-    public function ditolak($slug)
+    public function ditolak($kode_peminjaman)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -235,7 +232,7 @@ class TransaksiController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Transaksi Barang Ditolak',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-            'tb_user_peminjam' => $this->m_user_peminjam->getNamaLengkapBySlug($slug),
+            'tb_peminjaman' => $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman),
             'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
             'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
         ]);
@@ -243,7 +240,7 @@ class TransaksiController extends BaseController
         return view('admin/transaksi/ditolak', $data);
     }
 
-    public function proses_ditolak($id_user_peminjam)
+    public function proses_ditolak($id_peminjaman)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -268,7 +265,7 @@ class TransaksiController extends BaseController
         }
 
         // Ambil data user peminjam
-        $userPeminjam = $this->m_user_peminjam->find($id_user_peminjam);
+        $userPeminjam = $this->m_peminjaman_barang->find($id_peminjaman);
         if (!$userPeminjam) {
             return redirect()->back()->with('error', 'Data peminjam tidak ditemukan!');
         }
@@ -294,7 +291,7 @@ class TransaksiController extends BaseController
         try {
             // Update data di tb_user_peminjam
             $dataUpdatePeminjam = [
-                'id_user_peminjam' => $id_user_peminjam,
+                'id_peminjaman' => $id_peminjaman,
                 'id_barang' => $userPeminjam['id_barang'],
                 'catatan_peminjaman' => $data['catatan_peminjaman'],
                 'status' => 'Ditolak',
@@ -309,7 +306,7 @@ class TransaksiController extends BaseController
                 'jumlah_dipinjam' => $jumlahBarangDipinjam - $totalDipinjam
             ]);
 
-            if (!$this->m_user_peminjam->update($id_user_peminjam, $dataUpdatePeminjam)) {
+            if (!$this->m_peminjaman_barang->update($id_peminjaman, $dataUpdatePeminjam)) {
                 throw new \Exception('Gagal mengupdate data peminjam');
             }
 
@@ -384,7 +381,7 @@ class TransaksiController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Transaksi Barang Dikembalikan',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-            'tb_user_peminjam' => $this->m_user_peminjam->getNamaLengkapBySlug($slug),
+            'tb_user_peminjam' => $this->m_peminjaman_barang->getNamaLengkapBySlug($slug),
             'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
             'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
         ]);
@@ -392,7 +389,7 @@ class TransaksiController extends BaseController
         return view('admin/transaksi/dikembalikan', $data);
     }
 
-    public function proses_dikembalikan($id_user_peminjam)
+    public function proses_dikembalikan($id_peminjaman)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -439,7 +436,7 @@ class TransaksiController extends BaseController
         }
 
         // Ambil data user peminjam
-        $userPeminjam = $this->m_user_peminjam->find($id_user_peminjam);
+        $userPeminjam = $this->m_peminjaman_barang->find($id_peminjaman);
         if (!$userPeminjam) {
             return redirect()->back()->with('error', 'Data peminjam tidak ditemukan!');
         }
@@ -503,7 +500,7 @@ class TransaksiController extends BaseController
 
             // Update data di tb_user_peminjam
             $dataUpdatePeminjam = [
-                'id_user_peminjam' => $id_user_peminjam,
+                'id_peminjaman' => $id_peminjaman,
                 'id_barang' => $userPeminjam['id_barang'],
                 'catatan_peminjaman' => $data['catatan_peminjaman'],
                 'tanggal_dikembalikan' => $data['tanggal_dikembalikan'],
@@ -512,7 +509,7 @@ class TransaksiController extends BaseController
                 'status' => 'Dikembalikan',
             ];
 
-            if (!$this->m_user_peminjam->update($id_user_peminjam, $dataUpdatePeminjam)) {
+            if (!$this->m_peminjaman_barang->update($id_peminjaman, $dataUpdatePeminjam)) {
                 throw new \Exception('Gagal mengupdate data peminjam');
             }
 
@@ -576,7 +573,7 @@ class TransaksiController extends BaseController
             return $this->checkSession();
         }
 
-        $total = $this->m_user_peminjam->getTotalByStatus($status);
+        $total = $this->m_peminjaman_barang->getTotalByStatus($status);
         return $this->response->setJSON(['total' => $total]);
     }
 
@@ -588,7 +585,7 @@ class TransaksiController extends BaseController
         }
 
         try {
-            $total = $this->m_user_peminjam
+            $total = $this->m_peminjaman_barang
                 ->where('status', $status)
                 ->countAllResults();
 
