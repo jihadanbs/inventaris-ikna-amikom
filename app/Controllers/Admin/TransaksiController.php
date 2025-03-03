@@ -54,7 +54,7 @@ class TransaksiController extends BaseController
         $data = [
             'title' => 'Admin | Halaman Cek Data Transaksi Barang',
             'detail_peminjaman' => $detail_peminjaman,
-            'kode_peminjaman' => $kode_peminjaman
+            'kode_peminjaman' => $kode_peminjaman,
         ];
 
         return view('admin/transaksi/cek_data', $data);

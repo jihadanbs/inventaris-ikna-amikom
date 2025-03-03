@@ -50,6 +50,7 @@ class PeminjamanBarangModel extends Model
             tb_user.nama_lengkap,
             tb_barang.id_barang,
             tb_barang.nama_barang,
+             tb_barang.slug as slug_barang,
             tb_barang.jumlah_total,
             tb_kategori_barang.nama_kategori,
             tb_kondisi_barang.nama_kondisi,

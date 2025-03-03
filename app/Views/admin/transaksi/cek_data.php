@@ -90,7 +90,6 @@
 
                         <table class="table table-borderless table-sm">
                             <h4 class="text-center mb-4"><b>FORMULIR CEK DATA TRANSAKSI</b></h4>
-                            <h4 class="card-title mb-4">Detail Peminjaman - Kode: <?= $kode_peminjaman ?></h4>
                             <?php if (!empty($detail_peminjaman)) : ?>
                                 <?php $first_item = $detail_peminjaman[0] ?? []; ?>
                                 <tr>
@@ -293,7 +292,7 @@
                             <thead class="text-center">
                                 <tr>
                                     <th width="50px">NO</th>
-                                    <th>DOKUMENTASI BARANG</th>
+                                    <th>DOKUMENTASI BERKAS</th>
                                     <th width="100px">AKSI</th>
                                 </tr>
                             </thead>
@@ -338,28 +337,57 @@
                             </tbody>
                         </table>
 
-                        <h5 class="mt-4">Daftar Barang yang Dipinjam</h5>
+                        <h4 class="text-center mb-4"><b>DAFTAR BARANG YANG DIPINJAM</b></h4>
+                        <?php
+                        // Konfigurasi pagination
+                        $items_per_page = 4; // Jumlah card per halaman
+                        $total_items = count($detail_peminjaman);
+                        $total_pages = ceil($total_items / $items_per_page);
+
+                        // Mendapatkan halaman saat ini
+                        $current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                        $current_page = max(1, min($current_page, $total_pages)); // Memastikan halaman valid
+
+                        // Menghitung offset untuk item yang akan ditampilkan
+                        $offset = ($current_page - 1) * $items_per_page;
+
+                        // Mengambil item untuk halaman saat ini
+                        $current_items = array_slice($detail_peminjaman, $offset, $items_per_page);
+                        ?>
+
                         <div class="row">
-                            <?php foreach ($detail_peminjaman as $item) : ?>
+                            <?php foreach ($current_items as $item) : ?>
                                 <div class="col-md-4 col-lg-3 mb-4">
                                     <div class="card h-100">
-                                        <?php
-                                        $foto_paths = explode(", ", $item['path_file_foto_barang']);
-                                        $foto_path = !empty($foto_paths[0]) ? $foto_paths[0] : '/assets/images/no-image.jpg';
-                                        ?>
-                                        <img class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" src="<?= base_url($foto_path) ?>" alt="<?= $item['nama_barang'] ?>">
+                                        <div id="carouselExample<?= $item['id_barang'] ?>" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <?php foreach (explode(', ', $item['path_file_foto_barang'] ?? '') as $index => $file) : ?>
+                                                    <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
+                                                        <img src="<?= esc(base_url($file), 'attr'); ?>" class="d-block w-100" alt="..." style="max-height: 300px; object-fit: cover;">
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample<?= $item['id_barang'] ?>" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample<?= $item['id_barang'] ?>" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
+                                        </div>
 
                                         <div class="card-body">
                                             <h5 class="card-title"><?= truncateText($item['nama_barang'], 50) ?></h5>
                                             <ul class="list-unstyled">
                                                 <li><strong>Kategori:</strong> <?= $item['nama_kategori'] ?></li>
                                                 <li><strong>Kondisi:</strong> <?= $item['nama_kondisi'] ?></li>
-                                                <!-- <li><strong>Jumlah:</strong> <?= $item['jumlah_total'] ?></li> -->
+                                                <li><strong>Jumlah Dipinjam:</strong> <?= $item['total_dipinjam'] ?></li>
                                             </ul>
                                         </div>
 
                                         <div class="card-footer">
-                                            <a href="<?= site_url('admin/barang/detail/' . $item['id_barang']) ?>" class="btn btn-primary btn-sm w-100">
+                                            <a href="<?= site_url('admin/barang/cek_data/' . $item['slug_barang']) ?>" class="btn btn-primary btn-sm w-100">
                                                 <i class="fa fa-info-circle"></i> Detail Barang
                                             </a>
                                         </div>
@@ -367,6 +395,57 @@
                                 </div>
                             <?php endforeach; ?>
                         </div>
+
+                        <!-- Navigasi Pagination -->
+                        <?php if ($total_pages > 1) : ?>
+                            <nav aria-label="Page navigation" class="mt-4">
+                                <ul class="pagination justify-content-center">
+                                    <!-- Tombol Previous -->
+                                    <li class="page-item <?= ($current_page <= 1) ? 'disabled' : '' ?>">
+                                        <a class="page-link" href="?page=<?= $current_page - 1 ?>" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+
+                                    <!-- Tombol halaman -->
+                                    <?php
+                                    // Tentukan rentang halaman yang ditampilkan
+                                    $start_page = max(1, $current_page - 2);
+                                    $end_page = min($total_pages, $current_page + 2);
+
+                                    // Tampilkan halaman pertama jika tidak dalam rentang
+                                    if ($start_page > 1) {
+                                        echo '<li class="page-item"><a class="page-link" href="?page=1">1</a></li>';
+                                        if ($start_page > 2) {
+                                            echo '<li class="page-item disabled"><a class="page-link" href="#">...</a></li>';
+                                        }
+                                    }
+
+                                    // Tampilkan halaman dalam rentang
+                                    for ($i = $start_page; $i <= $end_page; $i++) {
+                                        echo '<li class="page-item ' . ($i == $current_page ? 'active' : '') . '">
+                        <a class="page-link" href="?page=' . $i . '">' . $i . '</a>
+                      </li>';
+                                    }
+
+                                    // Tampilkan halaman terakhir jika tidak dalam rentang
+                                    if ($end_page < $total_pages) {
+                                        if ($end_page < $total_pages - 1) {
+                                            echo '<li class="page-item disabled"><a class="page-link" href="#">...</a></li>';
+                                        }
+                                        echo '<li class="page-item"><a class="page-link" href="?page=' . $total_pages . '">' . $total_pages . '</a></li>';
+                                    }
+                                    ?>
+
+                                    <!-- Tombol Next -->
+                                    <li class="page-item <?= ($current_page >= $total_pages) ? 'disabled' : '' ?>">
+                                        <a class="page-link" href="?page=<?= $current_page + 1 ?>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        <?php endif; ?>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                             <a href="<?= site_url('admin/transaksi'); ?>" class="btn btn-secondary btn-md ml-3">

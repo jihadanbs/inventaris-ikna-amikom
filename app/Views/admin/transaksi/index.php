@@ -65,8 +65,8 @@
                                         <th>Nomor</th>
                                         <th>Nama Lengkap</th>
                                         <th>Kode Peminjaman</th>
-                                        <th>Total Jenis Barang</th>
-                                        <th>Kategori</th>
+                                        <th>Total</th>
+                                        <!-- <th>Kategori</th> -->
                                         <th>Tanggal Transaksi</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
@@ -84,8 +84,8 @@
                                                 </a>
                                             </td>
                                             <td><?= $row['kode_peminjaman']; ?></td>
-                                            <td><?= $row['total_jenis_barang']; ?></td>
-                                            <td><?= $row['kategori_list']; ?></td>
+                                            <td><?= $row['total_jenis_barang']; ?> Jenis Barang</td>
+                                            <!-- <td><?= $row['kategori_list']; ?></td> -->
                                             <td><?= formatTanggalIndo($row['tanggal_pengajuan']); ?></td>
                                             <td class="text-center">
                                                 <?php if ($row['status'] === 'Belum Diproses') : ?>
