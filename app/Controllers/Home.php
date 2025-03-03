@@ -583,12 +583,17 @@ class Home extends BaseController
                 $formatted_phone = '62' . substr($formatted_phone, 1);
             }
 
+            // Mengambil tanggal dengan format Indonesia
+            $tanggal = date('Y-m-d H:i:s');
+            $tanggal_saja = date('Y-m-d', strtotime($tanggal));
+            $waktu_saja = date('H:i:s', strtotime($tanggal));
+
             // Siapkan data untuk pesan WhatsApp
             $data = [
                 'nama_lengkap' => $namaLengkap,
                 'kode_peminjaman' => $kodePeminjaman,
                 'total_dipinjam' => $totalBarang,
-                'tanggal_pengajuan' => date('d F Y H:i'),
+                'tanggal_pengajuan' => formatTanggalIndo($tanggal_saja) . ' ' . $waktu_saja,
                 'kepentingan' => $kepentingan
             ];
 
