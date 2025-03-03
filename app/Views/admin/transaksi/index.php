@@ -64,10 +64,10 @@
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
                                         <th>Nama Lengkap</th>
-                                        <th>Nama Barang</th>
+                                        <th>Kode Peminjaman</th>
+                                        <th>Total Jenis Barang</th>
                                         <th>Kategori</th>
                                         <th>Tanggal Transaksi</th>
-                                        <th>Total Barang</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -79,14 +79,14 @@
                                         <tr>
                                             <td style="width: 2px" scope="row"><?= $i++; ?></td>
                                             <td>
-                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . truncateText($row['slug'], 70)) ?>" class="text-decoration-none">
+                                                <a href="#" class="text-decoration-none">
                                                     <?= $row['nama_lengkap']; ?>
                                                 </a>
                                             </td>
-                                            <td><?= truncateText($row['nama_barang'], 70); ?></td>
-                                            <td><?= $row['nama_kategori']; ?></td>
+                                            <td><?= $row['kode_peminjaman']; ?></td>
+                                            <td><?= $row['total_jenis_barang']; ?></td>
+                                            <td><?= $row['kategori_list']; ?></td>
                                             <td><?= formatTanggalIndo($row['tanggal_pengajuan']); ?></td>
-                                            <td><?= $row['total_dipinjam']; ?> Unit</td>
                                             <td class="text-center">
                                                 <?php if ($row['status'] === 'Belum Diproses') : ?>
                                                     <span class="badge bg-primary-subtle text-primary">Belum Diproses</span>
@@ -101,7 +101,7 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td style="width: 155px">
-                                                <a href="<?= site_url('admin/transaksi/cek_data/' . $row['slug']) ?>" class="btn btn-info btn-sm view">
+                                                <a href="<?= site_url('admin/transaksi/cek_data/' . $row['kode_peminjaman']) ?>" class="btn btn-info btn-sm view">
                                                     <i class="fa fa-eye"></i> Cek
                                                 </a>
 

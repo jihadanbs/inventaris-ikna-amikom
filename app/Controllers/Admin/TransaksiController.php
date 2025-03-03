@@ -17,13 +17,13 @@ class TransaksiController extends BaseController
         // Menyiapkan data untuk tampilan
         $data = array_merge([
             'title' => 'Admin | Halaman Transaksi Barang',
-            'tb_user_peminjam' => $this->m_user_peminjam->getAllSorted(),
+            'tb_user_peminjam' => $this->m_peminjaman_barang->getAllSorted(),
         ]);
 
         return view('admin/transaksi/index', $data);
     }
 
-    public function cek_data($slug)
+    public function detail($kode_peminjaman)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -32,13 +32,33 @@ class TransaksiController extends BaseController
 
         // Menyiapkan data untuk tampilan
         $data = array_merge([
-            'title' => 'Admin | Halaman Cek Data Transaksi Barang',
-            'tb_user_peminjam' => $this->m_user_peminjam->getNamaLengkapBySlug($slug),
+            'title' => 'Admin | Detail Transaksi',
+            'detail_peminjaman' => $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman),
+            'kode_peminjaman' => $kode_peminjaman
         ]);
+
+        return view('admin/transaksi/detail', $data);
+    }
+
+    public function cek_data($kode_peminjaman)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession(); // Redirect jika sesi tidak valid
+        }
+
+        // Ambil data detail peminjaman
+        $detail_peminjaman = $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman);
+
+        // Menyiapkan data untuk tampilan
+        $data = [
+            'title' => 'Admin | Halaman Cek Data Transaksi Barang',
+            'detail_peminjaman' => $detail_peminjaman,
+            'kode_peminjaman' => $kode_peminjaman
+        ];
 
         return view('admin/transaksi/cek_data', $data);
     }
-
 
     // Dipinjamkan
     public function dipinjamkan($slug)

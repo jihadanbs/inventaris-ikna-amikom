@@ -90,26 +90,12 @@
 
                         <table class="table table-borderless table-sm">
                             <h4 class="text-center mb-4"><b>FORMULIR CEK DATA TRANSAKSI</b></h4>
-                            <?php if (!empty($tb_user_peminjam)) : ?>
+                            <h4 class="card-title mb-4">Detail Peminjaman - Kode: <?= $kode_peminjaman ?></h4>
+                            <?php if (!empty($detail_peminjaman)) : ?>
+                                <?php $first_item = $detail_peminjaman[0] ?? []; ?>
                                 <tr>
                                     <td rowspan="1" width="250px" class="text-center">
-                                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                                            <div class="carousel-inner">
-                                                <?php foreach (explode(', ', $tb_user_peminjam['path_file_foto_barang'] ?? '') as $index => $file) : ?>
-                                                    <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                                                        <img src="<?= esc(base_url($file), 'attr'); ?>" class="d-block w-100" alt="..." style="max-height: 300px; object-fit: cover;">
-                                                    </div>
-                                                <?php endforeach; ?>
-                                            </div>
-                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Previous</span>
-                                            </button>
-                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Next</span>
-                                            </button>
-                                        </div>
+                                        <img src="<?= base_url('assets/img/ikna.png') ?>" id="gambar_load" width="250px" height="200" alt="Logo Desa">
                                     </td>
 
                                     <td style="padding-left: 50px;">
@@ -119,7 +105,7 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <p><?= esc($tb_user_peminjam['nama_lengkap'] ?? '', 'html'); ?></p>
+                                                <p><?= esc($detail_peminjaman[0]['nama_lengkap'] ?? '', 'html'); ?></p>
                                             </div>
 
                                             <div class="col-md-2">
@@ -127,7 +113,7 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <p><?= esc($tb_user_peminjam['nama_barang'] ?? '', 'html'); ?></p>
+                                                <p><?= esc($detail_peminjaman[0]['nama_barang'] ?? '', 'html'); ?></p>
                                             </div>
 
                                             <div class="col-md-2">
@@ -135,7 +121,7 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <p><?= esc($tb_user_peminjam['nama_kategori'] ?? '', 'html'); ?></p>
+                                                <p><?= esc($detail_peminjaman[0]['nama_kategori'] ?? '', 'html'); ?></p>
                                             </div>
 
                                             <div class="col-md-2">
@@ -143,7 +129,7 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <p><?= esc($tb_user_peminjam['total_dipinjam'] ?? '', 'html'); ?> Unit</p>
+                                                <p><?= esc($detail_peminjaman[0]['total_dipinjam'] ?? '', 'html'); ?> Unit</p>
                                             </div>
 
                                             <div class="col-md-2">
@@ -151,7 +137,7 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <p><?= esc($tb_user_peminjam['nama_kondisi'] ?? '', 'html'); ?></p>
+                                                <p><?= esc($detail_peminjaman[0]['nama_kondisi'] ?? '', 'html'); ?></p>
                                             </div>
 
                                             <div class="col-md-2">
@@ -162,13 +148,13 @@
                                                 <p>
                                                     <?php
                                                     // Menampilkan badge berdasarkan status
-                                                    if ($tb_user_peminjam['status'] === 'Belum Diproses') : ?>
+                                                    if ($detail_peminjaman[0]['status'] === 'Belum Diproses') : ?>
                                                         <span class="badge bg-primary-subtle text-primary fs-6">Belum Diproses</span>
-                                                    <?php elseif ($tb_user_peminjam['status'] === 'Ditolak') : ?>
+                                                    <?php elseif ($detail_peminjaman[0]['status'] === 'Ditolak') : ?>
                                                         <span class="badge bg-danger-subtle text-danger fs-6">Ditolak</span>
-                                                    <?php elseif ($tb_user_peminjam['status'] === 'Dipinjamkan') : ?>
+                                                    <?php elseif ($detail_peminjaman[0]['status'] === 'Dipinjamkan') : ?>
                                                         <span class="badge bg-warning-subtle text-warning fs-6">Dipinjamkan</span>
-                                                    <?php elseif ($tb_user_peminjam['status'] === 'Dikembalikan') : ?>
+                                                    <?php elseif ($detail_peminjaman[0]['status'] === 'Dikembalikan') : ?>
                                                         <span class="badge bg-success-subtle text-success fs-6">Dikembalikan</span>
                                                     <?php else : ?>
                                                         <span class="badge bg-secondary-subtle text-secondary fs-6">Tidak Diketahui</span>
@@ -181,10 +167,10 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <?php if (empty($tb_user_peminjam['tanggal_pengajuan'])): ?>
+                                                <?php if (empty($detail_peminjaman[0]['tanggal_pengajuan'])): ?>
                                                     <span class="badge bg-warning text-dark fs-6">Belum ada data</span>
                                                 <?php else: ?>
-                                                    <p><?= formatTanggalIndo($tb_user_peminjam['tanggal_pengajuan'], 'html'); ?></p>
+                                                    <p><?= formatTanggalIndo($detail_peminjaman[0]['tanggal_pengajuan'], 'html'); ?></p>
                                                 <?php endif; ?>
                                             </div>
 
@@ -193,10 +179,10 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <?php if (empty($tb_user_peminjam['tanggal_dipinjamkan'])): ?>
+                                                <?php if (empty($detail_peminjaman[0]['tanggal_dipinjamkan'])): ?>
                                                     <span class="badge bg-warning text-dark fs-6">Belum ada data</span>
                                                 <?php else: ?>
-                                                    <p><?= formatTanggalIndo($tb_user_peminjam['tanggal_dipinjamkan'], 'html'); ?></p>
+                                                    <p><?= formatTanggalIndo($detail_peminjaman[0]['tanggal_dipinjamkan'], 'html'); ?></p>
                                                 <?php endif; ?>
                                             </div>
 
@@ -205,10 +191,10 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <?php if (empty($tb_user_peminjam['tanggal_perkiraan_dikembalikan'])): ?>
+                                                <?php if (empty($detail_peminjaman[0]['tanggal_perkiraan_dikembalikan'])): ?>
                                                     <span class="badge bg-warning text-dark fs-6">Belum ada data</span>
                                                 <?php else: ?>
-                                                    <p><?= formatTanggalIndo($tb_user_peminjam['tanggal_perkiraan_dikembalikan'], 'html'); ?></p>
+                                                    <p><?= formatTanggalIndo($detail_peminjaman[0]['tanggal_perkiraan_dikembalikan'], 'html'); ?></p>
                                                 <?php endif; ?>
                                             </div>
 
@@ -217,10 +203,10 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <?php if (empty($tb_user_peminjam['tanggal_dikembalikan'])): ?>
+                                                <?php if (empty($detail_peminjaman[0]['tanggal_dikembalikan'])): ?>
                                                     <span class="badge bg-warning text-dark fs-6">Belum ada data</span>
                                                 <?php else: ?>
-                                                    <p><?= formatTanggalIndo($tb_user_peminjam['tanggal_dikembalikan'], 'html'); ?></p>
+                                                    <p><?= formatTanggalIndo($detail_peminjaman[0]['tanggal_dikembalikan'], 'html'); ?></p>
                                                 <?php endif; ?>
                                             </div>
 
@@ -241,9 +227,9 @@
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
                                                 <strong>
-                                                    <?= truncateText($tb_user_peminjam['kepentingan'] ?? 'Belum ada deskripsi lebih lanjut', 100); ?>
-                                                    <?php if (strlen(strip_tags($tb_user_peminjam['kepentingan'] ?? '')) > 100) : ?>
-                                                        <a href="#" class="read-more-link" data-text="<?= htmlspecialchars(strip_tags($tb_user_peminjam['kepentingan']), ENT_QUOTES, 'UTF-8') ?>">Read more..</a>
+                                                    <?= truncateText($detail_peminjaman[0]['kepentingan'] ?? 'Belum ada deskripsi lebih lanjut', 100); ?>
+                                                    <?php if (strlen(strip_tags($detail_peminjaman[0]['kepentingan'] ?? '')) > 100) : ?>
+                                                        <a href="#" class="read-more-link" data-text="<?= htmlspecialchars(strip_tags($detail_peminjaman[0]['kepentingan']), ENT_QUOTES, 'UTF-8') ?>">Read more..</a>
                                                     <?php endif; ?>
                                                 </strong>
                                             </div>
@@ -254,9 +240,9 @@
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
                                                 <strong>
-                                                    <?= !empty($tb_user_peminjam['catatan_peminjaman']) ? truncateText($tb_user_peminjam['catatan_peminjaman'], 100) : 'Belum ada Catatan lebih lanjut'; ?>
-                                                    <?php if (strlen(strip_tags($tb_user_peminjam['catatan_peminjaman'] ?? '')) > 100) : ?>
-                                                        <a href="#" class="read-more-link" data-text="<?= htmlspecialchars(strip_tags($tb_user_peminjam['catatan_peminjaman']), ENT_QUOTES, 'UTF-8') ?>">Read more..</a>
+                                                    <?= !empty($detail_peminjaman[0]['catatan_peminjaman']) ? truncateText($detail_peminjaman[0]['catatan_peminjaman'], 100) : 'Belum ada Catatan lebih lanjut'; ?>
+                                                    <?php if (strlen(strip_tags($detail_peminjaman[0]['catatan_peminjaman'] ?? '')) > 100) : ?>
+                                                        <a href="#" class="read-more-link" data-text="<?= htmlspecialchars(strip_tags($detail_peminjaman[0]['catatan_peminjaman']), ENT_QUOTES, 'UTF-8') ?>">Read more..</a>
                                                     <?php endif; ?>
                                                 </strong>
                                             </div>
@@ -312,60 +298,38 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 1; ?>
-                                <?php if (!empty($tb_user_peminjam)) : ?>
+                                <?php
+                                // Cukup ambil data pertama saja dari detail_peminjaman
+                                if (!empty($detail_peminjaman) && isset($detail_peminjaman[0])) :
+                                    $value = $detail_peminjaman[0];
+                                    $no = 1;
+                                ?>
                                     <tr>
-                                        <td class="text-center"><?= esc($no++, 'html'); ?>.</td>
-                                        <td><?= esc($tb_user_peminjam['nama_barang'] ?? '', 'html'); ?></td>
+                                        <td class="text-center"><?= $no++ ?>.</td>
+                                        <td>Dokumen Jaminan</td>
                                         <td class="text-center">
-                                            <?php if (!empty($tb_user_peminjam['path_file_foto_barang'])) : ?>
-                                                <button type="button" class="btn btn-info btn-sm view" data-bs-toggle="modal" data-bs-target="#exampleModal<?= esc($tb_user_peminjam['id_barang'] ?? '', 'attr'); ?>">
-                                                    <i class="fas fa-eye"></i> View File
-                                                </button>
-
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal<?= esc($tb_user_peminjam['id_barang'] ?? '', 'attr'); ?>" tabindex="-1" aria-labelledby="exampleModalLabel<?= esc($tb_user_peminjam['id_barang'] ?? '', 'attr'); ?>" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-body">
-                                                                <div id="carouselExampleIndicators<?= esc($tb_user_peminjam['id_barang'] ?? '', 'attr'); ?>" class="carousel slide" data-bs-ride="carousel">
-                                                                    <!-- Carousel Indicators -->
-                                                                    <div class="carousel-indicators">
-                                                                        <?php
-                                                                        $files = explode(', ', $tb_user_peminjam['path_file_foto_barang']);
-                                                                        foreach ($files as $index => $file) :
-                                                                        ?>
-                                                                            <button type="button" data-bs-target="#carouselExampleIndicators<?= esc($tb_user_peminjam['id_barang'] ?? '', 'attr'); ?>" data-bs-slide-to="<?= $index; ?>" class="<?= $index === 0 ? 'active' : ''; ?>" aria-current="<?= $index === 0 ? 'true' : 'false'; ?>" aria-label="Slide <?= $index + 1 ?>"></button>
-                                                                        <?php endforeach; ?>
-                                                                    </div>
-
-                                                                    <!-- Carousel Items -->
-                                                                    <div class="carousel-inner">
-                                                                        <?php foreach ($files as $index => $file) : ?>
-                                                                            <div class="carousel-item <?= $index === 0 ? 'active' : '' ?>">
-                                                                                <img src="<?= esc(base_url($file), 'attr'); ?>" class="d-block w-100" alt="..." style="max-width: 800px; max-height: 600px; margin: 0 auto;">
-                                                                            </div>
-                                                                        <?php endforeach; ?>
-                                                                    </div>
-
-                                                                    <!-- Carousel Controls -->
-                                                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators<?= esc($tb_user_peminjam['id_barang'] ?? '', 'attr'); ?>" data-bs-slide="prev">
-                                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                                        <span class="visually-hidden">Previous</span>
-                                                                    </button>
-                                                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators<?= esc($tb_user_peminjam['id_barang'] ?? '', 'attr'); ?>" data-bs-slide="next">
-                                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                                        <span class="visually-hidden">Next</span>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                            <?php if (!empty($value['dokumen_jaminan'])) : ?>
+                                                <a href="<?= base_url($value['dokumen_jaminan']) ?>" class="btn btn-info btn-sm view" target="_blank">
+                                                    <i class="fas fa-eye"></i> Lihat
+                                                </a>
                                             <?php else : ?>
-                                                <a href="javascript: void(0);" class="btn btn-info btn-sm view disabled" title="Gambar tidak tersedia">
-                                                    <i class="fas fa-eye"></i> View File
+                                                <a href="#" class="btn btn-info btn-sm view disabled" title="File tidak tersedia">
+                                                    <i class="fas fa-eye"></i> Lihat
+                                                </a>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-center"><?= $no++ ?>.</td>
+                                        <td>Bukti Pengembalian</td>
+                                        <td class="text-center">
+                                            <?php if (!empty($value['bukti_pengembalian'])) : ?>
+                                                <a href="<?= base_url($value['bukti_pengembalian']) ?>" class="btn btn-info btn-sm view" target="_blank">
+                                                    <i class="fas fa-eye"></i> Lihat
+                                                </a>
+                                            <?php else : ?>
+                                                <a href="#" class="btn btn-info btn-sm view disabled" title="File tidak tersedia">
+                                                    <i class="fas fa-eye"></i> Lihat
                                                 </a>
                                             <?php endif; ?>
                                         </td>
@@ -374,21 +338,59 @@
                             </tbody>
                         </table>
 
-                        <div class="form-group mb-4 mt-4 d-flex justify-content-between align-items-center no-print">
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                                <a href="<?= site_url('admin/transaksi'); ?>" class="btn btn-secondary btn-md ml-3">
-                                    <i class="fas fa-arrow-left"></i> Kembali
-                                </a>
-                                <a href="<?= site_url('admin/transaksi/ditolak/' . $tb_user_peminjam['slug']); ?>" class="btn btn-danger btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dipinjamkan' || $tb_user_peminjam['status'] == 'Dikembalikan' ? 'disabled' : '' ?>">
-                                    <i class="fas fa-times"></i> Ditolak
-                                </a>
-                                <a href="<?= site_url('admin/transaksi/dipinjamkan/' . $tb_user_peminjam['slug']); ?>" class="btn btn-warning btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Dikembalikan' || $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dipinjamkan' ? 'disabled' : '' ?>">
-                                    <i class="fas fa-hourglass-half"></i> Dipinjamkan
-                                </a>
-                                <a href="<?= site_url('admin/transaksi/dikembalikan/' . $tb_user_peminjam['slug']); ?>" class="btn btn-success btn-md ml-3 <?= $tb_user_peminjam['status'] == 'Belum Diproses' || $tb_user_peminjam['status'] == 'Ditolak' || $tb_user_peminjam['status'] == 'Dikembalikan' ? 'disabled' : '' ?>">
-                                    <i class="fas fa-check"></i> Dikembalikan
-                                </a>
-                            </div>
+                        <h5 class="mt-4">Daftar Barang yang Dipinjam</h5>
+                        <div class="row">
+                            <?php foreach ($detail_peminjaman as $item) : ?>
+                                <div class="col-md-4 col-lg-3 mb-4">
+                                    <div class="card h-100">
+                                        <?php
+                                        $foto_paths = explode(", ", $item['path_file_foto_barang']);
+                                        $foto_path = !empty($foto_paths[0]) ? $foto_paths[0] : '/assets/images/no-image.jpg';
+                                        ?>
+                                        <img class="card-img-top img-fluid" style="height: 200px; object-fit: cover;" src="<?= base_url($foto_path) ?>" alt="<?= $item['nama_barang'] ?>">
+
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?= truncateText($item['nama_barang'], 50) ?></h5>
+                                            <ul class="list-unstyled">
+                                                <li><strong>Kategori:</strong> <?= $item['nama_kategori'] ?></li>
+                                                <li><strong>Kondisi:</strong> <?= $item['nama_kondisi'] ?></li>
+                                                <!-- <li><strong>Jumlah:</strong> <?= $item['jumlah_total'] ?></li> -->
+                                            </ul>
+                                        </div>
+
+                                        <div class="card-footer">
+                                            <a href="<?= site_url('admin/barang/detail/' . $item['id_barang']) ?>" class="btn btn-primary btn-sm w-100">
+                                                <i class="fa fa-info-circle"></i> Detail Barang
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <a href="<?= site_url('admin/transaksi'); ?>" class="btn btn-secondary btn-md ml-3">
+                                <i class="fas fa-arrow-left"></i> Kembali
+                            </a>
+
+                            <?php
+                            $status = $detail_peminjaman[0]['status'] ?? '';
+                            ?>
+
+                            <a href="<?= site_url('admin/transaksi/ditolak/' . $kode_peminjaman); ?>"
+                                class="btn btn-danger btn-md ml-3 <?= $status == 'Ditolak' || $status == 'Dipinjamkan' || $status == 'Dikembalikan' ? 'disabled' : '' ?>">
+                                <i class="fas fa-times"></i> Ditolak
+                            </a>
+
+                            <a href="<?= site_url('admin/transaksi/dipinjamkan/' . $kode_peminjaman); ?>"
+                                class="btn btn-warning btn-md ml-3 <?= $status == 'Dikembalikan' || $status == 'Ditolak' || $status == 'Dipinjamkan' ? 'disabled' : '' ?>">
+                                <i class="fas fa-hourglass-half"></i> Dipinjamkan
+                            </a>
+
+                            <a href="<?= site_url('admin/transaksi/dikembalikan/' . $kode_peminjaman); ?>"
+                                class="btn btn-success btn-md ml-3 <?= $status == 'Belum Diproses' || $status == 'Ditolak' || $status == 'Dikembalikan' ? 'disabled' : '' ?>">
+                                <i class="fas fa-check"></i> Dikembalikan
+                            </a>
                         </div>
 
                     </div>
