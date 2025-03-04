@@ -8,7 +8,7 @@ class BarangKeluarModel extends Model
 {
     protected $table = 'tb_barang_keluar';
     protected $primaryKey = 'id_barang_keluar';
-    protected $allowedFields = ['id_barang', 'id_user_peminjam', 'total_barang', 'keterangan', 'tanggal_keluar'];
+    protected $allowedFields = ['id_barang', 'total_barang', 'keterangan', 'tanggal_keluar'];
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
 

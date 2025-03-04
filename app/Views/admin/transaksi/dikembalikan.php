@@ -73,7 +73,7 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="nama_barang" class="col-form-label">Nama Barang<span class="text-danger">*</span></label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control <?= session('errors.nama_barang') ? 'is-invalid' : ''; ?>" id="nama_barang" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_barang" value="<?= esc(old('nama_barang', $tb_peminjaman[0]['nama_barang']), 'attr'); ?>" autocomplete="off" disabled>
+                                            <input type="text" class="form-control <?= session('errors.nama_barang') ? 'is-invalid' : ''; ?>" id="nama_barang" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_barang" value="<?= esc(old('nama_barang', $tb_peminjaman[0]['barang_list']), 'attr'); ?>" autocomplete="off" disabled>
 
                                             <?php if (session('errors.nama_barang')) : ?>
                                                 <div class="invalid-feedback">

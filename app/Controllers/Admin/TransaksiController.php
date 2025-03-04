@@ -68,6 +68,7 @@ class TransaksiController extends BaseController
         }
 
         $data = $this->request->getPost();
+        $barangDetails = [];
 
         //validasi input 
         $rules = [
@@ -97,11 +98,11 @@ class TransaksiController extends BaseController
                 ]
             ],
             'total_barang' => [
-                'rules' => 'required|greater_than_equal_to[0]|check_total_dipinjam[tb_user_peminjam,' . $id_peminjaman . ']',
+                'rules' => 'required|greater_than_equal_to[0]|check_total_dipinjam[tb_peminjaman,' . $id_peminjaman . ']',
                 'errors' => [
                     'required' => 'Silahkan Masukkan Jumlah Barang Yang Keluar !',
                     'greater_than_equal_to' => 'Jumlah Barang Yang Keluar Tidak Boleh Negatif !',
-                    'check_total_dipinjam' => 'Jumlah Barang Yang Keluar Tidak Sesuai Dengan Jumlah Barang Yang Dipinjam !',
+                    'check_total_dipinjam' => 'Jumlah Barang Yang Keluar Tidak Sesuai Dengan Jumlah Total Barang Yang Dipinjam !',
                 ]
             ],
             'tanggal_perkiraan_dikembalikan' => [
@@ -117,7 +118,8 @@ class TransaksiController extends BaseController
         }
 
         // Ambil data user peminjam
-        $userPeminjam = $this->m_peminjaman_barang->find($id_peminjaman);
+        $userPeminjam = $this->m_peminjaman_barang->getDetailById($id_peminjaman);
+
         if (!$userPeminjam) {
             return redirect()->back()->with('error', 'Data peminjam tidak ditemukan!');
         }
@@ -126,31 +128,53 @@ class TransaksiController extends BaseController
         $this->db->transBegin();
 
         try {
-            // Update data di tb_user_peminjam
-            $dataUpdatePeminjam = [
-                'id_peminjaman' => $id_peminjaman,
-                'id_barang' => $userPeminjam['id_barang'],
-                'catatan_peminjaman' => $data['catatan_peminjaman'],
-                'tanggal_dipinjamkan' => $data['tanggal_dipinjamkan'],
-                'tanggal_perkiraan_dikembalikan' => $data['tanggal_perkiraan_dikembalikan'],
-                'status' => 'Dipinjamkan',
-            ];
+            // Ambil semua barang yang terkait dengan kode peminjaman
+            $kodePeminjaman = $userPeminjam['kode_peminjaman'];
+            $semuaBarang = $this->m_peminjaman_barang->getDetailByKodePeminjaman($kodePeminjaman);
 
-            if (!$this->m_peminjaman_barang->update($id_peminjaman, $dataUpdatePeminjam)) {
-                throw new \Exception('Gagal mengupdate data peminjam');
+            // Ambil detail barang untuk pesan WhatsApp
+            foreach ($semuaBarang as $item) {
+                $barang = $this->m_barang->find($item['id_barang']);
+                if ($barang) {
+                    $barangDetails[] = "- {$barang['nama_barang']} ({$item['total_dipinjam']} unit)";
+                }
             }
 
-            // Simpan data ke tb_barang_keluar
-            $dataBarangKeluar = [
-                'id_barang' => $userPeminjam['id_barang'],
-                'id_peminjaman' => $id_peminjaman,
-                'tanggal_keluar' => $data['tanggal_keluar'],
-                'total_barang' => $data['total_barang'],
-                'keterangan' => $this->getKeteranganKeluarDipinjam($data['tanggal_keluar'], $userPeminjam['nama_lengkap'], $data['total_barang'], $data['keterangan'] ?? ''),
-            ];
+            // Dapatkan detail peminjaman termasuk total_jenis_barang
+            $detailPeminjaman = $this->m_peminjaman_barang->getDetailByKodePeminjaman($kodePeminjaman);
 
-            if (!$this->m_barang_keluar->insert($dataBarangKeluar)) {
-                throw new \Exception('Gagal menyimpan data barang keluar');
+            // Pastikan ada data yang diambil
+            if (!empty($detailPeminjaman)) {
+                $total_jenis_barang = $detailPeminjaman[0]['total_jenis_barang'] ?? 0;
+                $kategori_list = $detailPeminjaman[0]['kategori_list'] ?? '-';
+            } else {
+                $total_jenis_barang = 0;
+                $kategori_list = '-';
+            }
+
+            // Update status semua peminjaman dengan kode peminjaman yang sama
+            $this->m_peminjaman_barang->where('kode_peminjaman', $kodePeminjaman)
+                ->set([
+                    'catatan_peminjaman' => $data['catatan_peminjaman'],
+                    'tanggal_dipinjamkan' => $data['tanggal_dipinjamkan'],
+                    'tanggal_perkiraan_dikembalikan' => $data['tanggal_perkiraan_dikembalikan'],
+                    'status' => 'Dipinjamkan',
+                ])
+                ->update();
+
+            // Loop untuk menyimpan semua barang ke tb_barang_keluar
+            foreach ($semuaBarang as $item) {
+                $dataBarangKeluar = [
+                    'id_barang' => $item['id_barang'],
+                    'id_peminjaman' => $item['id_peminjaman'],
+                    'tanggal_keluar' => $data['tanggal_keluar'],
+                    'total_barang' => $item['total_dipinjam'], // Gunakan total_dipinjam dari setiap item
+                    'keterangan' => $this->getKeteranganKeluarDipinjam($item['nama_barang'], $data['tanggal_keluar'], $userPeminjam['nama_lengkap'], $item['total_dipinjam'], $data['keterangan'] ?? ''),
+                ];
+
+                if (!$this->m_barang_keluar->insert($dataBarangKeluar)) {
+                    throw new \Exception('Gagal menyimpan data barang keluar untuk ID: ' . $item['id_barang']);
+                }
             }
 
             // Commit transaksi jika semua berhasil
@@ -166,7 +190,10 @@ class TransaksiController extends BaseController
                 . "📦 *Detail Peminjaman*\n"
                 . "Kode Peminjaman: *{$userPeminjam['kode_peminjaman']}*\n"
                 . "Status: *Dipinjamkan*\n"
-                . "Total Dipinjam: *{$userPeminjam['total_dipinjam']} unit*\n"
+                . "Daftar Barang Dipinjam: \n\n"
+                . implode("\n", $barangDetails) . "\n\n"
+                . "Total Jenis Barang: *{$total_jenis_barang} jenis*\n"
+                . "Kategori Barang: *{$kategori_list}*\n"
                 . "Tanggal Pengajuan: *" . formatTanggalIndo($userPeminjam['tanggal_pengajuan']) . "*\n"
                 . "Tanggal Dipinjamkan: *" . formatTanggalIndo($data['tanggal_dipinjamkan']) . "*\n"
                 . "Tanggal Perkiraan Kembali: *" . formatTanggalIndo($data['tanggal_perkiraan_dikembalikan']) . "*\n\n"
@@ -192,12 +219,12 @@ class TransaksiController extends BaseController
         }
     }
 
-    private function getKeteranganKeluarDipinjam($tanggal, $nama_peminjam, $total_dipinjam, $keterangan)
+    private function getKeteranganKeluarDipinjam($barang, $tanggal, $nama_peminjam, $total_dipinjam, $keterangan)
     {
         if (empty(trim($keterangan))) {
             // Format tanggal ke format Indonesia
             $tanggal_formatted = date('d F Y', strtotime($tanggal));
-            return "Barang sebanyak {$total_dipinjam} unit telah dipinjamkan kepada {$nama_peminjam} pada tanggal {$tanggal_formatted}";
+            return "Barang {$barang} sebanyak {$total_dipinjam} unit telah dipinjamkan kepada {$nama_peminjam} pada tanggal {$tanggal_formatted}";
         }
         return $keterangan;
     }

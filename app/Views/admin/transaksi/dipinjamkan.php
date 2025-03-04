@@ -58,7 +58,7 @@
                                     <div class="col-md-6 mb-3 separator">
                                         <label for="nama_lengkap" class="col-form-label">Nama Lengkap<span class="text-danger">*</span></label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control <?= session('errors.nama_lengkap') ? 'is-invalid' : ''; ?>" id="nama_lengkap" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_lengkap" value="<?= esc(old('nama_lengkap', $tb_peminjaman[0]['nama_lengkap']), 'attr'); ?>" autocomplete="off" disabled>
+                                            <input type="text" class="form-control <?= session('errors.nama_lengkap') ? 'is-invalid' : ''; ?>" id="nama_lengkap" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_lengkap" value="<?= esc(old('nama_lengkap', $tb_peminjaman[0]['nama_lengkap']), 'attr'); ?>" autocomplete="off" readonly>
 
                                             <?php if (session('errors.nama_lengkap')) : ?>
                                                 <div class="invalid-feedback">
@@ -71,7 +71,7 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="nama_barang" class="col-form-label">Nama Barang<span class="text-danger">*</span></label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control <?= session('errors.nama_barang') ? 'is-invalid' : ''; ?>" id="nama_barang" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_barang" value="<?= esc(old('nama_barang', $tb_peminjaman[0]['nama_barang']), 'attr'); ?>" autocomplete="off" disabled>
+                                            <input type="text" class="form-control <?= session('errors.nama_barang') ? 'is-invalid' : ''; ?>" id="nama_barang" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_barang" value="<?= esc(old('nama_barang', $tb_peminjaman[0]['barang_list']), 'attr'); ?>" autocomplete="off" readonly>
 
                                             <?php if (session('errors.nama_barang')) : ?>
                                                 <div class="invalid-feedback">
@@ -86,7 +86,7 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="total_jenis_barang" class="col-form-label">Total Jenis Barang</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="total_jenis_barang" style="background-color: white;" value="<?= esc($tb_peminjaman[0]['total_jenis_barang'] ?? 0, 'attr'); ?> Jenis Barang" disabled>
+                                            <input type="text" class="form-control" id="total_jenis_barang" style="background-color: white;" value="<?= esc($tb_peminjaman[0]['total_jenis_barang'] ?? 0, 'attr'); ?> Jenis Barang" readonly>
                                         </div>
                                     </div>
 
@@ -126,7 +126,13 @@
                                     <div class="col-md-6 mb-3 separator">
                                         <label for="total_barang" class="col-form-label">Total Barang (Keluar)<span class="text-danger">*</span></label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control <?= session('errors.total_barang') ? 'is-invalid' : ''; ?>" id="total_barang" name="total_barang" placeholder="Masukkan Jumlah Total Barang Yang Keluar" style="background-color: white;" autofocus value="<?= old('total_barang'); ?>">
+                                            <input type="number" class="form-control <?= session('errors.total_barang') ? 'is-invalid' : ''; ?>"
+                                                id="total_barang"
+                                                name="total_barang"
+                                                placeholder="Masukkan Jumlah Total Barang Yang Keluar"
+                                                style="background-color: white;"
+                                                value="<?= array_sum(array_column($tb_peminjaman, 'total_dipinjam')) ?>"
+                                                readonly>
 
                                             <?php if (session('errors.total_barang')) : ?>
                                                 <div class="invalid-feedback">

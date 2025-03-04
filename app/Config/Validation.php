@@ -220,13 +220,11 @@ class Validation extends BaseConfig
 
         // Mengambil nama tabel dan field
         $table = array_shift($params);
-        $id_user_field = array_shift($params);
+        $id_peminjaman = array_shift($params);
 
-        // Membuat query builder
-        $builder = db_connect()->table($table);
-
-        // Mengambil data dari database
-        $row = $builder->where('id_peminjaman', $id_user_field)
+        // Dapatkan kode_peminjaman dari id_peminjaman ini
+        $row = db_connect()->table($table)
+            ->where('id_peminjaman', $id_peminjaman)
             ->get()
             ->getRowArray();
 
@@ -234,8 +232,17 @@ class Validation extends BaseConfig
             return false;
         }
 
-        // Membandingkan total_barang dengan total_dipinjam
-        return (int)$str === (int)$row['total_dipinjam'];
+        $kode_peminjaman = $row['kode_peminjaman'];
+
+        // Hitung total semua barang dengan kode_peminjaman yang sama
+        $totalDipinjam = db_connect()->table($table)
+            ->selectSum('total_dipinjam')
+            ->where('kode_peminjaman', $kode_peminjaman)
+            ->get()
+            ->getRowArray();
+
+        // Bandingkan total
+        return (int)$str === (int)($totalDipinjam['total_dipinjam'] ?? 0);
     }
 
     public function validate_total_pengembalian(string $str, string $fields, array $data): bool

@@ -47,7 +47,8 @@ class PeminjamanBarangModel extends Model
         $subquery = $this->db->table('tb_peminjaman')
             ->select('
                 COUNT(DISTINCT tb_peminjaman.id_barang) as total_jenis_barang,
-                GROUP_CONCAT(DISTINCT tb_kategori_barang.nama_kategori SEPARATOR ", ") as kategori_list
+                GROUP_CONCAT(DISTINCT tb_kategori_barang.nama_kategori SEPARATOR ", ") as kategori_list,
+                GROUP_CONCAT(DISTINCT tb_barang.nama_barang SEPARATOR ", ") as barang_list
             ')
             ->join('tb_barang', 'tb_barang.id_barang = tb_peminjaman.id_barang', 'left')
             ->join('tb_kategori_barang', 'tb_kategori_barang.id_kategori_barang = tb_barang.id_kategori_barang', 'left')
@@ -97,6 +98,7 @@ class PeminjamanBarangModel extends Model
                 $item['kode_peminjaman'] = $kode_peminjaman;
                 $item['total_jenis_barang'] = $subquery['total_jenis_barang'];
                 $item['kategori_list'] = $subquery['kategori_list'];
+                $item['barang_list'] = $subquery['barang_list'];
             }
         }
 
@@ -166,5 +168,13 @@ class PeminjamanBarangModel extends Model
 
         // Mengembalikan array data, bukan hanya satu baris
         return $query->getResultArray();
+    }
+
+    public function getTotalByStatus($status)
+    {
+        $query = $this->db->query('SELECT SUM(total_dipinjam) as total FROM ' . $this->table . ' WHERE status = ?', [$status]);
+        $result = $query->getRow();
+
+        return $result ? $result->total : 0;
     }
 }
