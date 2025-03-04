@@ -120,7 +120,7 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <p><?= esc($detail_peminjaman[0]['nama_kategori'] ?? '', 'html'); ?></p>
+                                                <p><?= esc($detail_peminjaman[0]['kategori_list'] ?? '', 'html'); ?></p>
                                             </div>
 
                                             <div class="col-md-2">
@@ -128,7 +128,7 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <p><?= esc($detail_peminjaman[0]['total_dipinjam'] ?? '', 'html'); ?> Unit</p>
+                                                <p><?= esc($detail_peminjaman[0]['total_jenis_barang'] ?? '', 'html'); ?> Unit</p>
                                             </div>
 
                                             <div class="col-md-2">

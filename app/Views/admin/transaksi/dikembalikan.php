@@ -51,6 +51,8 @@
                                 <input type="hidden" name="id_peminjaman" value="<?= esc($tb_peminjaman[0]['id_peminjaman'], 'attr'); ?>">
                                 <input type="hidden" name="tanggal_dipinjamkan" value="<?= esc($tb_peminjaman[0]['tanggal_dipinjamkan'], 'attr'); ?>">
                                 <input type="hidden" name="tanggal_perkiraan_dikembalikan" value="<?= esc($tb_peminjaman[0]['tanggal_perkiraan_dikembalikan'], 'attr'); ?>">
+                                <input type="hidden" name="kategori_list" value="<?= esc($tb_peminjaman[0]['kategori_list'] ?? '', 'attr'); ?>">
+                                <input type="hidden" name="total_jenis_barang" value="<?= esc($tb_peminjaman[0]['total_jenis_barang'] ?? 0, 'attr'); ?>">
 
                                 <label class="col-form-label" style="font-size: 25px;">A. Data Peminjam</label>
 
@@ -83,27 +85,17 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 mb-3 separator">
-                                        <label for="id_kategori_barang" class="col-form-label">Kategori Barang<span class="text-danger">*</span></label>
-                                        <select class="form-select custom-border <?= ($validation->hasError('id_kategori_barang')) ? 'is-invalid' : ''; ?>" id="id_kategori_barang" name="id_kategori_barang" aria-label="Default select example" style="background-color: white;" required disabled>
-                                            <option value="" selected disabled>~ Silahkan Pilih Nama Kategori Barang ~</option>
-                                            <?php foreach ($tb_kategori_barang as $value) : ?>
-                                                <?php $selected = ($value['id_kategori_barang'] == old('id_kategori_barang', $tb_peminjaman[0]['id_kategori_barang'])) ? 'selected' : ''; ?>
-                                                <option value="<?= $value['id_kategori_barang'] ?>" <?= $selected ?>><?= $value['nama_kategori'] ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="total_jenis_barang" class="col-form-label">Total Jenis Barang</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="total_jenis_barang" style="background-color: white;" value="<?= esc($tb_peminjaman[0]['total_jenis_barang'] ?? 0, 'attr'); ?> Jenis Barang" disabled>
+                                        </div>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-                                        <label for="total_dipinjam" class="col-form-label">Total Dipinjam<span class="text-danger">*</span></label>
+                                        <label for="kategori_list" class="col-form-label">Daftar Kategori</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control <?= session('errors.total_dipinjam') ? 'is-invalid' : ''; ?>" id="total_dipinjam" style="background-color: white;" name="total_dipinjam" placeholder="Masukkan Total Barang" value="<?= esc(old('total_dipinjam', $tb_peminjaman[0]['total_dipinjam']), 'attr'); ?>" autocomplete="off" disabled>
-
-                                            <?php if (session('errors.total_dipinjam')) : ?>
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.total_dipinjam') ?>
-                                                </div>
-                                            <?php endif ?>
+                                            <input type="text" class="form-control" id="kategori_list" style="background-color: white;" value="<?= esc($tb_peminjaman[0]['kategori_list'] ?? '-', 'attr'); ?>" disabled>
                                         </div>
                                     </div>
                                 </div>

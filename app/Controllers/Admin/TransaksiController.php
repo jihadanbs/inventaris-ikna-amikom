@@ -23,23 +23,6 @@ class TransaksiController extends BaseController
         return view('admin/transaksi/index', $data);
     }
 
-    public function detail($kode_peminjaman)
-    {
-        // Cek sesi pengguna
-        if ($this->checkSession() !== true) {
-            return $this->checkSession(); // Redirect jika sesi tidak valid
-        }
-
-        // Menyiapkan data untuk tampilan
-        $data = array_merge([
-            'title' => 'Admin | Detail Transaksi',
-            'detail_peminjaman' => $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman),
-            'kode_peminjaman' => $kode_peminjaman
-        ]);
-
-        return view('admin/transaksi/detail', $data);
-    }
-
     public function cek_data($kode_peminjaman)
     {
         // Cek sesi pengguna
