@@ -128,7 +128,7 @@
                                             </div>
                                             <div class="col-auto">:</div>
                                             <div class="col-md-8">
-                                                <p><?= esc($detail_peminjaman[0]['total_jenis_barang'] ?? '', 'html'); ?> Unit</p>
+                                                <p><?= esc($detail_peminjaman[0]['total_jenis_barang'] ?? '', 'html'); ?> Jenis Barang</p>
                                             </div>
 
                                             <div class="col-md-2">

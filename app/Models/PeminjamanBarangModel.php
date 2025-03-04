@@ -103,6 +103,43 @@ class PeminjamanBarangModel extends Model
         return $results;
     }
 
+    public function getDetailById($id_peminjaman)
+    {
+        $builder = $this->db->table('tb_peminjaman');
+        $builder->select('
+        tb_peminjaman.*,
+        tb_user.nama_lengkap,
+        tb_user.pekerjaan,
+        tb_user.no_telepon
+    ');
+        $builder->join('tb_transaksi', 'tb_transaksi.id_peminjaman = tb_peminjaman.id_peminjaman', 'left');
+        $builder->join('tb_user', 'tb_user.id_user = tb_transaksi.id_user', 'left');
+        $builder->where('tb_peminjaman.id_peminjaman', $id_peminjaman);
+
+        $query = $builder->get();
+        return $query->getRowArray();
+    }
+
+    public function getBarangByKodePeminjaman($kode_peminjaman)
+    {
+        $builder = $this->db->table('tb_peminjaman');
+        $builder->select('
+        tb_peminjaman.id_peminjaman,
+        tb_peminjaman.kode_peminjaman,
+        tb_peminjaman.id_barang,
+        tb_peminjaman.total_dipinjam,
+        tb_peminjaman.tanggal_pengajuan,
+        tb_peminjaman.tanggal_peminjaman,
+        tb_peminjaman.tanggal_pengembalian,
+        tb_barang.nama_barang
+    ');
+        $builder->join('tb_barang', 'tb_barang.id_barang = tb_peminjaman.id_barang', 'left');
+        $builder->where('tb_peminjaman.kode_peminjaman', $kode_peminjaman);
+
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
+
     public function getKodePeminjaman($kode_peminjaman)
     {
         $builder = $this->db->table('tb_peminjaman');
