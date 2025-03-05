@@ -13,6 +13,7 @@ class Dashboard extends BaseController
         $data = array_merge([
             'title' => 'Admin | Dashboard',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
+            'tb_setting_pinjam_barang' => $this->m_pinjam_barang->getAllSorted(),
         ]);
 
         // Jika pengguna tidak login dan mencoba mengakses halaman admin dashboard, arahkan kembali dan beri pesan

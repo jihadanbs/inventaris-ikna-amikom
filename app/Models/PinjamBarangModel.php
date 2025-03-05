@@ -25,7 +25,8 @@ class PinjamBarangModel extends Model
             tb_kategori_barang.nama_kategori, 
             tb_kondisi_barang.nama_kondisi, 
             tb_barang_baik.jumlah_total_baik, 
-            tb_barang_masuk.tanggal_masuk
+            tb_barang_masuk.tanggal_masuk,
+            tb_barang_rusak.jumlah_total_rusak, 
         ');
         $builder->join('tb_barang', 'tb_barang.id_barang = tb_setting_pinjam_barang.id_barang', 'left');
         $builder->join('tb_galeri_barang', 'tb_barang.id_barang = tb_galeri_barang.id_barang', 'left');

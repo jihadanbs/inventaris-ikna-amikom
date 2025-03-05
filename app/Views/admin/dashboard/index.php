@@ -59,6 +59,22 @@
             font-size: 16px;
         }
     }
+
+    .table-container {
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+    .table-container.collapsed {
+        max-height: 0;
+        opacity: 0;
+    }
+
+    .shadow-3d {
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6),
+            0 6px 20px rgba(255, 255, 255, 0.4);
+        border-radius: 10px;
+    }
 </style>
 
 <body>
@@ -100,7 +116,7 @@
                                     <p class="greeting-message">"TUHAN adalah kekuatan umat-Nya dan benteng keselamatan bagi orang yang diurapi-Nya !" Mazmur 28:8</p>
                                 </div>
                                 <div class="col-md-3 text-end">
-                                    <img src="<?= base_url('assets/img/ikna.png') ?>" alt="Welcome" class="img-fluid">
+                                    <img src="<?= base_url('assets/img/ikna.png') ?>" alt="Welcome" class="img-fluid shadow-3d">
                                 </div>
                             </div>
                         </div>
@@ -295,13 +311,72 @@
 
                 </div><!-- end row-->
 
+                <div class="card">
+                    <div class="card-header text-white d-flex justify-content-between align-items-center" style="background-color: #28527a;">
+                        <h5 class="mb-0" style="color: #f4d160 !important; font-size: 16px;">
+                            <i class="bi bi-box me-2"></i>Stok Barang
+                        </h5>
+                        <button id="toggleTableBtn" class="btn btn-light">
+                            <i id="toggleIcon" class="bi bi-eye-slash me-1"></i>Sembunyikan
+                        </button>
+                    </div>
+                    <div id="tableContainer" class="card-body table-container">
+                        <div class="table-responsive">
+                            <table id="tableSettingBarang" class="table table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr class="table-primary text-center">
+                                        <th>Nomor</th>
+                                        <th>Nama Barang</th>
+                                        <th>Kategori</th>
+                                        <th>Kondisi</th>
+                                        <th>Total Barang</th>
+                                        <th>Barang Tersedia</th>
+                                        <th>Barang Rusak</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($tb_setting_pinjam_barang as $row) : ?>
+                                        <tr>
+                                            <td class="text-center" style="width: 50px;"><?= $i++; ?></td>
+                                            <td><?= truncateText($row['nama_barang'], 70); ?></td>
+                                            <td><?= $row['nama_kategori']; ?></td>
+                                            <td><?= $row['nama_kondisi']; ?></td>
+                                            <td class="text-center"><?= $row['jumlah_total']; ?> Unit</td>
+                                            <td class="text-center"><?= $row['jumlah_total_baik']; ?> Unit</td>
+                                            <td class="text-center"><?= $row['jumlah_total_rusak']; ?> Unit</td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <!-- container-fluid -->
         </div>
         <!-- End Page-content -->
-
     </div>
+
+    <?php
+    function truncateText($text, $maxLength)
+    {
+        // Memeriksa apakah teks lebih panjang dari batas maksimum
+        if (strlen($text) > $maxLength) {
+            // Mengambil substring dari awal hingga batas maksimum
+            $text = substr($text, 0, $maxLength);
+            // Mencari posisi spasi terakhir untuk memastikan tidak memotong kata di tengah
+            $lastSpace = strrpos($text, ' ');
+            if ($lastSpace !== false) {
+                $text = substr($text, 0, $lastSpace);
+            }
+            // Menambahkan ellipsis (...) untuk menunjukkan bahwa teks dipotong
+            $text .= '...';
+        }
+        return $text;
+    }
+    ?>
     <!-- end main content-->
     <?= $this->include('admin/layouts/footer') ?>
 
@@ -309,6 +384,24 @@
     <!-- END layout-wrapper -->
 
     <?= $this->include('admin/layouts/script2') ?>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableContainer = document.getElementById('tableContainer');
+            const toggleTableBtn = document.getElementById('toggleTableBtn');
+            const toggleIcon = document.getElementById('toggleIcon');
+
+            toggleTableBtn.addEventListener('click', function() {
+                tableContainer.classList.toggle('collapsed');
+
+                if (tableContainer.classList.contains('collapsed')) {
+                    toggleTableBtn.innerHTML = '<i id="toggleIcon" class="bi bi-eye me-1"></i>Tampilkan';
+                } else {
+                    toggleTableBtn.innerHTML = '<i id="toggleIcon" class="bi bi-eye-slash me-1"></i>Sembunyikan';
+                }
+            });
+        });
+    </script>
 
     <script>
         $(document).ready(function() {
