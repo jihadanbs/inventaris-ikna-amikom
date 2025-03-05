@@ -105,7 +105,7 @@
                                                     <i class="fa fa-eye"></i> Cek
                                                 </a>
 
-                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . $row['slug']) ?>"
+                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . $row['kode_peminjaman']) ?>"
                                                     class="btn btn-danger btn-sm waves-effect waves-light sa-warning"
                                                     <?= ($row['status'] != 'Dikembalikan' && $row['status'] != 'Ditolak') ? 'onclick="return false;" style="pointer-events: none; opacity: 0.5;"' : '' ?>>
                                                     <i class="fas fa-trash-alt"></i> Hapus
@@ -165,31 +165,31 @@
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6]
+                            columns: [0, 1, 2, 3, 4, 5]
                         }
                     },
                     'colvis'
@@ -197,6 +197,59 @@
             }).buttons().container().appendTo('#tableTransaksi_wrapper .col-md-6:eq(0)');
         });
     </script>
-    </body>
 
-    </html>
+    <script>
+        $('#tableTransaksi').on('click', '.sa-warning', function(e) {
+            e.preventDefault();
+            var kode_peminjaman = $(this).closest('tr').find('td:nth-child(3)').text().trim(); // Sesuaikan dengan kolom kode peminjaman
+
+            Swal.fire({
+                title: "Anda Yakin Ingin Menghapus?",
+                text: "Data yang sudah dihapus tidak bisa dikembalikan!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#28527A",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Hapus!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: "<?= site_url('admin/transaksi/delete') ?>",
+                        data: {
+                            kode_peminjaman: kode_peminjaman,
+                            _method: 'DELETE'
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                Swal.fire({
+                                    title: "Dihapus!",
+                                    text: response.message,
+                                    icon: "success"
+                                }).then(() => {
+                                    // Refresh halaman atau reload DataTable
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Gagal!",
+                                    text: response.message,
+                                    icon: "error"
+                                });
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: "Error!",
+                                text: "Terjadi kesalahan: " + error,
+                                icon: "error"
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    </body>

@@ -414,7 +414,7 @@ class TransaksiController extends BaseController
     // END DITOLAK
 
     // DIKEMBALIKAN
-    public function dikembalikan($slug)
+    public function dikembalikan($kode_peminjaman)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -425,7 +425,7 @@ class TransaksiController extends BaseController
         $data = array_merge([
             'title' => 'Admin | Halaman Transaksi Barang Dikembalikan',
             'validation' => session()->getFlashdata('validation') ?? \Config\Services::validation(),
-            'tb_user_peminjam' => $this->m_peminjaman_barang->getNamaLengkapBySlug($slug),
+            'tb_peminjaman' => $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman),
             'tb_kategori_barang' => $this->m_kategori_barang->getAllData(),
             'tb_kondisi_barang' => $this->m_kondisi_barang->getAllData(),
         ]);
@@ -441,9 +441,33 @@ class TransaksiController extends BaseController
         }
 
         $data = $this->request->getPost();
+        $barangDetails = [];
 
-        //validasi input 
+        // Validasi input untuk setiap barang
         $rules = [
+            'id_barang.*' => [
+                'rules' => 'required|numeric',
+                'errors' => [
+                    'required' => 'Silahkan Pilih Nama Barang !',
+                    'numeric' => 'Jumlah harus berupa angka !'
+                ]
+            ],
+            'jumlah_baik.*' => [
+                'rules' => 'required|numeric|greater_than_equal_to[0]',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Jumlah Barang Kondisi Layak !',
+                    'numeric' => 'Jumlah harus berupa angka !',
+                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
+                ]
+            ],
+            'jumlah_rusak.*' => [
+                'rules' => 'required|numeric|greater_than_equal_to[0]',
+                'errors' => [
+                    'required' => 'Silahkan Masukkan Jumlah Barang Kondisi Rusak !',
+                    'numeric' => 'Jumlah harus berupa angka !',
+                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
+                ]
+            ],
             'catatan_peminjaman' => [
                 'rules' => 'required|trim|min_length[5]',
                 'errors' => [
@@ -451,27 +475,20 @@ class TransaksiController extends BaseController
                     'min_length' => 'Catatan tidak boleh kurang dari 5 karakter !',
                 ]
             ],
-            'jumlah_total_baik' => [
-                'rules' => 'required|numeric|greater_than_equal_to[0]',
-                'errors' => [
-                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Layak !',
-                    'numeric' => 'Jumlah harus berupa angka !',
-                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
-                ]
-            ],
-            'jumlah_total_rusak' => [
-                'rules' => 'required|numeric|greater_than_equal_to[0]',
-                'errors' => [
-                    'required' => 'Silahkan Masukkan Jumlah Total Barang Kondisi Rusak !',
-                    'numeric' => 'Jumlah harus berupa angka !',
-                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
-                ]
-            ],
             'tanggal_dikembalikan' => [
-                'rules' => 'required',
+                'rules' => 'required|valid_date',
                 'errors' => [
-                    'required' => 'Silahkan Masukkan Tanggal Dikembalikan Barang !'
+                    'required' => 'Silahkan Masukkan Tanggal Dikembalikan Barang !',
+                    'valid_date' => 'Format tanggal tidak valid !'
                 ]
+            ],
+            'bukti_pengembalian' => [
+                'rules' => 'uploaded[bukti_pengembalian]|max_size[bukti_pengembalian,2048]|is_image[bukti_pengembalian]',
+                'errors' => [
+                    'uploaded' => 'Dokumen Wajib Diunggah !',
+                    'max_size' => 'Ukuran Dokumen Tidak Boleh Lebih Dari 2MB !',
+                    'is_image' => 'File Harus Berupa Gambar (JPG, JPEG, PNG, dll) !',
+                ],
             ],
         ];
 
@@ -480,84 +497,160 @@ class TransaksiController extends BaseController
         }
 
         // Ambil data user peminjam
-        $userPeminjam = $this->m_peminjaman_barang->find($id_peminjaman);
+        $userPeminjam = $this->m_peminjaman_barang->getDetailById($id_peminjaman);
+
         if (!$userPeminjam) {
             return redirect()->back()->with('error', 'Data peminjam tidak ditemukan!');
         }
 
-        // Ambil data stok barang
-        $idBarang = $this->request->getPost('id_barang');
-        $stokBarang = $this->m_barang_baik->where('id_barang', $idBarang)->first();
-        $stokBarangRusak = $this->m_barang_rusak->where('id_barang', $idBarang)->first();
-
-        if (!$stokBarang || !$stokBarangRusak) {
-            return redirect()->back()->withInput()
-                ->with('error', 'Data barang tidak ditemukan!');
+        // Ambil data peminjaman utama
+        $peminjaman = $this->m_peminjaman_barang->find($id_peminjaman);
+        if (!$peminjaman) {
+            return redirect()->back()->with('error', 'Data peminjaman tidak ditemukan!');
         }
 
-        // Validasi total barang yang dikembalikan
-        $jumlahDikembalikanBaik = (int)$data['jumlah_total_baik'];
-        $jumlahDikembalikanRusak = (int)$data['jumlah_total_rusak'];
-        $totalDipinjam = (int)$this->request->getPost('total_dipinjam');
+        // Ambil detail peminjaman berdasarkan kode peminjaman
+        $kodePeminjaman = $userPeminjam['kode_peminjaman'];
+        $detailPeminjamans = $this->m_peminjaman_barang->getDetailByKodePeminjaman($kodePeminjaman);
 
-        if (($jumlahDikembalikanBaik + $jumlahDikembalikanRusak) !== $totalDipinjam) {
+        // Validasi total barang untuk setiap item
+        $idBarangs = $this->request->getPost('id_barang');
+        $jumlahBaiks = $this->request->getPost('jumlah_baik');
+        $jumlahRusaks = $this->request->getPost('jumlah_rusak');
+
+        // Variabel untuk menyimpan total barang yang dipinjam per barang
+        $totalBarangDipinjamPerBarang = [];
+
+        // Hitung total barang dipinjam per barang berdasarkan kode peminjaman
+        foreach ($detailPeminjamans as $detailPeminjaman) {
+            $idBarang = $detailPeminjaman['id_barang'];
+            $totalBarangDipinjamPerBarang[$idBarang] = $detailPeminjaman['total_dipinjam'];
+        }
+
+        // Array untuk menyimpan validasi per barang
+        $barangValidation = [];
+
+        // Variabel untuk menyimpan total barang yang dikembalikan
+        $totalDikembalikanBaik = 0;
+        $totalDikembalikanRusak = 0;
+
+        // Loop untuk memeriksa setiap barang
+        foreach ($detailPeminjamans as $detailPeminjaman) {
+            $indexBarang = array_search($detailPeminjaman['id_barang'], $idBarangs);
+
+            if ($indexBarang === false) {
+                $barangValidation[] = "Barang {$detailPeminjaman['nama_barang']} tidak ditemukan dalam proses pengembalian!";
+                continue;
+            }
+
+            $jumlahBaik = (int)$jumlahBaiks[$indexBarang];
+            $jumlahRusak = (int)$jumlahRusaks[$indexBarang];
+            $totalBarangDipinjam = $totalBarangDipinjamPerBarang[$detailPeminjaman['id_barang']];
+
+            // Validasi per barang
+            if ($jumlahBaik + $jumlahRusak > $totalBarangDipinjam) {
+                $barangValidation[] = "Jumlah barang yang dikembalikan untuk {$detailPeminjaman['nama_barang']} melebihi total yang dipinjam! (Dipinjam: {$totalBarangDipinjam}, Dikembalikan: " . ($jumlahBaik + $jumlahRusak) . ")";
+            }
+
+            // Tambahkan ke total
+            $totalDikembalikanBaik += $jumlahBaik;
+            $totalDikembalikanRusak += $jumlahRusak;
+        }
+
+        // Hitung total dipinjam dari detail peminjaman berdasarkan kode peminjaman
+        $totalDipinjam = array_sum(array_column($detailPeminjamans, 'total_dipinjam'));
+
+        // Validasi total barang
+        if (($totalDikembalikanBaik + $totalDikembalikanRusak) !== $totalDipinjam) {
+            $barangValidation[] = "Total barang yang dikembalikan harus sama dengan total yang dipinjam! (Dipinjam: {$totalDipinjam}, Dikembalikan: " . ($totalDikembalikanBaik + $totalDikembalikanRusak) . ")";
+        }
+
+        // Jika ada validasi yang gagal
+        if (!empty($barangValidation)) {
             return redirect()->back()->withInput()
-                ->with('error', 'Total barang yang dikembalikan harus sama dengan total yang dipinjam !');
+                ->with('error', implode("\n", $barangValidation));
         }
 
         // Mulai transaksi database
         $this->db->transBegin();
 
         try {
-            // Update stok barang baik
-            $newStokBaik = $stokBarang['jumlah_total_baik'] + $jumlahDikembalikanBaik;
-            if (!$this->m_barang_baik->update($idBarang, ['jumlah_total_baik' => $newStokBaik])) {
-                throw new \Exception('Gagal mengupdate stok barang baik');
+            // Ambil semua barang yang terkait dengan kode peminjaman
+            $kodePeminjaman = $userPeminjam['kode_peminjaman'];
+            $semuaBarang = $this->m_peminjaman_barang->getDetailByKodePeminjaman($kodePeminjaman);
+
+            // Ambil detail barang untuk pesan WhatsApp
+            foreach ($semuaBarang as $item) {
+                $barang = $this->m_barang->find($item['id_barang']);
+                if ($barang) {
+                    $barangDetails[] = "- {$barang['nama_barang']} ({$item['total_dipinjam']} unit)";
+                }
             }
 
-            // Update stok barang rusak
-            $newStokRusak = $stokBarangRusak['jumlah_total_rusak'] + $jumlahDikembalikanRusak;
-            if (!$this->m_barang_rusak->update($idBarang, ['jumlah_total_rusak' => $newStokRusak])) {
-                throw new \Exception('Gagal mengupdate stok barang rusak');
+            // Dapatkan detail peminjaman termasuk total_jenis_barang
+            $detailPeminjaman = $this->m_peminjaman_barang->getDetailByKodePeminjaman($kodePeminjaman);
+
+            // Pastikan ada data yang diambil
+            if (!empty($detailPeminjaman)) {
+                $total_jenis_barang = $detailPeminjaman[0]['total_jenis_barang'] ?? 0;
+                $kategori_list = $detailPeminjaman[0]['kategori_list'] ?? '-';
+            } else {
+                $total_jenis_barang = 0;
+                $kategori_list = '-';
             }
 
-            // Ambil dan update jumlah_dipinjam di tb_barang
-            $currentBorrow = $this->m_barang->where('id_barang', $idBarang)->first();
-            $existingBorrowed = $currentBorrow['jumlah_dipinjam'];
+            // Update status semua peminjaman dengan kode peminjaman yang sama
+            $this->m_peminjaman_barang->where('kode_peminjaman', $kodePeminjaman)
+                ->set([
+                    'status' => 'Dikembalikan',
+                    'tanggal_dikembalikan' => $data['tanggal_dikembalikan'],
+                    'catatan_peminjaman' => $data['catatan_peminjaman'],
+                    'bukti_pengembalian' => uploadFile('bukti_pengembalian', 'dokumen/dokumen-bukti-pengembalian/')
+                ])
+                ->update();
 
-            if (!$this->m_barang->update($idBarang, [
-                'jumlah_dipinjam' => $existingBorrowed - $totalDipinjam
-            ])) {
-                throw new \Exception('Gagal mengupdate jumlah dipinjam');
+            // Proses update stok barang untuk setiap item
+            foreach ($idBarangs as $index => $idBarang) {
+                $jumlahBaik = $jumlahBaiks[$index];
+                $jumlahRusak = $jumlahRusaks[$index];
+
+                // Update stok barang baik
+                $barangBaik = $this->m_barang_baik->where('id_barang', $idBarang)->first();
+                $this->m_barang_baik->update($barangBaik['id_barang_baik'], [
+                    'jumlah_total_baik' => $barangBaik['jumlah_total_baik'] + $jumlahBaik
+                ]);
+
+                // Update stok barang rusak
+                $barangRusak = $this->m_barang_rusak->where('id_barang', $idBarang)->first();
+                $this->m_barang_rusak->update($barangRusak['id_barang_rusak'], [
+                    'jumlah_total_rusak' => $barangRusak['jumlah_total_rusak'] + $jumlahRusak,
+                    'keterangan_rusak' => $this->getKeteranganRusak(
+                        $barangRusak['jumlah_total_rusak'] + $jumlahRusak,
+                        $barangRusak['keterangan_rusak'] ?? ''
+                    ),
+                ]);
+
+                // Update jumlah dipinjam di tb_barang
+                $barang = $this->m_barang->find($idBarang);
+                $this->m_barang->update($idBarang, [
+                    'jumlah_dipinjam' => $barang['jumlah_dipinjam'] - ($jumlahBaik + $jumlahRusak)
+                ]);
             }
 
-            // Simpan data ke tb_barang_masuk
-            $dataBarangMasuk = [
-                'id_barang' => $userPeminjam['id_barang'],
-                'tanggal_masuk' => date('Y-m-d'),
-                'keterangan_masuk' => $this->getKeteranganMasukDikembalikan(date('Y-m-d'), $userPeminjam['total_dipinjam'], $userPeminjam['nama_lengkap']),
-            ];
+            foreach ($semuaBarang as $item) {
+                // Simpan data ke tb_barang_masuk
+                $dataBarangMasuk = [
+                    'id_barang' => $item['id_barang'],
+                    'tanggal_masuk' => $data['tanggal_dikembalikan'],
+                    'keterangan_masuk' => $this->getKeteranganMasukDikembalikan($data['tanggal_dikembalikan'], $userPeminjam['total_dipinjam'], $userPeminjam['nama_lengkap']),
+                ];
 
-            if (!$this->m_barang_masuk->insert($dataBarangMasuk)) {
-                throw new \Exception('Gagal menyimpan data barang masuk');
+                if (!$this->m_barang_masuk->insert($dataBarangMasuk)) {
+                    throw new \Exception('Gagal menyimpan data barang masuk');
+                }
             }
 
-            // Update data di tb_user_peminjam
-            $dataUpdatePeminjam = [
-                'id_peminjaman' => $id_peminjaman,
-                'id_barang' => $userPeminjam['id_barang'],
-                'catatan_peminjaman' => $data['catatan_peminjaman'],
-                'tanggal_dikembalikan' => $data['tanggal_dikembalikan'],
-                'jumlah_dikembalikan_baik' => $jumlahDikembalikanBaik,
-                'jumlah_dikembalikan_rusak' => $jumlahDikembalikanRusak,
-                'status' => 'Dikembalikan',
-            ];
-
-            if (!$this->m_peminjaman_barang->update($id_peminjaman, $dataUpdatePeminjam)) {
-                throw new \Exception('Gagal mengupdate data peminjam');
-            }
-
-            // Commit transaksi jika semua berhasil
+            // Commit transaksi
             $this->db->transCommit();
 
             $message = "✨ *INFORMASI PEMINJAMAN BARANG* ✨\n\n"
@@ -570,9 +663,13 @@ class TransaksiController extends BaseController
                 . "📦 *Detail Peminjaman*\n"
                 . "Kode Peminjaman: *{$userPeminjam['kode_peminjaman']}*\n"
                 . "Status: *Dikembalikan*\n"
-                . "Total Dipinjam: *{$userPeminjam['total_dipinjam']} unit*\n"
-                . "Kondisi Baik: *{$jumlahDikembalikanBaik} unit*\n"
-                . "Kondisi Rusak: *{$jumlahDikembalikanRusak} unit*\n"
+                . "Daftar Barang Dipinjam: \n\n"
+                . implode("\n", $barangDetails) . "\n\n"
+                . "Total Jenis Barang: *{$total_jenis_barang} jenis*\n"
+                . "Kategori Barang: *{$kategori_list}*\n"
+                . "Total Dipinjam: *{$totalDipinjam} unit*\n"
+                . "Kondisi Baik: *{$totalDikembalikanBaik} unit*\n"
+                . "Kondisi Rusak: *{$totalDikembalikanRusak} unit*\n"
                 . "Tanggal Pengajuan: *" . formatTanggalIndo($userPeminjam['tanggal_pengajuan']) . "*\n"
                 . "Tanggal Dipinjamkan: *" . formatTanggalIndo($userPeminjam['tanggal_dipinjamkan']) . "*\n"
                 . "Tanggal Perkiraan Kembali: *" . formatTanggalIndo($userPeminjam['tanggal_perkiraan_dikembalikan']) . "*\n"
@@ -599,6 +696,16 @@ class TransaksiController extends BaseController
         }
     }
 
+    private function getKeteranganRusak($jumlah, $keterangan)
+    {
+        if ($jumlah == 0) {
+            return 'Tidak ada kerusakan';
+        } else if ($jumlah > 0) {
+            return 'Barang dalam kondisi rusak dan perlu perbaikan';
+        }
+        return $keterangan;
+    }
+
     private function getKeteranganMasukDikembalikan($tanggal_masuk, $total_dipinjam, $nama_lengkap)
     {
         return sprintf(
@@ -609,6 +716,86 @@ class TransaksiController extends BaseController
         );
     }
     // END DIKEMBALIKAN
+
+    public function delete()
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
+
+        // Mendapatkan kode_peminjaman dari input POST
+        $kode_peminjaman = $this->request->getPost('kode_peminjaman');
+
+        // Mulai transaksi
+        $this->db->transStart();
+
+        try {
+            // Ambil semua id_peminjaman yang terkait dengan kode_peminjaman
+            $peminjamans = $this->db->table('tb_peminjaman')
+                ->select('id_peminjaman, dokumen_jaminan, bukti_pengembalian')
+                ->where('kode_peminjaman', $kode_peminjaman)
+                ->get()
+                ->getResult();
+
+            // Hapus file-file terkait
+            foreach ($peminjamans as $peminjaman) {
+                // Hapus dokumen jaminan
+                if (!empty($peminjaman->dokumen_jaminan)) {
+                    $fullFilePath = ROOTPATH . 'public/' . $peminjaman->dokumen_jaminan;
+                    if (is_file($fullFilePath)) {
+                        unlink($fullFilePath);
+                    }
+                }
+
+                // Hapus bukti pengembalian
+                if (!empty($peminjaman->bukti_pengembalian)) {
+                    $fullFilePath = ROOTPATH . 'public/' . $peminjaman->bukti_pengembalian;
+                    if (is_file($fullFilePath)) {
+                        unlink($fullFilePath);
+                    }
+                }
+            }
+
+            // Hapus data di tabel transaksi
+            $this->db->table('tb_transaksi')
+                ->whereIn('id_peminjaman', array_column($peminjamans, 'id_peminjaman'))
+                ->delete();
+
+            // Hapus data di tabel peminjaman
+            $this->db->table('tb_peminjaman')
+                ->where('kode_peminjaman', $kode_peminjaman)
+                ->delete();
+
+            // Selesaikan transaksi
+            $this->db->transComplete();
+
+            // Periksa apakah transaksi berhasil
+            if ($this->db->transStatus() === false) {
+                // Transaksi gagal, rollback perubahan
+                $this->db->transRollback();
+                return $this->response->setJSON([
+                    'status' => 'error',
+                    'message' => 'Gagal menghapus file dan data'
+                ]);
+            }
+
+            // Transaksi berhasil, commit perubahan
+            $this->db->transCommit();
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Semua file dan data berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+            // Transaksi gagal, rollback perubahan
+            $this->db->transRollback();
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Gagal menghapus file dan data',
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
 
     public function totalByStatus($status)
     {
@@ -630,6 +817,7 @@ class TransaksiController extends BaseController
 
         try {
             $total = $this->m_peminjaman_barang
+                ->groupBy('kode_peminjaman')
                 ->where('status', $status)
                 ->countAllResults();
 

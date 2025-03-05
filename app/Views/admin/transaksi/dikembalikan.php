@@ -53,6 +53,7 @@
                                 <input type="hidden" name="tanggal_perkiraan_dikembalikan" value="<?= esc($tb_peminjaman[0]['tanggal_perkiraan_dikembalikan'], 'attr'); ?>">
                                 <input type="hidden" name="kategori_list" value="<?= esc($tb_peminjaman[0]['kategori_list'] ?? '', 'attr'); ?>">
                                 <input type="hidden" name="total_jenis_barang" value="<?= esc($tb_peminjaman[0]['total_jenis_barang'] ?? 0, 'attr'); ?>">
+                                <input type="hidden" name="kode_peminjaman" value="<?= esc($tb_peminjaman[0]['kode_peminjaman'], 'attr'); ?>">
 
                                 <label class="col-form-label" style="font-size: 25px;">A. Data Peminjam</label>
 
@@ -60,7 +61,7 @@
                                     <div class="col-md-6 mb-3 separator">
                                         <label for="nama_lengkap" class="col-form-label">Nama Lengkap<span class="text-danger">*</span></label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control <?= session('errors.nama_lengkap') ? 'is-invalid' : ''; ?>" id="nama_lengkap" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_lengkap" value="<?= esc(old('nama_lengkap', $tb_peminjaman[0]['nama_lengkap']), 'attr'); ?>" autocomplete="off" disabled>
+                                            <input type="text" class="form-control <?= session('errors.nama_lengkap') ? 'is-invalid' : ''; ?>" id="nama_lengkap" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_lengkap" value="<?= esc(old('nama_lengkap', $tb_peminjaman[0]['nama_lengkap']), 'attr'); ?>" autocomplete="off" readonly>
 
                                             <?php if (session('errors.nama_lengkap')) : ?>
                                                 <div class="invalid-feedback">
@@ -73,7 +74,7 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="nama_barang" class="col-form-label">Nama Barang<span class="text-danger">*</span></label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control <?= session('errors.nama_barang') ? 'is-invalid' : ''; ?>" id="nama_barang" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_barang" value="<?= esc(old('nama_barang', $tb_peminjaman[0]['barang_list']), 'attr'); ?>" autocomplete="off" disabled>
+                                            <input type="text" class="form-control <?= session('errors.nama_barang') ? 'is-invalid' : ''; ?>" id="nama_barang" style="background-color: white;" placeholder="Masukkan Nama Barang" name="nama_barang" value="<?= esc(old('nama_barang', $tb_peminjaman[0]['barang_list']), 'attr'); ?>" autocomplete="off" readonly>
 
                                             <?php if (session('errors.nama_barang')) : ?>
                                                 <div class="invalid-feedback">
@@ -88,14 +89,14 @@
                                     <div class="col-md-6 mb-3">
                                         <label for="total_jenis_barang" class="col-form-label">Total Jenis Barang</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="total_jenis_barang" style="background-color: white;" value="<?= esc($tb_peminjaman[0]['total_jenis_barang'] ?? 0, 'attr'); ?> Jenis Barang" disabled>
+                                            <input type="text" class="form-control" id="total_jenis_barang" style="background-color: white;" value="<?= esc($tb_peminjaman[0]['total_jenis_barang'] ?? 0, 'attr'); ?> Jenis Barang" readonly>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label for="kategori_list" class="col-form-label">Daftar Kategori</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="kategori_list" style="background-color: white;" value="<?= esc($tb_peminjaman[0]['kategori_list'] ?? '-', 'attr'); ?>" disabled>
+                                            <input type="text" class="form-control" id="kategori_list" style="background-color: white;" value="<?= esc($tb_peminjaman[0]['kategori_list'] ?? '-', 'attr'); ?>" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +114,7 @@
 
                                 <div class="mb-3">
                                     <label for="kepentingan" class="col-form-label">Kepentingan<span class="text-danger">*</span></label>
-                                    <textarea class="form-control custom-border <?= session('errors.kepentingan') ? 'is-invalid' : ''; ?>" id="kepentingan" cols="30" rows="5" style="background-color: white;" placeholder="Masukkan kepentingan" name="kepentingan" autocomplete="off" disabled><?= esc(old('kepentingan', $tb_peminjaman[0]['kepentingan']), 'attr'); ?></textarea>
+                                    <textarea class="form-control custom-border <?= session('errors.kepentingan') ? 'is-invalid' : ''; ?>" id="kepentingan" cols="30" rows="5" style="background-color: white;" placeholder="Masukkan kepentingan" name="kepentingan" autocomplete="off" readonly><?= esc(old('kepentingan', $tb_peminjaman[0]['kepentingan']), 'attr'); ?></textarea>
 
                                     <?php if (session('errors.kepentingan')) : ?>
                                         <div class="invalid-feedback">
@@ -124,38 +125,57 @@
 
                                 <label class="col-form-label" style="font-size: 25px;">B. Input Data Pengembalian Barang</label>
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-3 separator">
-                                        <label for="jumlah_total_baik" class="col-form-label">Total Barang Kondisi (Baik/Layak)<span class="text-danger">*</span></label>
-                                        <div class="col-sm-12">
-                                            <input type="number" class="form-control <?= session('errors.jumlah_total_baik') ? 'is-invalid' : ''; ?>" id="jumlah_total_baik" name="jumlah_total_baik" placeholder="Masukkan Jumlah Total Barang Yang Kondisi Baik/Layak" style="background-color: white;" autofocus value="<?= old('jumlah_total_baik'); ?>">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Barang</th>
+                                            <th>Total Dipinjam</th>
+                                            <th>Barang Kondisi Layak</th>
+                                            <th>Barang Kondisi Rusak</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($tb_peminjaman as $barang): ?>
+                                            <tr>
+                                                <td>
+                                                    <input type="hidden" name="id_barang[]" value="<?= $barang['id_barang'] ?>">
+                                                    <?= $barang['nama_barang'] ?>
+                                                </td>
+                                                <td><?= $barang['total_dipinjam'] ?></td>
+                                                <td>
+                                                    <input type="number" style="background-color: white;" id="jumlah_baik[]" name="jumlah_baik[]" class="form-control barang-baik <?= session('errors.jumlah_baik') ? 'is-invalid' : ''; ?>" min="0" max="<?= $barang['total_dipinjam'] ?>">
 
-                                            <?php if (session('errors.jumlah_total_baik')) : ?>
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.jumlah_total_baik') ?>
-                                                </div>
-                                            <?php endif ?>
-                                        </div>
-                                    </div>
+                                                    <?php if (session('errors.jumlah_baik')) : ?>
+                                                        <div class="invalid-feedback">
+                                                            <?= session('errors.jumlah_baik') ?>
+                                                        </div>
+                                                    <?php endif ?>
+                                                </td>
+                                                <td>
+                                                    <input type="number" style="background-color: white;" name="jumlah_rusak[]" class="form-control barang-rusak <?= session('errors.jumlah_rusak') ? 'is-invalid' : ''; ?>" min="0" max="<?= $barang['total_dipinjam'] ?>">
 
-                                    <div class="col-md-6 mb-3">
-                                        <label for="jumlah_total_rusak" class="col-form-label">Total Barang Kondisi (Rusak)<span class="text-danger">*</span></label>
-                                        <div class="col-sm-12">
-                                            <input type="number" class="form-control <?= session('errors.jumlah_total_rusak') ? 'is-invalid' : ''; ?>" id="jumlah_total_rusak" name="jumlah_total_rusak" placeholder="Masukkan Jumlah Total Barang Yang Kondisi Rusak" style="background-color: white;" autofocus value="<?= old('jumlah_total_rusak'); ?>">
-
-                                            <?php if (session('errors.jumlah_total_rusak')) : ?>
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.jumlah_total_rusak') ?>
-                                                </div>
-                                            <?php endif ?>
-                                        </div>
-                                    </div>
-                                </div>
+                                                    <?php if (session('errors.jumlah_rusak')) : ?>
+                                                        <div class="invalid-feedback">
+                                                            <?= session('errors.jumlah_rusak') ?>
+                                                        </div>
+                                                    <?php endif ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2" class="text-right"><strong>Total Keseluruhan:</strong></td>
+                                            <td><strong id="total-baik">0</strong></td>
+                                            <td><strong id="total-rusak">0</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
 
                                 <!-- autofocus input edit langsung kebelakang kata -->
                                 <script>
                                     window.addEventListener('DOMContentLoaded', function() {
-                                        var jumlahTotalBaik = document.getElementById('jumlah_total_baik');
+                                        var jumlahTotalBaik = document.getElementById('jumlah_baik[]');
 
                                         // Fungsi untuk mengatur fokus ke posisi akhir input
                                         function setFocusToEnd(element) {
@@ -178,6 +198,17 @@
                                     <?php if (session('errors.tanggal_dikembalikan')) : ?>
                                         <div class="invalid-feedback">
                                             <?= session('errors.tanggal_dikembalikan') ?>
+                                        </div>
+                                    <?php endif ?>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="tanggal_dikembalikan" class="col-form-label">Bukti Pengembalian Barang<span class="text-danger">*</span></label>
+                                    <input type="file" accept="image/*" class="form-control <?= session('errors.bukti_pengembalian') ? 'is-invalid' : ''; ?>" id="bukti_pengembalian" name="bukti_pengembalian" style="background-color: white;" value="<?= old('bukti_pengembalian'); ?>">
+
+                                    <?php if (session('errors.bukti_pengembalian')) : ?>
+                                        <div class="invalid-feedback">
+                                            <?= session('errors.bukti_pengembalian') ?>
                                         </div>
                                     <?php endif ?>
                                 </div>
@@ -213,3 +244,83 @@
 <?= $this->include('admin/layouts/footer') ?>
 <!-- end main content-->
 <?= $this->include('admin/layouts/script2') ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const tableRows = document.querySelectorAll('table tbody tr');
+        const totalBaikElement = document.getElementById('total-baik');
+        const totalRusakElement = document.getElementById('total-rusak');
+        const validasiTotalAlert = document.getElementById('validasi-total');
+
+        function validateBarangInputs() {
+            let totalDipinjamKeseluruhan = 0;
+            let totalBaik = 0;
+            let totalRusak = 0;
+            let isValid = true;
+
+            // Loop setiap baris untuk mendapatkan total dipinjam keseluruhan
+            tableRows.forEach(row => {
+                const totalDipinjamCell = row.querySelector('td:nth-child(2)');
+                totalDipinjamKeseluruhan += parseInt(totalDipinjamCell.textContent) || 0;
+            });
+
+            // Validasi setiap baris
+            tableRows.forEach(row => {
+                const barangBaikInput = row.querySelector('.barang-baik');
+                const barangRusakInput = row.querySelector('.barang-rusak');
+                const totalDipinjamCell = row.querySelector('td:nth-child(2)');
+
+                const jumlahBaik = parseInt(barangBaikInput.value) || 0;
+                const jumlahRusak = parseInt(barangRusakInput.value) || 0;
+                const totalBarangDipinjam = parseInt(totalDipinjamCell.textContent) || 0;
+
+                // Reset status validasi
+                barangBaikInput.classList.remove('is-invalid');
+                barangRusakInput.classList.remove('is-invalid');
+
+                // Validasi per barang
+                if (jumlahBaik + jumlahRusak > totalBarangDipinjam) {
+                    barangBaikInput.classList.add('is-invalid');
+                    barangRusakInput.classList.add('is-invalid');
+                    isValid = false;
+                }
+
+                totalBaik += jumlahBaik;
+                totalRusak += jumlahRusak;
+            });
+
+            // Update total di footer
+            totalBaikElement.textContent = totalBaik;
+            totalRusakElement.textContent = totalRusak;
+
+            // Validasi total keseluruhan
+            if (totalBaik + totalRusak !== totalDipinjamKeseluruhan) {
+                validasiTotalAlert.style.display = 'block';
+                validasiTotalAlert.textContent = 'Total barang baik dan rusak harus sama dengan total yang dipinjam !';
+                isValid = false;
+            } else {
+                validasiTotalAlert.style.display = 'none';
+            }
+
+            return isValid;
+        }
+
+        // Tambahkan event listener untuk setiap input
+        const barangBaikInputs = document.querySelectorAll('.barang-baik');
+        const barangRusakInputs = document.querySelectorAll('.barang-rusak');
+
+        [...barangBaikInputs, ...barangRusakInputs].forEach(input => {
+            input.addEventListener('input', validateBarangInputs);
+        });
+
+        // Validasi saat form di-submit
+        const form = document.getElementById('validationForm');
+        form.addEventListener('submit', function(event) {
+            if (!validateBarangInputs()) {
+                event.preventDefault();
+            }
+        });
+
+        // Jalankan validasi awal
+        validateBarangInputs();
+    });
+</script>
