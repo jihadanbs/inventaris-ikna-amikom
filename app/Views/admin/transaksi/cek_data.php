@@ -410,21 +410,53 @@
                                 <i class="fas fa-check"></i> Dikembalikan
                             </a>
 
-                            <a href="<?= site_url('admin/transaksi/warning/' . $kode_peminjaman); ?>"
-                                class="btn btn-warning btn-md ml-3 <?= $status == 'Belum Diproses' || $status == 'Ditolak' || $status == 'Dikembalikan' ? 'disabled' : '' ?>">
-                                <i class="fas fa-exclamation-triangle"></i> Peringatan
-                            </a>
-                        </div>
+                            <?php
+                            $tanggal_sekarang = date('Y-m-d');
+                            $tanggal_perkiraan = $first_item['tanggal_perkiraan_dikembalikan'] ?? '';
 
+                            if ($tanggal_perkiraan && strtotime($tanggal_sekarang) > strtotime($tanggal_perkiraan)) : ?>
+                                <a href="<?= site_url('admin/transaksi/warning/' . $kode_peminjaman); ?>"
+                                    class="btn btn-warning btn-md ml-3 <?= $status == 'Belum Diproses' || $status == 'Ditolak' || $status == 'Dikembalikan' ? 'disabled' : '' ?>">
+                                    <i class="fas fa-exclamation-triangle"></i> Peringatan
+                                </a>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
     <?= $this->include('admin/layouts/footer') ?>
 </div>
 <?= $this->include('admin/layouts/script2') ?>
+
+<!-- ALERT WHATSAPP -->
+<?php if (session()->getFlashdata('whatsapp_link')) : ?>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                title: 'Peminjaman Barang Melewati Waktu Pengembalian!',
+                text: 'Apakah Anda ingin mengirimkan melalui WhatsApp?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, Buka WhatsApp',
+                cancelButtonText: 'Tidak',
+                customClass: {
+                    confirmButton: 'btn btn-primary m-2',
+                    cancelButton: 'btn btn-danger m-2'
+                },
+                buttonsStyling: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Membuka link di tab baru
+                    window.open('<?= session()->getFlashdata('whatsapp_link') ?>', '_blank');
+                }
+            });
+        });
+    </script>
+<?php endif; ?>
+<!-- END ALERT WHATSAPP -->
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var carousels = document.querySelectorAll('.carousel');
@@ -434,63 +466,4 @@
     });
 </script>
 
-<!-- HAPUS -->
-<script>
-    $(document).ready(function() {
-        $('.sa-warning').click(function(e) {
-            e.preventDefault();
-            var id_barang = $(this).data('id');
-
-            Swal.fire({
-                title: "Anda Yakin Ingin Menghapus?",
-                text: "Data yang sudah dihapus tidak bisa dikembalikan!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#28527A",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ya, Hapus!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: "POST",
-                        url: "<?= site_url('admin/barang/delete2') ?>",
-                        data: {
-                            id_barang: id_barang,
-                            _method: 'DELETE'
-                        },
-                        dataType: 'json',
-                        success: function(response) {
-                            if (response.status === 'success') {
-                                Swal.fire({
-                                    title: "Dihapus!",
-                                    text: response.message,
-                                    icon: "success"
-                                }).then(() => {
-                                    // Redirect ke halaman /admin/barang setelah sukses menghapus
-                                    window.location.href = '<?= site_url('admin/barang') ?>';
-                                });
-                            } else if (response.status === 'error') {
-                                Swal.fire({
-                                    title: "Gagal!",
-                                    text: response.message,
-                                    icon: "error"
-                                });
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            Swal.fire({
-                                title: "Error",
-                                text: "Terjadi kesalahan. Silakan coba lagi.",
-                                icon: "error"
-                            });
-                        }
-                    });
-                }
-            });
-        });
-    });
-</script>
-<!-- HAPUS -->
 </body>
-
-</html>

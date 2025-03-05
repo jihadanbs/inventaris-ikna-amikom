@@ -95,9 +95,9 @@
                                                 <?php elseif ($row['status'] === 'Dipinjamkan') : ?>
                                                     <span class="badge bg-info text-white">Dipinjamkan</span>
                                                 <?php elseif ($row['status'] === 'Dikembalikan') : ?>
-                                                    <span class="badge bg-success text-success">Dikembalikan</span>
+                                                    <span class="badge bg-success text-white">Dikembalikan</span>
                                                 <?php else : ?>
-                                                    <span class="badge bg-secondary text-secondary">Tidak Diketahui</span>
+                                                    <span class="badge bg-secondary text-white">Tidak Diketahui</span>
                                                 <?php endif; ?>
                                             </td>
                                             <td style="width: 155px">

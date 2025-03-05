@@ -143,22 +143,10 @@
                                                 </td>
                                                 <td><?= $barang['total_dipinjam'] ?></td>
                                                 <td>
-                                                    <input type="number" style="background-color: white;" id="jumlah_baik[]" name="jumlah_baik[]" class="form-control barang-baik <?= session('errors.jumlah_baik') ? 'is-invalid' : ''; ?>" min="0" max="<?= $barang['total_dipinjam'] ?>">
-
-                                                    <?php if (session('errors.jumlah_baik')) : ?>
-                                                        <div class="invalid-feedback">
-                                                            <?= session('errors.jumlah_baik') ?>
-                                                        </div>
-                                                    <?php endif ?>
+                                                    <input type="number" style="background-color: white;" id="jumlah_baik[]" name="jumlah_baik[]" class="form-control barang-baik" min="0" max="<?= $barang['total_dipinjam'] ?>">
                                                 </td>
                                                 <td>
-                                                    <input type="number" style="background-color: white;" name="jumlah_rusak[]" class="form-control barang-rusak <?= session('errors.jumlah_rusak') ? 'is-invalid' : ''; ?>" min="0" max="<?= $barang['total_dipinjam'] ?>">
-
-                                                    <?php if (session('errors.jumlah_rusak')) : ?>
-                                                        <div class="invalid-feedback">
-                                                            <?= session('errors.jumlah_rusak') ?>
-                                                        </div>
-                                                    <?php endif ?>
+                                                    <input type="number" style="background-color: white;" name="jumlah_rusak[]" class="form-control barang-rusak" min="0" max="<?= $barang['total_dipinjam'] ?>">
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

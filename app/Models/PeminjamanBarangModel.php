@@ -12,6 +12,14 @@ class PeminjamanBarangModel extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = false;
 
+    public function getDetailPeminjamByKodePeminjaman($kode_peminjaman)
+    {
+        return $this->db->table('tb_peminjaman')
+            ->where('kode_peminjaman', $kode_peminjaman)
+            ->get()
+            ->getRowArray();
+    }
+
     public function getAllSorted()
     {
         $builder = $this->db->table('tb_peminjaman');
@@ -62,6 +70,7 @@ class PeminjamanBarangModel extends Model
             tb_peminjaman.*,
             GROUP_CONCAT(tb_file_foto_barang.path_file_foto_barang SEPARATOR ", ") as path_file_foto_barang,
             tb_user.nama_lengkap,
+            tb_user.no_telepon,
             tb_barang.id_barang,
             tb_barang.nama_barang,
             tb_barang.slug as slug_barang,

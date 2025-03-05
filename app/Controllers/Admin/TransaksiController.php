@@ -452,22 +452,22 @@ class TransaksiController extends BaseController
                     'numeric' => 'Jumlah harus berupa angka !'
                 ]
             ],
-            'jumlah_baik.*' => [
-                'rules' => 'required|numeric|greater_than_equal_to[0]',
-                'errors' => [
-                    'required' => 'Silahkan Masukkan Jumlah Barang Kondisi Layak !',
-                    'numeric' => 'Jumlah harus berupa angka !',
-                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
-                ]
-            ],
-            'jumlah_rusak.*' => [
-                'rules' => 'required|numeric|greater_than_equal_to[0]',
-                'errors' => [
-                    'required' => 'Silahkan Masukkan Jumlah Barang Kondisi Rusak !',
-                    'numeric' => 'Jumlah harus berupa angka !',
-                    'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
-                ]
-            ],
+            // 'barang-baik' => [
+            //     'rules' => 'required|numeric|greater_than_equal_to[0]',
+            //     'errors' => [
+            //         'required' => 'Silahkan Masukkan Jumlah Barang Kondisi Layak !',
+            //         'numeric' => 'Jumlah harus berupa angka !',
+            //         'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
+            //     ]
+            // ],
+            // 'barang-rusak' => [
+            //     'rules' => 'required|numeric|greater_than_equal_to[0]',
+            //     'errors' => [
+            //         'required' => 'Silahkan Masukkan Jumlah Barang Kondisi Rusak !',
+            //         'numeric' => 'Jumlah harus berupa angka !',
+            //         'greater_than_equal_to' => 'Jumlah tidak boleh negatif !'
+            //     ]
+            // ],
             'catatan_peminjaman' => [
                 'rules' => 'required|trim|min_length[5]',
                 'errors' => [
@@ -794,6 +794,136 @@ class TransaksiController extends BaseController
                 'message' => 'Gagal menghapus file dan data',
                 'error' => $e->getMessage()
             ]);
+        }
+    }
+
+    public function delete2()
+    {
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
+
+        $kode_peminjaman = $this->request->getPost('kode_peminjaman');
+        $this->db->transStart();
+
+        try {
+            $peminjamans = $this->db->table('tb_peminjaman')
+                ->select('id_peminjaman, dokumen_jaminan, bukti_pengembalian')
+                ->where('kode_peminjaman', $kode_peminjaman)
+                ->get()
+                ->getResult();
+
+            foreach ($peminjamans as $peminjaman) {
+                $this->_safeDeleteFile($peminjaman->dokumen_jaminan);
+                $this->_safeDeleteFile($peminjaman->bukti_pengembalian);
+            }
+
+            $this->db->table('tb_transaksi')
+                ->whereIn('id_peminjaman', array_column($peminjamans, 'id_peminjaman'))
+                ->delete();
+
+            $this->db->table('tb_peminjaman')
+                ->where('kode_peminjaman', $kode_peminjaman)
+                ->delete();
+
+            $this->db->transComplete();
+
+            return $this->response->setJSON([
+                'status' => 'success',
+                'message' => 'Semua file dan data berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+            log_message('error', 'Delete Error: ' . $e->getMessage());
+            $this->db->transRollback();
+            return $this->response->setJSON([
+                'status' => 'error',
+                'message' => 'Gagal menghapus file dan data'
+            ]);
+        }
+    }
+
+    private function _safeDeleteFile($filePath)
+    {
+        if (!empty($filePath)) {
+            $fullFilePath = ROOTPATH . 'public/' . $filePath;
+            if (is_file($fullFilePath) && file_exists($fullFilePath)) {
+                unlink($fullFilePath);
+            }
+        }
+    }
+
+    public function warning($kode_peminjaman)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
+
+        // Ambil data peminjaman
+        $detailPeminjaman = $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman);
+
+        // Tambahkan pengecekan null
+        if (empty($detailPeminjaman)) {
+            log_message('error', 'Tidak dapat menemukan data peminjaman untuk Kode: ' . $kode_peminjaman);
+            return redirect()->back()->with('error', 'Data peminjaman tidak ditemukan');
+        }
+
+        // Ambil data pertama (karena method mengembalikan array)
+        $userPeminjam = $detailPeminjaman[0];
+
+        // Mulai transaksi database
+        $this->db->transBegin();
+
+        try {
+            // Proses detail barang
+            $barangDetails = [];
+            $total_jenis_barang = $userPeminjam['total_jenis_barang'] ?? 0;
+            $kategori_list = $userPeminjam['kategori_list'] ?? '-';
+
+            foreach ($detailPeminjaman as $item) {
+                if (!empty($item['nama_barang'])) {
+                    $barangDetails[] = "- {$item['nama_barang']} ({$item['total_dipinjam']} unit)";
+                }
+            }
+
+            $this->db->transCommit();
+
+            // Buat pesan WhatsApp
+            $message = "🚨 *PERINGATAN PEMINJAMAN BARANG* 🚨\n\n"
+                . "Halo *{$userPeminjam['nama_lengkap']}*,\n"
+                . "Kami ingin mengingatkan Anda tentang status peminjaman barang:\n\n"
+                . "📦 *Detail Peminjaman*\n"
+                . "Kode Peminjaman: *{$kode_peminjaman}*\n"
+                . "Status: *Melewati Batas Pengembalian*\n\n"
+                . "🛑 *Barang yang Harus Dikembalikan*:\n"
+                . implode("\n", $barangDetails) . "\n\n"
+                . "Total Jenis Barang: *{$total_jenis_barang} jenis*\n"
+                . "Kategori Barang: *{$kategori_list}*\n\n"
+                . "📅 *Detail Tanggal*:\n"
+                . "Tanggal Pengajuan: *" . formatTanggalIndo($userPeminjam['tanggal_pengajuan']) . "*\n"
+                . "Tanggal Dipinjamkan: *" . formatTanggalIndo($userPeminjam['tanggal_dipinjamkan']) . "*\n"
+                . "Tanggal Perkiraan Kembali: *" . formatTanggalIndo($userPeminjam['tanggal_perkiraan_dikembalikan']) . "*\n\n"
+                . "🔔 *Tindak Lanjut*:\n"
+                . "1. Segera kembalikan barang\n"
+                . "2. Hubungi admin untuk konfirmasi\n"
+                . "3. Hindari keterlambatan lebih lanjut\n\n"
+                . "Terima kasih. 🙏";
+
+            $phone = preg_replace('/[^0-9]/', '', $userPeminjam['no_telepon']);
+            if (substr($phone, 0, 1) === '0') {
+                $phone = '62' . substr($phone, 1);
+            }
+            $waUrl = 'https://api.whatsapp.com/send?phone=' . $phone . '&text=' . urlencode($message);
+
+            // Set flash data untuk WhatsApp link dan pesan sukses
+            session()->setFlashdata('whatsapp_link', $waUrl);
+            session()->setFlashdata('pesan', 'Transaksi Pengembalian Barang Berhasil Disimpan !');
+
+            return redirect()->to('admin/transaksi/cek_data/' . $userPeminjam['kode_peminjaman']);
+        } catch (\Exception $e) {
+            // Rollback transaksi jika terjadi error
+            $this->db->transRollback();
+            return redirect()->back()->with('error', 'Gagal mengembalikan barang: ' . $e->getMessage());
         }
     }
 
