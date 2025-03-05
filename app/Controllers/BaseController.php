@@ -131,6 +131,7 @@ abstract class BaseController extends Controller
         // Helper
         helper("upload_helper");
         helper("date_helper");
+        helper("tanggal_helper");
         helper("whatsapp_helper");
 
         // Inisialisasi Models

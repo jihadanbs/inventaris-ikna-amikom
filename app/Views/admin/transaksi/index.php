@@ -89,15 +89,15 @@
                                             <td><?= formatTanggalIndo($row['tanggal_pengajuan']); ?></td>
                                             <td class="text-center">
                                                 <?php if ($row['status'] === 'Belum Diproses') : ?>
-                                                    <span class="badge bg-primary-subtle text-primary">Belum Diproses</span>
+                                                    <span class="badge bg-primary text-white">Belum Diproses</span>
                                                 <?php elseif ($row['status'] === 'Ditolak') : ?>
-                                                    <span class="badge bg-danger-subtle text-danger">Ditolak</span>
+                                                    <span class="badge bg-danger text-white">Ditolak</span>
                                                 <?php elseif ($row['status'] === 'Dipinjamkan') : ?>
-                                                    <span class="badge bg-warning-subtle text-warning">Dipinjamkan</span>
+                                                    <span class="badge bg-info text-white">Dipinjamkan</span>
                                                 <?php elseif ($row['status'] === 'Dikembalikan') : ?>
-                                                    <span class="badge bg-success-subtle text-success">Dikembalikan</span>
+                                                    <span class="badge bg-success text-success">Dikembalikan</span>
                                                 <?php else : ?>
-                                                    <span class="badge bg-secondary-subtle text-secondary">Tidak Diketahui</span>
+                                                    <span class="badge bg-secondary text-secondary">Tidak Diketahui</span>
                                                 <?php endif; ?>
                                             </td>
                                             <td style="width: 155px">

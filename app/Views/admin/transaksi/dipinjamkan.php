@@ -140,33 +140,14 @@
                                                 </div>
                                             <?php endif ?>
                                             <small class="form-text text-muted">
-                                                <span>Note : Samakan dengan Jumlah Barang Yang Ingin Dipinjam</span>
+                                                <span>Note : Sudah terisi otomatis</span>
                                             </small>
                                         </div>
                                     </div>
 
-                                    <!-- autofocus input edit langsung kebelakang kata -->
-                                    <script>
-                                        window.addEventListener('DOMContentLoaded', function() {
-                                            var inputTotalBarang = document.getElementById('total_barang');
-
-                                            // Fungsi untuk mengatur fokus ke posisi akhir input
-                                            function setFocusToEnd(element) {
-                                                element.focus();
-                                                var val = element.value;
-                                                element.value = ''; // kosongkan nilai input
-                                                element.value = val; // isi kembali nilai input untuk memindahkan fokus ke posisi akhir
-                                            }
-
-                                            // Panggil fungsi setFocusToEnd setelah DOM selesai dimuat
-                                            setFocusToEnd(inputTotalBarang);
-                                        });
-                                    </script>
-                                    <!-- end autofocus input edit langsung kebelakang kata -->
-
                                     <div class="col-md-6 mb-3">
-                                        <label for="tanggal_keluar" class="col-form-label">Tanggal Keluar Barang<span class="text-danger">*</span></label>
-                                        <input type="date" class="form-control custom-border <?= session('errors.tanggal_keluar') ? 'is-invalid' : ''; ?>" name="tanggal_keluar" placeholder="Tanggal Masuk" id="tanggal_keluar" cols="30" rows="10" style="background-color: white;" value="<?= old('tanggal_keluar'); ?>"></input>
+                                        <label for="tanggal_keluar" id="tanggal_keluar" class="col-form-label">Tanggal Keluar Barang<span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control custom-border <?= session('errors.tanggal_keluar') ? 'is-invalid' : ''; ?>" name="tanggal_keluar" placeholder="Tanggal Masuk" id="tanggal_keluar" cols="30" rows="10" style="background-color: white;" autofocus value="<?= old('tanggal_keluar'); ?>"></input>
 
                                         <?php if (session('errors.tanggal_keluar')) : ?>
                                             <div class="invalid-feedback">
@@ -179,7 +160,7 @@
                                 <div class="mb-3">
                                     <label for="keterangan_keluar" class="col-form-label">Keterangan Keluar<span class="text-danger">*</span></label>
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control <?= session('errors.keterangan_keluar') ? 'is-invalid' : ''; ?>" id="keterangan_keluar" name="keterangan_keluar" placeholder="Masukkan Keterangan Barang Keluar" style="background-color: white;" autofocus value="<?= old('keterangan_keluar'); ?>">
+                                        <input type="text" class="form-control <?= session('errors.keterangan_keluar') ? 'is-invalid' : ''; ?>" id="keterangan_keluar" name="keterangan_keluar" placeholder="Masukkan Keterangan Barang Keluar" style="background-color: white;" value="<?= old('keterangan_keluar'); ?>">
 
                                         <?php if (session('errors.keterangan_keluar')) : ?>
                                             <div class="invalid-feedback">
@@ -187,7 +168,7 @@
                                             </div>
                                         <?php endif ?>
                                         <small class="form-text text-muted">
-                                            <span style="color: blue;">Note : Boleh dikosongi</span>
+                                            <span>Note : Boleh dikosongi</span>
                                         </small>
                                     </div>
                                 </div>
@@ -234,7 +215,7 @@
                                         <a href="<?= esc(site_url('admin/transaksi/cek_data/' . urlencode($tb_peminjaman[0]['kode_peminjaman'])), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
                                             <i class="fas fa-times"></i> Batal Meminjamkan
                                         </a>
-                                        <button type="submit" class="btn btn-warning"><i class="fas fa-save"></i> Simpan Data Peminjaman</button>
+                                        <button type="submit" class="btn btn-info"><i class="fas fa-save"></i> Simpan Data Peminjaman</button>
                                     </div>
                                 </div>
                             </form>
