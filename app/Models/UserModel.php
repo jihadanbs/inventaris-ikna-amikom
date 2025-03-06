@@ -16,6 +16,16 @@ class UserModel extends Model
         return $this->where('id_jabatan', 2)->findAll();
     }
 
+    public function getByNama($username)
+    {
+        return $this->db->table('tb_user')
+            ->select('tb_user.*, tb_jabatan.nama_jabatan')
+            ->join('tb_jabatan', 'tb_jabatan.id_jabatan = tb_user.id_jabatan')
+            ->where('tb_user.username', $username)
+            ->get()
+            ->getRowArray();
+    }
+
     public function getById($id_user)
     {
         return $this->db->table('tb_user')
@@ -24,6 +34,12 @@ class UserModel extends Model
             ->where('tb_user.id_user', $id_user)
             ->get()
             ->getRowArray();
+    }
+
+    public function getUserByUsername($username)
+    {
+        $query = $this->where('username', $username)->get();
+        return $query->getRow();
     }
 
     public function getAll()
@@ -87,7 +103,7 @@ class UserModel extends Model
     public function getUserById($id_user)
     {
         $query = $this->where('id_user', $id_user)->get();
-        return $query->getRow(); // Pastikan menggunakan getRow() untuk mendapatkan satu baris
+        return $query->getRow();
     }
 
     public function updatePassword($id_user, $new_password_hash)

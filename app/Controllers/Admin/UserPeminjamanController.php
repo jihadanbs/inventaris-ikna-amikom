@@ -21,4 +21,20 @@ class UserPeminjamanController extends BaseController
 
         return view('admin/user-peminjam/index', $data);
     }
+
+    public function cek_data($username)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession(); // Redirect jika sesi tidak valid
+        }
+
+        // Menyiapkan data untuk tampilan
+        $data = array_merge([
+            'title' => 'Admin | Halaman Cek Data User Peminjam',
+            'tb_user' => $this->m_user->getByNama($username),
+        ]);
+
+        return view('admin/user-peminjam/cek-data', $data);
+    }
 }

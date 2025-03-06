@@ -110,8 +110,8 @@
                                             <td><?= truncateText($row['email'], 70); ?></td>
                                             <td><?= $row['no_telepon']; ?></td>
                                             <td style="width: 155px">
-                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . $row['id_user']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_user'] ?>">
+                                                <a href="<?= site_url('admin/user-peminjam/cek_data/' . $row['username']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
+                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['username'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Hapus
                                                 </button>
                                             </td>
