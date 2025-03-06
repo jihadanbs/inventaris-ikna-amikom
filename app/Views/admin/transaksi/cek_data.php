@@ -49,8 +49,11 @@
                 <!-- end page title -->
 
                 <div class="card card-outline card-primary">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between align-items-center">
                         <h3 class="card-title">IKNA AMIKOM YOGYAKARTA</h3>
+                        <a href="<?= esc(site_url('admin/transaksi/cetak/' . urlencode($peminjaman['kode_peminjaman'])), 'attr') ?>" class="btn btn-success waves-effect waves-light ms-auto">
+                            <i class="fa fa-print"></i> Print
+                        </a>
                     </div>
 
                     <div class="card-body">
@@ -198,7 +201,7 @@
                             <?php endif; ?>
                         </div>
 
-                        <table class="table table-bordered table-sm">
+                        <table class="table table-bordered table-sm shadow-lg">
                             <thead class="text-center">
                                 <tr>
                                     <th width="50px">NO</th>
@@ -247,8 +250,8 @@
                             </tbody>
                         </table>
 
-                        <div class="card">
-                            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center" style="background-color: #28527a;">
+                        <div class="card shadow-lg">
+                            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center" style="background-color: #28527a; height: 70px;">
                                 <h4 class="mb-0" style="color: white !important; font-size: 16px;">
                                     <i class="bi bi-box-seam me-2"></i>DAFTAR BARANG YANG DIPINJAM
                                 </h4>

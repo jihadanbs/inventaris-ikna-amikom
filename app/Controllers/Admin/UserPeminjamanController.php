@@ -22,7 +22,7 @@ class UserPeminjamanController extends BaseController
         return view('admin/user-peminjam/index', $data);
     }
 
-    public function cek_data($username)
+    public function profile($username)
     {
         // Cek sesi pengguna
         if ($this->checkSession() !== true) {
@@ -35,6 +35,6 @@ class UserPeminjamanController extends BaseController
             'tb_user' => $this->m_user->getByNama($username),
         ]);
 
-        return view('admin/user-peminjam/cek-data', $data);
+        return view('admin/user-peminjam/profile', $data);
     }
 }

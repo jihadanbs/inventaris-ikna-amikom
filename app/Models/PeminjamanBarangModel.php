@@ -30,6 +30,7 @@ class PeminjamanBarangModel extends Model
             tb_peminjaman.status,
             tb_peminjaman.slug,
             tb_user.nama_lengkap,
+            tb_user.username,
             COUNT(tb_peminjaman.id_barang) as total_jenis_barang,
             GROUP_CONCAT(DISTINCT tb_kategori_barang.nama_kategori SEPARATOR ", ") as kategori_list
         ');

@@ -70,10 +70,10 @@ class FotoController extends BaseController
 
         // Simpan data foto
         $this->m_foto->save([
-            'judul_foto' => $this->request->getVar('judul_foto'),
-            'deskripsi' => $this->request->getVar('deskripsi'),
-            'tanggal_foto' => $this->request->getVar('tanggal_foto'),
-            'slug' => url_title($this->request->getVar('judul_foto'), '-', true),
+            'judul_foto' => $this->request->getPost('judul_foto'),
+            'deskripsi' => $this->request->getPost('deskripsi'),
+            'tanggal_foto' => $this->request->getPost('tanggal_foto'),
+            'slug' => url_title($this->request->getPost('judul_foto'), '-', true),
         ]);
 
         // Dapatkan ID dari foto yang baru saja disimpan
@@ -202,7 +202,7 @@ class FotoController extends BaseController
 
         if (!empty($uploadedFiles)) {
             // Hapus file lama
-            $oldFileNames = explode(', ', $this->request->getVar('old_file_foto'));
+            $oldFileNames = explode(', ', $this->request->getPost('old_file_foto'));
             FotoServices::deleteOldFiles($oldFileNames);
 
             // Hapus relasi lama dari database
@@ -213,16 +213,16 @@ class FotoController extends BaseController
             FotoUpload::saveNewFiles($uploadedFiles, $id_foto);
         } else {
             // Jika tidak ada file baru, gunakan file lama
-            $uploadedFiles = explode(', ', $this->request->getVar('old_file_foto'));
+            $uploadedFiles = explode(', ', $this->request->getPost('old_file_foto'));
         }
 
         // Simpan data ke database
-        $slug = url_title($this->request->getVar('judul_foto'), '-', true);
+        $slug = url_title($this->request->getPost('judul_foto'), '-', true);
         $this->m_foto->save([
             'id_foto' => $id_foto,
-            'judul_foto' => $this->request->getVar('judul_foto'),
-            'deskripsi' => $this->request->getVar('deskripsi'),
-            'tanggal_foto' => $this->request->getVar('tanggal_foto'),
+            'judul_foto' => $this->request->getPost('judul_foto'),
+            'deskripsi' => $this->request->getPost('deskripsi'),
+            'tanggal_foto' => $this->request->getPost('tanggal_foto'),
             'slug' => $slug,
             'file_foto' => implode(', ', $uploadedFiles)
         ]);

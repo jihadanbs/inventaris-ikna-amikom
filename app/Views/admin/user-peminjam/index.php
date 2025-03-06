@@ -1,36 +1,45 @@
 <?= $this->include('admin/layouts/script') ?>
 
 <style>
-    /* CSS untuk input field saat tidak diedit */
-    input[type="text"].input-readonly {
-        background-color: #f0f0f0 !important;
-        border: 1px solid #ccc !important;
+    #userCardControls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #fff;
     }
 
-    /* CSS untuk input field saat diedit */
-    input[type="text"]:not(.input-readonly) {
-        background-color: white !important;
-        border: 1px solid white;
+    .dataTables_length,
+    .dataTables_filter {
+        display: flex;
+        align-items: center;
     }
 
-    input[type="text"].form-control {
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        padding: 8px;
+    .dataTables_length label,
+    .dataTables_filter label {
+        margin-right: 10px;
     }
 
-    .btn-success.save {
-        background-color: green !important;
-        border-color: green !important;
-    }
-
-    .btn-success.save:focus {
-        box-shadow: none !important;
-    }
-
-    .custom-border {
-        border: 1px solid #ced4da;
+    .dataTables_filter input {
+        padding: 5px;
+        border: 1px solid #ccc;
         border-radius: 5px;
+    }
+
+    .dt-buttons button {
+        padding: 8px 12px;
+        border-radius: 5px;
+        background-color: #6c757d;
+        color: #fff;
+        border: none;
+    }
+
+    .dt-buttons button:hover {
+        background-color: #495057;
     }
 </style>
 
@@ -45,7 +54,6 @@
     <div class="page-content">
         <div class="container-fluid">
 
-            <!-- start page title -->
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -53,7 +61,7 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/user_peminjam') ?>">User Peminjam</a></li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('admin/user-peminjam') ?>">User Peminjam</a></li>
                                 <li class="breadcrumb-item active">Data User Peminjam</li>
                             </ol>
                         </div>
@@ -61,71 +69,105 @@
                     </div>
                 </div>
             </div>
-            <!-- end page title -->
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <?php
-                            function truncateText($text, $maxLength)
-                            {
-                                // Memeriksa apakah teks lebih panjang dari batas maksimum
-                                if (strlen($text) > $maxLength) {
-                                    // Mengambil substring dari awal hingga batas maksimum
-                                    $text = substr($text, 0, $maxLength);
-                                    // Mencari posisi spasi terakhir untuk memastikan tidak memotong kata di tengah
-                                    $lastSpace = strrpos($text, ' ');
-                                    if ($lastSpace !== false) {
-                                        $text = substr($text, 0, $lastSpace);
-                                    }
-                                    // Menambahkan ellipsis (...) untuk menunjukkan bahwa teks dipotong
-                                    $text .= '...';
-                                }
-                                return $text;
-                            }
-                            ?>
-                            <table id="tableBarangBaru" class="table table-bordered dt-responsive nowrap w-100">
-                                <?= $this->include('alert/alert'); ?>
-                                <thead>
-                                    <tr class="highlight text-center" style="background-color: #28527A; color: white;">
-                                        <th>Nomor</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Username</th>
-                                        <th>Pekerjaan</th>
-                                        <th>Email</th>
-                                        <th>No. Telepon</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
+            <!-- Container untuk DataTables search dan filter controls -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div id="userCardControls">
+                        <!-- DataTables controls akan ditambahkan di sini oleh JavaScript -->
+                    </div>
 
-                                <tbody>
-                                    <?php $i = 1; ?>
-                                    <?php foreach ($tb_user as $row) : ?>
-                                        <tr>
-                                            <td style="width: 2px" scope="row"><?= $i++; ?></td>
-                                            <td><?= truncateText($row['nama_lengkap'], 70); ?></td>
-                                            <td><?= $row['username']; ?></td>
-                                            <td><?= $row['pekerjaan']; ?></td>
-                                            <td><?= truncateText($row['email'], 70); ?></td>
-                                            <td><?= $row['no_telepon']; ?></td>
-                                            <td style="width: 155px">
-                                                <a href="<?= site_url('admin/user-peminjam/cek_data/' . $row['username']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['username'] ?>">
-                                                    <i class="fas fa-trash-alt"></i> Hapus
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            <small class="form-text text-muted">
-                                <span style="color: red;">Note : Menghapus data user peminjam berarti menghapus juga data transaksi peminjam yang ada di fitur transaksi</span>
-                            </small>
+                    <!-- Container untuk card users dengan ID untuk DataTables -->
+                    <div id="userCardContainer" class="card-users-container">
+                        <div class="row user-cards">
+                            <?php foreach ($tb_user as $row) : ?>
+                                <div class="col-xl-3 col-sm-6 user-card-item"
+                                    data-nama="<?= esc($row['nama_lengkap']); ?>"
+                                    data-username="<?= esc($row['username']); ?>"
+                                    data-pekerjaan="<?= esc($row['pekerjaan']); ?>"
+                                    data-email="<?= esc($row['email']); ?>">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <div class="dropdown text-end">
+                                                <a class="text-muted dropdown-toggle font-size-16" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                                                    <i class="bx bx-dots-horizontal-rounded"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <a class="dropdown-item" href="<?= site_url('admin/user-peminjam/delete/' . $row['username']) ?>">Hapus</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="mx-auto mb-4">
+                                                <?php
+                                                $profileImage = !empty($row['file_profil']) ? base_url($row['file_profil']) : base_url('assets/img/404.gif');
+                                                ?>
+                                                <img src="<?= esc($profileImage, 'attr'); ?>" alt="Profile Picture" class="avatar-xl rounded-circle img-thumbnail">
+                                            </div>
+
+                                            <h5 class="font-size-16 mb-1"><a href="#" class="text-body"> <?= esc($row['nama_lengkap']); ?> </a></h5>
+                                            <p class="text-muted mb-2"> <?= esc($row['pekerjaan']); ?> </p>
+                                        </div>
+
+                                        <div class="btn-group" role="group">
+                                            <a href="<?= site_url('admin/user-peminjam/profile/' . $row['username']) ?>" class="btn btn-outline-light text-truncate">
+                                                <i class="uil uil-user me-1"></i> Profile
+                                            </a>
+                                            <a href="https://wa.me/<?= '62' . substr(esc($row['no_telepon']), 1); ?>" target="_blank" class="btn btn-outline-light text-truncate">
+                                                <i class="uil uil-whatsapp me-1"></i> WhatsApp
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
-                </div> <!-- end col -->
-            </div> <!-- container-fluid -->
+
+                    <!-- Hidden table untuk export (tidak ditampilkan tapi digunakan DataTables) -->
+                    <div style="display: none;">
+                        <table id="tableUser" class="table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Username</th>
+                                    <th>No Telepon</th>
+                                    <th>Email</th>
+                                    <th>Alamat</th>
+                                    <th>Pekerjaan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1;
+                                foreach ($tb_user as $row) : ?>
+                                    <tr>
+                                        <td><?= $no++; ?></td>
+                                        <td><?= esc($row['nama_lengkap']); ?></td>
+                                        <td><?= esc($row['username']); ?></td>
+                                        <td><?= esc($row['no_telepon']); ?></td>
+                                        <td><?= esc($row['email']); ?></td>
+                                        <td><?= esc($row['alamat']); ?></td>
+                                        <td><?= esc($row['pekerjaan']); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Tambahkan div untuk pagination dengan float-end -->
+                    <div class="row g-0 align-items-center">
+                        <div class="col-sm-6">
+                            <div>
+                                <p class="mb-sm-0" id="dataInfo"><!-- Info jumlah entri akan ditambahkan oleh JavaScript --></p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="float-sm-end">
+                                <div id="cardPagination" class="dataTables_paginate paging_simple_numbers"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- End Page-content -->
         <?= $this->include('admin/layouts/footer') ?>
@@ -136,44 +178,196 @@
 
     <script>
         $(document).ready(function() {
-            $("#tableBarangBaru").DataTable({
+            // Inisialisasi DataTables untuk tabel tersembunyi (untuk export dan pagination)
+            var dataTable = $("#tableUser").DataTable({
                 "paging": true,
                 "responsive": true,
                 "lengthChange": true,
-                "autoWidth": true,
+                "autoWidth": false,
+                "pageLength": 8,
+                'searching': true,
+                "lengthMenu": [
+                    [4, 8, 12, -1],
+                    [4, 8, 12, "Semua"]
+                ],
                 "buttons": [{
                         extend: 'copy',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'csv',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     {
                         extend: 'print',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5]
+                            columns: [0, 1, 2, 3, 4, 5, 6]
                         }
                     },
                     'colvis'
                 ],
-            }).buttons().container().appendTo('#tableBarangBaru_wrapper .col-md-6:eq(0)');
+                "language": {
+                    paginate: {
+                        previous: "Previous",
+                        next: "Next"
+                    },
+                    "info": "Showing _START_ to _END_ of _TOTAL_ entries"
+                }
+            });
+
+            // Tambahkan tombol export ke container kontrol
+            dataTable.buttons().container().appendTo('#userCardControls');
+
+            // Tampilkan kontrol length (jumlah item per halaman)
+            $('#userCardControls').prepend($('.dataTables_length'));
+
+            // Tampilkan kotak pencarian
+            $('#userCardControls').prepend($('.dataTables_filter'));
+
+            // Fungsi untuk menampilkan info data (jumlah entri)
+            function updateDataInfo() {
+                var info = dataTable.page.info();
+                $('#dataInfo').html('Showing ' + (info.start + 1) + ' to ' + info.end + ' of ' + info.recordsDisplay + ' entries');
+            }
+
+            // Panggil updateDataInfo saat pertama kali halaman dimuat
+            updateDataInfo();
+
+            // Clone pagination DataTables ke cardPagination dengan kelas untuk mengatur posisi
+            function updatePagination() {
+                $('#cardPagination').empty();
+                var paginationClone = $('#tableUser_paginate').clone(true);
+                paginationClone.addClass('float-sm-end'); // Tambahkan kelas float-end
+                paginationClone.appendTo('#cardPagination');
+            }
+
+            // Panggil updatePagination saat pertama kali halaman dimuat
+            updatePagination();
+
+            // Kustomisasi tampilan card berdasarkan pagination DataTables
+            function displayCards() {
+                var info = dataTable.page.info();
+                var startIndex = info.start;
+                var endIndex = info.end;
+
+                // Sembunyikan semua card terlebih dahulu
+                $('.user-card-item').hide();
+
+                // Ambil data yang sudah difilter oleh DataTables
+                var filteredData = dataTable.rows({
+                    search: 'applied'
+                }).data();
+
+                // Tampilkan hanya card yang sesuai dengan hasil pencarian dan halaman yang aktif
+                filteredData.each(function(data, dataIndex) {
+                    if (dataIndex >= startIndex && dataIndex < endIndex) {
+                        // Ambil username dari data untuk mencocokkan dengan card
+                        var username = data[2]; // indeks 2 adalah kolom username di tabel
+                        $('.user-card-item[data-username="' + username + '"]').show();
+                    }
+                });
+            }
+
+            // Panggil displayCards saat pertama kali halaman dimuat
+            displayCards();
+
+            // Update tampilan card setiap kali DataTable berubah (paging, searching, dll)
+            dataTable.on('draw', function() {
+                // Update pagination
+                updatePagination();
+
+                // Update info data
+                updateDataInfo();
+
+                // Update tampilan card
+                displayCards();
+            });
+
+            // Gunakan fungsi pencarian dari DataTables
+            $('.dataTables_filter input').on('keyup', function() {
+                dataTable.search(this.value).draw();
+            });
+
+            // Tambahkan tombol untuk pengaturan tampilan kolom
+            $('#userCardControls').append('<div class="mt-2 ms-2"><button class="btn btn-sm btn-info" id="toggleCardViewBtn">Pengaturan Tampilan</button></div>');
+
+            // Modal untuk pengaturan tampilan (simulasi colvis)
+            $('body').append(`
+        <div class="modal fade" id="cardViewSettings" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Pengaturan Tampilan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="showNama" checked>
+                            <label class="form-check-label" for="showNama">Nama Lengkap</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="showPekerjaan" checked>
+                            <label class="form-check-label" for="showPekerjaan">Pekerjaan</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="showButtons" checked>
+                            <label class="form-check-label" for="showButtons">Tombol Aksi</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `);
+
+            // Toggle modal pengaturan tampilan
+            $('#toggleCardViewBtn').on('click', function() {
+                var cardViewModal = new bootstrap.Modal(document.getElementById('cardViewSettings'));
+                cardViewModal.show();
+            });
+
+            // Implementasi toggle untuk elemen tampilan
+            $('#showNama').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('.font-size-16.mb-1').show();
+                } else {
+                    $('.font-size-16.mb-1').hide();
+                }
+            });
+
+            $('#showPekerjaan').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('.text-muted.mb-2').show();
+                } else {
+                    $('.text-muted.mb-2').hide();
+                }
+            });
+
+            $('#showButtons').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('.btn-group').show();
+                } else {
+                    $('.btn-group').hide();
+                }
+            });
         });
     </script>
 

@@ -79,7 +79,7 @@
                                         <tr>
                                             <td style="width: 2px" scope="row"><?= $i++; ?></td>
                                             <td>
-                                                <a href="#" class="text-decoration-none">
+                                                <a href="<?= site_url('admin/user-peminjam/profile/' . $row['username']) ?>" class="text-decoration-none">
                                                     <?= $row['nama_lengkap']; ?>
                                                 </a>
                                             </td>
