@@ -164,7 +164,7 @@
                             <div class="custom-form-group opacity">
                                 <label for="username" class="custom-form-label">Username</label>
                                 <div class="custom-input-field">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-id-badge"></i>
                                     <input type="text" id="username" name="username" placeholder="Masukkan Username" value="<?= old('username') ?>" autocomplete="off">
                                 </div>
                                 <?php if (isset(session()->getFlashdata('validation')['username'])) : ?>
@@ -177,7 +177,7 @@
                             <div class="custom-form-group opacity">
                                 <label for="email" class="custom-form-label">Email</label>
                                 <div class="custom-input-field">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-envelope"></i>
                                     <input type="text" id="email" name="email" placeholder="Masukkan Email Anda" value="<?= old('email') ?>" autocomplete="off">
                                 </div>
                                 <?php if (isset(session()->getFlashdata('validation')['email'])) : ?>
@@ -190,7 +190,7 @@
                             <div class="custom-form-group opacity">
                                 <label for="no_telepon" class="custom-form-label">No. Whastapp</label>
                                 <div class="custom-input-field">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-phone"></i>
                                     <input type="text" id="no_telepon" name="no_telepon" placeholder="Masukkan No Whatsapp Anda" value="<?= old('no_telepon') ?>" autocomplete="off">
                                 </div>
                                 <?php if (isset(session()->getFlashdata('validation')['no_telepon'])) : ?>
@@ -203,7 +203,7 @@
                             <div class="custom-form-group opacity">
                                 <label for="pekerjaan" class="custom-form-label">Pekerjaan</label>
                                 <div class="custom-input-field">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-briefcase"></i>
                                     <input type="text" id="pekerjaan" name="pekerjaan" placeholder="Masukkan Pekerjaan Anda" value="<?= old('pekerjaan') ?>" autocomplete="off">
                                 </div>
                                 <?php if (isset(session()->getFlashdata('validation')['pekerjaan'])) : ?>
@@ -218,7 +218,7 @@
                             <div class="custom-form-group opacity">
                                 <label for="alamat" class="custom-form-label">Alamat</label>
                                 <div class="custom-input-field">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-address-card"></i>
                                     <textarea id="alamat" name="alamat" cols="30" rows="5" placeholder="Masukkan alamat Anda" autocomplete="off"><?php echo old('alamat'); ?></textarea>
                                 </div>
                                 <?php if (isset(session()->getFlashdata('validation')['alamat'])) : ?>
@@ -269,7 +269,18 @@
                                     }
                                 }
                             </script>
-
+                            <div class="custom-form-group opacity">
+                                <label for="file_profil" class="custom-form-label">Foto Profil</label>
+                                <div class="custom-input-field">
+                                    <i class="fas fa-camera"></i>
+                                    <input type="file" accept="image/*" id="file_profil" name="file_profil" placeholder="Masukkan foto profile" value="<?= old('file_profil') ?>" autocomplete="off">
+                                </div>
+                                <?php if (isset(session()->getFlashdata('validation')['file_profil'])) : ?>
+                                    <div class="text-danger">
+                                        <?= session()->getFlashdata('validation')['file_profil'] ?>
+                                    </div>
+                                <?php endif; ?>
+                            </div><br>
 
                             <button class="opacity">SUBMIT</button>
                             <?= form_close() ?>
