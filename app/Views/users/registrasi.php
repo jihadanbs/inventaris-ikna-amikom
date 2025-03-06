@@ -83,6 +83,100 @@
         resize: vertical;
     }
 
+    .profile-photo-upload {
+        position: relative;
+        width: 100%;
+        max-width: 350px;
+        height: 55px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px dashed #6c757d;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+    .profile-photo-upload input[type="file"] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .profile-photo-upload .upload-icon {
+        color: #6c757d;
+        margin-right: 15px;
+        transition: color 0.3s ease;
+    }
+
+    .profile-photo-upload .upload-text {
+        color: #6c757d;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex-grow: 1;
+        transition: color 0.3s ease;
+    }
+
+    .profile-photo-upload:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: #495057;
+    }
+
+    .profile-photo-upload:hover .upload-icon,
+    .profile-photo-upload:hover .upload-text {
+        color: #495057;
+    }
+
+    .profile-photo-upload.has-file .upload-text {
+        color: #212529;
+    }
+
+    .profile-photo-upload .file-clear {
+        position: absolute;
+        right: 10px;
+        color: #6c757d;
+        cursor: pointer;
+        display: none;
+        transition: color 0.3s ease;
+    }
+
+    .profile-photo-upload.has-file .file-clear {
+        display: block;
+    }
+
+    .profile-photo-upload .file-clear:hover {
+        color: #dc3545;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .profile-photo-upload {
+            max-width: 100%;
+        }
+    }
+
+    /* Preview Styles */
+    .profile-photo-preview {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #6c757d;
+        margin-bottom: 15px;
+        display: none;
+    }
+
+    .profile-photo-preview.visible {
+        display: block;
+    }
 
     @media (max-width: 768px) {
         .container {
@@ -137,8 +231,8 @@
         <section class="container">
             <div class="login-container">
                 <div class="form-container">
-                    <div class="circle circle-one" style=" opacity: 0.5;"></div>
                     <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+                    <div class="circle circle-one" style=" opacity: 0.5;"></div>
 
                     <h1 class="opacity">REGISTRASI AKUN</h1>
                     <?= $this->include('alert/alert'); ?>
@@ -269,15 +363,7 @@
                             </script>
                             <div class="custom-form-group opacity">
                                 <label for="file_profil" class="custom-form-label">Foto Profil</label>
-                                <div class="custom-input-field">
-                                    <i class="fas fa-camera"></i>
-                                    <input type="file" accept="image/*" id="file_profil" name="file_profil" placeholder="Masukkan foto profile" value="<?= old('file_profil') ?>" autocomplete="off">
-                                </div>
-                                <?php if (isset(session()->getFlashdata('validation')['file_profil'])) : ?>
-                                    <div class="text-danger">
-                                        <?= session()->getFlashdata('validation')['file_profil'] ?>
-                                    </div>
-                                <?php endif; ?>
+                                <input type="file" id="file_profil" name="file_profil" accept="image/*" autocomplete="off">
                             </div><br>
 
                             <button class="opacity">SUBMIT</button>
@@ -293,7 +379,78 @@
             <div class="theme-btn-container"></div>
         </section>
     </body>
+
+    <script>
     <!-- JAVASCRIPT -->
+    document.addEventListener('DOMContentLoaded', function() {
+    const originalFileInput = document.getElementById('file_profil');
+    
+
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.id = 'file_profil';
+    fileInput.name = 'file_profil';
+    fileInput.accept = 'image/*';
+    fileInput.autocomplete = 'off';
+    fileInput.style.display = 'none';
+    
+
+    originalFileInput.parentNode.replaceChild(fileInput, originalFileInput);
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'profile-photo-upload';
+ 
+    const preview = document.createElement('img');
+    preview.className = 'profile-photo-preview';
+    fileInput.parentNode.insertBefore(preview, fileInput);
+    
+    wrapper.innerHTML = `
+        <i class="fas fa-camera upload-icon"></i>
+        <span class="upload-text">Pilih Foto Profil</span>
+        <i class="fas fa-times file-clear"></i>
+    `;
+    
+    fileInput.parentNode.insertBefore(wrapper, fileInput);
+    wrapper.appendChild(fileInput);
+    
+  
+    const uploadText = wrapper.querySelector('.upload-text');
+    const fileClear = wrapper.querySelector('.file-clear');
+    
+  
+    fileInput.addEventListener('change', function(e) {
+        if (this.files && this.files[0]) {
+            // Update text
+            uploadText.textContent = this.files[0].name;
+            wrapper.classList.add('has-file');
+            
+         
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                preview.src = event.target.result;
+                preview.classList.add('visible');
+            };
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
+    
+  
+    fileClear.addEventListener('click', function(e) {
+        e.stopPropagation();
+        fileInput.value = '';
+        uploadText.textContent = 'Pilih Foto Profil';
+        wrapper.classList.remove('has-file');
+        preview.src = '';
+        preview.classList.remove('visible');
+    });
+    
+   
+    wrapper.addEventListener('click', function() {
+        fileInput.click();
+    });
+});
+
+     </script>
     <script src="<?= base_url('assets/admin/libs/jquery/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
     <script src="<?= base_url('assets/admin/libs/metismenu/metisMenu.min.js') ?>"></script>
