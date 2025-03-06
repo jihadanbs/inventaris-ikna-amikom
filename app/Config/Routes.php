@@ -246,6 +246,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->GET('dipinjamkan/(:segment)', 'TransaksiController::dipinjamkan/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'TransaksiController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'TransaksiController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('cetak/(:segment)', 'TransaksiController::cetak/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('cek_data/(:segment)', 'TransaksiController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('delete2', 'TransaksiController::delete2', ['namespace' => 'App\Controllers\Admin']);
         $routes->DELETE('delete', 'TransaksiController::delete', ['namespace' => 'App\Controllers\Admin']);

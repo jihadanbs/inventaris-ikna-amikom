@@ -30,14 +30,48 @@ class TransaksiController extends BaseController
             return $this->checkSession(); // Redirect jika sesi tidak valid
         }
 
+        $peminjaman = $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman);
+
+        // Pastikan ada data hasil
+        if (empty($peminjaman)) {
+            // Handle kasus ketika data tidak ditemukan
+            return redirect()->to(site_url('admin/transaksi'))->with('error', 'Data peminjaman tidak ditemukan');
+        }
+
         // Menyiapkan data untuk tampilan
         $data = [
             'title' => 'Admin | Halaman Cek Data Transaksi Barang',
             'detail_peminjaman' => $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman),
             'kode_peminjaman' => $kode_peminjaman,
+            'peminjaman' => $peminjaman[0]
         ];
 
         return view('admin/transaksi/cek_data', $data);
+    }
+
+    public function cetak($kode_peminjaman)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession(); // Redirect jika sesi tidak valid
+        }
+
+        $peminjaman = $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman);
+
+        // Pastikan ada data hasil
+        if (empty($peminjaman)) {
+            // Handle kasus ketika data tidak ditemukan
+            return redirect()->to(site_url('admin/transaksi'))->with('error', 'Data peminjaman tidak ditemukan');
+        }
+
+        $data = [
+            'title' => 'Cetak Transaksi Peminjam',
+            'detail_peminjaman' => $this->m_peminjaman_barang->getDetailByKodePeminjaman($kode_peminjaman),
+            'nama_lengkap' => $_SESSION['nama_lengkap'] ?? 'Nama Petugas',
+            'kode_peminjaman' => $kode_peminjaman,
+            'peminjaman' => $peminjaman[0]
+        ];
+        return view('admin/transaksi/print-transaksi', $data);
     }
 
     // Dipinjamkan
