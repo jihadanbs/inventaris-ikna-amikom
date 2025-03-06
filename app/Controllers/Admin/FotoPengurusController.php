@@ -57,7 +57,7 @@ class FotoPengurusController extends BaseController
                 ],
             ],
             'foto' => [
-                'rules' => 'uploaded[foto]|max_size[foto,5048]|is_image[foto]',
+                'rules' => 'uploaded[foto]|max_size[foto,2048]|is_image[foto]',
                 'errors' => [
                     'uploaded' => 'Foto Wajib Diunggah !',
                     'max_size' => 'Ukuran Foto Tidak Boleh Lebih Dari 2MB !',

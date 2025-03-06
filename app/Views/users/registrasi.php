@@ -144,7 +144,7 @@
 
                     <h1 class="opacity">REGISTRASI AKUN</h1>
                     <?= $this->include('alert/alert'); ?>
-                    <?= form_open('authentication/cekRegistrasi', ['class' => 'sign-in-form', 'autocomplete' => 'off']) ?>
+                    <?= form_open('authentication/cekRegistrasi', ['class' => 'sign-in-form', 'autocomplete' => 'off', 'enctype' => 'multipart/form-data']) ?>
                     <?= csrf_field(); ?>
                     <div class="flexbox-container">
                         <div class="flexbox-1">

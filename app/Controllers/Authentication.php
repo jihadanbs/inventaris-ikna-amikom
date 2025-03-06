@@ -83,6 +83,13 @@ class Authentication extends BaseController
                     'matches' => 'Konfirmasi Kata Sandi tidak sesuai dengan Kata Sandi !'
                 ]
             ],
+            'file_profil' => [
+                'rules' => 'uploaded[file_profil]|max_size[file_profil,2048]',
+                'errors' => [
+                    'uploaded' => 'Foto Wajib Diunggah !',
+                    'max_size' => 'Ukuran Foto Tidak Boleh Lebih Dari 2MB !',
+                ],
+            ],
         ];
 
         // Jalankan validasi
@@ -98,12 +105,13 @@ class Authentication extends BaseController
             'pekerjaan' => $this->request->getPost('pekerjaan'),
             'alamat' => $this->request->getPost('alamat'),
             'email' => $this->request->getPost('email'),
+            'file_profil' => uploadFile('file_profil', 'dokumen/foto-peminjam/'),
             'no_telepon' => $this->request->getPost('no_telepon'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
             'konfirmasi_password' => $this->request->getPost('konfirmasi_password')
         ]);
 
-        session()->setFlashdata('pesan', 'Anda berhasil melakukan registrasi !');
+        session()->setFlashdata('pesan', 'Berhasil melakukan registrasi !');
 
         return redirect()->to('authentication/login');
     }
