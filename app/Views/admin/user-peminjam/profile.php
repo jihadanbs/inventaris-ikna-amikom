@@ -71,7 +71,7 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="<?= site_url('admin/user_peminjam') ?>">Data Peminjam</a></li>
+                                    <li class="breadcrumb-item"><a href="<?= site_url('admin/user-peminjam') ?>">Data Peminjam</a></li>
                                     <li class="breadcrumb-item active">Formulir Cek Data Peminjam</li>
                                 </ol>
                             </div>
@@ -92,7 +92,7 @@
                             <h4 class="text-center mb-4"><b>FORMULIR CEK DATA PEMINJAM</b></h4>
                             <?php if (!empty($tb_user)) : ?>
                                 <tr>
-                                    <td rowspan="1" width="250px" class="text-center">
+                                    <td rowspan="1" width="150px" class="text-center">
                                         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                                             <div class="carousel-inner">
                                                 <?php
@@ -221,12 +221,6 @@
                                 </tr>
                             <?php endif; ?>
                         </table>
-
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <a href="<?= esc(site_url('admin/user-peminjam'), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
-                                <i class="fas fa-arrow-left"></i> Kembali
-                            </a>
-                        </div>
                     </div>
                 </div>
 

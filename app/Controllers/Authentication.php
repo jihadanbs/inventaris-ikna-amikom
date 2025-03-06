@@ -111,7 +111,7 @@ class Authentication extends BaseController
             'konfirmasi_password' => $this->request->getPost('konfirmasi_password')
         ]);
 
-        session()->setFlashdata('pesan', 'Berhasil melakukan registrasi !');
+        session()->setFlashdata('pesan', 'Berhasil Registrasi !');
 
         return redirect()->to('authentication/login');
     }

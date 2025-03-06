@@ -227,7 +227,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
         $routes->POST('save', 'UserPeminjamanController::save', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'UserPeminjamanController::edit/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->PUT('update/(:num)', 'UserPeminjamanController::update/$1', ['namespace' => 'App\Controllers\Admin']);
-        $routes->GET('cek_data/(:segment)', 'UserPeminjamanController::cek_data/$1', ['namespace' => 'App\Controllers\Admin']);
+        $routes->GET('profile/(:segment)', 'UserPeminjamanController::profile/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->DELETE('delete2/(num)', 'UserPeminjamanController::delete2/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->DELETE('delete/(:num)', 'UserPeminjamanController::delete/$1', ['namespace' => 'App\Controllers\Admin']);
     });
