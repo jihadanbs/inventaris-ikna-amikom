@@ -159,8 +159,8 @@
                                             <tr>
                                                 <td><b>Catatan Peminjaman</b></td>
                                                 <td>
-                                                    <?= truncateText($first_item['catatan_peminjaman'] ?? 'Belum ada catatan', 100); ?>
-                                                    <?php if (strlen(strip_tags($first_item['catatan_peminjaman'] ?? '')) > 100) : ?>
+                                                    <?= truncateText($first_item['catatan_peminjaman'] ?? '' ?: 'Belum ada catatan', 100); ?>
+                                                    <?php if (strlen(strip_tags($first_item['catatan_peminjaman'] ?? '' ?: 'Belum ada catatan')) > 100) : ?>
                                                         <a href="#" class="read-more-link" data-text="<?= htmlspecialchars(strip_tags($first_item['catatan']), ENT_QUOTES, 'UTF-8') ?>">Read more..</a>
                                                     <?php endif; ?>
                                                 </td>

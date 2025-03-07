@@ -30,3 +30,5 @@
 <!-- Table Editable plugin -->
 <script src="<?= base_url('assets/admin/libs/table-edits/build/table-edits.min.js') ?>"></script>
 <script src="<?= base_url('assets/admin/js/pages/table-editable.int.js') ?>"></script>
+<!-- Signature -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>

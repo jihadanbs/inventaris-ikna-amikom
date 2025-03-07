@@ -1,6 +1,39 @@
 <?= $this->include('admin/layouts/script') ?>
 
 <style>
+    .signature-container {
+        position: relative;
+        width: 75%;
+        margin: 0 auto 15px auto;
+    }
+
+    .signature-pad-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100px;
+        border: 1px solid #e0e0e0;
+        background-color: #fff;
+        border-radius: 4px;
+        margin-bottom: 5px;
+    }
+
+    .signature-pad {
+        width: 100%;
+        height: 100%;
+    }
+
+    .signature-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .signature-buttons button {
+        padding: 3px 8px;
+        font-size: 12px;
+    }
+
     @media print {
         .no-print {
             display: none !important;
@@ -21,6 +54,21 @@
 
         .print-only {
             display: block !important;
+        }
+
+        .signature-pad-wrapper {
+            border: none !important;
+        }
+
+        .signature-buttons {
+            display: none !important;
+        }
+
+        .signature-image {
+            display: block !important;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
         }
 
         .signature-section {
@@ -49,6 +97,38 @@
 
         .table {
             width: 100% !important;
+        }
+
+        .col-md-6 {
+            width: 50% !important;
+            float: left !important;
+            display: block !important;
+        }
+
+        .row {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            width: 100% !important;
+        }
+
+        img.img-fluid {
+            max-width: 130px !important;
+        }
+
+        .col-md-9 .row .col-md-6 {
+            padding: 0 10px !important;
+            margin-bottom: 10px !important;
+        }
+
+        .col-md-9 .row {
+            display: flex !important;
+            flex-wrap: wrap !important;
+        }
+    }
+
+    @media screen {
+        .col-md-6 {
+            margin-bottom: 10px;
         }
     }
 
@@ -252,7 +332,7 @@
                                         </tr>
                                         <tr>
                                             <td><b>Catatan Peminjaman</b></td>
-                                            <td><?= $first_item['catatan_peminjaman'] ?? 'Belum ada catatan'; ?></td>
+                                            <td><?= $first_item['catatan_peminjaman'] ?? '' ?: 'Belum ada catatan'; ?></td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
@@ -357,17 +437,35 @@
                             <div class="col-6">
                                 <div class="text-center">
                                     <p>Petugas,</p>
-                                    <br><br>
+                                    <div class="signature-container">
+                                        <div class="signature-pad-wrapper">
+                                            <canvas id="signature-pad-petugas" class="signature-pad"></canvas>
+                                        </div>
+                                        <div class="signature-buttons no-print">
+                                            <button type="button" class="btn btn-sm btn-primary save-signature" data-target="petugas">Simpan</button>
+                                            <button type="button" class="btn btn-sm btn-secondary clear-signature" data-target="petugas">Hapus</button>
+                                        </div>
+                                    </div>
                                     <p><b><?= $petugas['nama_lengkap'] ?? $_SESSION['nama_lengkap'] ?? 'Nama Petugas' ?></b></p>
                                     <p style="border-top: 1px solid #000; width: 75%; margin: 0 auto;"></p>
+                                    <input type="hidden" name="signature_petugas" id="signature-data-petugas">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="text-center">
                                     <p>Peminjam,</p>
-                                    <br><br>
+                                    <div class="signature-container">
+                                        <div class="signature-pad-wrapper">
+                                            <canvas id="signature-pad-penerima" class="signature-pad"></canvas>
+                                        </div>
+                                        <div class="signature-buttons no-print">
+                                            <button type="button" class="btn btn-sm btn-primary save-signature" data-target="penerima">Simpan</button>
+                                            <button type="button" class="btn btn-sm btn-secondary clear-signature" data-target="penerima">Hapus</button>
+                                        </div>
+                                    </div>
                                     <p><b><?= $first_item['nama_lengkap'] ?? 'Nama Peminjam' ?></b></p>
                                     <p style="border-top: 1px solid #000; width: 75%; margin: 0 auto;"></p>
+                                    <input type="hidden" name="signature_penerima" id="signature-data-penerima">
                                 </div>
                             </div>
                         </div>
@@ -396,6 +494,35 @@
         document.getElementById('dokumenSection').style.display = showDokumen ? 'block' : 'none';
         document.getElementById('barangSection').style.display = showBarang ? 'block' : 'none';
 
+        // Siapkan gambar tanda tangan sebelum mencetak
+        document.querySelectorAll('.signature-pad').forEach(function(canvas) {
+            if (canvas.classList.contains('has-signature')) {
+                var signatureData = canvas.getAttribute('data-signature');
+                if (signatureData) {
+                    // Buat element image untuk menampilkan tanda tangan saat cetak
+                    var imgId = 'print-' + canvas.id;
+                    var img = document.getElementById(imgId);
+
+                    // Jika belum ada elemen gambar, buat baru
+                    if (!img) {
+                        img = document.createElement('img');
+                        img.id = imgId;
+                        img.className = 'signature-image print-only';
+                        img.alt = 'Tanda Tangan';
+                        // Tambahkan gambar setelah canvas
+                        canvas.parentNode.insertBefore(img, canvas.nextSibling);
+                    }
+
+                    // Atur source gambar ke data tanda tangan
+                    img.src = signatureData;
+
+                    // Sembunyikan canvas dan tampilkan gambar
+                    canvas.style.display = 'none';
+                    img.style.display = 'block';
+                }
+            }
+        });
+
         // Batasi jumlah barang jika dipilih
         if (limitItems) {
             const barangItems = document.querySelectorAll('.barang-item');
@@ -412,7 +539,176 @@
 
         // Mulai mencetak
         window.print();
+
+        // Kembalikan tampilan setelah mencetak
+        setTimeout(function() {
+            document.querySelectorAll('.signature-pad').forEach(function(canvas) {
+                canvas.style.display = 'block';
+            });
+            document.querySelectorAll('.signature-image').forEach(function(img) {
+                img.style.display = 'none';
+            });
+        }, 1000);
     }
+
+    // Fungsi untuk inisialisasi SignaturePad
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inisialisasi SignaturePad untuk petugas
+        var canvasPetugas = document.getElementById('signature-pad-petugas');
+        var signaturePadPetugas = new SignaturePad(canvasPetugas, {
+            backgroundColor: 'rgba(255, 255, 255, 0)',
+            penColor: 'black'
+        });
+
+        // Inisialisasi SignaturePad untuk penerima
+        var canvasPenerima = document.getElementById('signature-pad-penerima');
+        var signaturePadPenerima = new SignaturePad(canvasPenerima, {
+            backgroundColor: 'rgba(255, 255, 255, 0)',
+            penColor: 'black'
+        });
+
+        // Hapus label teks default yang tidak diinginkan
+        document.querySelectorAll('.signature-pad-wrapper .signature-image').forEach(function(elem) {
+            if (elem) {
+                elem.remove();
+            }
+        });
+
+        // Fungsi untuk menyimpan tanda tangan
+        document.querySelectorAll('.save-signature').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var target = this.getAttribute('data-target');
+                var signaturePad = target === 'petugas' ? signaturePadPetugas : signaturePadPenerima;
+
+                if (signaturePad.isEmpty()) {
+                    Swal.fire({
+                        title: 'Peringatan',
+                        text: 'Silakan buat tanda tangan terlebih dahulu',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    });
+                    return;
+                }
+
+                // Ambil data tanda tangan sebagai base64 image
+                var signatureData = signaturePad.toDataURL();
+                document.getElementById('signature-data-' + target).value = signatureData;
+
+                // Tandai canvas dengan kelas untuk dikenali saat print
+                var canvas = document.getElementById('signature-pad-' + target);
+                canvas.classList.add('has-signature');
+                canvas.setAttribute('data-signature', signatureData);
+
+                // Buat atau perbarui elemen gambar untuk mencetak
+                // Pastikan elemen ini HANYA tampil saat mencetak
+                var imgId = 'print-' + canvas.id;
+                var img = document.getElementById(imgId);
+                if (!img) {
+                    img = document.createElement('img');
+                    img.id = imgId;
+                    img.className = 'signature-image print-only';
+                    img.alt = 'Tanda Tangan';
+                    img.style.display = 'none'; // Pastikan tidak tampil di UI normal
+                    // Tambahkan gambar setelah canvas
+                    canvas.parentNode.insertBefore(img, canvas.nextSibling);
+                }
+                img.src = signatureData;
+
+                // Gunakan SweetAlert untuk notifikasi
+                Swal.fire({
+                    title: 'Berhasil',
+                    text: 'Tanda tangan berhasil disimpan',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            });
+        });
+
+        // Fungsi untuk menghapus tanda tangan
+        document.querySelectorAll('.clear-signature').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var target = this.getAttribute('data-target');
+                var signaturePad = target === 'petugas' ? signaturePadPetugas : signaturePadPenerima;
+                signaturePad.clear();
+
+                // Hapus data tanda tangan yang tersimpan
+                document.getElementById('signature-data-' + target).value = '';
+
+                // Hapus kelas penanda tanda tangan
+                var canvas = document.getElementById('signature-pad-' + target);
+                canvas.classList.remove('has-signature');
+                canvas.removeAttribute('data-signature');
+
+                // Hapus gambar tanda tangan jika ada
+                var imgId = 'print-' + canvas.id;
+                var img = document.getElementById(imgId);
+                if (img) {
+                    img.parentNode.removeChild(img); // Hapus elemen img sepenuhnya
+                }
+
+                // Gunakan SweetAlert untuk notifikasi
+                Swal.fire({
+                    title: 'Berhasil',
+                    text: 'Tanda tangan berhasil dihapus',
+                    icon: 'info',
+                    confirmButtonText: 'OK'
+                });
+            });
+        });
+
+        // Tambahkan CSS untuk memastikan elemen print-only hanya tampil saat mencetak
+        var style = document.createElement('style');
+        style.textContent = `
+        .print-only {
+            display: none !important;
+        }
+        @media print {
+            .print-only {
+                display: block !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    `;
+        document.head.appendChild(style);
+
+        // Fungsi untuk menyesuaikan ukuran canvas saat resize
+        function resizeCanvas() {
+            var canvasList = document.querySelectorAll('.signature-pad');
+            canvasList.forEach(function(canvas) {
+                var ratio = Math.max(window.devicePixelRatio || 1, 1);
+                canvas.width = canvas.offsetWidth * ratio;
+                canvas.height = canvas.offsetHeight * ratio;
+                canvas.getContext("2d").scale(ratio, ratio);
+
+                // Jika ada tanda tangan yang tersimpan, tampilkan kembali
+                if (canvas.classList.contains('has-signature')) {
+                    var signatureData = canvas.getAttribute('data-signature');
+                    if (signatureData) {
+                        // Buat image sementara untuk memuat kembali tanda tangan
+                        var img = new Image();
+                        img.onload = function() {
+                            canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+                        };
+                        img.src = signatureData;
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Hapus label teks default saat halaman dimuat
+        window.addEventListener('load', function() {
+            document.querySelectorAll('.signature-image').forEach(function(elem) {
+                if (elem && !elem.classList.contains('print-only')) {
+                    elem.remove();
+                }
+            });
+        });
+    });
 </script>
 
 </body>
