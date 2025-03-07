@@ -82,13 +82,13 @@
                                                 <div class="mb-3">
                                                     <label for="jumlah_total_rusak" class="form-label">Jumlah Total Kondisi Rusak<span class="text-danger">*</span></label>
                                                     <input type="number" style="background-color: white;" class="form-control" id="jumlah_total_rusak" name="jumlah_total_rusak" required>
-                                                    <div id="jumlah_total_rusak_error" class="text-danger" style="font-size: 0.875em; display: none;"></div> <!-- Tempat pesan error -->
+                                                    <div id="jumlah_total_rusak_error" class="text-danger" style="font-size: 0.875em; display: none;"></div>
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <label for="keterangan_rusak" class="form-label">Keterangan<span class="text-danger">*</span></label>
                                                     <textarea class="form-control" style="background-color: white;" id="keterangan_rusak" name="keterangan_rusak" rows="3"></textarea>
-                                                    <div id="keterangan_rusak_error" class="text-danger" style="font-size: 0.875em; display: none;"></div> <!-- Tempat pesan error -->
+                                                    <div id="keterangan_rusak_error" class="text-danger" style="font-size: 0.875em; display: none;"></div>
                                                 </div>
 
                                             </div>
@@ -204,7 +204,6 @@
             }).buttons().container().appendTo('#tableBarangRusak_wrapper .col-md-6:eq(0)');
         });
 
-
         function editBarang(id, jumlahRusak, keteranganRusak) {
             // Isi data ke dalam form modal
             document.getElementById('id_barang_rusak').value = id;
@@ -215,94 +214,92 @@
             $('#editBarangModal').modal('show');
         }
 
-
         document.getElementById('editBarangForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+            e.preventDefault();
 
-    const formData = new FormData(this);
-    const id = formData.get('id_barang_rusak');
+            const formData = new FormData(this);
+            const id = formData.get('id_barang_rusak');
 
-    // Ambil nilai jumlah rusak dan keterangan
-    const jumlahRusak = formData.get('jumlah_total_rusak');
-    const keteranganRusak = formData.get('keterangan_rusak');
+            // Ambil nilai jumlah rusak dan keterangan
+            const jumlahRusak = formData.get('jumlah_total_rusak');
+            const keteranganRusak = formData.get('keterangan_rusak');
 
-    // Reset pesan error
-    document.getElementById('jumlah_total_rusak_error').style.display = 'none';
-    document.getElementById('keterangan_rusak_error').style.display = 'none';
+            // Reset pesan error
+            document.getElementById('jumlah_total_rusak_error').style.display = 'none';
+            document.getElementById('keterangan_rusak_error').style.display = 'none';
 
-    // Validasi input
-    let isValid = true;
+            // Validasi input
+            let isValid = true;
 
-    // Validasi jumlah rusak
-    if (!jumlahRusak || jumlahRusak <= 0) {
-        document.getElementById('jumlah_total_rusak_error').innerText = 'Jumlah rusak harus lebih besar dari 0!';
-        document.getElementById('jumlah_total_rusak_error').style.display = 'block';
-        isValid = false;
-    }
+            // Validasi jumlah rusak
+            if (!jumlahRusak || jumlahRusak <= 0) {
+                document.getElementById('jumlah_total_rusak_error').innerText = 'Jumlah rusak harus lebih besar dari 0!';
+                document.getElementById('jumlah_total_rusak_error').style.display = 'block';
+                isValid = false;
+            }
 
-    // Validasi keterangan
-    if (!keteranganRusak) {
-        document.getElementById('keterangan_rusak_error').innerText = 'Keterangan harus diisi!';
-        document.getElementById('keterangan_rusak_error').style.display = 'block';
-        isValid = false;
-    }
+            // Validasi keterangan
+            if (!keteranganRusak) {
+                document.getElementById('keterangan_rusak_error').innerText = 'Keterangan harus diisi!';
+                document.getElementById('keterangan_rusak_error').style.display = 'block';
+                isValid = false;
+            }
 
-    // Jika form tidak valid, hentikan eksekusi
-    if (!isValid) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Silakan periksa kembali inputan Anda!',
+            // Jika form tidak valid, hentikan eksekusi
+            if (!isValid) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Silakan periksa kembali inputan Anda!',
+                });
+                return;
+            }
+
+            // Jika valid, lanjutkan dengan mengirim data
+            const data = {
+                jumlah_total_rusak: jumlahRusak,
+                keterangan_rusak: keteranganRusak,
+            };
+
+            fetch(`<?= site_url('admin/barang_rusak/update') ?>/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Berhasil!',
+                            text: 'Data berhasil diperbarui.',
+                        }).then(() => {
+                            // Refresh page after success
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: data.message,
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Terjadi kesalahan',
+                        text: 'Terjadi kesalahan saat memperbarui data',
+                    });
+                });
         });
-        return;
-    }
-
-    // Jika valid, lanjutkan dengan mengirim data
-    const data = {
-        jumlah_total_rusak: jumlahRusak,
-        keterangan_rusak: keteranganRusak,
-    };
-
-    fetch(`<?= site_url('admin/barang_rusak/update') ?>/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: 'Data berhasil diperbarui.',
-            }).then(() => {
-                // Refresh page after success
-                location.reload();
-            });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Gagal!',
-                text: data.message,
-            });
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        Swal.fire({
-            icon: 'error',
-            title: 'Terjadi kesalahan',
-            text: 'Terjadi kesalahan saat memperbarui data',
-        });
-    });
-});
-
     </script>
 
-    
+
     </body>
 
     </html>

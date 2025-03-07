@@ -213,7 +213,6 @@
             new bootstrap.Modal(document.getElementById('editBarangModal')).show();
         }
 
-
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('editBarangForm');
             const jumlahTotalInput = document.getElementById('jumlah_total_baik');
@@ -297,9 +296,4 @@
             });
         });
     </script>
-
-
-
     </body>
-
-    </html>
