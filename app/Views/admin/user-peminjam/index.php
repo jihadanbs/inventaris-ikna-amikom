@@ -91,9 +91,9 @@
                                                 <a class="text-muted dropdown-toggle font-size-16" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
                                                     <i class="bx bx-dots-horizontal-rounded"></i>
                                                 </a>
-                                                <div class="dropdown-menu dropdown-menu-end">
+                                                <!-- <div class="dropdown-menu dropdown-menu-end">
                                                     <a class="dropdown-item" href="<?= site_url('admin/user-peminjam/delete/' . $row['username']) ?>">Hapus</a>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             <div class="mx-auto mb-4">
