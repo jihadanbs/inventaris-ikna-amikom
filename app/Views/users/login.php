@@ -106,7 +106,7 @@
                     <!-- END PASSWORD TOGGLE -->
                     <div class="register-forget opacity">
                         <a href="<?php echo site_url("authentication/registrasi"); ?>" style="color: black; text-align:right; display: block;">Daftar Akun Peminjam</a>
-                        <a href="#" style="color: black; text-align:right; display: block;">Lupa kata sandi?</a>
+                        <a href="<?php echo site_url("authentication/lupaPassword"); ?>" style="color: black; text-align:right; display: block;">Lupa kata sandi?</a>
                     </div>
                 </div>
                 <div class="circle circle-two"></div>

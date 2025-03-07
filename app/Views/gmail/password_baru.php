@@ -440,7 +440,7 @@
                           <td align="center" valign="top" style="padding:0;Margin:0;width:560px">
                             <table cellpadding="0" cellspacing="0" width="100%" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                               <tr>
-                                <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px;font-size:0px"><img src="https://eeavivq.stripocdn.email/content/guids/CABINET_bcf893e71fc878effb3c3b340152d2b53c951e5a7eac94f9f8a99a5aec2a452f/images/image.png" alt="" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none" width="100" class="img-3556 adapt-img"></td>
+                                <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px;font-size:0px"><img src="https://3.bp.blogspot.com/_JtJm-2sVX64/Ss7GEEKOiBI/AAAAAAAAAHY/kFHgXmHG7OA/s400/IKNA.jpg" alt="" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none" width="250" class="img-3556 adapt-img"></td>
                               </tr>
                               <tr>
                                 <td align="center" class="es-m-p0r es-m-p0l es-m-txt-c" style="Margin:0;padding-top:15px;padding-right:40px;padding-bottom:15px;padding-left:40px">
@@ -477,7 +477,7 @@
                               </tr>
                               <tr>
                                 <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px">
-                                  <p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px">Gunakan Sistem Dengan Bijaksana, Salam Andan Jejama</p>
+                                  <p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;letter-spacing:0;color:#333333;font-size:14px">Gunakan Sistem Dengan Bijaksana, Semoga Tuhan Memberkati Kita Semua</p>
                                 </td>
                               </tr>
                             </table>
@@ -504,16 +504,16 @@
                                 <td align="center" style="padding:0;Margin:0;padding-top:15px;padding-bottom:15px;font-size:0">
                                   <table cellpadding="0" cellspacing="0" class="es-table-not-adapt es-social" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                                     <tr>
-                                      <td align="center" valign="top" class="es-m-p20r" style="padding:0;Margin:0;padding-right:30px"><a target="_blank" href="https://www.instagram.com/diskominfotiksan_pesawaran/" style="mso-line-height-rule:exactly;text-decoration:underline;color:#333333;font-size:12px"><img title="Instagram" src="https://eeavivq.stripocdn.email/content/assets/img/social-icons/logo-black/instagram-logo-black.png" alt="Inst" height="32" width="32" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none"></a></td>
-                                      <td align="center" valign="top" style="padding:0;Margin:0"><a target="_blank" href="mailto:ppidpesawarankab@gmail.com" style="mso-line-height-rule:exactly;text-decoration:underline;color:#333333;font-size:12px"><img title="Gmail" src="https://eeavivq.stripocdn.email/content/assets/img/other-icons/logo-black/gmail-logo-black.png" alt="gm" height="32" width="32" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none"></a></td>
+                                      <td align="center" valign="top" class="es-m-p20r" style="padding:0;Margin:0;padding-right:30px"><a target="_blank" href="https://www.instagram.com/ikna_jogja/" style="mso-line-height-rule:exactly;text-decoration:underline;color:#333333;font-size:12px"><img title="Instagram" src="https://eeavivq.stripocdn.email/content/assets/img/social-icons/logo-black/instagram-logo-black.png" alt="Inst" height="32" width="32" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none"></a></td>
+                                      <td align="center" valign="top" style="padding:0;Margin:0"><a target="_blank" href="mailto:iknaamikom@gmail.com" style="mso-line-height-rule:exactly;text-decoration:underline;color:#333333;font-size:12px"><img title="Gmail" src="https://eeavivq.stripocdn.email/content/assets/img/other-icons/logo-black/gmail-logo-black.png" alt="gm" height="32" width="32" style="display:block;font-size:14px;border:0;outline:none;text-decoration:none"></a></td>
                                     </tr>
                                   </table>
                                 </td>
                               </tr>
                               <tr>
                                 <td align="center" style="padding:0;Margin:0;padding-bottom:35px">
-                                  <p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:18px;letter-spacing:0;color:#333333;font-size:12px">Copyright © 2024, Dinas Komunikasi Dan Informatika Kabupaten Pesawaran. All Rights Reserved.</p>
-                                  <p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:18px;letter-spacing:0;color:#333333;font-size:12px">Waylayap, Kec. Gedong Tataan, Kabupaten Pesawaran, Lampung 35366</p>
+                                  <p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:18px;letter-spacing:0;color:#333333;font-size:12px">Copyright © 2025, IKNA Amikom Yogyakarta. All Rights Reserved.</p>
+                                  <p style="Margin:0;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:18px;letter-spacing:0;color:#333333;font-size:12px">Jl. Ring Road Utara, Ngringin, Condongcatur, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281</p>
                                 </td>
                               </tr>
                               <tr>

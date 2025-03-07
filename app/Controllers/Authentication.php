@@ -170,8 +170,8 @@ class Authentication extends BaseController
 
             if ($this->validate($rules)) {
                 // mengambil inputan username dan password pada form login
-                $usernameOrEmail = $this->request->getVar('username');
-                $password = $this->request->getVar('password');
+                $usernameOrEmail = $this->request->getPost('username');
+                $password = $this->request->getPost('password');
 
                 // Periksa apakah pengguna sudah menginputkan email atau username
                 $user = $this->m_user->where('email', $usernameOrEmail)
@@ -252,12 +252,12 @@ class Authentication extends BaseController
     {
         $err = [];
 
-        if ($this->request->getPost()) {
+        if ($this->request->getVar()) {
             $username = $this->request->getVar('username');
 
             // Validasi username/email tidak boleh kosong
             if (empty($username)) {
-                $err['username'] = "Silahkan masukkan username atau email yang sudah terdaftar";
+                $err['username'] = "Silahkan masukkan username atau email yang sudah terdaftar !";
             } elseif (!filter_var($username, FILTER_VALIDATE_EMAIL) && !preg_match('/^[a-zA-Z0-9]+$/', $username)) {
                 $err['username'] = "Format username atau email tidak valid";
             }
@@ -266,7 +266,7 @@ class Authentication extends BaseController
                 $data = $this->m_user->getData($username);
 
                 if (empty($data)) {
-                    $err['username'] = "Akun yang kamu masukkan tidak terdaftar";
+                    $err['username'] = "Akun yang kamu masukkan tidak terdaftar !";
                 }
             }
 
@@ -326,28 +326,28 @@ class Authentication extends BaseController
             $dataAkun = $this->m_user->getData($email);
             if (!$dataAkun || $dataAkun['token'] != $token) {
                 // Jika tidak ada data akun atau token tidak valid, arahkan pengguna ke halaman yang sesuai
-                return redirect()->to('authentication/lupaPassword')->with('warning', 'Token Sudah Tidak Valid');
+                return redirect()->to('authentication/lupaPassword')->with('warning', 'Token Sudah Tidak Valid !');
             }
         } else {
             // Jika email atau token kosong, arahkan pengguna ke halaman yang sesuai
-            return redirect()->to('authentication/lupaPassword')->with('warning', 'Parameter Yang Dikirimkan Tidak Valid');
+            return redirect()->to('authentication/lupaPassword')->with('warning', 'Parameter Yang Dikirimkan Tidak Valid !');
         }
 
-        if ($this->request->getPost()) {
+        if ($this->request->getVar()) {
             $rules = [
                 'password' => [
                     'rules' => 'required|min_length[6]',
                     'errors' => [
-                        'required' => 'Password harus diisi',
-                        'min_length' => 'Kata Sandi Baru harus memiliki panjang minimal 6 karakter',
+                        'required' => 'Password harus diisi !',
+                        'min_length' => 'Kata Sandi Baru harus memiliki panjang minimal 6 karakter !',
                     ]
                 ],
                 'konfirmasi_password' => [
                     'rules' => 'required|min_length[6]|matches[password]',
                     'errors' => [
-                        'required' => 'Konfirmasi password harus diisi',
-                        'min_length' => 'Konfirmasi password minimal 6 karakter',
-                        'matches' => 'Konfirmasi password tidak sama dengan password di atas'
+                        'required' => 'Konfirmasi password harus diisi !',
+                        'min_length' => 'Konfirmasi password minimal 6 karakter !',
+                        'matches' => 'Konfirmasi password tidak sama dengan password di atas !'
                     ]
                 ]
             ];
@@ -377,14 +377,14 @@ class Authentication extends BaseController
                     $this->email->setMessage($emailContent);
 
                     if ($this->email->send()) {
-                        session()->setFlashdata('success', 'Password berhasil direset, silahkan login menggunakan password baru anda dan cek email untuk informasi lebih lanjut');
+                        session()->setFlashdata('success', 'Password berhasil direset, silahkan login menggunakan password baru anda dan cek email untuk informasi lebih lanjut !');
                     } else {
-                        session()->setFlashdata('error', 'Password berhasil direset, tetapi gagal mengirim email');
+                        session()->setFlashdata('error', 'Password berhasil direset, tetapi gagal mengirim email !');
                     }
 
                     return redirect()->to('authentication/login');
                 } else {
-                    session()->setFlashdata('error', 'Terjadi kesalahan saat mereset password');
+                    session()->setFlashdata('error', 'Terjadi kesalahan saat mereset password !');
                 }
             }
         }
@@ -392,7 +392,9 @@ class Authentication extends BaseController
         $data = [
             'title' => 'Reset Password IKNAventory',
             'validation' => session()->getFlashdata('validation') ?? [],
-            'old_input' => $this->request->getPost(),
+            'old_input' => $this->request->getVar(),
+            'email' => $email,
+            'token' => $token
         ];
 
         return view('users/resetPassword', $data);
