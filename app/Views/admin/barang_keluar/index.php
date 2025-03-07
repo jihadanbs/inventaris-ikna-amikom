@@ -101,7 +101,6 @@
                                         <th>Total Barang</th>
                                         <th>Tanggal Keluar</th>
                                         <th>Keterangan</th>
-                                        <!-- <th>Aksi</th> -->
                                     </tr>
                                 </thead>
 
@@ -115,12 +114,6 @@
                                             <td><?= $row['total_barang']; ?> Unit</td>
                                             <td><?= formatTanggalIndo($row['tanggal_keluar']); ?></td>
                                             <td><?= $row['keterangan']; ?></td>
-                                            <!-- <td style="width: 50px">
-                                                <a href="<?= site_url('admin/barang_keluar/cek_data/' . $row['nama_barang']) ?>" class="btn btn-warning btn-sm view"><i class="fas fa-edit"></i> Edit</a>
-                                                <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang_keluar'] ?>">
-                                                    <i class="fas fa-trash-alt"></i> Delete
-                                                </button>
-                                            </td> -->
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -139,7 +132,8 @@
 
     <script>
         $(document).ready(function() {
-            $("#tableBarangRusak").DataTable({
+            // Inisialisasi DataTable dan simpan ke variabel table
+            var table = $("#tableBarangRusak").DataTable({
                 "paging": true,
                 "responsive": true,
                 "lengthChange": true,
@@ -177,6 +171,27 @@
                     'colvis'
                 ],
             }).buttons().container().appendTo('#tableBarangRusak_wrapper .col-md-6:eq(0)');
+
+            var buttonContainer = $('.col-md-3:has(a.btn)');
+            buttonContainer.append('<button id="filterButton" class="btn waves-effect waves-light bg-info" style="color:white; "><i class="fas fa-exclamation font-size-16 align-middle me-2"></i>Filter Bekas</button>');
+
+            // Toggle filter saat tombol diklik
+            var filterActive = false;
+            $('#filterButton').on('click', function() {
+                filterActive = !filterActive;
+
+                if (filterActive) {
+                    $(this).html('<i class="fas fa-exclamation font-size-16 align-middle me-2"></i>Tampilkan Semua');
+
+                    // Gunakan filter langsung ke DataTable
+                    $('#tableBarangRusak').DataTable().search('Bekas').draw();
+                } else {
+                    $(this).html('<i class="fas fa-exclamation font-size-16 align-middle me-2"></i>Filter Bekas');
+
+                    // Reset filter
+                    $('#tableBarangRusak').DataTable().search('').draw();
+                }
+            });
         });
     </script>
 
