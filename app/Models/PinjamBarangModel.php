@@ -22,6 +22,7 @@ class PinjamBarangModel extends Model
             tb_barang.nama_barang, 
             tb_barang.slug, 
             tb_barang.jumlah_total,
+            tb_barang.jumlah_dipinjam,
             tb_kategori_barang.nama_kategori, 
             tb_kondisi_barang.nama_kondisi, 
             tb_barang_baik.jumlah_total_baik, 

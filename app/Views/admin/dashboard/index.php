@@ -330,19 +330,21 @@
                                         <th>Kategori</th>
                                         <th>Kondisi</th>
                                         <th>Total Barang</th>
+                                        <th>Jumlah Dipinjam</th>
                                         <th>Barang Tersedia</th>
                                         <th>Barang Rusak</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1; ?>
-                                    <?php foreach ($tb_setting_pinjam_barang as $row) : ?>
+                                    <?php foreach ($barang as $row) : ?>
                                         <tr>
                                             <td class="text-center" style="width: 50px;"><?= $i++; ?></td>
                                             <td><?= truncateText($row['nama_barang'], 70); ?></td>
                                             <td><?= $row['nama_kategori']; ?></td>
                                             <td><?= $row['nama_kondisi']; ?></td>
                                             <td class="text-center"><?= $row['jumlah_total']; ?> Unit</td>
+                                            <td class="text-center"><?= $row['jumlah_dipinjam']; ?> Unit</td>
                                             <td class="text-center"><?= $row['jumlah_total_baik']; ?> Unit</td>
                                             <td class="text-center"><?= $row['jumlah_total_rusak']; ?> Unit</td>
                                         </tr>
