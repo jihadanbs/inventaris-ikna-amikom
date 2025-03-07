@@ -145,6 +145,7 @@
                         <i class="fas fa-info font-size-16 align-middle me-2"></i>Filter Keterangan
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="filterButton">
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Dipinjamkan">Filter Dipinjamkan</a></li>
                         <li><a class="dropdown-item filter-option" href="#" data-filter="Bekas">Filter Bekas</a></li>
                         <li><a class="dropdown-item filter-option" href="#" data-filter="Rusak">Filter Rusak</a></li>
                         <li><a class="dropdown-item filter-option" href="#" data-filter="Cacat">Filter Cacat</a></li>

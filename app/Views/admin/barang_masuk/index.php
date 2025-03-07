@@ -53,6 +53,9 @@
                             ?>
                             <table id="tableBarangMasuk" class="table table-bordered dt-responsive nowrap w-100">
                                 <?= $this->include('alert/alert'); ?>
+                                <div class="col-md-3 mb-3">
+
+                                </div>
                                 <thead>
                                     <tr class="highlight text-center" style="background-color: #28527A; color: white;">
                                         <th>Nomor</th>
@@ -91,7 +94,8 @@
 
     <script>
         $(document).ready(function() {
-            $("#tableBarangMasuk").DataTable({
+            // Inisialisasi DataTable dan simpan ke variabel table
+            var table = $("#tableBarangMasuk").DataTable({
                 "paging": true,
                 "responsive": true,
                 "lengthChange": true,
@@ -129,6 +133,52 @@
                     'colvis'
                 ],
             }).buttons().container().appendTo('#tableBarangMasuk_wrapper .col-md-6:eq(0)');
+
+            // Tambahkan dropdown filter ke div yang sudah ada di HTML
+            $('.col-md-3').append(`
+                <div class="dropdown d-inline-block ms-2">
+                    <button class="btn waves-effect waves-light bg-info dropdown-toggle" type="button" id="filterButton" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
+                        <i class="fas fa-info font-size-16 align-middle me-2"></i>Filter Keterangan
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="filterButton">
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Transaksi">Transaksi Peminjaman</a></li>
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Inventaris">Penambahan Inventaris</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" id="resetFilter">Tampilkan Semua</a></li>
+                    </ul>
+                </div>
+            `);
+
+            // Variabel untuk menyimpan filter yang aktif
+            var activeFilter = '';
+
+            // Event listener untuk opsi filter
+            $('.filter-option').on('click', function(e) {
+                e.preventDefault();
+
+                var filterValue = $(this).data('filter');
+                activeFilter = filterValue;
+
+                // Update tombol filter dengan filter yang aktif
+                $('#filterButton').html('<i class="fas fa-info font-size-16 align-middle me-2"></i>Filter: ' + filterValue);
+
+                // Terapkan filter ke DataTable
+                $('#tableBarangMasuk').DataTable().search(filterValue).draw();
+            });
+
+            // Event listener untuk reset filter
+            $('#resetFilter').on('click', function(e) {
+                e.preventDefault();
+
+                // Reset filter yang aktif
+                activeFilter = '';
+
+                // Kembalikan teks tombol filter ke default
+                $('#filterButton').html('<i class="fas fa-info font-size-16 align-middle me-2"></i>Filter Keterangan');
+
+                // Reset filter DataTable
+                $('#tableBarangMasuk').DataTable().search('').draw();
+            });
         });
     </script>
     </body>
