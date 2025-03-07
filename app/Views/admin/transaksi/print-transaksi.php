@@ -257,7 +257,7 @@
 
                         <div class="row align-items-center mb-4">
                             <div class="col-md-3 text-center">
-                                <img src="<?= base_url('assets/img/ikna.png') ?>" class="img-fluid rounded" style="max-width: 100px;" alt="Logo Ikna">
+                                <img src="<?= base_url('assets/img/ikna.png') ?>" class="img-fluid rounded" style="max-width: 150px;" alt="Logo Ikna">
                             </div>
                             <div class="col-md-9">
                                 <div class="row gy-3">
