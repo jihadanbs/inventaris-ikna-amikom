@@ -340,7 +340,11 @@
                                     <?php foreach ($barang as $row) : ?>
                                         <tr>
                                             <td class="text-center" style="width: 50px;"><?= $i++; ?></td>
-                                            <td><?= truncateText($row['nama_barang'], 70); ?></td>
+                                            <td>
+                                                <a href="<?= site_url('admin/barang/cek_data/' . $row['slug']) ?>" class="text-decoration-none">
+                                                    <?= truncateText($row['nama_barang'], 20); ?>
+                                                </a>
+                                            </td>
                                             <td><?= $row['nama_kategori']; ?></td>
                                             <td><?= $row['nama_kondisi']; ?></td>
                                             <td class="text-center"><?= $row['jumlah_total']; ?> Unit</td>
