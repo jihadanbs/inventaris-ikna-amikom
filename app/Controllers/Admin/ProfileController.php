@@ -95,7 +95,7 @@ class ProfileController extends BaseController
         ]);
 
         // Set flash message untuk sukses
-        session()->setFlashdata('pesan', 'Data Berhasil Diubah &#128077;');
+        session()->setFlashdata('pesan', 'Data Berhasil Diubah !');
 
         return redirect()->to('/admin/profile');
     }
