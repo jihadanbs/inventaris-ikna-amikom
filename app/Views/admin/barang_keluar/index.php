@@ -1,40 +1,5 @@
 <?= $this->include('admin/layouts/script') ?>
 
-<style>
-    /* CSS untuk input field saat tidak diedit */
-    input[type="text"].input-readonly {
-        background-color: #f0f0f0 !important;
-        border: 1px solid #ccc !important;
-    }
-
-    /* CSS untuk input field saat diedit */
-    input[type="text"]:not(.input-readonly) {
-        background-color: white !important;
-        border: 1px solid white;
-    }
-
-    input[type="text"].form-control {
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        padding: 8px;
-    }
-
-    .btn-success.save {
-        background-color: green !important;
-        border-color: green !important;
-    }
-
-    .btn-success.save:focus {
-        box-shadow: none !important;
-    }
-
-    .custom-border {
-        border: 1px solid #ced4da;
-        border-radius: 5px;
-    }
-</style>
-
-
 <?= $this->include('admin/layouts/navbar') ?>
 <?= $this->include('admin/layouts/sidebar') ?>
 <?= $this->include('admin/layouts/rightsidebar') ?>
@@ -172,25 +137,57 @@
                 ],
             }).buttons().container().appendTo('#tableBarangRusak_wrapper .col-md-6:eq(0)');
 
+            // Tambahkan dropdown filter
             var buttonContainer = $('.col-md-3:has(a.btn)');
-            buttonContainer.append('<button id="filterButton" class="btn waves-effect waves-light bg-info" style="color:white; "><i class="fas fa-exclamation font-size-16 align-middle me-2"></i>Filter Bekas</button>');
+            buttonContainer.append(`
+                <div class="dropdown d-inline-block ms-2">
+                    <button class="btn waves-effect waves-light bg-info dropdown-toggle" type="button" id="filterButton" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
+                        <i class="fas fa-info font-size-16 align-middle me-2"></i>Filter Keterangan
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="filterButton">
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Bekas">Filter Bekas</a></li>
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Rusak">Filter Rusak</a></li>
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Cacat">Filter Cacat</a></li>
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Seken">Filter Seken</a></li>
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Diperbaiki">Filter Diperbaiki</a></li>
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Gagal">Filter Gagal</a></li>
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Preloved">Filter Preloved</a></li>
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Turun harga">Filter Turun harga</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#" id="resetFilter">Tampilkan Semua</a></li>
+                    </ul>
+                </div>
+            `);
 
-            // Toggle filter saat tombol diklik
-            var filterActive = false;
-            $('#filterButton').on('click', function() {
-                filterActive = !filterActive;
+            // Variabel untuk menyimpan filter yang aktif
+            var activeFilter = '';
 
-                if (filterActive) {
-                    $(this).html('<i class="fas fa-exclamation font-size-16 align-middle me-2"></i>Tampilkan Semua');
+            // Event listener untuk opsi filter
+            $('.filter-option').on('click', function(e) {
+                e.preventDefault();
 
-                    // Gunakan filter langsung ke DataTable
-                    $('#tableBarangRusak').DataTable().search('Bekas').draw();
-                } else {
-                    $(this).html('<i class="fas fa-exclamation font-size-16 align-middle me-2"></i>Filter Bekas');
+                var filterValue = $(this).data('filter');
+                activeFilter = filterValue;
 
-                    // Reset filter
-                    $('#tableBarangRusak').DataTable().search('').draw();
-                }
+                // Update tombol filter dengan filter yang aktif
+                $('#filterButton').html('<i class="fas fa-info font-size-16 align-middle me-2"></i>Filter: ' + filterValue);
+
+                // Terapkan filter ke DataTable dengan cara reinstansiasi
+                $('#tableBarangRusak').DataTable().search(filterValue).draw();
+            });
+
+            // Event listener untuk reset filter
+            $('#resetFilter').on('click', function(e) {
+                e.preventDefault();
+
+                // Reset filter yang aktif
+                activeFilter = '';
+
+                // Kembalikan teks tombol filter ke default
+                $('#filterButton').html('<i class="fas fa-info font-size-16 align-middle me-2"></i>Filter Keterangan');
+
+                // Reset filter DataTable dengan cara reinstansiasi
+                $('#tableBarangRusak').DataTable().search('').draw();
             });
         });
     </script>

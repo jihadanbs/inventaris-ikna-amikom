@@ -1,7 +1,6 @@
 <?= $this->include('admin/layouts/script') ?>
 
 <style>
-    /* CSS yang sudah ada */
     .carousel-img {
         max-width: 80px;
         max-height: 80px;
@@ -9,16 +8,12 @@
         margin-left: auto;
         margin-right: auto;
         transition: transform 0.2s;
-        /* Animasi hover */
     }
 
-    /* CSS baru untuk efek hover */
     .carousel-img:hover {
         transform: scale(1.05);
-        /* Sedikit membesar saat hover */
     }
 
-    /* Styling untuk modal */
     .modal-content {
         background-color: #fff;
         border-radius: 8px;
@@ -34,7 +29,6 @@
         background-color: rgba(0, 0, 0, 0.03);
     }
 
-    /* Memastikan gambar tidak terlalu besar dalam modal */
     .modal-body img {
         max-width: 100%;
         height: auto;

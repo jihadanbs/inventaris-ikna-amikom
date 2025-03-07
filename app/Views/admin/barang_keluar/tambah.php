@@ -91,14 +91,98 @@
 
                                 <div class="mb-3">
                                     <label for="keterangan" class="col-form-label">Keterangan Keluar<span class="text-danger">*</span></label>
-                                    <textarea class="form-control custom-border <?= session('errors.keterangan') ? 'is-invalid' : ''; ?>" required name="keterangan" placeholder="Masukkan Keterangan" id="keterangan" cols="30" rows="5" style="background-color: white;"><?php echo old('keterangan'); ?></textarea>
-
+                                    <div class="d-flex flex-wrap mb-2">
+                                        <div class="btn-group me-2 mb-2" role="group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Tambah Keterangan
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item tambah-kata" href="#" data-kata="(Bekas)">Bekas</a></li>
+                                                <li><a class="dropdown-item tambah-kata" href="#" data-kata="(Rusak)">Rusak</a></li>
+                                                <li><a class="dropdown-item tambah-kata" href="#" data-kata="(Cacat)">Cacat</a></li>
+                                                <li><a class="dropdown-item tambah-kata" href="#" data-kata="(Seken)">Seken</a></li>
+                                                <li><a class="dropdown-item tambah-kata" href="#" data-kata="(Diperbaiki)">Diperbaiki</a></li>
+                                                <li><a class="dropdown-item tambah-kata" href="#" data-kata="(Gagal)">Gagal</a></li>
+                                                <li><a class="dropdown-item tambah-kata" href="#" data-kata="(Preloved)">Preloved</a></li>
+                                                <li><a class="dropdown-item tambah-kata" href="#" data-kata="(Turun harga)">Turun harga</a></li>
+                                            </ul>
+                                        </div>
+                                        <button type="button" class="btn btn-sm btn-danger me-2 mb-2" id="hapusKeterangan">Hapus Keterangan</button>
+                                    </div>
+                                    <textarea class="form-control custom-border <?= session('errors.keterangan') ? 'is-invalid' : ''; ?>"
+                                        required name="keterangan" placeholder="Masukkan Keterangan" id="keterangan"
+                                        cols="30" rows="5" style="background-color: white;"><?php echo old('keterangan'); ?></textarea>
+                                    <small class="text-muted" id="keteranganStatus">Status: Tanpa keterangan tambahan</small>
                                     <?php if (session('errors.keterangan')) : ?>
                                         <div class="invalid-feedback">
                                             <?= session('errors.keterangan') ?>
                                         </div>
                                     <?php endif ?>
                                 </div>
+
+                                <!-- Script untuk menambahkan kata ke keterangan -->
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function() {
+                                        const keteranganTextarea = document.getElementById('keterangan');
+                                        const keteranganStatus = document.getElementById('keteranganStatus');
+                                        const hapusKeteranganBtn = document.getElementById('hapusKeterangan');
+                                        const tambahKataBtns = document.querySelectorAll('.tambah-kata');
+
+                                        // Regex untuk mendeteksi keterangan dalam tanda kurung di akhir teks
+                                        const keteranganRegex = /\([^)]+\)$/;
+
+                                        // Fungsi untuk memperbarui status
+                                        function updateStatus(kata) {
+                                            if (kata) {
+                                                keteranganStatus.textContent = `Status: Dengan keterangan ${kata}`;
+                                            } else {
+                                                keteranganStatus.textContent = 'Status: Tanpa keterangan tambahan';
+                                            }
+                                        }
+
+                                        // Tambahkan event listener untuk setiap opsi
+                                        tambahKataBtns.forEach(btn => {
+                                            btn.addEventListener('click', function(e) {
+                                                e.preventDefault();
+
+                                                const kata = this.getAttribute('data-kata');
+                                                let text = keteranganTextarea.value.trim();
+
+                                                // Hapus keterangan yang sudah ada (jika ada)
+                                                if (keteranganRegex.test(text)) {
+                                                    text = text.replace(keteranganRegex, '').trim();
+                                                }
+
+                                                // Tambahkan keterangan baru
+                                                keteranganTextarea.value = text ? text + ' ' + kata : kata;
+                                                updateStatus(kata);
+                                            });
+                                        });
+
+                                        // Hapus keterangan yang sudah ada
+                                        hapusKeteranganBtn.addEventListener('click', function() {
+                                            let text = keteranganTextarea.value.trim();
+
+                                            if (keteranganRegex.test(text)) {
+                                                keteranganTextarea.value = text.replace(keteranganRegex, '').trim();
+                                                updateStatus(null);
+                                            }
+                                        });
+
+                                        // Periksa apakah sudah ada keterangan saat halaman dimuat
+                                        function checkInitialStatus() {
+                                            const text = keteranganTextarea.value.trim();
+                                            const match = text.match(keteranganRegex);
+
+                                            if (match) {
+                                                updateStatus(match[0]);
+                                            }
+                                        }
+
+                                        // Jalankan pengecekan awal
+                                        checkInitialStatus();
+                                    });
+                                </script>
 
                                 <div class="modal-footer">
                                     <a href="<?= site_url('admin/barang_keluar') ?>" class="btn btn-secondary btn-md ml-3">

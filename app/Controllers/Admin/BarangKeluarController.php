@@ -113,7 +113,7 @@ class BarangKeluarController extends BaseController
                 'id_user_peminjam' => null,
                 'total_barang' => $total_barang,
                 'tanggal_keluar' => $this->request->getPost('tanggal_keluar'),
-                'keterangan' => $this->request->getPost('keterangan') . ' (Bekas)'
+                'keterangan' => $this->request->getPost('keterangan')
             ];
 
             // Insert ke tb_barang_keluar

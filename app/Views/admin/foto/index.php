@@ -1,24 +1,6 @@
 <?= $this->include('admin/layouts/script') ?>
 
 <style>
-    /* CSS untuk input field saat tidak diedit */
-    input[type="text"].input-readonly {
-        background-color: #f0f0f0 !important;
-        border: 1px solid #ccc !important;
-    }
-
-    /* CSS untuk input field saat diedit */
-    input[type="text"]:not(.input-readonly) {
-        background-color: white !important;
-        border: 1px solid white;
-    }
-
-    input[type="text"].form-control {
-        border: 1px solid #ced4da;
-        border-radius: 4px;
-        padding: 8px;
-    }
-
     .btn-success.save {
         background-color: green !important;
         border-color: green !important;
@@ -55,7 +37,6 @@
         margin-right: auto;
     }
 </style>
-
 
 <?= $this->include('admin/layouts/navbar') ?>
 <?= $this->include('admin/layouts/sidebar') ?>

@@ -7,7 +7,6 @@
     }
 </style>
 
-
 <?= $this->include('admin/layouts/navbar') ?>
 <?= $this->include('admin/layouts/sidebar') ?>
 <?= $this->include('admin/layouts/rightsidebar') ?>

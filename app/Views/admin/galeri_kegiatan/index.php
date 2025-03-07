@@ -1,7 +1,6 @@
 <?= $this->include('admin/layouts/script') ?>
 
 <style>
-    /* CSS yang sudah ada */
     .custom-border {
         border: 1px solid #ced4da;
         border-radius: 5px;
@@ -29,7 +28,6 @@
         margin-right: auto;
     }
 
-    /* CSS baru untuk gambar kegiatan */
     .activity-img {
         width: 180px;
         height: auto;
@@ -42,7 +40,6 @@
         transform: scale(1.05);
     }
 
-    /* Styling untuk modal */
     .modal-content {
         background-color: #fff;
         border-radius: 8px;
@@ -67,7 +64,6 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    /* Animasi modal */
     .modal.fade .modal-dialog {
         transition: transform 0.3s ease-out;
     }
