@@ -20,7 +20,7 @@
     }
 
     .login-container {
-        
+
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -189,7 +189,7 @@
             max-width: 450px;
             margin: auto;
             padding: 20px;
-           
+
         }
 
         .form-container {
@@ -311,7 +311,7 @@
                                 <label for="alamat" class="custom-form-label">Alamat</label>
                                 <div class="custom-input-field">
                                     <i class="fas fa-address-card"></i>
-                                    <textarea id="alamat" name="alamat" cols="30" rows="5" placeholder="Masukkan alamat Anda" autocomplete="off"><?php echo old('alamat'); ?></textarea>
+                                    <input type="text" id="alamat" name="alamat" placeholder="Masukkan alamat Anda" autocomplete="off" value="<?= old('alamat') ?>"></input>
                                 </div>
                                 <?php if (isset(session()->getFlashdata('validation')['alamat'])) : ?>
                                     <div class="text-danger">
@@ -364,6 +364,11 @@
                             <div class="custom-form-group opacity">
                                 <label for="file_profil" class="custom-form-label">Foto Profil</label>
                                 <input type="file" id="file_profil" name="file_profil" accept="image/*" autocomplete="off">
+                                <?php if (isset(session()->getFlashdata('validation')['file_profil'])) : ?>
+                                    <div class="text-danger">
+                                        <?= session()->getFlashdata('validation')['file_profil'] ?>
+                                    </div>
+                                <?php endif; ?>
                             </div><br>
 
                             <button class="opacity">SUBMIT</button>
@@ -381,76 +386,104 @@
     </body>
 
     <script>
-    <!-- JAVASCRIPT -->
-    document.addEventListener('DOMContentLoaded', function() {
-    const originalFileInput = document.getElementById('file_profil');
-    
-
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.id = 'file_profil';
-    fileInput.name = 'file_profil';
-    fileInput.accept = 'image/*';
-    fileInput.autocomplete = 'off';
-    fileInput.style.display = 'none';
-    
-
-    originalFileInput.parentNode.replaceChild(fileInput, originalFileInput);
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'profile-photo-upload';
- 
-    const preview = document.createElement('img');
-    preview.className = 'profile-photo-preview';
-    fileInput.parentNode.insertBefore(preview, fileInput);
-    
-    wrapper.innerHTML = `
-        <i class="fas fa-camera upload-icon"></i>
-        <span class="upload-text">Pilih Foto Profil</span>
-        <i class="fas fa-times file-clear"></i>
+        <!-- JAVASCRIPT 
+        -->
+        document.addEventListener('DOMContentLoaded',
+        function()
+        {
+        const
+        originalFileInput
+        =
+        document.getElementById('file_profil');
+        const
+        fileInput
+        =
+        document.createElement('input');
+        fileInput.type
+        =
+        'file';
+        fileInput.id
+        =
+        'file_profil';
+        fileInput.name
+        =
+        'file_profil';
+        fileInput.accept
+        =
+        'image/*';
+        fileInput.autocomplete
+        =
+        'off';
+        fileInput.style.display
+        =
+        'none';
+        originalFileInput.parentNode.replaceChild(fileInput,
+        originalFileInput);
+        const
+        wrapper
+        =
+        document.createElement('div');
+        wrapper.className
+        =
+        'profile-photo-upload';
+        const
+        preview
+        =
+        document.createElement('img');
+        preview.className
+        =
+        'profile-photo-preview';
+        fileInput.parentNode.insertBefore(preview,
+        fileInput);
+        wrapper.innerHTML
+        =
+        `
+    <i class="fas fa-camera upload-icon"></i>
+    <span class="upload-text">Pilih Foto Profil</span>
+    <i class="fas fa-times file-clear"></i>
     `;
-    
+
     fileInput.parentNode.insertBefore(wrapper, fileInput);
     wrapper.appendChild(fileInput);
-    
-  
+
+
     const uploadText = wrapper.querySelector('.upload-text');
     const fileClear = wrapper.querySelector('.file-clear');
-    
-  
-    fileInput.addEventListener('change', function(e) {
-        if (this.files && this.files[0]) {
-            // Update text
-            uploadText.textContent = this.files[0].name;
-            wrapper.classList.add('has-file');
-            
-         
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                preview.src = event.target.result;
-                preview.classList.add('visible');
-            };
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-    
-  
-    fileClear.addEventListener('click', function(e) {
-        e.stopPropagation();
-        fileInput.value = '';
-        uploadText.textContent = 'Pilih Foto Profil';
-        wrapper.classList.remove('has-file');
-        preview.src = '';
-        preview.classList.remove('visible');
-    });
-    
-   
-    wrapper.addEventListener('click', function() {
-        fileInput.click();
-    });
-});
 
-     </script>
+
+    fileInput.addEventListener('change', function(e) {
+    if (this.files && this.files[0]) {
+    // Update text
+    uploadText.textContent = this.files[0].name;
+    wrapper.classList.add('has-file');
+
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+    preview.src = event.target.result;
+    preview.classList.add('visible');
+    };
+    reader.readAsDataURL(this.files[0]);
+    }
+    });
+
+
+    fileClear.addEventListener('click', function(e) {
+    e.stopPropagation();
+    fileInput.value = '';
+    uploadText.textContent = 'Pilih Foto Profil';
+    wrapper.classList.remove('has-file');
+    preview.src = '';
+    preview.classList.remove('visible');
+    });
+
+
+    wrapper.addEventListener('click', function() {
+    fileInput.click();
+    });
+    });
+
+    </script>
     <script src="<?= base_url('assets/admin/libs/jquery/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
     <script src="<?= base_url('assets/admin/libs/metismenu/metisMenu.min.js') ?>"></script>
