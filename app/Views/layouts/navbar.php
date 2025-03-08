@@ -303,7 +303,7 @@
                             </div>
                         </div>
                     <?php else : ?>
-                        <a href="<?= site_url('/authentication/login') ?>" class="quote_btn-container">Login</a>
+                        <a href="<?= site_url('/authentication/login') ?>" class="quote_btn-container mb-2">Login</a>
                     <?php endif; ?>
                 </div>
                 <!-- END NAVBAR -->
