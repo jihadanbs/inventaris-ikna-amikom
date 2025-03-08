@@ -368,7 +368,7 @@
                                     required minlength="10" maxlength="500"><?= $alamat ?></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="file_profil">Foto Profil</label>
+                            <label for="file_profil">Foto Profil <small class="text-danger">(Ganti foto klik di teks ini)</small></label>
                             <?php if (!empty($file_profil)): ?>
                                 <div class="mb-2">
                                     <img src="<?= base_url($file_profil) ?>" alt="Current Profile" class="img-thumbnail" style="max-height: 100px;">
