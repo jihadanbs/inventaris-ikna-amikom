@@ -285,21 +285,28 @@
                                 <?php if (session()->get('id_jabatan') != 2) : ?>
                                     <a class="dropdown-item d-flex align-items-center" href="<?= site_url('/dashboard') ?>">
                                         <i class="fas fa-tachometer-alt mr-3 text-primary"></i>
-                                        <span>Dashboard</span>
+                                        <span class="text-primary">Dashboard</span>
+                                    </a>
+
+                                    <div class="dropdown-divider"></div>
+
+                                    <a class="dropdown-item d-flex align-items-center text-danger" href="<?= site_url('/authentication/logout') ?>">
+                                        <i class="fas fa-sign-out-alt mr-3"></i>
+                                        <span>Logout</span>
+                                    </a>
+                                <?php else: ?>
+                                    <a class="dropdown-item d-flex align-items-center" href="#" data-toggle="modal" data-target="#editProfilModal">
+                                        <i class="fas fa-user mr-3 text-success"></i>
+                                        <span class="text-success">Profile</span>
+                                    </a>
+
+                                    <div class="dropdown-divider"></div>
+
+                                    <a class="dropdown-item d-flex align-items-center text-danger" href="<?= site_url('/authentication/logout') ?>">
+                                        <i class="fas fa-sign-out-alt mr-3"></i>
+                                        <span>Logout</span>
                                     </a>
                                 <?php endif; ?>
-
-                                <a class="dropdown-item d-flex align-items-center" href="#" data-toggle="modal" data-target="#editProfilModal">
-                                    <i class="fas fa-user mr-3 text-success"></i>
-                                    <span class="text-success">Profile</span>
-                                </a>
-
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item d-flex align-items-center text-danger" href="<?= site_url('/authentication/logout') ?>">
-                                    <i class="fas fa-sign-out-alt mr-3"></i>
-                                    <span>Logout</span>
-                                </a>
                             </div>
                         </div>
                     <?php else : ?>
