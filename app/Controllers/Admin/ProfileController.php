@@ -101,6 +101,104 @@ class ProfileController extends BaseController
         return redirect()->to('/admin/profile');
     }
 
+    public function updateUser()
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession(); // Redirect jika sesi tidak valid
+        }
+    
+        // Ambil ID user dari session
+        $id_user = session()->get('id_user');
+    
+        // Validasi input
+        if (!$this->validate([
+            'nama_lengkap' => [
+                'rules' => 'required|trim|max_length[255]|min_length[5]',
+                'errors' => [
+                    'required' => 'Kolom Nama Lengkap Anda Tidak Boleh Kosong !',
+                    'max_length' => 'Inputan nama tidak boleh melebihi 255 karakter !',
+                    'min_length' => 'Inputan nama tidak boleh kurang dari 5 karakter !'
+                ]
+            ],
+            'username' => [
+                'rules' => 'required|trim|max_length[10]|min_length[5]',
+                'errors' => [
+                    'required' => 'Kolom Username Anda Tidak Boleh Kosong !',
+                    'max_length' => 'Inputan username tidak boleh melebihi 10 karakter !',
+                    'min_length' => 'Inputan username tidak boleh kurang dari 5 karakter !'
+                ]
+            ],
+            'email' => [
+                'rules' => 'required|trim|valid_email',
+                'errors' => [
+                    'required' => 'Kolom Email Anda Tidak Boleh Kosong !',
+                    'valid_email' => 'Format Email tidak valid !'
+                ]
+            ],
+            'no_telepon' => [
+                'rules' => 'required|trim|max_length[20]|numeric',
+                'errors' => [
+                    'required' => 'Kolom No. Telepon Anda Tidak Boleh Kosong !',
+                    'max_length' => 'Inputan No. Telepon tidak boleh melebihi 20 karakter !',
+                    'numeric' => 'No. Telepon harus berupa angka !'
+                ]
+            ],
+            'pekerjaan' => [
+                'rules' => 'required|trim|max_length[100]',
+                'errors' => [
+                    'required' => 'Kolom Pekerjaan Anda Tidak Boleh Kosong !',
+                    'max_length' => 'Inputan Pekerjaan tidak boleh melebihi 100 karakter !'
+                ]
+            ],
+            'alamat' => [
+                'rules' => 'required|trim|max_length[500]',
+                'errors' => [
+                    'required' => 'Kolom Alamat Anda Tidak Boleh Kosong !',
+                    'max_length' => 'Inputan Alamat tidak boleh melebihi 500 karakter !'
+                ]
+            ]
+        ])) {
+            // Jika terjadi kesalahan validasi, kembalikan dengan pesan validasi
+            session()->setFlashdata('validation', \Config\Services::validation());
+            return redirect()->back()->withInput();
+        }
+    
+        // Panggil helper updateFile
+        $oldFileName = $this->request->getVar('old_file_profil'); // Nama file lama harus diambil dari input hidden
+        $newFileName = $this->request->getFile('file_profil')->isValid() 
+            ? updateFile('file_profil', 'dokumen/profile/', $oldFileName) 
+            : $oldFileName;
+    
+        // Simpan data ke dalam database
+        $this->m_user->save([
+            'id_user' => $id_user,
+            'nama_lengkap' => $this->request->getVar('nama_lengkap'),
+            'username' => $this->request->getVar('username'),
+            'email' => $this->request->getVar('email'),
+            'no_telepon' => $this->request->getVar('no_telepon'),
+            'pekerjaan' => $this->request->getVar('pekerjaan'),
+            'alamat' => $this->request->getVar('alamat'),
+            'file_profil' => $newFileName
+        ]);
+    
+        // Perbarui nilai sesi setelah menyimpan ke database
+        session()->set([
+            'nama_lengkap' => $this->request->getVar('nama_lengkap'),
+            'username' => $this->request->getVar('username'),
+            'email' => $this->request->getVar('email'),
+            'no_telepon' => $this->request->getVar('no_telepon'),
+            'pekerjaan' => $this->request->getVar('pekerjaan'),
+            'alamat' => $this->request->getVar('alamat'),
+            'file_profil' => $newFileName
+        ]);
+    
+        // Set flash message untuk sukses
+        session()->setFlashdata('pesan', 'Data Berhasil Diubah &#128077;');
+    
+        return redirect()->to('/admin/profile');
+    }
+
     public function resetPassword()
     {
         // Cek sesi pengguna

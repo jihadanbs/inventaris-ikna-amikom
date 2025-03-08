@@ -40,6 +40,7 @@ $routes->GET('/servererror', 'Home::servererror', ['namespace' => 'App\Controlle
 /*=================================== PROFIL ====================================*/
 $routes->GET('profil', 'ProfilController::profil', ['namespace' => 'App\Controllers']);
 
+
 /*=================================== LAPORAN ====================================*/
 $routes->GET('/laporan', 'LaporanController::laporan', ['namespace' => 'App\Controllers']);
 $routes->GET('/pdf', 'PdfController::pdf', ['namespace' => 'App\Controllers']);
@@ -59,6 +60,8 @@ $routes->GROUP('authentication', function ($routes) {
     $routes->GET('registrasi', 'Authentication::registrasi', ['namespace' => 'App\Controllers']);
     $routes->POST('cekRegistrasi', 'Authentication::cekRegistrasi', ['namespace' => 'App\Controllers']);
     $routes->GET('login', 'Authentication::login', ['namespace' => 'App\Controllers']);
+    $routes->POST('updateUser', 'Authentication::updateUser', ['namespace' => 'App\Controllers']);
+    $routes->POST('profileUser', 'Authentication::update', ['namespace' => 'App\Controllers']);
     $routes->POST('cekLogin', 'Authentication::cekLogin', ['namespace' => 'App\Controllers']);
     $routes->GET('logout', 'Authentication::logout', ['namespace' => 'App\Controllers']);
     $routes->GET('lupaPassword', 'Authentication::lupaPassword', ['namespace' => 'App\Controllers']);
@@ -84,6 +87,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     $routes->GET('profile', 'ProfileController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('profile', static function ($routes) {
         $routes->POST('update/(:num)', 'ProfileController::update/$1', ['namespace' => 'App\Controllers\Admin']);
+       
         $routes->GET('resetpassword', 'ProfileController::resetPassword', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('updateSandi/(:num)', 'ProfileController::updateSandi/$1', ['namespace' => 'App\Controllers\Admin']);
     });

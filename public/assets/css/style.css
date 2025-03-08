@@ -94,6 +94,10 @@ body {
   margin: 0 auto;
 }
 
+.navbar-brand{
+  margin-left:12px;
+}
+
 .custom_nav-container .navbar-nav .nav-item .nav-link {
   padding: 3px 15px;
   margin: 10px 15px;
@@ -139,10 +143,6 @@ a:focus {
   border: none;
 }
 
-.navbar-brand {
-  margin-left: 25px;
-}
-
 .navbar-brand span {
   font-size: 24px;
   font-weight: 700;
@@ -153,6 +153,7 @@ a:focus {
 .custom_nav-container {
   z-index: 99999;
   background-color:#041c5c;
+  padding: 12px
 }
 
 .navbar-expand-lg .navbar-collapse {
@@ -207,16 +208,15 @@ a:focus {
 }
 
 .quote_btn-container {
-  padding: 6px 15px;
-  margin: 10px 15px;
+  padding: 2px 15px;
+  margin: 0px 15px;
  background-color: var(--biru-latar);
   color:yellow;
   border-radius: 5px; 
   text-align: center; /* Memastikan teks di tengah */
   transition: background-color 0.3s ease; /* Animasi perubahan warna */
-  margin-top:15px;
   border: 1px solid white ;
-  transition: 500ms;
+  transition: 200ms;
 }
 
 .quote_btn-container a {

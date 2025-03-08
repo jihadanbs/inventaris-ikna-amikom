@@ -4,7 +4,17 @@
   }
 } */
 
+@media (max-width: 1240px) {
+  .custom_nav-container .navbar-nav .nav-item .nav-link {
+    padding: 3px 9px;
+    margin: 10px 5px;
+    font-size:14px;
+  }
+}
+
 @media (max-width: 992px) {
+
+ 
 
   .hero_area {
     height: auto;
@@ -32,7 +42,6 @@
     align-items: center;
     justify-content: center;
     width: auto; /* Atur lebar otomatis sesuai konten */
-    max-width: 150px; /* Opsional: batas maksimum lebar */
     margin: 0 auto; /* Agar tetap berada di tengah */
     padding: 10px; /* Tambahkan padding jika diperlukan */
     margin-top:20px;

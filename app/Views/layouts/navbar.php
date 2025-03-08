@@ -1,4 +1,56 @@
-<!-- header section strats -->
+
+<style>
+    .navbar-user-dropdown {
+        position: relative;
+    }
+
+    .navbar-user-dropdown .user-profile-container {
+        padding: 0px 15px;
+        cursor: pointer;
+        padding: 0.25rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+    }
+
+    .navbar-user-dropdown .user-profile-container:hover {
+        background-color: rgba(0,0,0,0.05);
+    }
+
+    .navbar-user-dropdown .dropdown-toggle1 {
+        padding: 0px 15p;
+        color: inherit;
+        text-decoration: none;
+        background: none;
+        border: none;
+        width: 100%;
+    }
+
+    .navbar-user-dropdown .dropdown-toggle1:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+   
+    .navbar-user-dropdown .dropdown-menu {
+    right: 0;
+    left: 0;
+    top: 100%;
+    border-radius: 4px;
+}
+    .navbar-user-dropdown .dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1.25rem;
+    }
+
+    .navbar-user-dropdown .dropdown-item i {
+        width: 20px;
+        text-align: center;
+        margin-right: 10px;
+    }
+
+    
+</style>
 <header class="header_section" style="margin-bottom: 50px;">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container fixed-top">
@@ -39,22 +91,167 @@
                         </li>
                     </ul>
                 </div>
-                <div class="quote_btn-container">
+                <div class=" d-flex align-items-center" style="margin-top: 0px; margin-bottom: 4px;">
                     <?php if (session()->has('islogin')) : ?>
-                        <?php if (session()->get('id_jabatan') == 2) : ?>
-                            <!-- Jika id_jabatan = 2, hanya tampilkan tombol Logout -->
-                            <a href="<?= site_url('/authentication/logout') ?>" rel="noopener noreferrer">Logout</a>
-                        <?php else : ?>
-                            <a href="<?= site_url('/authentication/login') ?>" rel="noopener noreferrer">Dashboard</a>
-                        <?php endif; ?>
+                        <div class="quote_btn-container user-dropdown-full dropdown navbar-user-dropdown">
+                            <button class=" btn dropdown-toggle1 nav-link d-flex align-items-center p-0" type="button" id="userDropdownFull" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="user-profile-container d-flex align-items-center">
+                                    <?php if (!empty(session()->get('file_profil'))): ?>
+                                        <img src="<?= base_url(session()->get('file_profil')) ?>" alt="Profile" class="rounded-circle mr-2" style="width: 30px; height: 30px; object-fit: cover;">
+                                    <?php else: ?>
+                                        <i class="fas fa-user-circle mr-2 text-muted" style="font-size: 30px;"></i>
+                                    <?php endif; ?>
+                                    <span class="username font-weight-bold"><?= session()->get('username') ?></span>
+
+                                    <i class="fa fa-chevron-down ml-2 "></i>
+                                </div>
+                            </button>
+                            
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdownFull">
+                                <?php if (session()->get('id_jabatan') != 2) : ?>
+                                    <a class="dropdown-item d-flex align-items-center" href="<?= site_url('/dashboard') ?>">
+                                        <i class="fas fa-tachometer-alt mr-3 text-primary"></i>
+                                        <span>Dashboard</span>
+                                    </a>
+                                <?php endif; ?>
+                                
+                                <a class="dropdown-item d-flex align-items-center" href="#" data-toggle="modal" data-target="#editProfilModal">
+                                    <i class="fas fa-user mr-3 text-success"></i>
+                                    <span class="text-success">Profile</span>
+                                </a>
+                                
+                                <div class="dropdown-divider"></div>
+                                
+                                <a class="dropdown-item d-flex align-items-center text-danger" href="<?= site_url('/authentication/logout') ?>">
+                                    <i class="fas fa-sign-out-alt mr-3"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </div>
                     <?php else : ?>
-                        <!-- Jika belum login, hanya tampilkan tombol Login -->
-                        <a href="<?= site_url('/authentication/login') ?>" rel="noopener noreferrer">Login</a>
+                        <a href="<?= site_url('/authentication/login') ?>" class="quote_btn-container">Login</a>
                     <?php endif; ?>
                 </div>
-            </div>
             <!-- END NAVBAR -->
         </nav>
     </div>
 </header>
-<!-- end header section -->
+ 
+
+        <?php
+        $userId = session()->get('id_user');
+        $userModel = new \App\Models\UserModel(); // Adjust this to your actual model name
+        $userData = $userId ? $userModel->find($userId) : null;
+
+        // Set variables with fallbacks
+        $pekerjaan = $userData['pekerjaan'] ?? session()->get('pekerjaan') ?? '';
+        $alamat = $userData['alamat'] ?? session()->get('alamat') ?? '';
+        $file_profil = $userData['file_profil'] ?? session()->get('file_profil') ?? '';
+        ?>
+
+    <!-- Modal Edit Profil -->
+    <div class="modal fade" id="editProfilModal" tabindex="-1" role="dialog" aria-labelledby="editProfilModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfilModalLabel">Edit Profil</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProfilForm" action="<?= site_url('authentication/updateUser') ?>" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="nama_lengkap">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" 
+                                value="<?= session()->get('nama_lengkap') ?>" 
+                                required minlength="3" maxlength="255" pattern="[A-Za-z\s]+">
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" 
+                                value="<?= session()->get('username') ?>" 
+                                required minlength="3" maxlength="10" pattern="[A-Za-z0-9_]+">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                value="<?= session()->get('email') ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_telepon">Nomor Telepon</label>
+                            <input type="tel" class="form-control" id="no_telepon" name="no_telepon" 
+                                value="<?= session()->get('no_telepon') ?>" 
+                                required pattern="[0-9]+" minlength="10" maxlength="15">
+                        </div>
+                        <div class="form-group">
+                            <label for="pekerjaan">Pekerjaan</label>
+                            <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" 
+                                value="<?= $pekerjaan ?>" 
+                                required minlength="3" maxlength="100">
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <textarea class="form-control" id="alamat" name="alamat" 
+                                    required minlength="10" maxlength="500"><?= $alamat ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="file_profil">Foto Profil</label>
+                            <?php if (!empty($file_profil)): ?>
+                                <div class="mb-2">
+                                    <img src="<?= base_url($file_profil) ?>" alt="Current Profile" class="img-thumbnail" style="max-height: 100px;">
+                                    <p class="text-muted small">Foto profil saat ini</p>
+                                </div>
+                            <?php endif; ?>
+                            <input type="file" class="form-control-file" id="file_profil" name="file_profil" 
+                                accept=".jpg,.jpeg,.png,.gif" 
+                                data-max-size="2048">
+                            <small class="form-text text-muted">Maksimal ukuran file 2MB. Format: JPG, JPEG, PNG, GIF</small>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- end dari header section -->
+<script>
+$(document).ready(function() {
+    // Validasi ukuran file sebelum submit
+    $('#editProfilForm').on('submit', function(e) {
+        var fileInput = $('#file_profil')[0];
+        var maxSize = $(fileInput).data('max-size') * 1024; 
+
+        // Validasi ukuran file
+        if (fileInput.files.length > 0) {
+            if (fileInput.files[0].size > maxSize) {
+                alert('Ukuran file terlalu besar. Maks 2MB.');
+                e.preventDefault();
+                return false;
+            }
+        }
+    });
+
+    // Validasi real-time
+    $('#editProfilForm input').on('invalid', function() {
+        this.setCustomValidity(
+            this.validity.valueMissing ? 'Kolom ini wajib diisi' :
+            this.validity.patternMismatch ? 'Format input tidak valid' :
+            this.validity.tooShort ? 'Input terlalu pendek' :
+            this.validity.tooLong ? 'Input terlalu panjang' : ''
+        );
+    });
+
+    $('#editProfilForm input').on('input', function() {
+        this.setCustomValidity('');
+    });
+    
+    // Auto-close modal if success flash message exists
+    <?php if(session()->getFlashdata('success')): ?>
+    $('#editProfilModal').modal('hide');
+    <?php endif; ?>
+});
+</script>

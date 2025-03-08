@@ -1,11 +1,171 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\UserModel;
 
 use App\Controllers\BaseController;
 
 class Authentication extends BaseController
 {
+
+    protected $userModel;
+    
+    public function __construct()
+    {
+        $this->userModel = new UserModel();
+    }
+
+    public function updateUser()
+    {
+        // Check if user is logged in
+        if (!session()->has('islogin')) {
+            session()->setFlashdata('error', 'Anda harus login terlebih dahulu!');
+            return redirect()->back();
+        }
+        
+        $userId = session()->get('id_user');
+        $userData = $this->userModel->find($userId);
+        
+        if (!$userData) {
+            session()->setFlashdata('error', 'Data pengguna tidak ditemukan!');
+            return redirect()->back();
+        }
+        
+        // Validation rules
+        $rules = [
+            'nama_lengkap' => [
+                'rules' => 'required|min_length[3]|max_length[255]|alpha_space',
+                'errors' => [
+                    'required' => 'Nama lengkap wajib diisi!',
+                    'min_length' => 'Nama lengkap minimal 3 karakter!',
+                    'max_length' => 'Nama lengkap maksimal 255 karakter!',
+                    'alpha_space' => 'Nama lengkap hanya boleh berisi huruf dan spasi!'
+                ]
+            ],
+            'username' => [
+                'rules' => 'required|min_length[3]|max_length[10]|alpha_numeric_punct',
+                'errors' => [
+                    'required' => 'Username wajib diisi!',
+                    'min_length' => 'Username minimal 3 karakter!',
+                    'max_length' => 'Username maksimal 10 karakter!',
+                    'alpha_numeric_punct' => 'Username hanya boleh berisi huruf, angka, dan underscore!'
+                ]
+            ],
+            'email' => [
+                'rules' => 'required|valid_email',
+                'errors' => [
+                    'required' => 'Email wajib diisi!',
+                    'valid_email' => 'Format email tidak valid!'
+                ]
+            ],
+            'no_telepon' => [
+                'rules' => 'required|numeric|min_length[10]|max_length[15]',
+                'errors' => [
+                    'required' => 'Nomor telepon wajib diisi!',
+                    'numeric' => 'Nomor telepon hanya boleh berisi angka!',
+                    'min_length' => 'Nomor telepon minimal 10 digit!',
+                    'max_length' => 'Nomor telepon maksimal 15 digit!'
+                ]
+            ],
+            'pekerjaan' => [
+                'rules' => 'required|min_length[3]|max_length[100]',
+                'errors' => [
+                    'required' => 'Pekerjaan wajib diisi!',
+                    'min_length' => 'Pekerjaan minimal 3 karakter!',
+                    'max_length' => 'Pekerjaan maksimal 100 karakter!'
+                ]
+            ],
+            'alamat' => [
+                'rules' => 'required|min_length[10]|max_length[500]',
+                'errors' => [
+                    'required' => 'Alamat wajib diisi!',
+                    'min_length' => 'Alamat minimal 10 karakter!',
+                    'max_length' => 'Alamat maksimal 500 karakter!'
+                ]
+            ],
+            'file_profil' => [
+                'rules' => 'max_size[file_profil,2048]|is_image[file_profil]|mime_in[file_profil,image/jpg,image/jpeg,image/png,image/gif]',
+                'errors' => [
+                    'max_size' => 'Ukuran foto profil maksimal 2MB!',
+                    'is_image' => 'File yang diunggah bukan gambar!',
+                    'mime_in' => 'Format foto profil harus JPG, JPEG, PNG, atau GIF!'
+                ]
+            ],
+        ];
+        
+        // Check if username changed and need unique validation
+        if ($userData['username'] !== $this->request->getPost('username')) {
+            $rules['username']['rules'] .= '|is_unique[tb_user.username,id_user,' . $userId . ']';
+            $rules['username']['errors']['is_unique'] = 'Username sudah digunakan!';
+        }
+        
+        // Check if email changed and need unique validation
+        if ($userData['email'] !== $this->request->getPost('email')) {
+            $rules['email']['rules'] .= '|is_unique[tb_user.email,id_user,' . $userId . ']';
+            $rules['email']['errors']['is_unique'] = 'Email sudah terdaftar!';
+        }
+        
+        // Run validation
+        if (!$this->validate($rules)) {
+            session()->setFlashdata('error', 'Validasi gagal. Harap periksa kembali data Anda.');
+            return redirect()->back()->withInput();
+        }
+        
+        // Prepare update data
+        $updateData = [
+            'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email'),
+            'no_telepon' => $this->request->getPost('no_telepon'),
+            'pekerjaan' => $this->request->getPost('pekerjaan'),
+            'alamat' => $this->request->getPost('alamat'),
+        ];
+        
+        // Handle file upload if a new file is provided
+        $file = $this->request->getFile('file_profil');
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            // Delete old profile picture if exists
+            if (!empty($userData['file_profil']) && file_exists($userData['file_profil'])) {
+                @unlink($userData['file_profil']); // Added @ to suppress errors if file doesn't exist
+            }
+            
+            // Generate random name for the file
+            $newName = $file->getRandomName();
+            
+            // Move the file to the upload directory
+            $file->move('dokumen/foto-peminjam/', $newName);
+            
+            // Add the file path to the update data
+            $updateData['file_profil'] = 'dokumen/foto-peminjam/' . $newName;
+        }
+        
+        // Update the user data
+        if (!$this->userModel->update($userId, $updateData)) {
+            session()->setFlashdata('error', 'Gagal memperbarui data profil!');
+            return redirect()->back()->withInput();
+        }
+        
+        // Get updated data
+        $updatedData = $this->userModel->find($userId);
+        
+        // Update session data
+        session()->set([
+            'nama_lengkap' => $updatedData['nama_lengkap'],
+            'username' => $updatedData['username'],
+            'email' => $updatedData['email'],
+            'no_telepon' => $updatedData['no_telepon'],
+            'pekerjaan' => $updatedData['pekerjaan'],
+            'alamat' => $updatedData['alamat'],
+            'file_profil' => $updatedData['file_profil'],
+        ]);
+        
+        // Set success message
+        session()->setFlashdata('success', 'Profil berhasil diperbarui!');
+        
+        // Redirect back to the referring page
+        return redirect()->back();
+    }
+
     public function registrasi()
     {
         $data = [
@@ -125,7 +285,7 @@ class Authentication extends BaseController
             } elseif ($this->session->get('id_jabatan') == 2) {
                 // Cek apakah ada slug yang tersimpan (misal setelah klik barang sebelum login)
                 $slug = $this->session->get('slug');
-
+                
                 // Jika ada slug yang tersimpan, redirect ke detail barang
                 if ($slug) {
                     return redirect()->to('barang-detail/' . $slug);
@@ -135,118 +295,174 @@ class Authentication extends BaseController
                 }
             }
         }
-
+    
+        // Jika ini adalah request POST (form login disubmit)
+        if ($this->request->getMethod() === 'post') {
+            // Ambil data dari form
+            $username = $this->request->getPost('username');
+            $password = $this->request->getPost('password');
+            
+            // Validasi input
+            $rules = [
+                'username' => 'required',
+                'password' => 'required'
+            ];
+            
+            if (!$this->validate($rules)) {
+                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            }
+            
+            // Cari user berdasarkan username
+            $user = $this->m_user->where('username', $username)->first();
+            
+            // Jika user ditemukan dan password cocok
+            if ($user && password_verify($password, $user['password'])) {
+                // Set session data - MAKE SURE ALL FIELDS ARE INCLUDED
+                $this->session->set([
+                    'id_user' => $user['id_user'],
+                    'username' => $user['username'],
+                    'nama_lengkap' => $user['nama_lengkap'],
+                    'email' => $user['email'],
+                    'pekerjaan' => $user['pekerjaan'],
+                    'alamat' => $user['alamat'],    
+                    'file_profil' => $user['file_profil'],
+                    'no_telepon' => $user['no_telepon'],
+                    'id_jabatan' => $user['id_jabatan'],
+                    'islogin' => true
+                ]);
+                
+                // Redirect berdasarkan role
+                if ($user['id_jabatan'] == 1) {
+                    return redirect()->to('admin/dashboard');
+                } else {
+                    // Redirect regular user (id_jabatan == 2)
+                    $slug = $this->session->get('slug');
+                    if ($slug) {
+                        return redirect()->to('barang-detail/' . $slug);
+                    } else {
+                        return redirect()->to('barang');
+                    }
+                }
+            } else {
+                // Login gagal
+                return redirect()->back()->withInput()->with('error', 'Username atau password salah');
+            }
+        }
+        
+        // Tampilkan halaman login (jika bukan POST request)
         $data = [
             'title' => 'Login IKNAventory'
         ];
-
+        
         return view('users/login', $data);
     }
 
     public function cekLogin()
-    {
-        if ($this->session->has('islogin')) {
-            return redirect()->back()->with('pesan', 'Anda Sudah Login !');
-        }
+{
+    if ($this->session->has('islogin')) {
+        return redirect()->back()->with('pesan', 'Anda Sudah Login !');
+    }
 
-        $session = $this->session;
+    $session = $this->session;
 
-        // validasi jika belum ada inputan username dan password di form login
-        if ($this->request->getPost()) {
-            $rules = [
-                'username' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Username atau Email harus di isi !',
-                    ]
-                ],
-                'password' => [
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => 'Password harus di isi !',
-                    ]
+    // validasi jika belum ada inputan username dan password di form login
+    if ($this->request->getPost()) {
+        $rules = [
+            'username' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Username atau Email harus di isi !',
                 ]
-            ];
+            ],
+            'password' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Password harus di isi !',
+                ]
+            ]
+        ];
 
-            if ($this->validate($rules)) {
-                // mengambil inputan username dan password pada form login
-                $usernameOrEmail = $this->request->getPost('username');
-                $password = $this->request->getPost('password');
+        if ($this->validate($rules)) {
+            // mengambil inputan username dan password pada form login
+            $usernameOrEmail = $this->request->getPost('username');
+            $password = $this->request->getPost('password');
 
-                // Periksa apakah pengguna sudah menginputkan email atau username
-                $user = $this->m_user->where('email', $usernameOrEmail)
-                    ->orWhere('username', $usernameOrEmail)
-                    ->first();
+            // Periksa apakah pengguna sudah menginputkan email atau username
+            $user = $this->m_user->where('email', $usernameOrEmail)
+                ->orWhere('username', $usernameOrEmail)
+                ->first();
 
-                if ($user) {
-                    // mengecek password user setelah mengecek username / email
-                    if (password_verify($password, $user['password'])) {
-                        // jika status user aktif
-                        if ($user['status'] == 'aktif') {
-                            // Periksa apakah password perlu direset
-                            if (!empty($user['password_last_reset'])) {
-                                $passwordLastReset = new \DateTime($user['password_last_reset']);
-                                $currentDate = $this->date;
-                                $interval = $passwordLastReset->diff($currentDate);
+            if ($user) {
+                // mengecek password user setelah mengecek username / email
+                if (password_verify($password, $user['password'])) {
+                    // jika status user aktif
+                    if ($user['status'] == 'aktif') {
+                        // Periksa apakah password perlu direset
+                        if (!empty($user['password_last_reset'])) {
+                            $passwordLastReset = new \DateTime($user['password_last_reset']);
+                            $currentDate = $this->date;
+                            $interval = $passwordLastReset->diff($currentDate);
 
-                                if ($interval->days > 30) {
-                                    return redirect()->to('authentication/lupaPassword')->with('warning', 'Password Anda sudah kadaluarsa. Silakan reset password Anda !');
-                                }
+                            if ($interval->days > 30) {
+                                return redirect()->to('authentication/lupaPassword')->with('warning', 'Password Anda sudah kadaluarsa. Silakan reset password Anda !');
                             }
-
-                            // Perbarui kolom terakhir_login
-                            $this->m_user->updateData($user['id_user'], ['terakhir_login' => date('Y-m-d H:i:s')]);
-
-                            // mengecek data pengguna
-                            $session->set([
-                                'id_user' => $user['id_user'],
-                                'username' => $user['username'],
-                                'email' => $user['email'],
-                                'id_jabatan' => $user['id_jabatan'],
-                                'nama_lengkap' => $user['nama_lengkap'],
-                                'no_telepon' => $user['no_telepon'],
-                                'password_last_reset' => $user['password_last_reset'],
-                                'terakhir_login' => $user['terakhir_login'],
-                                'file_profil' => $user['file_profil'],
-                                'islogin' => true
-                            ]);
-
-                            // Log the session data for debugging
-                            log_message('debug', 'User logged in: ' . json_encode($session->get()));
-
-                            // jika benar maka tertuju ke halaman dashboard
-                            if ($user['id_jabatan'] == 1) {
-                                return redirect()->to('admin/dashboard');
-                            } elseif ($user['id_jabatan'] == 2) {
-                                // Cek apakah ada slug yang tersimpan (misal setelah klik barang sebelum login)
-                                $slug = $this->session->get('slug');
-
-                                // Jika ada slug yang tersimpan, redirect ke detail barang
-                                if ($slug) {
-                                    return redirect()->to('barang-detail/' . $slug);
-                                } else {
-                                    // Redirect ke halaman barang secara default
-                                    return redirect()->to('barang');
-                                }
-                            }
-                        } elseif ($user['status'] == 'tidak aktif') {
-                            $session->setFlashdata('gagal', 'Akun anda dinonaktifkan');
                         }
-                    } else {
-                        // jika password salah maka muncul notifikasi
-                        $session->setFlashdata('validation', ['password' => 'Password yang Anda masukkan salah !']);
+
+                        // Perbarui kolom terakhir_login
+                        $this->m_user->updateData($user['id_user'], ['terakhir_login' => date('Y-m-d H:i:s')]);
+
+                        // mengecek data pengguna - MAKE SURE ALL FIELDS ARE INCLUDED
+                        $session->set([
+                            'id_user' => $user['id_user'],
+                            'username' => $user['username'],
+                            'email' => $user['email'],
+                            'id_jabatan' => $user['id_jabatan'],
+                            'nama_lengkap' => $user['nama_lengkap'],
+                            'no_telepon' => $user['no_telepon'],
+                            'pekerjaan' => $user['pekerjaan'], // Ensure this is included
+                            'alamat' => $user['alamat'], // Ensure this is included
+                            'password_last_reset' => $user['password_last_reset'],
+                            'terakhir_login' => $user['terakhir_login'],
+                            'file_profil' => $user['file_profil'],
+                            'islogin' => true
+                        ]);
+
+                        // Log the session data for debugging
+                        log_message('debug', 'User logged in: ' . json_encode($session->get()));
+
+                        // jika benar maka tertuju ke halaman dashboard
+                        if ($user['id_jabatan'] == 1) {
+                            return redirect()->to('admin/dashboard');
+                        } elseif ($user['id_jabatan'] == 2) {
+                            // Cek apakah ada slug yang tersimpan (misal setelah klik barang sebelum login)
+                            $slug = $this->session->get('slug');
+
+                            // Jika ada slug yang tersimpan, redirect ke detail barang
+                            if ($slug) {
+                                return redirect()->to('barang-detail/' . $slug);
+                            } else {
+                                // Redirect ke halaman barang secara default
+                                return redirect()->to('barang');
+                            }
+                        }
+                    } elseif ($user['status'] == 'tidak aktif') {
+                        $session->setFlashdata('gagal', 'Akun anda dinonaktifkan');
                     }
                 } else {
-                    // jika username salah maka muncul notifikasi
-                    $session->setFlashdata('validation', ['username' => 'Username / Email tidak ditemukan !']);
+                    // jika password salah maka muncul notifikasi
+                    $session->setFlashdata('validation', ['password' => 'Password yang Anda masukkan salah !']);
                 }
             } else {
-                $session->setFlashdata('validation', $this->validator->getErrors());
+                // jika username salah maka muncul notifikasi
+                $session->setFlashdata('validation', ['username' => 'Username / Email tidak ditemukan !']);
             }
+        } else {
+            $session->setFlashdata('validation', $this->validator->getErrors());
         }
-        // setiap salah maka akan kembali kehalaman login dengan notifkasi gagal
-        return redirect()->to('authentication/login')->withInput()->with('gagal', 'Silahkan Login Ulang !');
     }
+    // setiap salah maka akan kembali kehalaman login dengan notifkasi gagal
+    return redirect()->to('authentication/login')->withInput()->with('gagal', 'Silahkan Login Ulang !');
+}
 
     public function lupaPassword()
     {
@@ -411,4 +627,6 @@ class Authentication extends BaseController
         // Redirect ke login
         return redirect()->to('authentication/login');
     }
+
+    
 }

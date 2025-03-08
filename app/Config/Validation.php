@@ -44,6 +44,46 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+
+    public function username_update_check(string $str, string $fields, array $data): bool
+{
+    $params = explode(',', $fields);
+    $table = $params[0];
+    $field = $params[1];
+    $currentUserId = $params[2] ?? null;
+
+    $builder = db_connect()->table($table);
+    $builder->where($field, $str);
+    
+    // Kecualikan user saat ini
+    if ($currentUserId !== null) {
+        $builder->where('id_user !=', $currentUserId);
+    }
+
+    $existingUser = $builder->countAllResults();
+
+    return $existingUser === 0;
+}
+
+public function email_update_check(string $str, string $fields, array $data): bool
+{
+    $params = explode(',', $fields);
+    $table = $params[0];
+    $field = $params[1];
+    $currentUserId = $params[2] ?? null;
+
+    $builder = db_connect()->table($table);
+    $builder->where($field, $str);
+    
+    // Kecualikan user saat ini
+    if ($currentUserId !== null) {
+        $builder->where('id_user !=', $currentUserId);
+    }
+
+    $existingUser = $builder->countAllResults();
+
+    return $existingUser === 0;
+}
     public function username_check(string $str, string $fields, array $data): bool
     {
         $userModel = new UserModel();
