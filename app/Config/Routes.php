@@ -146,6 +146,7 @@ $routes->GROUP('admin', ['namespace' => 'App\Controllers\Admin'], function ($rou
     /*=================================== BARANG KELUAR ====================================*/
     $routes->GET('barang_keluar', 'BarangKeluarController::index', ['namespace' => 'App\Controllers\Admin']);
     $routes->GROUP('barang_keluar', static function ($routes) {
+        $routes->GET('tambah_stok_dari_barang_keluar/(:num)', 'BarangKeluarController::tambah_stok_dari_barang_keluar/$1', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('tambah', 'BarangKeluarController::tambah', ['namespace' => 'App\Controllers\Admin']);
         $routes->POST('save', 'BarangKeluarController::save', ['namespace' => 'App\Controllers\Admin']);
         $routes->GET('edit/(:segment)', 'BarangKeluarController::edit/$1', ['namespace' => 'App\Controllers\Admin']);

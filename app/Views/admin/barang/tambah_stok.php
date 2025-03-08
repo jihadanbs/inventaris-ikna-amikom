@@ -137,7 +137,7 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3 separator">
                                         <label for="tanggal_masuk" class="col-form-label">Tanggal Masuk Barang<span class="text-danger">*</span></label>
-                                        <input type="date" class="form-control custom-border <?= session('errors.tanggal_masuk') ? 'is-invalid' : ''; ?>" name="tanggal_masuk" placeholder="Tanggal Masuk" id="tanggal_masuk" cols="30" rows="10" style="background-color: white;" value="<?= old('tanggal_masuk'); ?>"></input>
+                                        <input type="date" class="form-control custom-border <?= session('errors.tanggal_masuk') ? 'is-invalid' : ''; ?>" name="tanggal_masuk" placeholder="Tanggal Masuk" id="tanggal_masuk" cols="30" rows="10" style="background-color: white;" value="<?= old('tanggal_masuk') ?: session('tanggal_masuk'); ?>"></input>
 
                                         <?php if (session('errors.tanggal_masuk')) : ?>
                                             <div class="invalid-feedback">
@@ -147,9 +147,9 @@
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-                                        <label for="keterangan_masuk" class="col-form-label">Keterangan Masuk<span class="text-danger">*</span></label>
+                                        <label for="keterangan_masuk" class="col-form-label">Keterangan Masuk</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control <?= session('errors.keterangan_masuk') ? 'is-invalid' : ''; ?>" id="keterangan_masuk" name="keterangan_masuk" placeholder="Masukkan Keterangan Masuk Barang" style="background-color: white;" value="<?= old('keterangan_masuk'); ?>">
+                                            <input type="text" class="form-control <?= session('errors.keterangan_masuk') ? 'is-invalid' : ''; ?>" id="keterangan_masuk" name="keterangan_masuk" placeholder="Masukkan Keterangan Masuk Barang" style="background-color: white;" value="<?= old('keterangan_masuk') ?: session('keterangan_masuk'); ?>">
 
                                             <?php if (session('errors.keterangan_masuk')) : ?>
                                                 <div class="invalid-feedback">
@@ -165,9 +165,9 @@
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3 separator">
-                                        <label for="jumlah_total_baik" class="col-form-label">Total Barang (Baik/Layak) :</label>
+                                        <label for="jumlah_total_baik" class="col-form-label">Total Barang (Baik/Layak)<span class="text-danger">*</span></label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control <?= session('errors.jumlah_total_baik') ? 'is-invalid' : ''; ?>" id="jumlah_total_baik" name="jumlah_total_baik" placeholder="Masukkan Jumlah Total Barang Kondisi Layak" style="background-color: white;" autofocus value="<?= old('jumlah_total_baik'); ?>">
+                                            <input type="number" class="form-control <?= session('errors.jumlah_total_baik') ? 'is-invalid' : ''; ?>" id="jumlah_total_baik" name="jumlah_total_baik" placeholder="Masukkan Jumlah Total Barang Kondisi Layak" style="background-color: white;" value="<?= old('jumlah_total_baik') ?: session('jumlah_total_baik'); ?>">
 
                                             <?php if (session('errors.jumlah_total_baik')) : ?>
                                                 <div class="invalid-feedback">
@@ -178,9 +178,9 @@
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-                                        <label for="keterangan_baik" class="col-form-label">Keterangan Baik<span class="text-danger">*</span></label>
+                                        <label for="keterangan_baik" class="col-form-label">Keterangan Baik</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control <?= session('errors.keterangan_baik') ? 'is-invalid' : ''; ?>" id="keterangan_baik" name="keterangan_baik" placeholder="Masukkan Keterangan Barang" style="background-color: white;" autofocus value="<?= old('keterangan_baik'); ?>">
+                                            <input type="text" class="form-control <?= session('errors.keterangan_baik') ? 'is-invalid' : ''; ?>" id="keterangan_baik" name="keterangan_baik" placeholder="Masukkan Keterangan Barang" style="background-color: white;" value="<?= old('keterangan_baik') ?: session('keterangan_baik'); ?>">
 
                                             <?php if (session('errors.keterangan_baik')) : ?>
                                                 <div class="invalid-feedback">
@@ -198,7 +198,7 @@
                                     <div class="col-md-6 mb-3 separator">
                                         <label for="jumlah_total_rusak" class="col-form-label">Total Barang (Rusak/Tidak Layak)<span class="text-danger">*</span></label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control <?= session('errors.jumlah_total_rusak') ? 'is-invalid' : ''; ?>" id="jumlah_total_rusak" name="jumlah_total_rusak" placeholder="Masukkan Jumlah Total Barang Kondisi Rusak" style="background-color: white;" autofocus value="<?= old('jumlah_total_rusak'); ?>">
+                                            <input type="number" class="form-control <?= session('errors.jumlah_total_rusak') ? 'is-invalid' : ''; ?>" id="jumlah_total_rusak" name="jumlah_total_rusak" placeholder="Masukkan Jumlah Total Barang Kondisi Rusak" style="background-color: white;" value="<?= old('jumlah_total_rusak') ?: session('jumlah_total_rusak'); ?>">
 
                                             <?php if (session('errors.jumlah_total_rusak')) : ?>
                                                 <div class="invalid-feedback">
@@ -209,7 +209,7 @@
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-                                        <label for="keterangan_rusak" class="col-form-label">Keterangan Rusak<span class="text-danger">*</span></label>
+                                        <label for="keterangan_rusak" class="col-form-label">Keterangan Rusak</label>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control <?= session('errors.keterangan_rusak') ? 'is-invalid' : ''; ?>" id="keterangan_rusak" name="keterangan_rusak" placeholder="Masukkan Keterangan Barang" style="background-color: white;" autofocus value="<?= old('keterangan_rusak'); ?>">
 
