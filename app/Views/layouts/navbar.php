@@ -313,10 +313,9 @@
 
 <?php
 $userId = session()->get('id_user');
-$userModel = new \App\Models\UserModel(); // Adjust this to your actual model name
+$userModel = new \App\Models\UserModel();
 $userData = $userId ? $userModel->find($userId) : null;
 
-// Set variables with fallbacks
 $pekerjaan = $userData['pekerjaan'] ?? session()->get('pekerjaan') ?? '';
 $alamat = $userData['alamat'] ?? session()->get('alamat') ?? '';
 $file_profil = $userData['file_profil'] ?? session()->get('file_profil') ?? '';
