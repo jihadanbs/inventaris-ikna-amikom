@@ -440,6 +440,68 @@
 
             // Tampilkan modal peminjaman
             $('#peminjamanModal').modal('show');
+
+            $(document).ready(function() {
+                // Perbaikan tombol close (X)
+                $(".modal-form-peminjaman .close").on("click", function() {
+                    $("#peminjamanModal").modal("hide");
+                });
+
+                // Perbaikan tombol Tutup
+                $(".modal-form-peminjaman .btn-danger").on("click", function() {
+                    $("#peminjamanModal").modal("hide");
+                });
+
+                $(document).on("keydown", function(e) {
+                    if (e.key === "Escape" && $("#peminjamanModal").hasClass("show")) {
+                        $("#peminjamanModal").modal("hide");
+                    }
+                });
+
+                $("#peminjamanModal").on("click", function(e) {
+                    if ($(e.target).hasClass("modal")) {
+                        $("#peminjamanModal").modal("hide");
+                    }
+                });
+
+                $("#peminjamanModal").modal({
+                    backdrop: true,
+                    keyboard: true,
+                    show: false
+                });
+
+                // Validasi form sebelum submit
+                $("#formPengajuan").on("submit", function(e) {
+                    let isValid = true;
+
+                    // Validasi kepentingan
+                    if ($("#kepentingan").val().trim() === "") {
+                        $("#kepentingan").addClass("is-invalid");
+                        isValid = false;
+                    } else {
+                        $("#kepentingan").removeClass("is-invalid").addClass("is-valid");
+                    }
+
+                    // Validasi dokumen jaminan
+                    if ($("#dokumen_jaminan")[0].files.length === 0) {
+                        $("#dokumen_jaminan").addClass("is-invalid");
+                        isValid = false;
+                    } else {
+                        $("#dokumen_jaminan").removeClass("is-invalid").addClass("is-valid");
+                    }
+
+                    if (!isValid) {
+                        e.preventDefault();
+                        return false;
+                    }
+                });
+
+                // Reset form saat modal dibuka
+                $("#peminjamanModal").on("show.bs.modal", function() {
+                    $("#formPengajuan")[0].reset();
+                    $("#kepentingan, #dokumen_jaminan").removeClass("is-invalid is-valid");
+                });
+            });
         }
     </script>
 </body>

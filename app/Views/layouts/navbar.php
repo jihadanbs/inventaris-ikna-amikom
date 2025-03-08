@@ -1,4 +1,3 @@
-
 <style>
     .navbar-user-dropdown {
         position: relative;
@@ -13,7 +12,7 @@
     }
 
     .navbar-user-dropdown .user-profile-container:hover {
-        background-color: rgba(0,0,0,0.05);
+        background-color: rgba(0, 0, 0, 0.05);
     }
 
     .navbar-user-dropdown .dropdown-toggle1 {
@@ -30,13 +29,14 @@
         box-shadow: none !important;
     }
 
-   
+
     .navbar-user-dropdown .dropdown-menu {
-    right: 0;
-    left: 0;
-    top: 100%;
-    border-radius: 4px;
-}
+        right: 0;
+        left: 0;
+        top: 100%;
+        border-radius: 4px;
+    }
+
     .navbar-user-dropdown .dropdown-item {
         display: flex;
         align-items: center;
@@ -48,6 +48,7 @@
         text-align: center;
         margin-right: 10px;
     }
+
     #editProfilModal .modal-content {
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -219,7 +220,8 @@
         width: 0.1px;
         height: 0.1px;
     }
-    .modal{
+
+    .modal {
         z-index: 9999999;
     }
 </style>
@@ -278,7 +280,7 @@
                                     <i class="fa fa-chevron-down ml-2 "></i>
                                 </div>
                             </button>
-                            
+
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdownFull">
                                 <?php if (session()->get('id_jabatan') != 2) : ?>
                                     <a class="dropdown-item d-flex align-items-center" href="<?= site_url('/dashboard') ?>">
@@ -286,14 +288,14 @@
                                         <span>Dashboard</span>
                                     </a>
                                 <?php endif; ?>
-                                
+
                                 <a class="dropdown-item d-flex align-items-center" href="#" data-toggle="modal" data-target="#editProfilModal">
                                     <i class="fas fa-user mr-3 text-success"></i>
                                     <span class="text-success">Profile</span>
                                 </a>
-                                
+
                                 <div class="dropdown-divider"></div>
-                                
+
                                 <a class="dropdown-item d-flex align-items-center text-danger" href="<?= site_url('/authentication/logout') ?>">
                                     <i class="fas fa-sign-out-alt mr-3"></i>
                                     <span>Logout</span>
@@ -304,126 +306,176 @@
                         <a href="<?= site_url('/authentication/login') ?>" class="quote_btn-container">Login</a>
                     <?php endif; ?>
                 </div>
-            <!-- END NAVBAR -->
+                <!-- END NAVBAR -->
         </nav>
     </div>
 </header>
- 
 
-        <?php
-        $userId = session()->get('id_user');
-        $userModel = new \App\Models\UserModel(); // Adjust this to your actual model name
-        $userData = $userId ? $userModel->find($userId) : null;
+<?php
+$userId = session()->get('id_user');
+$userModel = new \App\Models\UserModel(); // Adjust this to your actual model name
+$userData = $userId ? $userModel->find($userId) : null;
 
-        // Set variables with fallbacks
-        $pekerjaan = $userData['pekerjaan'] ?? session()->get('pekerjaan') ?? '';
-        $alamat = $userData['alamat'] ?? session()->get('alamat') ?? '';
-        $file_profil = $userData['file_profil'] ?? session()->get('file_profil') ?? '';
-        ?>
+// Set variables with fallbacks
+$pekerjaan = $userData['pekerjaan'] ?? session()->get('pekerjaan') ?? '';
+$alamat = $userData['alamat'] ?? session()->get('alamat') ?? '';
+$file_profil = $userData['file_profil'] ?? session()->get('file_profil') ?? '';
+?>
 
-    <!-- Modal Edit Profil -->
-    <div class="modal fade" id="editProfilModal" tabindex="-1" role="dialog" aria-labelledby="editProfilModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProfilModalLabel">Edit Profil</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="editProfilForm" action="<?= site_url('authentication/updateUser') ?>" method="POST" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="nama_lengkap">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" 
-                                value="<?= session()->get('nama_lengkap') ?>" 
-                                required minlength="3" maxlength="255" pattern="[A-Za-z\s]+">
-                        </div>
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" 
-                                value="<?= session()->get('username') ?>" 
-                                required minlength="3" maxlength="10" pattern="[A-Za-z0-9_]+">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" 
-                                value="<?= session()->get('email') ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="no_telepon">Nomor Telepon</label>
-                            <input type="tel" class="form-control" id="no_telepon" name="no_telepon" 
-                                value="<?= session()->get('no_telepon') ?>" 
-                                required pattern="[0-9]+" minlength="10" maxlength="15">
-                        </div>
-                        <div class="form-group">
-                            <label for="pekerjaan">Pekerjaan</label>
-                            <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" 
-                                value="<?= $pekerjaan ?>" 
-                                required minlength="3" maxlength="100">
-                        </div>
-                        <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <textarea class="form-control" id="alamat" name="alamat" 
-                                    required minlength="10" maxlength="500"><?= $alamat ?></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="file_profil">Foto Profil</label>
+<!-- Modal Edit Profil -->
+<div class="modal fade" id="editProfilModal" tabindex="-1" role="dialog" aria-labelledby="editProfilModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProfilModalLabel">Edit Profil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editProfilForm" action="<?= site_url('authentication/updateUser') ?>" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="nama_lengkap">Nama Lengkap<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap"
+                            value="<?= session()->get('nama_lengkap') ?>"
+                            required minlength="3" maxlength="255" pattern="[A-Za-z\s]+">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="username" name="username"
+                            value="<?= session()->get('username') ?>"
+                            required minlength="3" maxlength="10" pattern="[A-Za-z0-9_]+">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email<span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email"
+                            value="<?= session()->get('email') ?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_telepon">Nomor Telepon<span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control" id="no_telepon" name="no_telepon"
+                            value="<?= session()->get('no_telepon') ?>"
+                            required pattern="[0-9]+" minlength="10" maxlength="15">
+                    </div>
+                    <div class="form-group">
+                        <label for="pekerjaan">Pekerjaan<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
+                            value="<?= $pekerjaan ?>"
+                            required minlength="3" maxlength="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="alamat">Alamat<span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="alamat" name="alamat"
+                            required minlength="10" maxlength="500"><?= $alamat ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="file_profil">Foto Profil<span class="text-danger">*</span></label>
+                        <div class="mb-2" style="cursor: pointer;" onclick="document.getElementById('file_profil').click()">
                             <?php if (!empty($file_profil)): ?>
-                                <div class="mb-2">
-                                    <img src="<?= base_url($file_profil) ?>" alt="Current Profile" class="img-thumbnail" style="max-height: 100px;">
-                                    <p class="text-muted small">Foto profil saat ini</p>
-                                </div>
+                                <img src="<?= base_url($file_profil) ?>" alt="Current Profile" id="preview-image" class="img-thumbnail" style="max-height: 100px;">
+                                <p class="text-muted small">Foto profil saat ini (klik untuk mengganti)</p>
+                            <?php else: ?>
+                                <img src="<?= base_url('assets/img/404.gif') ?>" alt="Default Profile" id="preview-image" class="img-thumbnail" style="max-height: 100px;">
+                                <p class="text-muted small">Belum ada foto profil (klik untuk menambahkan)</p>
                             <?php endif; ?>
-                            <input type="file" class="form-control-file" id="file_profil" name="file_profil" 
-                                accept=".jpg,.jpeg,.png,.gif" 
-                                data-max-size="2048">
-                            <small class="form-text text-muted">Maksimal ukuran file 2MB. Format: JPG, JPEG, PNG, GIF</small>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                        </div>
-                    </form>
-                </div>
+                        <input type="file" class="form-control-file d-none" id="file_profil" name="file_profil" accept="image/*" data-max-size="2048" onchange="previewImage()">
+                        <small class="form-text text-muted">Maksimal ukuran file 2MB. Format: JPG, JPEG, PNG, GIF</small>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 </div>
 <!-- end dari header section -->
 <script>
-$(document).ready(function() {
-    // Validasi ukuran file sebelum submit
-    $('#editProfilForm').on('submit', function(e) {
-        var fileInput = $('#file_profil')[0];
-        var maxSize = $(fileInput).data('max-size') * 1024; 
+    function previewImage() {
+        var fileInput = document.getElementById('file_profil');
+        var previewImg = document.getElementById('preview-image');
 
-        // Validasi ukuran file
-        if (fileInput.files.length > 0) {
-            if (fileInput.files[0].size > maxSize) {
-                alert('Ukuran file terlalu besar. Maks 2MB.');
-                e.preventDefault();
-                return false;
+        // Debug
+        console.log("File input changed");
+
+        if (fileInput.files && fileInput.files[0]) {
+            var file = fileInput.files[0];
+            console.log("File selected:", file.name, "Size:", file.size, "Type:", file.type);
+
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                console.log("File loaded to preview");
+                previewImg.src = e.target.result;
+
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'bottom-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Gambar berhasil diupload'
+                });
             }
+
+            reader.onerror = function(e) {
+                console.error("Error reading file:", e);
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Terjadi kesalahan saat membaca file'
+                });
+            }
+
+            reader.readAsDataURL(file);
+        } else {
+            console.log("No file selected");
         }
-    });
+    }
 
-    // Validasi real-time
-    $('#editProfilForm input').on('invalid', function() {
-        this.setCustomValidity(
-            this.validity.valueMissing ? 'Kolom ini wajib diisi' :
-            this.validity.patternMismatch ? 'Format input tidak valid' :
-            this.validity.tooShort ? 'Input terlalu pendek' :
-            this.validity.tooLong ? 'Input terlalu panjang' : ''
-        );
-    });
+    $(document).ready(function() {
+        // Validasi ukuran file sebelum submit
+        $('#editProfilForm').on('submit', function(e) {
+            var fileInput = $('#file_profil')[0];
+            var maxSize = $(fileInput).data('max-size') * 2048;
 
-    $('#editProfilForm input').on('input', function() {
-        this.setCustomValidity('');
+            // Validasi ukuran file
+            if (fileInput.files.length > 0) {
+                if (fileInput.files[0].size > maxSize) {
+                    alert('Ukuran file terlalu besar. Maks 2MB !');
+                    e.preventDefault();
+                    return false;
+                }
+            }
+        });
+
+        // Validasi real-time
+        $('#editProfilForm input').on('invalid', function() {
+            this.setCustomValidity(
+                this.validity.valueMissing ? 'Kolom ini wajib diisi' :
+                this.validity.patternMismatch ? 'Format input tidak valid' :
+                this.validity.tooShort ? 'Input terlalu pendek' :
+                this.validity.tooLong ? 'Input terlalu panjang' : ''
+            );
+        });
+
+        $('#editProfilForm input').on('input', function() {
+            this.setCustomValidity('');
+        });
+
+        <?php if (session()->getFlashdata('success')): ?>
+            $('#editProfilModal').modal('hide');
+        <?php endif; ?>
     });
-    
-    // Auto-close modal if success flash message exists
-    <?php if(session()->getFlashdata('success')): ?>
-    $('#editProfilModal').modal('hide');
-    <?php endif; ?>
-});
 </script>
