@@ -41,6 +41,38 @@ class BarangKeluarController extends BaseController
         return view('admin/barang_keluar/tambah', $data);
     }
 
+    public function tambah_stok_dari_barang_keluar($id_barang_keluar)
+    {
+        // Cek sesi pengguna
+        if ($this->checkSession() !== true) {
+            return $this->checkSession();
+        }
+
+        // Ambil data barang keluar
+        $barangKeluar = $this->m_barang_keluar->find($id_barang_keluar);
+
+        if (!$barangKeluar) {
+            return redirect()->to('/admin/barang_keluar')->with('error', 'Data barang keluar tidak ditemukan!');
+        }
+
+        // Ambil data barang berdasarkan id_barang
+        $barang = $this->m_barang->find($barangKeluar['id_barang']);
+
+        if (!$barang) {
+            return redirect()->to('/admin/barang_keluar')->with('error', 'Data barang tidak ditemukan!');
+        }
+
+        // Set data untuk form
+        session()->setFlashdata('jumlah_total_baik', $barangKeluar['total_barang']);
+        session()->setFlashdata('jumlah_total_rusak', '0');
+        session()->setFlashdata('keterangan_baik', 'Barang dalam kondisi baik dan layak digunakan');
+        session()->setFlashdata('tanggal_masuk', date('Y-m-d'));
+        session()->setFlashdata('keterangan_masuk', 'Barang ' . $barang['nama_barang'] . ' masuk ' . $barangKeluar['total_barang'] . ' Unit dari perbaikan pada tanggal ' . formatTanggalIndo(date('Y-m-d')));
+
+        // Redirect ke halaman tambah stok dengan data barang yang sesuai
+        return redirect()->to('/admin/barang/tambah_stok/' . $barang['slug']);
+    }
+
     public function save()
     {
         // Cek sesi pengguna

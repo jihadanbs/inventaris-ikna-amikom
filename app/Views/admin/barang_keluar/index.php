@@ -51,7 +51,7 @@
                                 return $text;
                             }
                             ?>
-                            <table id="tableBarangRusak" class="table table-bordered dt-responsive nowrap w-100">
+                            <table id="tableBarangKeluar" class="table table-bordered dt-responsive nowrap w-100">
                                 <?= $this->include('alert/alert'); ?>
                                 <div class="col-md-3 mb-3">
                                     <a href=" <?= site_url('admin/barang_keluar/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
@@ -74,7 +74,7 @@
                                     <?php foreach ($tb_barang_keluar as $row) : ?>
                                         <tr>
                                             <td style="width: 2px" scope="row"><?= $i++; ?></td>
-                                            <td><?= truncateText($row['nama_barang'], 70); ?></td>
+                                            <td><a href="<?= site_url('admin/barang_keluar/tambah_stok_dari_barang_keluar/' . $row['id_barang_keluar']); ?>"><?= truncateText($row['nama_barang'], 70); ?></a></td>
                                             <td><?= $row['nama_kategori']; ?></td>
                                             <td><?= $row['total_barang']; ?> Unit</td>
                                             <td><?= formatTanggalIndo($row['tanggal_keluar']); ?></td>
@@ -98,7 +98,7 @@
     <script>
         $(document).ready(function() {
             // Inisialisasi DataTable dan simpan ke variabel table
-            var table = $("#tableBarangRusak").DataTable({
+            var table = $("#tableBarangKeluar").DataTable({
                 "paging": true,
                 "responsive": true,
                 "lengthChange": true,
@@ -135,7 +135,7 @@
                     },
                     'colvis'
                 ],
-            }).buttons().container().appendTo('#tableBarangRusak_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#tableBarangKeluar_wrapper .col-md-6:eq(0)');
 
             // Tambahkan dropdown filter
             var buttonContainer = $('.col-md-3:has(a.btn)');
@@ -174,7 +174,7 @@
                 $('#filterButton').html('<i class="fas fa-info font-size-16 align-middle me-2"></i>Filter: ' + filterValue);
 
                 // Terapkan filter ke DataTable dengan cara reinstansiasi
-                $('#tableBarangRusak').DataTable().search(filterValue).draw();
+                $('#tableBarangKeluar').DataTable().search(filterValue).draw();
             });
 
             // Event listener untuk reset filter
@@ -188,7 +188,7 @@
                 $('#filterButton').html('<i class="fas fa-info font-size-16 align-middle me-2"></i>Filter Keterangan');
 
                 // Reset filter DataTable dengan cara reinstansiasi
-                $('#tableBarangRusak').DataTable().search('').draw();
+                $('#tableBarangKeluar').DataTable().search('').draw();
             });
         });
     </script>

@@ -77,8 +77,7 @@ class ProfileController extends BaseController
             $oldFileName;
 
         // Simpan data ke dalam database
-        $this->m_user->save([
-            'id_user' => $id_user,
+        $this->m_user->update($id_user, [
             'nama_lengkap' => $this->request->getVar('nama_lengkap'),
             'username' => $this->request->getVar('username'),
             'email' => $this->request->getVar('email'),
@@ -96,7 +95,7 @@ class ProfileController extends BaseController
         ]);
 
         // Set flash message untuk sukses
-        session()->setFlashdata('pesan', 'Data Berhasil Diubah &#128077;');
+        session()->setFlashdata('pesan', 'Data Berhasil Diubah !');
 
         return redirect()->to('/admin/profile');
     }

@@ -143,6 +143,7 @@
                     <ul class="dropdown-menu" aria-labelledby="filterButton">
                         <li><a class="dropdown-item filter-option" href="#" data-filter="Transaksi">Transaksi Peminjaman</a></li>
                         <li><a class="dropdown-item filter-option" href="#" data-filter="Inventaris">Penambahan Inventaris</a></li>
+                        <li><a class="dropdown-item filter-option" href="#" data-filter="Perbaikan">Perbaikan</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#" id="resetFilter">Tampilkan Semua</a></li>
                     </ul>
