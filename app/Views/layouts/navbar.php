@@ -48,8 +48,180 @@
         text-align: center;
         margin-right: 10px;
     }
+    #editProfilModal .modal-content {
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border: none;
+        overflow: hidden;
+    }
 
-    
+    #editProfilModal .modal-header {
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        color: white;
+        padding: 20px 25px;
+        border-bottom: none;
+        position: relative;
+    }
+
+    #editProfilModal .modal-title {
+        font-weight: 700;
+        font-size: 1.3rem;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    #editProfilModal .close {
+        color: white;
+        opacity: 0.8;
+        text-shadow: none;
+        transition: all 0.2s;
+    }
+
+    #editProfilModal .close:hover {
+        opacity: 1;
+        transform: rotate(90deg);
+    }
+
+    #editProfilModal .modal-body {
+        padding: 25px;
+    }
+
+    #editProfilModal .form-group {
+        margin-bottom: 20px;
+    }
+
+    #editProfilModal .form-group label {
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 7px;
+        font-size: 0.9rem;
+    }
+
+    #editProfilModal .form-control {
+        border-radius: 8px;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        transition: all 0.3s;
+        background-color: #f8f9fa;
+    }
+
+    #editProfilModal .form-control:focus {
+        box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.2);
+        border-color: #2575fc;
+        background-color: #fff;
+    }
+
+    #editProfilModal textarea.form-control {
+        min-height: 100px;
+    }
+
+    #editProfilModal .profile-photo-container {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        margin-bottom: 15px;
+        border: 1px dashed #ddd;
+    }
+
+    #editProfilModal .profile-photo {
+        border-radius: 10px;
+        max-height: 150px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+    }
+
+    #editProfilModal .custom-file-upload {
+        display: inline-block;
+        cursor: pointer;
+        background-color: #f1f3f5;
+        color: #495057;
+        padding: 8px 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+        margin-top: 10px;
+    }
+
+    #editProfilModal .custom-file-upload:hover {
+        background-color: #e9ecef;
+    }
+
+    #editProfilModal .btn {
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #editProfilModal .btn-primary {
+        background-color: #2575fc;
+        border-color: #2575fc;
+    }
+
+    #editProfilModal .btn-primary:hover {
+        background-color: #1a68e5;
+        border-color: #1a68e5;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(37, 117, 252, 0.3);
+    }
+
+    #editProfilModal .btn-danger {
+        background-color: #f8f9fa;
+        border-color: #ddd;
+        color: #495057;
+    }
+
+    #editProfilModal .btn-danger:hover {
+        background-color: #e9ecef;
+        border-color: #ced4da;
+        color: #212529;
+    }
+
+    #editProfilModal .modal-footer {
+        border-top: none;
+        padding: 15px 25px 25px;
+    }
+
+    /* Field dengan ikon */
+    #editProfilModal .input-with-icon {
+        position: relative;
+    }
+
+    #editProfilModal .input-with-icon i {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #adb5bd;
+    }
+
+    #editProfilModal .input-with-icon .form-control {
+        padding-left: 40px;
+    }
+
+    /* Helper text formatting */
+    #editProfilModal .form-text {
+        font-size: 0.8rem;
+        color: #6c757d;
+        margin-top: 5px;
+    }
+
+    /* File input styling */
+    #editProfilModal .file-input-wrapper {
+        position: relative;
+    }
+
+    #editProfilModal input[type="file"] {
+        opacity: 0;
+        position: absolute;
+        width: 0.1px;
+        height: 0.1px;
+    }
+    .modal{
+        z-index: 9999999;
+    }
 </style>
 <header class="header_section" style="margin-bottom: 50px;">
     <div class="container-fluid">
@@ -209,7 +381,7 @@
                             <small class="form-text text-muted">Maksimal ukuran file 2MB. Format: JPG, JPEG, PNG, GIF</small>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         </div>
                     </form>
