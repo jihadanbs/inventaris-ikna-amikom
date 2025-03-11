@@ -16,7 +16,7 @@
                     $photos = explode(", ", $tb_barang['path_file_foto_barang']);
                     if (!empty($photos[0])) :
                     ?>
-                        <img src="<?= base_url($photos[0]) ?>" id="main-product-image" class="img-fluid" style="width: 100%; height: auto;">
+                        <img src="<?= base_url($photos[0]) ?>" id="main-product-image" class="img-fluid" style="width: 100%; max-height:500px ; object-fit: contain;">
                     <?php else: ?>
                         <img src="<?= base_url('assets/img/404.gif'); ?>" id="main-product-image" class="img-fluid" style="width: 100%; height: auto;">
                     <?php endif; ?>
