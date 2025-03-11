@@ -1032,14 +1032,15 @@ a:focus {
 
 
 /* Nav Tabs pada foto pengurus IKNA */
+/* Modern Scrollable Nav Tabs */
 .nav-scroll-container {
-  
   position: relative;
   width: 100%;
   background-color: #f8f9fa;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 10px 0;
+  overflow: hidden;
 }
 
 .nav-scroll-wrapper {
@@ -1050,30 +1051,23 @@ a:focus {
 
 .nav-scroll {
   display: flex;
-  justify-content: center;
-  padding: 20px;
   overflow-x: auto;
-  overflow-y: hidden; 
+  overflow-y: hidden; /* Prevent vertical scrolling */
   scroll-behavior: smooth;
   scrollbar-width: thin;
   scrollbar-color: rgba(0,0,0,0.2) transparent;
   gap: 10px;
-  padding: 0 10px; 
-  -webkit-overflow-scrolling: touch; 
-}
-
-/* Custom untuk scrollbar*/
-.nav-scroll::-webkit-scrollbar {
-  height: 6px;
-}
-
-.nav-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.2);
-  border-radius: 10px;
-}
-
-.nav-scroll::-webkit-scrollbar-track {
-  background: transparent;
+  padding: 0 60px; /* Increased padding to make room for scroll buttons */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+      display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .nav-scroll-btn {
@@ -1092,17 +1086,6 @@ a:focus {
   cursor: pointer;
   z-index: 20;
   transition: all 0.3s ease;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.nav-scroll-btn:hover {
-  background-color: #f0f0f0;
-}
-
-.nav-scroll-btn.show {
-  opacity: 1;
-  pointer-events: all;
 }
 
 .nav-scroll-btn-left {
@@ -1160,6 +1143,38 @@ a:focus {
   width: 50%;
 }
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .nav-scroll {
+      padding: 0 50px; /* Adjust padding for smaller screens */
+  }
+
+  .nav-scroll-btn {
+      width: 35px;
+      height: 35px;
+  }
+
+  .nav-scroll .nav-link {
+      padding: 8px 15px;
+      font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-scroll {
+      padding: 0 40px; /* Further reduce padding */
+  }
+
+  .nav-scroll-btn {
+      width: 30px;
+      height: 30px;
+  }
+
+  .nav-scroll .nav-link {
+      padding: 6px 12px;
+      font-size: 12px;
+  }
+}
 
 /* FOTO PENGuRUS */
 .image-modal {

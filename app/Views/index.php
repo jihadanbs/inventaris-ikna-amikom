@@ -277,19 +277,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const navScroll = document.querySelector('.nav-scroll');
     const navLinks = document.querySelectorAll('.nav-link');
     
-    // Create scroll buttons
+
     const leftBtn = document.createElement('button');
     leftBtn.classList.add('nav-scroll-btn', 'nav-scroll-btn-left');
-    leftBtn.innerHTML = '&#10094;'; // Left arrow
+    leftBtn.innerHTML = '&#10094;'; 
     
     const rightBtn = document.createElement('button');
     rightBtn.classList.add('nav-scroll-btn', 'nav-scroll-btn-right');
-    rightBtn.innerHTML = '&#10095;'; // Right arrow
+    rightBtn.innerHTML = '&#10095;'; 
     
     navScrollWrapper.appendChild(leftBtn);
     navScrollWrapper.appendChild(rightBtn);
     
-    // Function to check scroll visibility
     function checkScrollButtons() {
         const scrollLeft = navScroll.scrollLeft;
         const scrollWidth = navScroll.scrollWidth;
@@ -298,29 +297,27 @@ document.addEventListener('DOMContentLoaded', function() {
         leftBtn.classList.toggle('show', scrollLeft > 0);
         rightBtn.classList.toggle('show', scrollLeft + clientWidth < scrollWidth);
     }
-    
-    // Tab click handler
+
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            // Remove active class and aria-selected from all links
+         
             navLinks.forEach(l => {
                 l.classList.remove('active');
                 l.setAttribute('aria-selected', 'false');
             });
             
-            // Add active class and aria-selected to clicked link
             this.classList.add('active');
             this.setAttribute('aria-selected', 'true');
             
-            // Handle tab content switching
+        
             const targetId = this.getAttribute('data-target');
             if (targetId) {
-                // Hide all tab content
+
                 document.querySelectorAll('.tab-pane').forEach(pane => {
                     pane.classList.remove('show', 'active');
                 });
                 
-                // Show target tab content
+    
                 const targetPane = document.querySelector(targetId);
                 if (targetPane) {
                     targetPane.classList.add('show', 'active');
@@ -329,30 +326,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Initial check
-    checkScrollButtons();
-    
-    // Scroll event listener
-    navScroll.addEventListener('scroll', checkScrollButtons);
-    
-    // Resize event listener
-    window.addEventListener('resize', checkScrollButtons);
-    
-    // Scroll buttons functionality
-    leftBtn.addEventListener('click', () => {
-        navScroll.scrollBy({
-            left: -navScroll.clientWidth / 2,
-            behavior: 'smooth'
+          
+            checkScrollButtons();
+            
+            navScroll.addEventListener('scroll', checkScrollButtons);
+            
+            window.addEventListener('resize', checkScrollButtons);
+            
+            leftBtn.addEventListener('click', () => {
+                navScroll.scrollBy({
+                    left: -navScroll.clientWidth / 2,
+                    behavior: 'smooth'
+                });
+            });
+            
+            rightBtn.addEventListener('click', () => {
+                navScroll.scrollBy({
+                    left: navScroll.clientWidth / 2,
+                    behavior: 'smooth'
+                });
+            });
         });
-    });
-    
-    rightBtn.addEventListener('click', () => {
-        navScroll.scrollBy({
-            left: navScroll.clientWidth / 2,
-            behavior: 'smooth'
-        });
-    });
-});
 
         function openImageModal(imgSrc, name) {
             const modal = document.getElementById('imageModal');
