@@ -22,18 +22,24 @@
                     <li class="<?= uri_string() == '' ? 'active' : '' ?>">
                         <a class="" href="<?= site_url('/') ?>">Beranda</a>
                     </li>
-                    <li class="<?= uri_string() == 'about' ? 'active' : '' ?>">
-                        <a class="" href="<?= site_url('/about') ?>">Tentang Kami</a>
-                    </li>
                     <li class="<?= uri_string() == 'galeri' ? 'active' : '' ?>">
                         <a class="" href="<?= site_url('/galeri') ?>">Galeri</a>
-                    </li>
-                    <li class="<?= uri_string() == 'barang' ? 'active' : '' ?>">
-                        <a class="" href="<?= site_url('/barang') ?>">Barang</a>
                     </li>
                     <li class="<?= uri_string() == 'kontak' ? 'active' : '' ?>">
                         <a class="" href="<?= site_url('/kontak') ?>">Kontak Kami</a>
                     </li>
+                    <li class="<?= uri_string() == 'barang' ? 'active' : '' ?>">
+                        <a class="" href="<?= site_url('/barang') ?>">Barang</a>
+                    </li>
+                    <li class=" <?= (uri_string() == 'barang' || strpos(uri_string(), 'barang-detail') === 0) ? 'active' : '' ?>">
+                            <a class="" href="<?= site_url('barang') ?>">Barang</a>
+                        </li>
+                        <li class=" <?= uri_string() == 'keranjang-barang' ? 'active' : '' ?>">
+                            <a class="" href="<?= site_url('keranjang-barang') ?>">Keranjang</a>
+                        </li>
+                        <li class=" <?= (uri_string() == 'cek-barang' || uri_string() == 'cek-resi') ? 'active' : '' ?>">
+                            <a class="" href="<?= site_url('cek-barang') ?>">Cek Barang</a>
+                         </li>
                 </ul>
             </div>
         </div>
