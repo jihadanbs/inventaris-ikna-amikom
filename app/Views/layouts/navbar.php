@@ -339,7 +339,7 @@ $file_profil = $userData['file_profil'] ?? session()->get('file_profil') ?? '';
                 </button>
             </div>
             <div class="modal-body">
-                <form id="editProfilForm" action="<?= site_url('/authentication/updateUser') ?>" method="POST" enctype="multipart/form-data">
+                <form id="editProfilForm" action="<?= site_url('/authentication/updateUser') ?>" autocomplete="off" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nama_lengkap">Nama Lengkap<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap"

@@ -385,11 +385,51 @@
     ?>
     <!-- end main content-->
     <?= $this->include('admin/layouts/footer') ?>
-
     </div>
     <!-- END layout-wrapper -->
-
     <?= $this->include('admin/layouts/script2') ?>
+    <script>
+        $(document).ready(function() {
+            $("#tableSettingBarang").DataTable({
+                "paging": true,
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": true,
+                "buttons": [{
+                        extend: 'copy',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        }
+                    },
+                    {
+                        extend: 'csv',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5, 6, 7]
+                        }
+                    },
+                    'colvis'
+                ],
+            }).buttons().container().appendTo('#tableSettingBarang_wrapper .col-md-6:eq(0)');
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
