@@ -22,7 +22,9 @@ class BarangModel extends Model
             GROUP_CONCAT(tb_file_foto_barang.path_file_foto_barang SEPARATOR ", ") as path_file_foto_barang,
             tb_kategori_barang.nama_kategori, 
             tb_kondisi_barang.nama_kondisi, 
-            tb_barang_masuk.tanggal_masuk
+            tb_barang_masuk.tanggal_masuk,
+            tb_barang_baik.jumlah_total_baik, 
+            tb_barang_rusak.jumlah_total_rusak, 
         ');
         $builder->join('tb_galeri_barang', 'tb_barang.id_barang = tb_galeri_barang.id_barang', 'left');
         $builder->join('tb_file_foto_barang', 'tb_galeri_barang.id_file_foto_barang = tb_file_foto_barang.id_file_foto_barang', 'left');
@@ -30,6 +32,7 @@ class BarangModel extends Model
         $builder->join('tb_kondisi_barang', 'tb_kondisi_barang.id_kondisi_barang = tb_barang.id_kondisi_barang', 'left');
         $builder->join('tb_barang_masuk', 'tb_barang_masuk.id_barang = tb_barang.id_barang', 'left');
         $builder->join('tb_barang_rusak', 'tb_barang.id_barang = tb_barang_rusak.id_barang', 'left');
+        $builder->join('tb_barang_baik', 'tb_barang.id_barang = tb_barang_baik.id_barang', 'left');
 
         $builder->groupBy('tb_barang.id_barang, tb_kategori_barang.nama_kategori');
         // $builder->groupBy('tb_barang.id_barang, tb_kondisi_barang.nama_kondisi');
