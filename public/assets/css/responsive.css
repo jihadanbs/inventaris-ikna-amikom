@@ -158,6 +158,12 @@
     display:none;
     
   }
+
+  .team_section .team_container .box .img-box img {
+    min-width: 180px;
+    height: 250px;
+    object-fit: cover;
+  }
 }
 
 @media (max-width: 480px) {}

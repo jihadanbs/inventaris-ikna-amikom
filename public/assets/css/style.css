@@ -611,7 +611,7 @@ a:focus {
   margin-bottom: 50px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-      gap: 0px 85px;
+      gap: 0px 80px;
 }
 
 .team_section .team_container .box {
@@ -636,8 +636,8 @@ a:focus {
 }
 
 .team_section .team_container .box .img-box img {
-  width: 100%;
-  height: 250px;
+  min-width: 100%;
+  height: 290px;
   object-fit: cover;
 }
 

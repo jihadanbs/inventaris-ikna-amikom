@@ -213,7 +213,7 @@
                             foreach ($pengurusDivisi as $row) :
                         ?>
                                 <!-- Card foto pengurus -->
-                                <div class="box b-1 col-lg-2">
+                                <div class="box b-1 col-lg-2 col-md-4 col-sm-6">
                                     <div class="img-box">
                                         <img src="<?= base_url($row['foto']) ?>"
                                             alt="Foto <?= $row['nama'] ?>"
