@@ -9,7 +9,7 @@
             </div>
 
             <!-- Bagian Kiri - Foto Produk -->
-            <div class="col-md-6">
+            <div class="col-md-6 ml-auto">
                 <!-- Main Image -->
                 <div class="main-image-barang mb-3">
                     <?php
