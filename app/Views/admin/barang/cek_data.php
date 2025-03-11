@@ -316,13 +316,13 @@
 
                         <div class="form-group mb-4 mt-4">
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <a href="<?= esc(site_url('admin/barang'), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
+                                <a href="<?= esc(site_url('/admin/barang'), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
                                     <i class="fas fa-arrow-left"></i> Kembali
                                 </a>
-                                <a href="<?= esc(site_url('admin/barang/tambah_stok/' . urlencode($tb_barang['slug'])), 'attr') ?>" class="btn btn-primary btn-md">
+                                <a href="<?= esc(site_url('/admin/barang/tambah_stok/' . urlencode($tb_barang['slug'])), 'attr') ?>" class="btn btn-primary btn-md">
                                     <i class="fas fa-plus"></i> Tambah Stok Barang
                                 </a>
-                                <a href="<?= esc(site_url('admin/barang/edit/' . urlencode($tb_barang['slug'])), 'attr') ?>" class="btn btn-warning btn-md edit">
+                                <a href="<?= esc(site_url('/admin/barang/edit/' . urlencode($tb_barang['slug'])), 'attr') ?>" class="btn btn-warning btn-md edit">
                                     <i class="fas fa-edit"></i> Ubah Data
                                 </a>
                                 <button type="button" class="btn btn-danger btn-md ml-3 waves-effect waves-light sa-warning" data-id="<?= $tb_barang['id_barang'] ?>">
@@ -368,7 +368,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "POST",
-                        url: "<?= site_url('admin/barang/delete2') ?>",
+                        url: "<?= site_url('/admin/barang/delete2') ?>",
                         data: {
                             id_barang: id_barang,
                             _method: 'DELETE'
@@ -382,7 +382,7 @@
                                     icon: "success"
                                 }).then(() => {
                                     // Redirect ke halaman /admin/barang setelah sukses menghapus
-                                    window.location.href = '<?= site_url('admin/barang') ?>';
+                                    window.location.href = '<?= site_url('/admin/barang') ?>';
                                 });
                             } else if (response.status === 'error') {
                                 Swal.fire({

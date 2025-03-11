@@ -106,6 +106,23 @@
 
                     <script>
                         function ajukanPeminjaman() {
+                            // Cek id_jabatan terlebih dahulu
+                            const id_jabatan = <?= session()->get('id_jabatan') ?? 'null' ?>;
+
+                            if (id_jabatan !== 2) {
+                                // Tampilkan pesan bahwa admin tidak bisa melakukan transaksi
+                                Swal.fire({
+                                    title: 'Akses Ditolak!',
+                                    text: 'Admin tidak bisa melakukan transaksi',
+                                    icon: 'warning',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    // Setelah user mengklik OK, redirect ke dashboard
+                                    window.location.href = '<?= site_url('/dashboard') ?>';
+                                });
+                                return;
+                            }
+
                             let data = {
                                 id_barang: '<?= $tb_barang['id_barang'] ?>',
                                 slug: '<?= $slugUserBarang ?>'
@@ -123,7 +140,7 @@
                                 .then(result => {
                                     if (result.status === 'success') {
                                         // Redirect ke halaman keranjang
-                                        window.location.href = '<?= site_url('keranjang-barang') ?>';
+                                        window.location.href = '<?= site_url('/keranjang-barang') ?>';
                                     } else {
                                         Swal.fire({
                                             title: 'Gagal!',
@@ -143,6 +160,23 @@
                         }
 
                         function masukKeranjang() {
+                            // Cek id_jabatan terlebih dahulu
+                            const id_jabatan = <?= session()->get('id_jabatan') ?? 'null' ?>;
+
+                            if (id_jabatan !== 2) {
+                                // Tampilkan pesan bahwa admin tidak bisa melakukan transaksi
+                                Swal.fire({
+                                    title: 'Akses Ditolak!',
+                                    text: 'Admin tidak bisa melakukan transaksi',
+                                    icon: 'warning',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    // Setelah user mengklik OK, redirect ke dashboard
+                                    window.location.href = '<?= site_url('/dashboard') ?>';
+                                });
+                                return;
+                            }
+
                             let data = {
                                 id_barang: '<?= $tb_barang['id_barang'] ?>',
                                 slug: '<?= $slugUserBarang ?>'

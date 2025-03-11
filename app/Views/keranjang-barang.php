@@ -78,7 +78,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="formPengajuan" action="<?= site_url('ajukanPeminjamanBarang') ?>" method="post" enctype="multipart/form-data" autocomplete="off">
+                    <form id="formPengajuan" action="<?= site_url('/ajukanPeminjamanBarang') ?>" method="post" enctype="multipart/form-data" autocomplete="off">
                         <input type="hidden" name="selected_peminjaman_ids" id="selected_peminjaman_ids" value="">
                         <?= csrf_field() ?>
 
@@ -440,6 +440,18 @@
 
             // Tampilkan modal peminjaman
             $('#peminjamanModal').modal('show');
+
+            $(document).ready(function() {
+                // Perbaikan tombol close (X)
+                $(".modal-form-peminjaman .close").on("click", function() {
+                    $("#peminjamanModal").modal("hide");
+                });
+
+                // Perbaikan tombol Tutup
+                $(".modal-form-peminjaman .btn-danger").on("click", function() {
+                    $("#peminjamanModal").modal("hide");
+                });
+            });
         }
     </script>
 </body>

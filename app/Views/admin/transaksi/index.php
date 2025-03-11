@@ -75,42 +75,44 @@
                                 <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($tb_user_peminjam as $row) : ?>
-                                        <tr>
-                                            <td style="width: 2px" scope="row"><?= $i++; ?></td>
-                                            <td>
-                                                <a href="<?= site_url('admin/user-peminjam/profile/' . $row['username']) ?>" class="text-decoration-none">
-                                                    <?= $row['nama_lengkap']; ?>
-                                                </a>
-                                            </td>
-                                            <td><?= $row['kode_peminjaman']; ?></td>
-                                            <td><?= $row['total_jenis_barang']; ?> Jenis Barang</td>
-                                            <!-- <td><?= $row['kategori_list']; ?></td> -->
-                                            <td><?= formatTanggalIndo($row['tanggal_pengajuan']); ?></td>
-                                            <td class="text-center">
-                                                <?php if ($row['status'] === 'Belum Diproses') : ?>
-                                                    <span class="badge bg-primary text-white">Belum Diproses</span>
-                                                <?php elseif ($row['status'] === 'Ditolak') : ?>
-                                                    <span class="badge bg-danger text-white">Ditolak</span>
-                                                <?php elseif ($row['status'] === 'Dipinjamkan') : ?>
-                                                    <span class="badge bg-info text-white">Dipinjamkan</span>
-                                                <?php elseif ($row['status'] === 'Dikembalikan') : ?>
-                                                    <span class="badge bg-success text-white">Dikembalikan</span>
-                                                <?php else : ?>
-                                                    <span class="badge bg-secondary text-white">Tidak Diketahui</span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td style="width: 155px">
-                                                <a href="<?= site_url('admin/transaksi/cek_data/' . $row['kode_peminjaman']) ?>" class="btn btn-info btn-sm view">
-                                                    <i class="fa fa-eye"></i> Cek
-                                                </a>
-
-                                                <a href="<?= site_url('admin/user_peminjam/cek_data/' . $row['kode_peminjaman']) ?>"
-                                                    class="btn btn-danger btn-sm waves-effect waves-light sa-warning"
-                                                    <?= ($row['status'] != 'Dikembalikan' && $row['status'] != 'Ditolak') ? 'onclick="return false;" style="pointer-events: none; opacity: 0.5;"' : '' ?>>
-                                                    <i class="fas fa-trash-alt"></i> Hapus
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        <?php
+                                        // Hanya tampilkan jika status termasuk dalam 4 status yang diinginkan
+                                        if (in_array($row['status'], ['Belum Diproses', 'Ditolak', 'Dipinjamkan', 'Dikembalikan'])) :
+                                        ?>
+                                            <tr>
+                                                <td style="width: 2px" scope="row"><?= $i++; ?></td>
+                                                <td>
+                                                    <a href="<?= site_url('admin/user-peminjam/profile/' . $row['username']) ?>" class="text-decoration-none">
+                                                        <?= $row['nama_lengkap']; ?>
+                                                    </a>
+                                                </td>
+                                                <td><?= $row['kode_peminjaman']; ?></td>
+                                                <td><?= $row['total_jenis_barang']; ?> Jenis Barang</td>
+                                                <!-- <td><?= $row['kategori_list']; ?></td> -->
+                                                <td><?= formatTanggalIndo($row['tanggal_pengajuan']); ?></td>
+                                                <td class="text-center">
+                                                    <?php if ($row['status'] === 'Belum Diproses') : ?>
+                                                        <span class="badge bg-primary text-white">Belum Diproses</span>
+                                                    <?php elseif ($row['status'] === 'Ditolak') : ?>
+                                                        <span class="badge bg-danger text-white">Ditolak</span>
+                                                    <?php elseif ($row['status'] === 'Dipinjamkan') : ?>
+                                                        <span class="badge bg-info text-white">Dipinjamkan</span>
+                                                    <?php elseif ($row['status'] === 'Dikembalikan') : ?>
+                                                        <span class="badge bg-success text-white">Dikembalikan</span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td style="width: 155px">
+                                                    <a href="<?= site_url('admin/transaksi/cek_data/' . $row['kode_peminjaman']) ?>" class="btn btn-info btn-sm view">
+                                                        <i class="fa fa-eye"></i> Cek
+                                                    </a>
+                                                    <a href="<?= site_url('admin/user_peminjam/cek_data/' . $row['kode_peminjaman']) ?>"
+                                                        class="btn btn-danger btn-sm waves-effect waves-light sa-warning"
+                                                        <?= ($row['status'] != 'Dikembalikan' && $row['status'] != 'Ditolak') ? 'onclick="return false;" style="pointer-events: none; opacity: 0.5;"' : '' ?>>
+                                                        <i class="fas fa-trash-alt"></i> Hapus
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>

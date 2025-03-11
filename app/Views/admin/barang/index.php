@@ -18,7 +18,7 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang') ?>">Barang IKNA</a></li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('/admin/barang') ?>">Barang IKNA</a></li>
                                 <li class="breadcrumb-item active">Data Barang</li>
                             </ol>
                         </div>
@@ -53,7 +53,7 @@
                             <table id="tableBarang" class="table table-bordered dt-responsive nowrap w-100">
                                 <?= $this->include('alert/alert'); ?>
                                 <div class="col-md-3 mb-3">
-                                    <a href=" <?= site_url('admin/barang/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
+                                    <a href=" <?= site_url('/admin/barang/tambah') ?>" class="btn waves-effect waves-light" style="background-color: #28527A; color:white;">
                                         <i class="fas fa-plus font-size-16 align-middle me-2"></i> Tambah
                                     </a>
                                 </div>
@@ -80,7 +80,7 @@
                                             <td><?= $row['jumlah_total']; ?> Unit</td>
                                             <td><?= formatTanggalIndo($row['tanggal_masuk']); ?></td>
                                             <td style="width: 155px">
-                                                <a href="<?= site_url('admin/barang/cek_data/' . $row['slug']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
+                                                <a href="<?= site_url('/admin/barang/cek_data/' . $row['slug']) ?>" class="btn btn-info btn-sm view"><i class="fa fa-eye"></i> Cek</a>
                                                 <button type="button" class="btn btn-danger btn-sm waves-effect waves-light sa-warning" data-id="<?= $row['id_barang'] ?>">
                                                     <i class="fas fa-trash-alt"></i> Hapus
                                                 </button>
@@ -166,7 +166,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
                             type: "POST",
-                            url: '<?= site_url('admin/barang/delete') ?>',
+                            url: '<?= site_url('/admin/barang/delete') ?>',
                             data: {
                                 id_barang: id_barang,
                                 _method: 'DELETE'

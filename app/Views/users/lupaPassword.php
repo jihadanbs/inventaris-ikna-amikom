@@ -91,7 +91,7 @@
                     </script>
                     <!-- END PASSWORD TOGGLE -->
                     <div class="register-forget opacity">
-                        <a href="<?php echo site_url("authentication/login"); ?>" style="color: black; text-align:right; display: block;">Kembali Kehalaman Login</a>
+                        <a href="<?php echo site_url("/authentication/login"); ?>" style="color: black; text-align:right; display: block;">Kembali Kehalaman Login</a>
                     </div>
                 </div>
                 <div class="circle circle-two"></div>

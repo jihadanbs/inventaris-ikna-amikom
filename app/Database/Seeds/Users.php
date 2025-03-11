@@ -18,8 +18,8 @@ class Users extends Seeder
                 'pekerjaan' => 'Mahasiswa',
                 'alamat' => 'Sleman, Yogyakarta',
                 'status' => 'aktif',
-                'email' => 'alanflorensius390@gmail.com',
-                'no_telepon' => '088215178312',
+                'email' => 'florensiusalan390@gmail.com',
+                'no_telepon' => '081236656992',
                 'file_profil' => ''
             ],
             [
