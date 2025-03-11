@@ -164,26 +164,30 @@
         </div>
         <!-- Navigasi Tab -->
         <nav>
-            <div class="nav nav1 nav-tabs" id="nav-tab" role="tablist">
-                <?php
-                // Array divisi yang tersedia
-                $divisi = ['BPH', 'Kerohanian', 'Kerumahtanggaan', 'Humas', 'Talenta Olahraga', 'Talenta Musik', 'Talenta Pertunjukan', 'Usaha Dana', 'Litbang'];
+            <div class="nav-scroll-container">
+                <div class="nav-scroll-wrapper">
+                    <div class="nav-scroll nav-tabs" id="nav-tab" role="tablist">
+                        <?php
+                        // Array divisi yang tersedia
+                        $divisi = ['BPH', 'Kerohanian', 'Kerumahtanggaan', 'Humas', 'Talenta Olahraga', 'Talenta Musik', 'Talenta Pertunjukan', 'Usaha Dana', 'Litbang'];
 
-                foreach ($divisi as $index => $div) :
-                    $isActive = ($index === 0) ? 'active' : '';
-                    $id = strtolower(str_replace(' ', '-', $div));
-                ?>
-                    <button class="nav-link <?= $isActive ?>"
-                        id="nav-<?= $id ?>-tab"
-                        data-toggle="tab"
-                        data-target="#nav-<?= $id ?>"
-                        type="button"
-                        role="tab"
-                        aria-controls="nav-<?= $id ?>"
-                        aria-selected="<?= $index === 0 ? 'true' : 'false' ?>">
-                        <?= $div ?>
-                    </button>
-                <?php endforeach; ?>
+                        foreach ($divisi as $index => $div) :
+                            $isActive = ($index === 0) ? 'active' : '';
+                            $id = strtolower(str_replace(' ', '-', $div));
+                        ?>
+                            <button class="nav-link <?= $isActive ?>"
+                                id="nav-<?= $id ?>-tab"
+                                data-toggle="tab"
+                                data-target="#nav-<?= $id ?>"
+                                type="button"
+                                role="tab"
+                                aria-controls="nav-<?= $id ?>"
+                                aria-selected="<?= $index === 0 ? 'true' : 'false' ?>">
+                                <?= $div ?>
+                            </button>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
         </nav>
 
@@ -266,8 +270,89 @@
     <?= $this->include('layouts/script') ?>
 
     <script>
-        let currentZoom = 1;
-        const zoomStep = 0.2;
+
+document.addEventListener('DOMContentLoaded', function() {
+    const navScrollContainer = document.querySelector('.nav-scroll-container');
+    const navScrollWrapper = document.querySelector('.nav-scroll-wrapper');
+    const navScroll = document.querySelector('.nav-scroll');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Create scroll buttons
+    const leftBtn = document.createElement('button');
+    leftBtn.classList.add('nav-scroll-btn', 'nav-scroll-btn-left');
+    leftBtn.innerHTML = '&#10094;'; // Left arrow
+    
+    const rightBtn = document.createElement('button');
+    rightBtn.classList.add('nav-scroll-btn', 'nav-scroll-btn-right');
+    rightBtn.innerHTML = '&#10095;'; // Right arrow
+    
+    navScrollWrapper.appendChild(leftBtn);
+    navScrollWrapper.appendChild(rightBtn);
+    
+    // Function to check scroll visibility
+    function checkScrollButtons() {
+        const scrollLeft = navScroll.scrollLeft;
+        const scrollWidth = navScroll.scrollWidth;
+        const clientWidth = navScroll.clientWidth;
+        
+        leftBtn.classList.toggle('show', scrollLeft > 0);
+        rightBtn.classList.toggle('show', scrollLeft + clientWidth < scrollWidth);
+    }
+    
+    // Tab click handler
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Remove active class and aria-selected from all links
+            navLinks.forEach(l => {
+                l.classList.remove('active');
+                l.setAttribute('aria-selected', 'false');
+            });
+            
+            // Add active class and aria-selected to clicked link
+            this.classList.add('active');
+            this.setAttribute('aria-selected', 'true');
+            
+            // Handle tab content switching
+            const targetId = this.getAttribute('data-target');
+            if (targetId) {
+                // Hide all tab content
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('show', 'active');
+                });
+                
+                // Show target tab content
+                const targetPane = document.querySelector(targetId);
+                if (targetPane) {
+                    targetPane.classList.add('show', 'active');
+                }
+            }
+        });
+    });
+    
+    // Initial check
+    checkScrollButtons();
+    
+    // Scroll event listener
+    navScroll.addEventListener('scroll', checkScrollButtons);
+    
+    // Resize event listener
+    window.addEventListener('resize', checkScrollButtons);
+    
+    // Scroll buttons functionality
+    leftBtn.addEventListener('click', () => {
+        navScroll.scrollBy({
+            left: -navScroll.clientWidth / 2,
+            behavior: 'smooth'
+        });
+    });
+    
+    rightBtn.addEventListener('click', () => {
+        navScroll.scrollBy({
+            left: navScroll.clientWidth / 2,
+            behavior: 'smooth'
+        });
+    });
+});
 
         function openImageModal(imgSrc, name) {
             const modal = document.getElementById('imageModal');

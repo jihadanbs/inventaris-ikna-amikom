@@ -1028,22 +1028,93 @@ a:focus {
 .footer_section a {
   color: #ffffff;
 }
-/*# sourceMappingURL=style.css.map */
 
 
 
-/* NAV TABS GALERI */
-.nav1 {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  padding: 20px;
+/* Nav Tabs pada foto pengurus IKNA */
+.nav-scroll-container {
+  
+  position: relative;
+  width: 100%;
   background-color: #f8f9fa;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
 }
 
-.nav1 .nav-link {
+.nav-scroll-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.nav-scroll {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  overflow-x: auto;
+  overflow-y: hidden; 
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0,0,0,0.2) transparent;
+  gap: 10px;
+  padding: 0 10px; 
+  -webkit-overflow-scrolling: touch; 
+}
+
+/* Custom untuk scrollbar*/
+.nav-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.nav-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+.nav-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nav-scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,255,0.9);
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  cursor: pointer;
+  z-index: 20;
+  transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-scroll-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.nav-scroll-btn.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.nav-scroll-btn-left {
+  left: 10px;
+}
+
+.nav-scroll-btn-right {
+  right: 10px;
+}
+
+.nav-scroll .nav-link {
+  flex-shrink: 0;
   position: relative;
   padding: 10px 20px;
   font-size: 16px;
@@ -1055,23 +1126,24 @@ a:focus {
   transition: all 0.3s ease;
   text-align: center;
   cursor: pointer;
+  white-space: nowrap;
 }
 
-.nav1 .nav-link:hover {
+.nav-scroll .nav-link:hover {
   color: #fff;
-  background-color:var(--kuning-secondary);
-  border-color:var(--kuning-secondary);
+  background-color: var(--kuning-secondary);
+  border-color: var(--kuning-secondary);
   box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
 
-.nav1 .nav-link.active {
+.nav-scroll .nav-link.active {
   color: #fff;
   background-color: var(--biru-latar);
   border-color: var(--biru-latar);
   box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
 }
 
-.nav1 .nav-link::after {
+.nav-scroll .nav-link::after {
   content: '';
   position: absolute;
   bottom: -5px;
@@ -1083,21 +1155,9 @@ a:focus {
   transition: width 0.3s ease;
 }
 
-.nav1 .nav-link:hover::after,
-.nav1 .nav-link.active::after {
+.nav-scroll .nav-link:hover::after,
+.nav-scroll .nav-link.active::after {
   width: 50%;
-}
-
-
-@media (max-width: 768px) {
-   .nav1 {
-      flex-wrap: wrap;
-  }
-
-  .nav1 .nav-link {
-      width: calc(50% - 10px);
-      margin-bottom: 10px;
-  }
 }
 
 

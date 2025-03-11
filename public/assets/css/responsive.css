@@ -144,11 +144,19 @@
     text-align:center;
     padding:10px;
   }
+
+  
+
 }
 
 @media (max-width: 576px) {
   .slider_section .detail_box h1 {
     font-size: 3.5rem;
+  }
+
+  .heading_container h2::before {
+    display:none;
+    
   }
 }
 
