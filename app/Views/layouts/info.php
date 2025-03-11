@@ -5,7 +5,7 @@
             <div class="col-md-6 col-lg-3">
                 <div class=" info_logo">
                     <h3>
-                        IKNAventory 
+                        IKNAventory
                     </h3>
                     <p>
                         UKM IKNA didirikan di Yogyakarta pada tanggal 14 November 1995 dan diresmikan tanggal 7
@@ -23,7 +23,7 @@
                         <a class="" href="<?= site_url('/') ?>">Beranda</a>
                     </li>
                     <li class="<?= uri_string() == 'about' ? 'active' : '' ?>">
-                        <a class="" href="<?= site_url('about') ?>">Tentang Kami</a>
+                        <a class="" href="<?= site_url('/about') ?>">Tentang Kami</a>
                     </li>
                     <li class="<?= uri_string() == 'galeri' ? 'active' : '' ?>">
                         <a class="" href="<?= site_url('/galeri') ?>">Galeri</a>

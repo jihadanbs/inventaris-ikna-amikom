@@ -25,7 +25,7 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang') ?>">Data Barang</a></li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('/admin/barang') ?>">Data Barang</a></li>
                                 <li class="breadcrumb-item active">Formulir Tambah Data Barang</li>
                             </ol>
                         </div>
@@ -41,7 +41,7 @@
                         <div class="card-body">
                             <h2 class="text-center mb-4">FORMULIR TAMBAH DATA BARANG</h2>
                             <?= $this->include('alert/alert'); ?>
-                            <form action="<?= esc(site_url('admin/barang/save'), 'attr') ?>" method="post" enctype="multipart/form-data" novalidate autocomplete="off">
+                            <form action="<?= esc(site_url('/admin/barang/save'), 'attr') ?>" method="post" enctype="multipart/form-data" novalidate autocomplete="off">
                                 <?= csrf_field(); ?>
                                 <div class="row">
                                     <div class="col-md-6 mb-3 separator">
@@ -58,7 +58,7 @@
 
                                     <div class="col-md-6 mb-3">
                                         <label for="id_kategori_barang" class="col-form-label">Kategori Barang<span class="text-danger">*</span></label>
-                                        <a href="<?= site_url('admin/kategori_barang'); ?>" class="btn rounded-pill">
+                                        <a href="<?= site_url('/admin/kategori_barang'); ?>" class="btn rounded-pill">
                                             <i class="fa fa-plus"></i>
                                         </a>
                                         <select class="form-select custom-border <?= session('errors.id_kategori_barang') ? 'is-invalid' : '' ?>" id="id_kategori_barang" name="id_kategori_barang" aria-label="Default select example" style="background-color: white;">
@@ -95,7 +95,7 @@
 
                                     <div class="col-md-6 mb-3">
                                         <label for="id_kondisi_barang" class="col-form-label">Kondisi Barang<span class="text-danger">*</span></label>
-                                        <a href="<?= site_url('admin/kondisi_barang'); ?>" class="btn rounded-pill">
+                                        <a href="<?= site_url('/admin/kondisi_barang'); ?>" class="btn rounded-pill">
                                             <i class="fa fa-plus"></i>
                                         </a>
                                         <select class="form-select custom-border <?= session('errors.id_kondisi_barang') ? 'is-invalid' : '' ?>" id="id_kondisi_barang" name="id_kondisi_barang" aria-label="Default select example" style="background-color: white;">
@@ -233,7 +233,7 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <a href="<?= site_url('admin/barang') ?>" class="btn btn-secondary btn-md ml-3">
+                                    <a href="<?= site_url('/dadmin/barang') ?>" class="btn btn-secondary btn-md ml-3">
                                         <i class="fas fa-times"></i> Batal
                                     </a>
                                     <button type="submit" class="btn btn-primary" style="background-color: #28527A; color:white; margin-left: 10px;"><i class="fas fa-plus"></i> Tambah Data</button>

@@ -140,7 +140,7 @@
                                 .then(result => {
                                     if (result.status === 'success') {
                                         // Redirect ke halaman keranjang
-                                        window.location.href = '<?= site_url('keranjang-barang') ?>';
+                                        window.location.href = '<?= site_url('/keranjang-barang') ?>';
                                     } else {
                                         Swal.fire({
                                             title: 'Gagal!',

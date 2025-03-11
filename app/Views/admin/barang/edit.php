@@ -87,8 +87,8 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang') ?>">Data Barang</a></li>
-                                <li class="breadcrumb-item"><a href="<?= esc(site_url('admin/barang/cek_data/' . urlencode($tb_barang['slug'])), 'attr') ?>">Formulir Cek Data Barang</a></li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('/admin/barang') ?>">Data Barang</a></li>
+                                <li class="breadcrumb-item"><a href="<?= esc(site_url('/admin/barang/cek_data/' . urlencode($tb_barang['slug'])), 'attr') ?>">Formulir Cek Data Barang</a></li>
                                 <li class="breadcrumb-item active">Formulir Ubah Data Barang</li>
                             </ol>
                         </div>
@@ -105,7 +105,7 @@
                         <div class="card-body">
                             <h2 class="text-center mb-4">FORMULIR UBAH DATA BARANG</h2>
                             <?= $this->include('alert/alert'); ?>
-                            <form action="<?= esc(site_url('admin/barang/update/' . urlencode($tb_barang['id_barang'])), 'attr') ?>" method="post" enctype="multipart/form-data" id="validationForm" novalidate autocomplete="off">
+                            <form action="<?= esc(site_url('/admin/barang/update/' . urlencode($tb_barang['id_barang'])), 'attr') ?>" method="post" enctype="multipart/form-data" id="validationForm" novalidate autocomplete="off">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="_method" value="PUT">
                                 <input type="hidden" name="slug" value="<?= esc($tb_barang['slug'], 'attr'); ?>">
@@ -169,7 +169,7 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3 separator">
                                         <label for="id_kategori_barang" class="col-form-label">Kategori Barang<span class="text-danger">*</span></label>
-                                        <a href="<?= site_url('admin/kategori_barang'); ?>" class="btn rounded-pill">
+                                        <a href="<?= site_url('/admin/kategori_barang'); ?>" class="btn rounded-pill">
                                             <i class="fa fa-plus"></i>
                                         </a>
                                         <select class="form-select custom-border <?= ($validation->hasError('id_kategori_barang')) ? 'is-invalid' : ''; ?>" id="id_kategori_barang" name="id_kategori_barang" aria-label="Default select example" style="background-color: white;" required>
@@ -183,7 +183,7 @@
 
                                     <div class="col-md-6 mb-3">
                                         <label for="id_kondisi_barang" class="col-form-label">Kondisi Barang<span class="text-danger">*</span></label>
-                                        <a href="<?= site_url('admin/kondisi_barang'); ?>" class="btn rounded-pill">
+                                        <a href="<?= site_url('/admin/kondisi_barang'); ?>" class="btn rounded-pill">
                                             <i class="fa fa-plus"></i>
                                         </a>
                                         <select class="form-select custom-border <?= ($validation->hasError('id_kondisi_barang')) ? 'is-invalid' : ''; ?>" id="id_kondisi_barang" name="id_kondisi_barang" aria-label="Default select example" style="background-color: white;" required>
@@ -227,7 +227,7 @@
 
                                 <div class="form-group mb-4 mt-4">
                                     <div class="d-grid gap-2 d-md-flex justify-content-end">
-                                        <a href="<?= esc(site_url('admin/barang/cek_data/' . urlencode($tb_barang['slug'])), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
+                                        <a href="<?= esc(site_url('/admin/barang/cek_data/' . urlencode($tb_barang['slug'])), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
                                             <i class="fas fa-times"></i> Batal Ubah
                                         </a>
                                         <button type="submit" class="btn btn-warning btn-md edit"><i class="fas fa-save"></i> Simpan Perubahan Data</button>

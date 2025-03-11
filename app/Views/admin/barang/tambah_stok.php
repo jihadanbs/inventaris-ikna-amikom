@@ -87,8 +87,8 @@
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="<?= site_url('admin/barang') ?>">Data Barang</a></li>
-                                <li class="breadcrumb-item"><a href="<?= esc(site_url('admin/barang/cek_data/' . urlencode($tb_barang['slug'])), 'attr') ?>">Formulir Cek Data Barang</a></li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('/admin/barang') ?>">Data Barang</a></li>
+                                <li class="breadcrumb-item"><a href="<?= esc(site_url('/admin/barang/cek_data/' . urlencode($tb_barang['slug'])), 'attr') ?>">Formulir Cek Data Barang</a></li>
                                 <li class="breadcrumb-item active">Formulir Tambah Data Stok Barang</li>
                             </ol>
                         </div>
@@ -104,7 +104,7 @@
                         <div class="card-body">
                             <h2 class="text-center mb-4">FORMULIR TAMBAH DATA STOK BARANG</h2>
                             <?= $this->include('alert/alert'); ?>
-                            <form action="<?= esc(site_url('admin/barang/saveStok/' . urlencode($tb_barang['id_barang'])), 'attr') ?>" method="post" enctype="multipart/form-data" novalidate autocomplete="off">
+                            <form action="<?= esc(site_url('/admin/barang/saveStok/' . urlencode($tb_barang['id_barang'])), 'attr') ?>" method="post" enctype="multipart/form-data" novalidate autocomplete="off">
                                 <?= csrf_field(); ?>
                                 <input type="hidden" name="id_barang" value="<?= esc($tb_barang['id_barang'], 'attr'); ?>">
                                 <input type="hidden" name="id_kategori_barang" value="<?= esc($tb_barang['id_kategori_barang'], 'attr'); ?>">
@@ -226,7 +226,7 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <a href="<?= esc(site_url('admin/barang/cek_data/' . urlencode($tb_barang['slug'])), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
+                                    <a href="<?= esc(site_url('/admin/barang/cek_data/' . urlencode($tb_barang['slug'])), 'attr') ?>" class="btn btn-secondary btn-md ml-3">
                                         <i class="fas fa-times"></i> Batal
                                     </a>
                                     <button type="submit" class="btn btn-primary" style="background-color: #28527A; color:white; margin-left: 10px;"><i class="fas fa-plus"></i> Tambah Data</button>
